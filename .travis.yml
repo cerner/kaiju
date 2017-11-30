@@ -1,0 +1,12 @@
+language: node_js
+sudo: required
+services:
+  - redis-server
+script:
+  - npm test
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
