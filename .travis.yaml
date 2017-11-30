@@ -1,0 +1,13 @@
+language: ruby
+sudo: required
+before_script:
+  - nvm install
+  - npm install
+script:
+  - npm test
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
