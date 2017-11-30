@@ -34,7 +34,7 @@ const Preview = ({ ast }) => {
   return (
     <Base className="kaiju-Preview" locale="en-US">
       <SafeRender>
-        {React.createElement('div', { ...generateProperties(ast.properties), className: `kaiju-${ast.name}` })}
+        {React.createElement('div', { ...generateProperties(ast.properties) })}
       </SafeRender>
     </Base>
   );
