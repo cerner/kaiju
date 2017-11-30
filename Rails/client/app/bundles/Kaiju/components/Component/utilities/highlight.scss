@@ -1,0 +1,22 @@
+.kaiju-Highlight {
+  background-color: var(--kaiju-theme-color, #1db954);
+  box-sizing: border-box;
+  opacity: 0.3;
+  pointer-events: none;
+  text-align: center;
+  z-index: 9999;
+}
+
+.kaiju-Highlight-label {
+  background-color: var(--kaiju-theme-color, #1db954);
+  border-radius: 3px 3px 0 0;
+  color: #fff;
+  padding: 5px 15px;
+  position: relative;
+  top: -21px;
+  white-space: nowrap;
+}
+
+.kaiju-Highlight-label--inset {
+  top: 3px;
+}

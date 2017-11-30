@@ -1,0 +1,31 @@
+.kaiju-Sidebar {
+  border-right: 1px solid #111;
+  display: flex;
+  flex: 0 0 230px;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.kaiju-Sidebar-components {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  height: 60%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.kaiju-Sidebar-layers {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  height: 40%;
+  min-height: 0;
+  overflow: hidden;
+
+  > .kaiju-SectionHeader {
+    border-bottom: 1px solid #111;
+    border-top: 1px solid #111;
+  }
+}

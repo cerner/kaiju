@@ -1,0 +1,13 @@
+.kaiju-ComponentSelect {
+  width: 100%;
+}
+
+// Custom ant styles
+// stylelint-disable
+.ant-select-selection__placeholder {
+  color: #bbb;
+}
+
+.ant-select-tree-switcher {
+  display: none !important;
+}

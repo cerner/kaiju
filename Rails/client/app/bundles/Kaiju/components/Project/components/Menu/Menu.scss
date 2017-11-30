@@ -1,0 +1,10 @@
+.kaiju-Menu {
+  align-items: stretch;
+  cursor: default;
+  display: flex;
+  margin-left: 5px;
+
+  > .kaiju-MenuItem {
+    margin: 0 5px;
+  }
+}

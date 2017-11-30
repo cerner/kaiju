@@ -1,0 +1,9 @@
+.kaiju-ActionItem {
+  cursor: pointer;
+  padding: 0 10px;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}

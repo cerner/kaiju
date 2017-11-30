@@ -1,0 +1,62 @@
+.kaiju-Card {
+  align-items: center;
+  background-color: rgba(51, 51, 51, 0.75);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  height: 77px;
+  padding: 5px 10px;
+  transition: all 0.3s;
+  width: 210px;
+
+  &.is-open {
+    color: var(--kaiju-theme-color, #1db954);
+  }
+
+  &:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+
+.kaiju-Card-author {
+  color: #999;
+  font-size: 10px;
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kaiju-Card-details {
+  line-height: 15px;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kaiju-Card-updateDateTime {
+  color: #999;
+  font-size: 10px;
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kaiju-Card-name {
+  font-size: 12px;
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kaiju-Card-project {
+  color: #999;
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

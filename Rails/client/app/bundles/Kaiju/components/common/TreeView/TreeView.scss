@@ -1,0 +1,30 @@
+.kaiju-TreeView {
+  cursor: default;
+  position: relative;
+  user-select: none;
+}
+
+.kaiju-TreeView-header {
+  align-items: center;
+  display: flex;
+  // TODO: This causes layout issues in Firefox, but fixes scrollbars in Chrome
+  // height: 100%;
+}
+
+.kaiju-TreeView-chevron {
+  flex: 0 0 auto;
+  font-size: 0.5rem;
+  margin-right: 5px;
+
+  &.is-collapsed {
+    transform: rotate(-90deg);
+  }
+}
+
+.kaiju-TreeView-children {
+  padding-left: 20px;
+
+  &.is-collapsed {
+    display: none;
+  }
+}

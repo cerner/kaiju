@@ -1,0 +1,38 @@
+.kaiju-Sandbox {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+}
+
+.kaiju-Sandbox-iframe {
+  background-color: var(--kaiju-theme-font-color, #fff);
+  border: 0;
+  box-shadow: 0 0 10px 0 #000;
+  flex: auto;
+  margin: 0 auto;
+  max-width: 100%;
+  min-height: 0;
+  overflow: auto;
+  transition: width 0.5s ease-in-out;
+  width: 100%;
+}
+
+.kaiju-Sandbox--tiny {
+  width: 544px;
+}
+
+.kaiju-Sandbox--small {
+  width: 768px;
+}
+
+.kaiju-Sandbox--medium {
+  width: 992px;
+}
+
+.kaiju-Sandbox--large {
+  width: 1216px;
+}
+
+.kaiju-Sandbox--huge {
+  width: 1440px;
+}

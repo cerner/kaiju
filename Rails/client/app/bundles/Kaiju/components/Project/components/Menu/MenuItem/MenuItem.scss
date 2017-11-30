@@ -1,0 +1,20 @@
+.kaiju-MenuItem {
+  align-items: center;
+  display: flex;
+
+  > .kaiju-SubMenu {
+    display: none;
+  }
+
+  &:hover {
+    > .kaiju-SubMenu {
+      display: inherit;
+    }
+  }
+
+  a {
+    color: #fff;
+    height: 100%;
+    width: 100%;
+  }
+}
