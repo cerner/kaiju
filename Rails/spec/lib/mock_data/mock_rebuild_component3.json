@@ -1,0 +1,18 @@
+{
+  "name":"Button",
+  "display":"Button",
+  "description":"Provides a way to trigger actions in the UI",
+  "type":"Buttons",
+  "properties":{
+    "isBlock": {
+      "type":"Bool",
+      "default": true
+    },
+    "href": {
+      "type":"String"
+    },
+    "text": {
+      "type":"String"
+    }
+  }
+}

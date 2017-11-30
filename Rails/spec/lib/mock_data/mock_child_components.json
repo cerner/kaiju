@@ -1,0 +1,13 @@
+{
+  "name": "Example",
+  "description":"example to test getting individual schema",
+  "type": "example",
+  "properties": {
+    "display": {
+      "type": "String"
+    },
+    "component": {
+      "type": "Component"
+    }
+  }
+}

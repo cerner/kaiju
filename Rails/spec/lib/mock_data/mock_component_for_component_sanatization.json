@@ -1,0 +1,14 @@
+{
+  "name": "Example",
+  "description":"example to test component sanatization",
+  "type": "example",
+  "properties": {
+
+    "ComponentArray": {
+      "type": "Array",
+      "schema": {
+        "type": "Component"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "kaiju",
+  "version": "0.0.0",
+  "description": "Drag and drop web editor",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd rails && npm install && bundle install && cd .. && cd node && npm install",
+    "clean": "rm -rf ./node_modules && cd rails && npm run clean && cd .. && cd node && npm run clean",
+    "test": "cd rails && npm run test && cd .. && cd node && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.cerner.com:kaiju/kaiju.git"
+  },
+  "keywords": [
+    "kaiju",
+    "react",
+    "terra"
+  ],
+  "author": "Matt Henkes",
+  "devDependencies": {
+    "foreman": "^2.0.0"
+  }
+}
