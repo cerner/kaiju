@@ -1,0 +1,13 @@
+.kaiju-Editor {
+  border-left: 1px solid #111;
+  display: flex;
+  flex: 0 0 230px;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.kaiju-Editor-form {
+  flex: auto;
+  min-height: 0;
+  overflow: auto;
+}

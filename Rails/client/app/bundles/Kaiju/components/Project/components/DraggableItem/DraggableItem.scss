@@ -1,0 +1,36 @@
+.kaiju-DraggableItem {
+  color: #bbb;
+  cursor: grab;
+  display: flex;
+  flex: 0 0 auto;
+  list-style-type: none;
+  padding: 5px 0;
+
+  &:hover {
+    .kaiju-DraggableItem-description {
+      visibility: visible;
+    }
+  }
+}
+
+.kaiju-DraggableItem:hover::before {
+  background-color: var(--kaiju-theme-hover-active, #282828);
+  content: '';
+  height: 24px;
+  left: 0;
+  margin-top: -3px;
+  position: absolute;
+  right: 0;
+}
+
+.kaiju-DraggableItem-text {
+  position: relative;
+}
+
+.kaiju-DraggableItem-description {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 5px;
+  position: relative;
+  visibility: hidden;
+}

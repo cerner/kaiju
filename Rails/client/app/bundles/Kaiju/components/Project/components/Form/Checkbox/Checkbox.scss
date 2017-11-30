@@ -1,0 +1,49 @@
+.kaiju-Checkbox {
+  color: #999;
+
+  // Custom ant styles
+  // stylelint-disable
+  .ant-checkbox-inner {
+    background-color: var(--kaiju-theme-background-secondary-color, #333);
+    border-color: var(--kaiju-theme-background-secondary-color, #333);
+  }
+
+  .ant-checkbox-input:focus + .ant-checkbox-inner {
+    border-color: var(--kaiju-theme-color, #1db954);
+  }
+
+  .ant-checkbox-input:hover + .ant-checkbox-inner {
+    border-color: var(--kaiju-theme-background-secondary-color, #333);
+  }
+
+  .ant-checkbox-checked > .ant-checkbox-input:hover + .ant-checkbox-inner {
+    border-color: var(--kaiju-theme-color, #1db954);
+  }
+
+  .ant-checkbox:hover .ant-checkbox-inner {
+    border-color: var(--kaiju-theme-background-secondary-color, #333);
+  }
+
+   &:hover > .ant-checkbox > .ant-checkbox-input + .ant-checkbox-inner {
+     border-color: var(--kaiju-theme-background-secondary-color, #333);
+   }
+
+   &:hover > .ant-checkbox-checked > .ant-checkbox-input + .ant-checkbox-inner {
+     border-color: var(--kaiju-theme-color, #1db954);
+   }
+
+   &:hover > .ant-checkbox> .ant-checkbox-input:focus + .ant-checkbox-inner {
+     border-color: var(--kaiju-theme-color, #1db954);
+   }
+
+  .ant-checkbox-checked {
+     > .ant-checkbox-inner {
+       border-color: var(--kaiju-theme-color, #1db954);
+
+       &:after {
+         border-color: var(--kaiju-theme-color, #1db954);
+         color: var(--kaiju-theme-color, #1db954);
+       }
+    }
+  }
+}

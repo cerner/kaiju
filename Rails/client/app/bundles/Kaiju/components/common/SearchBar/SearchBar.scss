@@ -1,0 +1,41 @@
+.kaiju-SearchBar {
+  // Custom overrides
+  // stylelint-disable-next-line
+  > .ant-input {
+    background-color: transparent;
+    border-color: #555;
+    color: #999;
+
+    &:focus,
+    &::selection {
+      border-color: var(--kaiju-theme-color, #1db954);
+    }
+
+    &::placeholder {
+      color: #555;
+    }
+
+    &::-webkit-search-cancel-button {
+      cursor: default;
+      -webkit-appearance: searchfield-cancel-button;
+    }
+  }
+
+  // Custom overrides
+  // stylelint-disable-next-line
+  .anticon-search{
+    color: #555;
+  }
+
+  // Custom overrides
+  // stylelint-disable-next-line
+  &:hover > .ant-input {
+    border-color: #555 !important;
+  }
+
+  // Custom overrides
+  // stylelint-disable-next-line
+  &:hover > .ant-input:focus {
+    border-color: var(--kaiju-theme-color, #1db954) !important;
+  }
+}

@@ -1,0 +1,9 @@
+.kaiju-Workspace {
+  height: 100vh;
+  overflow: auto;
+
+  > .kaiju-Placeholder:only-child {
+    height: 100%;
+    width: 100%;
+  }
+}

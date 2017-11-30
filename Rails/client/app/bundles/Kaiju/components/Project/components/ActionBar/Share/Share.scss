@@ -1,0 +1,23 @@
+.kaiju-Share {
+  .ant-input-group-wrapper {
+    padding: 5px 0;
+    width: 100%;
+  }
+}
+
+.kaiju-Share-clipboard {
+  transition: 0.5s ease-in-out;
+
+  &.is-copied {
+    color: var(--kaiju-theme-color, #1db954);
+  }
+}
+
+.kaiju-Share-info {
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.kaiju-Share-title {
+  color: #bbb;
+}

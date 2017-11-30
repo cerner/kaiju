@@ -1,0 +1,13 @@
+.kaiju-Placeholder {
+  border: 1px dashed #a9a9a9;
+  overflow: hidden;
+  padding: 10px;
+  text-align: center;
+  text-overflow: ellipsis;
+  user-select: none;
+  white-space: nowrap;
+
+  &.is-active {
+    background-color: #ebf6fd;
+  }
+}

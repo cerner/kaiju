@@ -1,0 +1,53 @@
+.kaiju-Tab {
+  align-content: center;
+  align-items: center;
+  background-color: var(--kaiju-theme-background-color, #222);
+  border-right: 1px solid #111;
+  color: var(--kaiju-theme-font-color, #fff);
+  cursor: default;
+  display: flex;
+  flex: 1 1 0;
+  max-width: 140px;
+  min-width: 10px;
+  padding: 8px 0;
+  position: relative;
+
+  &:hover {
+    background-color: var(--kaiju-theme-hover-active, #282828);
+
+    > .kaiju-Tab-closeButton {
+      display: inherit;
+    }
+  }
+
+  &.is-selected {
+    background-color: var(--kaiju-theme-background-secondary-color, #333);
+
+    > .kaiju-Tab-content {
+      opacity: 1;
+    }
+
+    &:hover {
+      background-color: var(--kaiju-theme-background-secondary-color, #333);
+    }
+  }
+}
+
+.kaiju-Tab-content {
+  flex: 1 1 0;
+  opacity: 0.5;
+  overflow: hidden;
+  padding: 0 10px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kaiju-Tab-closeButton {
+  background-color: inherit;
+  display: none;
+  margin-right: 5px;
+  padding: 2px;
+  position: absolute;
+  right: 0;
+}

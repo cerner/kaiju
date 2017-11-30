@@ -1,0 +1,11 @@
+.kaiju-FormItem {
+  margin-bottom: 3px !important;
+
+  // Disabling to allow custom ant styles
+  // stylelint-disable
+  .ant-form-item-label {
+    label {
+      color: var(--kaiju-theme-font-color, #fff) !important;
+    }
+  }
+}

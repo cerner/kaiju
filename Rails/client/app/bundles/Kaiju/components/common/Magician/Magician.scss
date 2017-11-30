@@ -1,0 +1,17 @@
+.kaiju-Magician-appear {
+  opacity: 0.01;
+}
+
+.kaiju-Magician-appear.kaiju-Magician-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.kaiju-Magician-enter {
+  opacity: 0.01;
+}
+
+.kaiju-Magician-enter.kaiju-Magician-enter-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
