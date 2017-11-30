@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.cerner.com:kaiju/kaiju.git"
+    "url": "git@github.com:cerner/kaiju.git"
   },
   "keywords": [
     "kaiju",
