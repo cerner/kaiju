@@ -3,6 +3,9 @@
   <img src="https://github.com/cerner/kaiju/raw/master/kaiju_kaiju_logotype_white.png">
 </p>
 
+[![Cerener OSS](https://img.shields.io/badge/Cerner-OSS-blue.svg?style=flat)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
+[![Build Status](https://travis-ci.org/cerner/kaiju.svg?branch=master)](https://travis-ci.org/cerner/kaiju)
+
 Kaiju is a drag and drop web editor for building pages composed of predefined react components. Kaiju's default plug-in allow users to build pages composed of react components from [Terra UI](http://terra-ui.com/), generate react components and preview the generated pages in the browser.
 
 Kaiju is great for rapid prototyping and facilitating collaboration between engineers and designers.
