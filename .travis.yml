@@ -1,9 +1,9 @@
-language: ruby
+language: node_js
 sudo: required
 before_script:
-  - nvm install
-  - npm install
+  # - nvm install
 script:
+  # - npm install
   - npm test
 branches:
   only:
