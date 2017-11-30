@@ -99,7 +99,7 @@ class Element extends React.Component {
       }
     });
 
-    return <SafeRender type={type}>{React.createElement(componentMap[type], props)}</SafeRender>;
+    return <SafeRender>{React.createElement(componentMap[type], props)}</SafeRender>;
   }
 }
 
