@@ -1,0 +1,31 @@
+{
+  "name": "Example",
+  "description":"example to test sanatization",
+  "type": "example",
+  "properties": {
+    "Display": {
+      "type": "String"
+    },
+    "Component": {
+      "type": "Component"
+    },
+    "NoDropZoneComponent": {
+      "type": "Component",
+      "drop_zone": false
+    },
+    "StingHash": {
+      "type": "Hash",
+      "schema": {
+        "string": {
+          "type": "String"
+        }
+      }
+    },
+    "StringArray": {
+      "type": "Array",
+      "schema": {
+        "type": "String"
+      }
+    }
+  }
+}

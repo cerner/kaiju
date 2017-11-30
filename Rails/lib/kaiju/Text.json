@@ -1,0 +1,12 @@
+{
+  "name": "Text",
+  "display": "Text",
+  "description": "Provides editable text",
+  "group": "Atoms::Other",
+  "properties": {
+    "text": {
+      "type": "String",
+      "default": "Sample text"
+    }
+  }
+}

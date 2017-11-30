@@ -1,0 +1,13 @@
+{
+  "name": "kaiju",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf ./node_modules && rm -rf ./client/node_modules",
+    "lint": "npm run lint-ruby && cd client && npm run lint",
+    "lint-ruby": "rubocop",
+    "postinstall": "cd client && npm install",
+    "rails-server": "foreman start -f Procfile.dev",
+    "test": "bundle exec rspec"
+  }
+}

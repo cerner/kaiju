@@ -1,0 +1,20 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+<=Imports=>
+const propTypes = {
+  // exampleProp: PropTypes.string,
+};
+
+const defaultProps = {
+  // exampleProp: 'Default prop',
+};
+
+const <=ComponentName=> = props => (
+  <div className="kaiju-<=ComponentName=>"><=Code=>
+  </div>
+);
+
+<=ComponentName=>.propTypes = propTypes;
+<=ComponentName=>.defaultProps = defaultProps;
+
+export default <=ComponentName=>;

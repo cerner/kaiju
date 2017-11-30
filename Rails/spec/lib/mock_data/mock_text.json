@@ -1,0 +1,11 @@
+{
+  "name": "Mock_text",
+  "display": "Mock Text",
+  "description": "Provides a drop target for components",
+  "hidden": true,
+  "properties": {
+    "text": {
+      "type": "String"
+    }
+  }
+}

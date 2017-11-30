@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  proxy:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    networks:
+      - webgateway
+    ports:
+      - "80:80"
+      - "3000:3000"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+
+  node:
+    build: ./Node/
+    depends_on:
+      - proxy
+      - rails
+    networks:
+      - webgateway
+    environment:
+      - NODE_ENV=production
+      - REDIS_URL=redis://redis:6379
+      - KAIJU_RAILS_SERVER_URL=http://rails:3000
+      - KAIJU_AUTH_REDIRECT_URL=http://localhost/auth
+    labels:
+      - "traefik.backend=node"
+      - "traefik.frontend.rule=Path: /projects/{id}/workspaces/{id}/code, /projects/{id}/workspaces/{id}/preview, /projects/{id}/workspaces/{id}/preview_files/{id}, /projects/{id}/workspaces/{id}/code_files/src/{id}"
+      - "traefik.port=8080"
+
+  rails:
+    build: ./Rails/
+    environment:
+      - SECRET_KEY_BASE=980453e07f6f1a473091a79dc0c5109d6e350509a5b47d96b9bc55ce40e3b45ce2959919e9e528602c3a7a7c169c5e01596feeb8328ef51063514641b964d917
+      - OPEN_ID_IDENTIFIER
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_SERVE_STATIC_FILES=true
+      - KAIJU_ALLOW_NO_AUTH=i_accept_the_risk_of_running_with_no_authentication
+    depends_on:
+      - proxy
+      - redis
+    networks:
+      - webgateway
+    labels:
+      - "traefik.backend=rails"
+      - "traefik.frontend.rule=Host:localhost"
+      - "traefik.port=3000"
+
+  redis:
+    image: redis
+    networks:
+      - webgateway
+    ports:
+      - "6379:6379"
+    command: redis-server
+
+networks:
+  webgateway:
+    driver: bridge
