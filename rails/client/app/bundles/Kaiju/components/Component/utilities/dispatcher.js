@@ -184,6 +184,7 @@ const registerDispatcher = (store, root) => {
       const properties = serialize(target);
       put(target.insertAfterUrl, { value: properties }, () => refresh(target.parent));
     } else {
+      // eslint-disable-next-line no-console
       console.warn('Non-Array Element requested duplication');
     }
   };
