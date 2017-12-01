@@ -27,7 +27,7 @@ class PreviewGenerator {
   }
 
   cachedFileSystem() {
-    console.log('cached preview');
+    // console.log('cached preview');
     this.cache.renew();
     return Promise.all([
       this.cache.workspaceName(),
@@ -67,8 +67,8 @@ class PreviewGenerator {
     const run = new Promise((resolve, reject) => {
       compiler.run((err, stats) => {
         if (err || stats.hasErrors()) {
-          console.log(err);
-          console.log(stats);
+          // console.log(err);
+          // console.log(stats);
           reject('Preview failed to compile');
         }
         this.cache.cacheFs(name, [], compiler.outputFileSystem.data, entry);

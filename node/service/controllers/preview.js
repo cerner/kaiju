@@ -22,7 +22,7 @@ router.get('/projects/:projectId/workspaces/:workspaceId/preview_files/*', (req,
   const filename = req.url.substring(req.url.indexOf('preview_files/') + 'preview_files/'.length);
   const generator = new PreviewGenerator(req.params.projectId, req.params.workspaceId, requester);
   generator.generate().then(([, , fs]) => {
-    console.log('filename', filename);
+    // console.log('filename', filename);
     if (fs.existsSync(`/build/${filename}`)) {
       res.setHeader('content-type', 'text/javascript');
       res.send(fs.readFileSync(`/build/${filename}`));
