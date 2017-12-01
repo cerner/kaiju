@@ -4,6 +4,7 @@ services:
   - redis-server
 script:
   - npm test
+  - npm run scan
 branches:
   only:
     - master
