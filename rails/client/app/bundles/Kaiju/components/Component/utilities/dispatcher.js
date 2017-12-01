@@ -74,9 +74,8 @@ const registerDispatcher = (store, root) => {
 
   /**
    * Handles a server error
-   * @param {Object} error - The error
    */
-  const handleError = (error) => {
+  const handleError = () => {
     window.parent.location.reload();
   };
 

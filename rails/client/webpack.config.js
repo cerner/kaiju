@@ -17,8 +17,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
 
 const configPath = resolve('..', 'config');
-const { devBuild, output, webpackOutputPath, webpackPublicOutputDir } =
-  webpackConfigLoader(configPath);
+const { output } = webpackConfigLoader(configPath);
 
 const config = {
 

@@ -20,21 +20,7 @@ const propTypes = {
 };
 
 class Layers extends React.Component {
-  constructor() {
-    super();
-    this.generateTree = this.generateTree.bind(this);
-    this.scrollToComponent = this.scrollToComponent.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('message', this.scrollToComponent);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('message', this.scrollToComponent);
-  }
-
-  scrollToComponent({ data }) {
+  static scrollToComponent({ data }) {
     if (data.message === 'kaiju-component-selected') {
       const element = document.querySelectorAll(`[data-kaiju-component-id="${data.id}"]`)[0];
       if (element) {
@@ -45,6 +31,19 @@ class Layers extends React.Component {
         console.warn('Attempted to scroll to an unmounted element');
       }
     }
+  }
+
+  constructor() {
+    super();
+    this.generateTree = this.generateTree.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('message', Layers.scrollToComponent);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('message', Layers.scrollToComponent);
   }
 
   generateTree(id) {
