@@ -1,7 +1,10 @@
+/* eslint import/no-unresolved: [2, { ignore: ['../componentMap'] }] */
+
 import React from 'react';
 import Base from 'terra-base';
 import PropTypes from 'prop-types';
 import SafeRender from '../Component/components/SafeRender/SafeRender';
+// eslint-disable-next-line import/extensions
 import componentMap from '../Component/componentMap';
 import './Preview.scss';
 

@@ -2,7 +2,7 @@ import CodeGenerator from '../../../service/code_generation/CodeGenerator';
 
 describe('CodeGenerator', () => {
   describe('constructor', () => {
-    it ('creates an object', () => {
+    it('creates an object', () => {
       const projectId = '123';
       const workspaceId = '456';
       const requester = '789';
