@@ -4,5 +4,5 @@ module.exports = {
   redisPrefix: 'kaiju:dev:',
   redisUrl: 'redis://localhost:6379/0',
   disableFsCache: true,
-  authRedirectUrl:'http://localhost:3000/auth',
+  authRedirectUrl: 'http://localhost:3000/auth',
 };

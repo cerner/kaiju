@@ -1,8 +1,11 @@
+/* eslint import/no-unresolved: [2, { ignore: ['../componentMap'] }] */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SafeRender from '../components/SafeRender/SafeRender';
+// eslint-disable-next-line import/extensions
 import componentMap from '../componentMap';
 
 const propTypes = {

@@ -28,7 +28,7 @@ router.get('/projects/:projectId/workspaces/:workspaceId/code_files/*', (req, re
   const filename = req.url.substring(req.url.indexOf('code_files/') + 'code_files/'.length);
   const generator = new CodeGenerator(req.params.projectId, req.params.workspaceId, requester);
   generator.generate().then(([, , fs]) => {
-    console.log('filename', filename);
+    // console.log('filename', filename);
     if (fs.existsSync(`/${filename}`)) {
       res.setHeader('content-type', 'text/javascript');
       res.send(fs.readFileSync(`/${filename}`));

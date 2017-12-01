@@ -6,7 +6,9 @@
   "scripts": {
     "postinstall": "cd rails && npm install && bundle install && cd .. && cd node && npm install",
     "clean": "rm -rf ./node_modules && cd rails && npm run clean && cd .. && cd node && npm run clean",
-    "test": "cd rails && npm run test && cd .. && cd node && npm run test"
+    "pretest": "npm run lint",
+    "test": "cd rails && npm run test && cd .. && cd node && npm run test",
+    "lint": "cd rails && npm run lint && cd .. && cd node && npm run lint"
   },
   "repository": {
     "type": "git",

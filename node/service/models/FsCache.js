@@ -1,5 +1,5 @@
-import redis from '../utils/RedisProvider';
 import config from 'config';
+import redis from '../utils/RedisProvider';
 
 function reviveBuffer(key, value) {
   if (

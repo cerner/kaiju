@@ -17,7 +17,7 @@ class CodeGenerator {
     // if cache exists and is current return that
     return this.cache.isCurrent().then((isCurrent) => {
       if (isCurrent) {
-        console.log('cached data');
+        // console.log('cached data');
         return this.cachedFileSystem();
       }
       // Get AST
