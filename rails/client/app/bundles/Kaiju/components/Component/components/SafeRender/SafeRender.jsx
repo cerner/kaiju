@@ -6,10 +6,6 @@ const propTypes = {
    * Child nodes
    */
   children: PropTypes.node,
-  /**
-   * The Component type
-   */
-  type: PropTypes.node,
 };
 
 class SafeRender extends React.Component {
@@ -25,7 +21,7 @@ class SafeRender extends React.Component {
 
   render() {
     if (this.state.error) {
-      return <div>{this.props.type}: Failed to Render</div>;
+      return <div>{this.state.error.toString()}</div>;
     }
     return this.props.children;
   }
