@@ -36,37 +36,35 @@ const propTypes = {
 };
 
 class ActionBar extends React.Component {
+  static deselect() {
+    select(null);
+  }
+
+  static destroy() {
+    destroy();
+  }
+
   constructor() {
     super();
     this.undo = this.undo.bind(this);
     this.redo = this.redo.bind(this);
-    this.destroy = this.destroy.bind(this);
-    this.deselect = this.deselect.bind(this);
     this.handleShortcuts = this.handleShortcuts.bind(this);
   }
 
   componentDidMount() {
     Mousetrap.bind(['command+z', 'ctrl+z'], this.undo);
     Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], this.redo);
-    Mousetrap.bind(['backspace', 'delete'], this.destroy);
-    Mousetrap.bind(['esc'], this.deselect);
+    Mousetrap.bind(['backspace', 'delete'], ActionBar.destroy);
+    Mousetrap.bind(['esc'], ActionBar.deselect);
     window.addEventListener('message', this.handleShortcuts);
   }
 
   componentWillUnmount() {
     Mousetrap.unbind(['command+z', 'ctrl+z'], this.undo);
     Mousetrap.unbind(['command+shift+z', 'ctrl+shift+z'], this.redo);
-    Mousetrap.unbind(['backspace', 'delete'], this.destroy);
-    Mousetrap.unbind(['esc'], this.deselect);
+    Mousetrap.unbind(['backspace', 'delete'], ActionBar.destroy);
+    Mousetrap.unbind(['esc'], ActionBar.deselect);
     window.removeEventListener('message', this.handleShortcuts);
-  }
-
-  deselect() {
-    select(null);
-  }
-
-  destroy() {
-    destroy();
   }
 
   handleShortcuts({ data }) {

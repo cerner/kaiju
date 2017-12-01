@@ -10,6 +10,7 @@ const propTypes = {
 };
 
 const Code = ({ code }) => (
+  // eslint-disable-next-line react/no-danger
   <pre className="highlight" dangerouslySetInnerHTML={{ __html: code }} />
 );
 

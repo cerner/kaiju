@@ -1,5 +1,4 @@
 import Tether from 'tether';
-import classNames from 'classnames';
 import './highlight.scss';
 
 /**
@@ -27,30 +26,6 @@ const getHighlight = () => {
   highlight = container;
 
   return highlight;
-};
-
-/**
- * Returns the appropriate target label
- * @param {Node} target - The target requesting a label
- * @param {Object} rect - The target rect
- * @return {String} - A Label indicating the Component type or Tag name
- */
-const getTargetLabel = (target, rect) => {
-  const scrollTop = target.scrollTop;
-  const label = target.getAttribute('data-kaiju-component-type') || target.tagName;
-  const text = document.createElement('span');
-  text.textContent = label.split('::').pop().replace(/([A-Z])/g, ' $1').trim();
-
-  text.className = classNames([
-    'kaiju-Highlight-label',
-    { 'kaiju-Highlight-label--inset': rect.top < 30 && rect.height > 30 },
-  ]);
-
-  if (rect.top < 30 && rect.height <= 30) {
-    text.style.top = `${scrollTop + rect.height}px`;
-  }
-
-  return text;
 };
 
 /**
@@ -84,9 +59,6 @@ const addHighlight = (target) => {
   highlightReference.style.display = '';
   highlightReference.style.height = `${rect.height}px`;
   highlightReference.style.width = `${rect.width}px`;
-
-  // Uncomment this line to add a label to each highlight
-  // highlightReference.appendChild(getTargetLabel(target, rect));
 
   tether = new Tether({
     element: highlightReference,

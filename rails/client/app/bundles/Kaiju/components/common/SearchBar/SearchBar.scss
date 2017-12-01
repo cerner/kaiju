@@ -16,8 +16,8 @@
     }
 
     &::-webkit-search-cancel-button {
-      cursor: default;
-      -webkit-appearance: searchfield-cancel-button;
+      appearance: searchfield-cancel-button;
+      cursor: default;      
     }
   }
 
