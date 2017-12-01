@@ -52,7 +52,7 @@ module Kaiju
 
     def write_property_changes_to_database
       component.properties = all_properties
-      component.update_date_time = DateTime.now.iso8601_precise
+      component.update_date_time = Time.now.iso8601_precise
     end
 
     def update(prop)

@@ -1,7 +1,7 @@
 # Shown below are the defaults for configuration
 ReactOnRails.configure do |config|
   # Client bundles are configured in application.js
-  config.node_modules_location = "client"
+  config.node_modules_location = 'client'
 
   # Directory where your generated assets go. All generated assets must go to the same directory.
   # Configure this in your webpack config files. This relative to your Rails root directory.

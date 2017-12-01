@@ -1,6 +1,6 @@
-include Kaiju
-
 class UsersController < ApplicationController
+  include Kaiju
+
   def show
     Rails.logger.debug params
 

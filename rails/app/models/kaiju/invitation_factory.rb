@@ -16,7 +16,7 @@ module Kaiju
 
     def self.new_invitation(inviter_id)
       invitation = Invitation.new(IdGenerator.generate_id)
-      invitation.creation_date_time = DateTime.now.iso8601_precise
+      invitation.creation_date_time = Time.now.iso8601_precise
       invitation.inviter_id = inviter_id
       invitation.expire(1.day)
       invitation

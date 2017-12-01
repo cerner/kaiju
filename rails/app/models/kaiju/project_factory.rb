@@ -11,7 +11,7 @@ module Kaiju
       user.projects << project.id
       project.owner = owner_id
       project.name = 'Untitled Project'
-      now = DateTime.now.iso8601_precise
+      now = Time.now.iso8601_precise
       project.creation_date_time = now
       project.update_date_time = now
       project
