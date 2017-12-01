@@ -20,7 +20,7 @@ const Preview = ({ ast }) => {
       } else if (type === 'Array' || type === 'Hash') {
         parameters[objectKey] = generateProperties(value);
       } else if (type === 'Component') {
-        parameters[objectKey] = <SafeRender key={id} type={value.type}>{React.createElement(componentMap[value.type], { ...generateProperties(value.properties) })}</SafeRender>;
+        parameters[objectKey] = React.createElement(componentMap[value.type], { ...generateProperties(value.properties), key: id });
       } else if (type === 'Number') {
         parameters[objectKey] = Number(value);
       } else {
@@ -33,7 +33,9 @@ const Preview = ({ ast }) => {
 
   return (
     <Base className="kaiju-Preview" locale="en-US">
-      {React.createElement('div', { ...generateProperties(ast.properties), className: `kaiju-${ast.name}` })}
+      <SafeRender>
+        {React.createElement('div', { ...generateProperties(ast.properties) })}
+      </SafeRender>
     </Base>
   );
 };
