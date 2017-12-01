@@ -21,7 +21,7 @@ module Kaiju
     config.eager_load_paths << Rails.root.join('lib')
     config.middleware.use(StackProf::Middleware, enabled: true, mode: :wall, interval: 1000, save_every: 5)
     config.after_initialize do
-      DateTime.include CoreExtensions::DateTime::DateTimeExtensions
+      Time.include CoreExtensions::Time::TimeExtensions
       ComponentInformation.components
     end
   end

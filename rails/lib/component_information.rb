@@ -71,7 +71,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
     sources.each do |library, file|
       begin
         add_component(components_hash, library, JSON.parse(File.read(file)))
-      rescue => exception
+      rescue StandardError => exception
         Rails.logger.debug "Exception : #{exception}\n Library #{library}\n File #{file}\n"
       end
     end
@@ -80,7 +80,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
 
   def self.add_component(hash, library, component)
     setup_basic_component_info(component, library)
-    component['timestamp'] = DateTime.now.iso8601_precise
+    component['timestamp'] = Time.now.iso8601_precise
 
     component_valid, reason = transform_component(component)
     component['defaults'] = create_defaults(component)
@@ -155,7 +155,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   def self.collect_components
     items = []
     components.each do |library, modules|
-      modules.each do |_component, attributes|
+      modules.each_value do |attributes|
         next if attributes['hidden']
         insert_component(items, format_component(library, attributes), attributes['group'] || 'Other')
       end

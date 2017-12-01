@@ -50,7 +50,7 @@ module Kaiju
 
     def add_recent_workspace(project_id, workspace_id)
       if project_id && workspace_id
-        recent_workspaces[{ project: project_id, workspace: workspace_id }.to_json] = DateTime.now.to_time.to_f
+        recent_workspaces[{ project: project_id, workspace: workspace_id }.to_json] = Time.now.to_time.to_f
       end
       recent_workspaces.delete(recent_workspaces.first) if recent_workspaces.length > 51
     end

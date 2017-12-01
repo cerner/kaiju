@@ -30,7 +30,7 @@ module Kaiju
         return new_placeholder(id)
       end
       component = Component.new(id || IdGenerator.generate_id)
-      component.creation_date_time = DateTime.now.iso8601_precise
+      component.creation_date_time = Time.now.iso8601_precise
       component.parent = parent unless parent.nil?
       update_component(component, type, props)
     end
@@ -39,7 +39,7 @@ module Kaiju
       component.clean_properties
       component.type = type
       update_properties(component, type, props)
-      component.update_date_time = DateTime.now.iso8601_precise
+      component.update_date_time = Time.now.iso8601_precise
       component
     end
 

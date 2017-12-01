@@ -16,11 +16,11 @@ module Kaiju
       end
 
       def expire(seconds)
-        redis_objects.keys.each { |key| redis.expire(send(key).key, seconds) }
+        redis_objects.each_key { |key| redis.expire(send(key).key, seconds) }
       end
 
       def persist
-        redis_objects.keys.each { |key| redis.persist(send(key).key) }
+        redis_objects.each_key { |key| redis.persist(send(key).key) }
       end
 
       def ttl

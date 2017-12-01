@@ -43,7 +43,7 @@ module Kaiju
       collaborator_ids.each do |collaborator_id|
         collaborators << collaborator_id
         collaborator = User.by_id(collaborator_id)
-        collaborator.shared_projects << id unless collaborator.nil?
+        collaborator&.shared_projects&.add(id)
       end
       Workspace.valid_objects(workspaces) do |workspace|
         workspace.add_collaborators(inviter_id, collaborator_ids)

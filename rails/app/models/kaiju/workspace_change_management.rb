@@ -16,7 +16,7 @@ module Kaiju
         # changes_stack.clear
         manage_changes_stack
 
-        update_date_time.value = DateTime.now.iso8601_precise
+        update_date_time.value = Time.now.iso8601_precise
         changes_stack << Workspace.create_change(component.id, redo_change, undo_change)
         result
       end
@@ -47,7 +47,7 @@ module Kaiju
         return unless undo_changes?
         stack_index.decrement
         change = changes_stack[stack_index.value]
-        update_date_time.value = DateTime.now.iso8601_precise
+        update_date_time.value = Time.now.iso8601_precise
         Workspace.execute_change(change[:component_id], change[:undo])
       end
 
@@ -55,7 +55,7 @@ module Kaiju
         return unless redo_changes?
         change = changes_stack[stack_index.value]
         stack_index.increment
-        update_date_time.value = DateTime.now.iso8601_precise
+        update_date_time.value = Time.now.iso8601_precise
         Workspace.execute_change(change[:component_id], change[:redo])
       end
     end

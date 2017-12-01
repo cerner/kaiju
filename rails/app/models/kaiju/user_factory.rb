@@ -11,7 +11,7 @@ module Kaiju
       user = User.by_id(id(uid))
       if user.nil?
         user = User.new(id(uid))
-        now = DateTime.now.iso8601_precise
+        now = Time.now.iso8601_precise
         user.creation_date_time = now
       end
 
