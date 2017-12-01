@@ -8,7 +8,8 @@
     "clean": "rm -rf ./node_modules && cd rails && npm run clean && cd .. && cd node && npm run clean",
     "pretest": "npm run lint",
     "test": "cd rails && npm run test && cd .. && cd node && npm run test",
-    "lint": "cd rails && npm run lint && cd .. && cd node && npm run lint"
+    "lint": "cd rails && npm run lint && cd .. && cd node && npm run lint",
+    "scan": "cd rails && brakeman"
   },
   "repository": {
     "type": "git",
