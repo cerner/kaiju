@@ -4,7 +4,7 @@
   "keywords": [
     "kaiju"
   ],
-  "image": "mjhenkes/heroku-docker-compose",
+  "stack": "heroku-16",
   "repository": "https://github.com/cerner/kaiju",
   "success_url": "/",
   "formation": {
@@ -15,10 +15,7 @@
   },
   "buildpacks": [
     {
-      "url": "heroku/ruby"
-    },
-    {
-      "url": "heroku/nodejs"
+      "url": "https://github.com/mjhenkes/docker-compose-buildpack"
     }
   ]
 }
