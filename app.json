@@ -1,0 +1,16 @@
+{
+  "name": "kaiju",
+  "description": "Heroku reviews app for terra-core development",
+  "keywords": [
+    "kaiju"
+  ],
+  "image": "mjhenkes/heroku-docker-compose",
+  "repository": "https://github.com/cerner/kaiju",
+  "success_url": "/",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
+}

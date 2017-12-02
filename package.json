@@ -9,7 +9,8 @@
     "pretest": "npm run lint",
     "test": "cd rails && npm run test && cd .. && cd node && npm run test",
     "lint": "cd rails && npm run lint && cd .. && cd node && npm run lint",
-    "scan": "cd rails && brakeman"
+    "scan": "cd rails && brakeman",
+    "start": "docker-compose up"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "terra"
   ],
   "author": "Matt Henkes",
+  "license": "Apache-2.0",
   "devDependencies": {
     "foreman": "^2.0.0"
   }
