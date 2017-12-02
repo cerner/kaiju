@@ -1,0 +1,5 @@
+build:
+  languages:
+    - ruby
+run:
+  web: docker-compose up
