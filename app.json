@@ -4,7 +4,7 @@
   "keywords": [
     "kaiju"
   ],
-  "stack": "heroku-16",
+  "image": "mjhenkes/heroku-docker-compose",
   "repository": "https://github.com/cerner/kaiju",
   "success_url": "/",
   "formation": {
