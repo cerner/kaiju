@@ -5,6 +5,7 @@
     "kaiju"
   ],
   "image": "mjhenkes/heroku-docker-compose",
+  "stack": "container",
   "repository": "https://github.com/cerner/kaiju",
   "success_url": "/",
   "formation": {
