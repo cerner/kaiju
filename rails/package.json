@@ -1,6 +1,10 @@
 {
   "name": "kaiju",
   "version": "0.0.1",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "8.4.0"
+  },
   "private": true,
   "scripts": {
     "clean": "rm -rf ./node_modules && rm -rf ./client/node_modules",
