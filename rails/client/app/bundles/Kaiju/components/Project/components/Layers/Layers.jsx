@@ -65,6 +65,10 @@ class Layers extends React.Component {
       }
     });
 
+    if (id === this.props.root) {
+      data.id = 'root';
+    }
+
     const layer = <Layer id={id} isDuplicable={!!insertAfterUrl} isSelected={isSelected} type={display || name} />;
     if (children.length > 0) {
       return <TreeView header={layer} {...data}>{children}</TreeView>;
