@@ -1,5 +1,4 @@
 FROM node:8.4.0
-MAINTAINER Matt Henkes "mjhenkes@gmail.com"
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME
