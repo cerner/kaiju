@@ -1,10 +1,9 @@
 {
   "name": "kaiju",
-  "description": "Heroku reviews app for terra-core development",
+  "description": "Heroku reviews app for kaiju development",
   "keywords": [
     "kaiju"
   ],
-  "image": "mjhenkes/heroku-docker-compose",
   "stack": "container",
   "repository": "https://github.com/cerner/kaiju",
   "success_url": "/",
@@ -14,9 +13,5 @@
       "size": "free"
     }
   },
-  "buildpacks": [
-    {
-      "url": "https://github.com/mjhenkes/docker-compose-buildpack.git"
-    }
-  ]
+  "buildpacks": []
 }
