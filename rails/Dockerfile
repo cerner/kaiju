@@ -1,5 +1,4 @@
-FROM ruby:2.4
-MAINTAINER Matt Henkes "mjhenkes@gmail.com"
+FROM ruby:2.4.2
 
 # Start Node installation copied from docker-node
 # https://github.com/nodejs/docker-node
