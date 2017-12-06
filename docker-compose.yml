@@ -23,7 +23,7 @@ services:
       - webgateway
     environment:
       - NODE_ENV=production
-      - REDIS_URL=redis://redis:6379
+      - REDIS_URL=redis://redis:6379/0
       - KAIJU_RAILS_SERVER_URL=http://rails:3000
       - KAIJU_AUTH_REDIRECT_URL=http://localhost/auth
     labels:
@@ -46,7 +46,7 @@ services:
       - webgateway
     labels:
       - "traefik.backend=rails"
-      - "traefik.frontend.rule=Host:localhost"
+      - "traefik.frontend.rule=PathPrefix: /"
       - "traefik.port=3000"
 
   redis:

@@ -1,0 +1,26 @@
+defaultEntryPoints = ["http"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":<PORT>"
+
+[file]
+
+[backends]
+  [backends.rails]
+    [backends.rails.servers.server1]
+    url = "http://localhost:3000"
+  [backends.node]
+    [backends.node.servers.server1]
+    url = "http://localhost:8080"
+
+[frontends]
+  [frontends.rails]
+  backend = "rails"
+  passHostHeader = true
+    [frontends.rails.routes.test_1]
+    rule = "PathPrefix: /"
+  [frontends.node]
+  backend = "node"
+  passHostHeader = true
+    [frontends.node.routes.test_1]
+    # rule = "Path: /projects/{id}/workspaces/{id}/code, /projects/{id}/workspaces/{id}/preview, /projects/{id}/workspaces/{id}/preview_files/{id}, /projects/{id}/workspaces/{id}/code_files/src/{id}"
