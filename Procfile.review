@@ -1,4 +1,4 @@
 proxy: sed -i "s/<PORT>/$PORT/1" traefik.toml && traefik --debug
-rails: cd rails && export SECRET_KEY_BASE=$(rails secret) && rails s -p 3000
+rails: cd rails && rails s -p 3000
 node: cd node && npm run start
 redis: redis-server
