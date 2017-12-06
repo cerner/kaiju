@@ -3,7 +3,7 @@ import drag from '../../../utilities/drag/drag';
 
 const initializeDrag = () => {
   drag({
-    canMove: target => target.hasAttribute('data-kaiju-component-type'),
+    canMove: target => target.hasAttribute('data-kaiju-component-type') && target.getAttribute('data-kaiju-component-type') !== 'kaiju::Workspace',
     isSortable: target => target.hasAttribute('data-kaiju-sortable'),
     stopPropagation: (target) => {
       const stop = target.classList.contains('kaiju-Placeholder');

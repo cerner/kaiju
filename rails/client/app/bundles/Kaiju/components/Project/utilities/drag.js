@@ -3,7 +3,7 @@ import { destroy, postMessage, select } from '../utilities/messenger';
 
 const initializeDrag = () => {
   drag({
-    canMove: target => target.hasAttribute('data-kaiju-component-id'),
+    canMove: target => target.hasAttribute('data-kaiju-component-id') && target.id !== 'root',
     isSortable: target => target.hasAttribute('data-kaiju-sortable'),
     onDragStart: (event, target) => {
       select(null);
