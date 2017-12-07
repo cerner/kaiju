@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd rails && npm install && bundle install && cd .. && cd node && npm install",
+    "postinstall": "cd rails && npm install && bundle install --jobs=4 && cd .. && cd node && npm install",
     "clean": "rm -rf ./node_modules && cd rails && npm run clean && cd .. && cd node && npm run clean",
     "pretest": "npm run lint",
     "test": "cd rails && npm run test && cd .. && cd node && npm run test",

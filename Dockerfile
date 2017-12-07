@@ -1,27 +1,5 @@
-FROM redis:3.2 AS redis
 
-FROM traefik:1.4.4 AS traefik
-
-FROM node:8.4.0 AS node
-
-FROM ruby:2.4.2
-# Start Node installation copied from docker-node
-RUN groupadd --gid 1000 node \
-  && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
-
-COPY --from=node /usr/local/bin/. /usr/local/bin/
-COPY --from=node /usr/local/include/. /usr/local/include/
-COPY --from=node /usr/local/lib/. /usr/local/lib/
-COPY --from=node /usr/local/share/. /usr/local/share/
-# End Node installation
-
-COPY --from=redis /usr/local/bin/redis-server /usr/local/bin/redis-server
-COPY --from=redis /usr/local/bin/redis-cli /usr/local/bin/redis-cli
-
-COPY --from=traefik /traefik /usr/local/bin/
-
-RUN npm config set unsafe-perm true -g
-RUN npm install foreman -g
+FROM cerner/kaiju-ruby-node-redis-traefik:2.4.2-8.4.0-3.2-1.4.4
 
 EXPOSE 80
 
