@@ -19,6 +19,15 @@ const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
 const configPath = resolve('..', 'config');
 const { output } = webpackConfigLoader(configPath);
 
+const threadLoaderRule = {
+  loader: 'thread-loader',
+  options: {
+    workerParallelJobs: 50,
+    poolParallelJobs: 50,
+    poolTimeout: 2000,
+  },
+};
+
 const config = {
 
   context: resolve(__dirname),
@@ -81,12 +90,16 @@ const config = {
       },
       {
         test: /\.jsx?$/,
-        use: 'babel-loader',
         exclude: /node_modules/,
+        use: [
+          !process.env.CI && threadLoaderRule,
+          'babel-loader',
+        ].filter(Boolean),
       },
       {
         test: /\.(scss|css)$/,
         use: [
+          !process.env.CI && threadLoaderRule,
           {
             loader: 'style-loader',
           },
@@ -120,7 +133,7 @@ const config = {
           {
             loader: 'sass-loader',
           },
-        ],
+        ].filter(Boolean),
       },
     ],
   },
