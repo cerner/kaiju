@@ -2,7 +2,7 @@ version: '3'
 
 services:
   proxy:
-    image: traefik
+    image: traefik:1.4.4
     command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
     networks:
       - webgateway
@@ -15,6 +15,7 @@ services:
       - /dev/null:/traefik.toml
 
   node:
+    image: cerner/kaiju-node:latest
     build: ./node/
     depends_on:
       - proxy
@@ -32,6 +33,7 @@ services:
       - "traefik.port=8080"
 
   rails:
+    image: cerner/kaiju-rails:latest
     build: ./rails/
     environment:
       - SECRET_KEY_BASE=980453e07f6f1a473091a79dc0c5109d6e350509a5b47d96b9bc55ce40e3b45ce2959919e9e528602c3a7a7c169c5e01596feeb8328ef51063514641b964d917
@@ -50,7 +52,7 @@ services:
       - "traefik.port=3000"
 
   redis:
-    image: redis
+    image: redis:3.2
     networks:
       - webgateway
     ports:

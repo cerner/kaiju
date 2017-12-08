@@ -20,6 +20,7 @@ Kaiju is great for rapid prototyping and facilitating collaboration between engi
 
 To run the app, spin up a couple of docker containers with compose and navigate to localhost.
 ```
+docker-compose pull
 docker-compose up
 ```
 
@@ -31,11 +32,13 @@ docker-compose up
 To develop the app, install dependancies and spin rails and node server and navigate to localhost:3000. Running npm install in the root kaiju directory will install npm and rails dependancies.
 ```
 npm install
+npm install foreman -g
 
-foreman start -f Procfile
+nf start
 ```
 
 ## Usage
+If you haven't setup an IDP you'll be greeted with the mock identiy provider. This looks shady, but it's just a pass through provided by omniauth. Any username/email is accepted. That said, please don't use this IDP in production.
 
 After log-in the first step is to create a project. Each new project has a default workspace. The workspace is where you will be creating your new components. Drag a component from the left column to the workspace to drop the component. With this drag and drop system you can build out a tree of nested UI components with a layout as the root. The layers of the workspace will be displayed in the bottom left corner of the editor. The properties of the dropped components can be modified by editing the fields displayed in the right column.
 
