@@ -12,6 +12,6 @@ ADD . $App_Home
 
 # Install Node Dependencies
 RUN npm run clean
-RUN npm install --unsafe-perm
+RUN npm install --unsafe-perm --silent
 
 CMD npm start

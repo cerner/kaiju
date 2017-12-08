@@ -11,3 +11,11 @@ branches:
 cache:
   directories:
     - node_modules
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    docker build -t cerner/kaiju-rails:latest ./rails;
+    docker build -t cerner/kaiju-node:latest ./node;
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push cerner/kaiju-rails:latest;
+    docker push cerner/kaiju-node:latest;
+    fi

@@ -26,9 +26,6 @@ ADD . $App_Home
 # Copy cached npm modules into client directory
 RUN npm run clean && cp -a /tmp/node_modules $APP_HOME/client
 
-# Cheat, without this folder existing, precompile will fail
-RUN mkdir $APP_HOME/app/assets/webpack; exit 0
-
 # Precompile Assets
 RUN bundle exec rake assets:precompile
 
