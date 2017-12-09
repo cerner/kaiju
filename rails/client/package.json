@@ -29,7 +29,7 @@
     "react-css-transition-replace": "^2.2.0",
     "react-dom": "^15.5.x",
     "react-highlight": "^0.10.0",
-    "react-on-rails": "^10.0.1",
+    "react-on-rails": "^10.0.2",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
     "superagent": "^3.5.0",
