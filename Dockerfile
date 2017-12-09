@@ -1,5 +1,5 @@
 
-FROM cerner/kaiju-ruby-node-redis-traefik:2.4.2-8.4.0-3.2-1.4.4
+FROM cerner/kaiju-ruby-node-redis-traefik:2.4.2-8.9.2-3.2-1.4.4
 
 EXPOSE 80
 

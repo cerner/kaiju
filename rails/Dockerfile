@@ -1,4 +1,4 @@
-FROM cerner/kaiju-ruby-node:2.4.2-8.4.0
+FROM cerner/kaiju-ruby-node:2.4.2-8.9.2
 
 # Set env to prod by default
 ARG RAILS_ENVIRONMENT=production
