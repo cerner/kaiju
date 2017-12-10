@@ -8,11 +8,8 @@ services:
       - webgateway
     ports:
       - "80:80"
-      - "3000:3000"
-      - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /dev/null:/traefik.toml
 
   node:
     image: cerner/kaiju-node:latest
@@ -25,8 +22,7 @@ services:
     environment:
       - NODE_ENV=production
       - REDIS_URL=redis://redis:6379/0
-      - KAIJU_RAILS_SERVER_URL=http://rails:3000
-      - KAIJU_AUTH_REDIRECT_URL=http://localhost/auth
+      - KAIJU_RAILS_SERVER_URL=http://proxy
     labels:
       - "traefik.backend=node"
       - "traefik.frontend.rule=Path: /projects/{id}/workspaces/{id}/code, /projects/{id}/workspaces/{id}/preview, /projects/{id}/workspaces/{id}/preview_files/{id}, /projects/{id}/workspaces/{id}/code_files/src/{id}"
@@ -55,8 +51,6 @@ services:
     image: redis:3.2
     networks:
       - webgateway
-    ports:
-      - "6379:6379"
     command: redis-server
 
 networks:

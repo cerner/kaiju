@@ -1,18 +1,14 @@
-import url from 'url';
+import config from 'config';
 
-function fullUrl(req) {
-  return url.format({
-    protocol: req.protocol,
-    host: req.get('host'),
-    pathname: req.originalUrl,
-  });
-}
-
-export default function fn(redirectUrl) {
+export default function fn() {
   return function authMiddleware(req, res, next) {
     req.railsSession.session().then((session) => {
       if (!session || !session.user_id) {
-        res.redirect(`${redirectUrl}?origin=${fullUrl(req)}`);
+        let redirectUrl = req.fullUrl();
+        if (config.has('authRedirectUrl')) {
+          redirectUrl = config.get('authRedirectUrl');
+        }
+        res.redirect(`${redirectUrl}/auth?origin=${req.fullUrl()}`);
       } else {
         next();
       }

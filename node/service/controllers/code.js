@@ -6,7 +6,7 @@ const router = express.Router();
 
 /* GET code listing. */
 router.get('/projects/:projectId/workspaces/:workspaceId/code', (req, res, next) => {
-  const requester = new ServiceRequester(req.cookies);
+  const requester = new ServiceRequester(req.cookies, req);
   const generator = new CodeGenerator(req.params.projectId, req.params.workspaceId, requester);
   generator.generate().then(([, manifest]) => {
     const manifestJson = {
@@ -24,7 +24,7 @@ router.get('/projects/:projectId/workspaces/:workspaceId/code', (req, res, next)
 });
 
 router.get('/projects/:projectId/workspaces/:workspaceId/code_files/*', (req, res, next) => {
-  const requester = new ServiceRequester(req.cookies);
+  const requester = new ServiceRequester(req.cookies, req);
   const filename = req.url.substring(req.url.indexOf('code_files/') + 'code_files/'.length);
   const generator = new CodeGenerator(req.params.projectId, req.params.workspaceId, requester);
   generator.generate().then(([, , fs]) => {

@@ -6,7 +6,7 @@ const router = express.Router();
 
 /* GET code listing. */
 router.get('/projects/:projectId/workspaces/:workspaceId/preview', (req, res, next) => {
-  const requester = new ServiceRequester(req.cookies);
+  const requester = new ServiceRequester(req.cookies, req);
   const generator = new PreviewGenerator(req.params.projectId, req.params.workspaceId, requester);
   generator.generate().then(([name, entry]) => {
     res.render('preview', {
@@ -18,7 +18,7 @@ router.get('/projects/:projectId/workspaces/:workspaceId/preview', (req, res, ne
 });
 
 router.get('/projects/:projectId/workspaces/:workspaceId/preview_files/*', (req, res, next) => {
-  const requester = new ServiceRequester(req.cookies);
+  const requester = new ServiceRequester(req.cookies, req);
   const filename = req.url.substring(req.url.indexOf('preview_files/') + 'preview_files/'.length);
   const generator = new PreviewGenerator(req.params.projectId, req.params.workspaceId, requester);
   generator.generate().then(([, , fs]) => {
