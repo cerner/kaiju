@@ -8,7 +8,7 @@ export default function fn() {
         host: req.get('host'),
         pathname: req.originalUrl,
       });
-    }
+    };
     next();
-  }
+  };
 }
