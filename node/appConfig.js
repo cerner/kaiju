@@ -7,11 +7,13 @@ import projectTypes from './service/controllers/projectTypes';
 import railsSession from './service/middlewares/RailsRedisSession';
 import auth from './service/middlewares/Authentication';
 import csrfToken from './service/middlewares/CsrfToken';
+import fullUrl from './service/middlewares/FullUrl';
 
 export default function configure(app) {
   app.use(cookieParser());
+  app.use(fullUrl());
   app.use(railsSession(config.get('cookieKey')));
-  app.use(auth(config.get('authRedirectUrl')));
+  app.use(auth());
   app.use(csrfToken());
 
   app.set('view engine', 'pug');

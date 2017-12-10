@@ -20,8 +20,6 @@ COPY . /app
 
 # Node Env
 ENV NODE_ENV=production
-ENV KAIJU_RAILS_SERVER_URL http://localhost
-ENV KAIJU_AUTH_REDIRECT_URL http://localhost/auth
 
 # Rails Env
 ENV RAILS_ENV production

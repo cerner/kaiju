@@ -4,5 +4,4 @@ module.exports = {
   redisPrefix: 'kaiju:prod:',
   redisUrl: process.env.REDIS_URL,
   disableFsCache: false,
-  authRedirectUrl: process.env.KAIJU_AUTH_REDIRECT_URL,
 };
