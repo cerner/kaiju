@@ -25,7 +25,7 @@ services:
       - KAIJU_RAILS_SERVER_URL=http://proxy
     labels:
       - "traefik.backend=node"
-      - "traefik.frontend.rule=Path: /projects/{id}/workspaces/{id}/code, /projects/{id}/workspaces/{id}/preview, /projects/{id}/workspaces/{id}/preview_files/{id}, /projects/{id}/workspaces/{id}/code_files/src/{id}"
+      - "traefik.frontend.rule=PathPrefix: /projects/{id}/workspaces/{id}/preview, /projects/{id}/workspaces/{id}/preview_files, /projects/{id}/workspaces/{id}/code_files"
       - "traefik.port=8080"
 
   rails:

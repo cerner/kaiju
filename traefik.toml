@@ -23,4 +23,4 @@ defaultEntryPoints = ["http"]
   backend = "node"
   passHostHeader = true
     [frontends.node.routes.test_1]
-    rule = "Path: /projects/{id}/workspaces/{id}/code, /projects/{id}/workspaces/{id}/preview, /projects/{id}/workspaces/{id}/preview_files/{id}, /projects/{id}/workspaces/{id}/code_files/src/{id}"
+    rule = "PathPrefix: /projects/{id}/workspaces/{id}/preview, /projects/{id}/workspaces/{id}/preview_files, /projects/{id}/workspaces/{id}/code_files"
