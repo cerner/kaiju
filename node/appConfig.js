@@ -15,6 +15,7 @@ export default function configure(app) {
   app.use(railsSession(config.get('cookieKey')));
   app.use(auth());
   app.use(csrfToken());
+  app.set('json spaces', '  ');
 
   app.set('view engine', 'pug');
   app.set('views', path.join(__dirname, '/service/views'));
