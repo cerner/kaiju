@@ -71,11 +71,27 @@ const removeHighlight = () => {
   postMessage({ message: 'kaiju-remove-highlight' });
 };
 
+/**
+ * Copies the selected component into the clipboard
+ */
+const copy = () => {
+  postMessage({ message: 'kaiju-copy' });
+};
+
+/**
+ * Pastes a component into a placeholder
+ */
+const paste = () => {
+  postMessage({ message: 'kaiju-paste' });
+};
+
 export {
+  copy,
   destroy,
   duplicate,
   duplicateProperty,
   highlight,
+  paste,
   postMessage,
   refresh,
   removeHighlight,

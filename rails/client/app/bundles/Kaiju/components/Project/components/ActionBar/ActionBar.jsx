@@ -4,7 +4,7 @@ import Mousetrap from 'mousetrap';
 import ajax from 'superagent';
 import IconUndo from 'terra-icon/lib/icon/IconReply';
 import IconRedo from 'terra-icon/lib/icon/IconForward';
-import { destroy, refresh, select } from '../../utilities/messenger';
+import { copy, destroy, paste, refresh, select } from '../../utilities/messenger';
 import ActionItem from './ActionItem/ActionItem';
 import Delete from './Delete/Delete';
 import Rename from './Rename/Rename';
@@ -52,6 +52,8 @@ class ActionBar extends React.Component {
   }
 
   componentDidMount() {
+    Mousetrap.bind(['command+c', 'ctrl+c'], copy);
+    Mousetrap.bind(['command+v', 'ctrl+v'], paste);
     Mousetrap.bind(['command+z', 'ctrl+z'], this.undo);
     Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], this.redo);
     Mousetrap.bind(['backspace', 'delete'], ActionBar.destroy);
@@ -60,6 +62,8 @@ class ActionBar extends React.Component {
   }
 
   componentWillUnmount() {
+    Mousetrap.unbind(['command+c', 'ctrl+c'], copy);
+    Mousetrap.unbind(['command+v', 'ctrl+v'], paste);
     Mousetrap.unbind(['command+z', 'ctrl+z'], this.undo);
     Mousetrap.unbind(['command+shift+z', 'ctrl+shift+z'], this.redo);
     Mousetrap.unbind(['backspace', 'delete'], ActionBar.destroy);
