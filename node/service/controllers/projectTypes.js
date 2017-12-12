@@ -7,13 +7,13 @@ const router = express.Router();
 router.get('/projectTypes', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   // console.log(PluginManager.projectType('terra'));
-  res.send(JSON.stringify({ projectTypes: PluginManager.projectTypes() }, null, 2));
+  res.json({ projectTypes: PluginManager.projectTypes() });
 });
 
 router.get('/projectTypes/:projectType', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   PluginManager.projectType(req.params.projectType, (components) => {
-    res.send(JSON.stringify(components, null, 2));
+    res.json(components);
   });
 });
 

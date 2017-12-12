@@ -19,7 +19,7 @@ router.get('/projects/:projectId/workspaces/:workspaceId/code', (req, res, next)
       }),
     };
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(manifestJson, null, 2));
+    res.json(manifestJson);
   }).catch(e => next(e));
 });
 
