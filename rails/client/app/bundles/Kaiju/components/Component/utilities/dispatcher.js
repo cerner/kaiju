@@ -288,6 +288,12 @@ const registerDispatcher = (store, root) => {
         return;
       }
 
+      // Prevents replacing an entire workspace if the workspace has more than 1 child
+      // A workspace with a single child will have two properties
+      if (clipboard.type === 'kaiju::Workspace' && Object.keys(fetch(root).properties).length > 2) {
+        return;
+      }
+
       replace(target, clipboard);
     }
   };
