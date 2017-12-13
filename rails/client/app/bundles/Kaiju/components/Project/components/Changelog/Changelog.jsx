@@ -49,11 +49,11 @@ const Changelog = ({ changelogViewedUrl, viewed, onClick }) => {
   };
 
   return (
-    <div className={classes} onClick={toggleChangelog} role="presentation">
-      <Popover title="What's new" trigger="click" content={content}>
+    <Popover title="What's new" trigger="click" content={content}>
+      <div className={classes} onClick={toggleChangelog} role="presentation">
         <Icon type="gift" className="kaiju-Changelog-giftIcon" />
-      </Popover>
-    </div>
+      </div>
+    </Popover>
   );
 };
 
