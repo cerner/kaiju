@@ -30,6 +30,10 @@ const propTypes = {
    */
   onResize: PropTypes.func,
   /**
+   * The currently selected component
+   */
+  selectedComponent: PropTypes.object,
+  /**
    * The current workspace
    */
   workspace: PropTypes.object,
@@ -110,11 +114,11 @@ class ActionBar extends React.Component {
   }
 
   render() {
-    const { canvasSize, onRename, onDelete, onResize, workspace } = this.props;
-    const { codeUrl, collaborationInvitation, id, name, previewUrl, rename, url } = workspace;
+    const { canvasSize, onRename, onDelete, onResize, selectedComponent, workspace } = this.props;
+    const { codeUrl, component, collaborationInvitation, id, name, previewUrl, rename, url } = workspace;
     const navigateToCode = () => window.open(codeUrl, '_blank');
     const navigateToPreview = () => window.open(previewUrl, '_blank');
-    const navigateToAttributes = () => window.open(`${url}/attributes`, '_blank');
+    const navigateToAttributes = () => window.open(`${selectedComponent ? selectedComponent.url : component.url}/attributes`, '_blank');
 
     return (
       <div className="kaiju-ActionBar">
