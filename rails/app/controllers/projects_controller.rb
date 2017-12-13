@@ -59,6 +59,11 @@ class ProjectsController < ApplicationController
     head :ok
   end
 
+  def changelog_viewed
+    update_changelog_viewed_flag(current_user, params[:project_object], params)
+    head :ok
+  end
+
   def name
     Rails.logger.debug params
 

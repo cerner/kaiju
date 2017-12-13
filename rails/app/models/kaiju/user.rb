@@ -22,6 +22,8 @@ module Kaiju
 
     value :inactive, marshal: true
 
+    value :changelog_viewed, marshal: true
+
     # Public: Initialize a User.
     #
     # id - A String unique identifier
@@ -41,6 +43,7 @@ module Kaiju
     def as_json(options = {})
       user = json_representation(options)
       user['recent_workspaces'] = recent_workspaces.members.reverse.map { |item| JSON.parse(item) }
+      user['changelog_viewed'] = user['changelog_viewed'] == true
       user
     end
 

@@ -13,12 +13,14 @@ module Kaiju
           {
             'id' => user_b.id,
             'url' => 'https://herp/users/' + user_b.id,
-            'name' => user_b.name.value
+            'name' => user_b.name.value,
+            'changelog_viewed' => false
           },
           {
             'id' => user_a.id,
             'url' => 'https://herp/users/' + user_a.id,
-            'name' => user_a.name.value
+            'name' => user_a.name.value,
+            'changelog_viewed' => false
           }
         ]
 
@@ -54,7 +56,8 @@ module Kaiju
           'shared_projects' => [ProjectJson.as_json(project.id, base_url, lite: true)],
           'inactive_projects' => [],
           'url' => base_url + '/users/' + user.id,
-          'projects_url' => base_url + '/users/' + user.id + '/projects'
+          'projects_url' => base_url + '/users/' + user.id + '/projects',
+          'changelog_viewed' => false
         )
 
         workspace.destroy
@@ -87,7 +90,8 @@ module Kaiju
           'shared_projects' => [ProjectJson.as_json(project.id, base_url, lite: true)],
           'inactive_projects' => [ProjectJson.as_json(inactive_project.id, base_url, lite: true, inactive: true)],
           'url' => base_url + '/users/' + user.id,
-          'projects_url' => base_url + '/users/' + user.id + '/projects'
+          'projects_url' => base_url + '/users/' + user.id + '/projects',
+          'changelog_viewed' => false
         )
 
         workspace.destroy

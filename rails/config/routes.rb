@@ -5,6 +5,9 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   resources :launch, only: %i[show]
   resources :users, only: %i[index show] do
     resources :projects, only: %i[index create]
+    member do
+      get 'reset_changelog'
+    end
   end
   resources :projects, only: %i[show destroy new] do
     resources :workspaces, only: %i[index show create destroy] do
@@ -28,6 +31,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       put 'name'
       get 'collaboration_invitation'
       put 'activate'
+      put 'changelog_viewed'
     end
   end
   resources :invitations, only: %i[show]

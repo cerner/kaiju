@@ -1,4 +1,5 @@
 import React from 'react';
+import Changelog from '../../containers/ChangelogContainer';
 import Menu from '../Menu/Menu';
 import Logo from '../../../common/Logo/Logo';
 import ProjectName from '../../containers/ProjectNameContainer';
@@ -15,7 +16,9 @@ const Header = () => (
         <ProjectName />
       </span>
     </div>
-    <div className="kaiju-Header-right" />
+    <div className="kaiju-Header-right">
+      <Changelog />
+    </div>
   </div>
 );
 

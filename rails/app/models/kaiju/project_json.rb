@@ -47,6 +47,7 @@ module Kaiju
       end
     end
 
+    # rubocop:disable Metrics/AbcSize
     def self.decorate_urls(hash, project_id, base_url)
       hash['url'] = base_url + project_path(project_id)
       hash['workspaces_url'] = base_url + project_workspaces_path(project_id)
@@ -54,6 +55,7 @@ module Kaiju
       hash['rename_url'] = base_url + name_project_path(project_id)
       hash['collaboration_invitation_url'] = base_url + collaboration_invitation_project_path(project_id)
       hash['activate_url'] = base_url + activate_project_path(project_id)
+      hash['changelog_viewed'] = base_url + changelog_viewed_project_path(project_id)
     end
 
     def self.editable?(project, user_id)

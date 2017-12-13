@@ -80,6 +80,10 @@ const config = {
         },
       },
       {
+        test: /\.md$/,
+        use: 'raw-loader',
+      },
+      {
         test: /\.jsx?$/,
         use: 'babel-loader',
         exclude: /node_modules/,
