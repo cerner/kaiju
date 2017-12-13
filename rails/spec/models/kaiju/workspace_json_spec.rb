@@ -22,7 +22,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
             'author' => {
               'id' => user.id,
               'url' => base_url + '/users/' + user.id,
-              'name' => user.name.value
+              'name' => user.name.value,
+              'changelog_viewed' => false
             },
             'name' => workspace_a.name.value,
             'component' => {
@@ -48,7 +49,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
             'author' => {
               'id' => user.id,
               'url' => base_url + '/users/' + user.id,
-              'name' => user.name.value
+              'name' => user.name.value,
+              'changelog_viewed' => false
             },
             'name' => workspace_b.name.value,
             'component' => {
@@ -95,7 +97,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'author' => {
             'id' => user.id,
             'url' => base_url + '/users/' + user.id,
-            'name' => user.name.value
+            'name' => user.name.value,
+            'changelog_viewed' => false
           },
           'name' => workspace.name.value,
           'component' => {

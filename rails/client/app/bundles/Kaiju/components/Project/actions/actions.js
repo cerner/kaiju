@@ -98,6 +98,15 @@ const setReferenceComponents = components => ({
   components,
 });
 
+/**
+ * Sets the changelog state as viewed / unviewed
+ * @param {Boolean} viewed - Whether the changelog has been viewed
+ */
+const setChangelogViewed = viewed => ({
+  type: 'SET_CHANGELOG_VIEWED',
+  changelogViewed: viewed,
+});
+
 export {
   addWorkspace,
   closeTab,
@@ -107,6 +116,7 @@ export {
   renameProject,
   setActiveWorkspace,
   setCanvasSize,
+  setChangelogViewed,
   setReferenceComponents,
   updateComponent,
 };

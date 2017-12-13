@@ -20,4 +20,8 @@ module ProjectsHelper
   def rename_project(project, hash)
     project.name = hash['name']
   end
+
+  def update_changelog_viewed_flag(user, _project, hash)
+    user.changelog_viewed = hash['changelog_viewed']
+  end
 end

@@ -16,4 +16,9 @@ class UsersController < ApplicationController
 
     render json: Kaiju::UserJson.users_to_json(request.base_url)
   end
+
+  def reset_changelog
+    User.ids.each { |id| User.by_id(id).changelog_viewed = false }
+    head :ok
+  end
 end
