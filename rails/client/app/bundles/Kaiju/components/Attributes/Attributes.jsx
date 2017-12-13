@@ -11,9 +11,9 @@ const propTypes = {
 
 const Attributes = ({ ast }) => {
   /**
-   * Generates the attributes for a Component
-   * @param {Object} object - The object to generate attributes for
-   * @return {Array} - Generated attributes
+   * Generates the attributes for a Component.
+   * @param {Object} object - The object to generate attributes for.
+   * @return {Array} - Generated attributes.
    */
   const generateAttributes = (object) => {
     const attributes = [];
