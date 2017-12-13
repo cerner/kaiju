@@ -1,5 +1,6 @@
 ## December 13th, 2017
 ### Added
+- Added Kaiju Christmas theme
 - Copy paste keyboard shortcuts ( ctrl + c / ctrl + v )
 
 ## December 10th, 2017
