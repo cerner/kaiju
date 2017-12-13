@@ -21,6 +21,10 @@ const propTypes = {
    */
   onResize: PropTypes.func,
   /**
+   * The currently selected component
+   */
+  selectedComponent: PropTypes.object,
+  /**
    * The current open Workspace
    */
   workspace: PropTypes.object,
@@ -32,12 +36,12 @@ class Sandbox extends React.Component {
   }
 
   render() {
-    const { canvasSize, onDelete, onRename, onResize, workspace } = this.props;
+    const { canvasSize, onDelete, onRename, onResize, selectedComponent, workspace } = this.props;
     const classes = `kaiju-Sandbox-iframe kaiju-Sandbox--${canvasSize}`;
     return (
       <div className="kaiju-Sandbox">
         <iframe id="kaiju-Sandbox-iframe" className={classes} src={workspace.component.url} title="sandbox" />
-        <ActionBar canvasSize={canvasSize} onDelete={onDelete} onRename={onRename} onResize={onResize} workspace={workspace} />
+        <ActionBar canvasSize={canvasSize} onDelete={onDelete} onRename={onRename} onResize={onResize} workspace={workspace} selectedComponent={selectedComponent} />
       </div>
     );
   }

@@ -44,4 +44,11 @@ class ComponentsController < ApplicationController
 
     head :ok
   end
+
+  def attributes
+    @ast = params[:component_object].ast
+    respond_to do |format|
+      format.html { render layout: 'attributes' }
+    end
+  end
 end

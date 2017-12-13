@@ -4,45 +4,52 @@ import { humanize } from '../../utilities/utilities';
 
 const propTypes = {
   /**
-   * The Workspace AST
+   * The Component AST
    */
   ast: PropTypes.object,
 };
 
 const Attributes = ({ ast }) => {
-  function generateAttributes(object) {
-    const listItems = [];
+  /**
+   * Generates the attributes for a Component.
+   * @param {Object} object - The object to generate attributes for.
+   * @return {Array} - Generated attributes.
+   */
+  const generateAttributes = (object) => {
+    const attributes = [];
 
-    Object.keys(object).forEach((objectKey) => {
-      const { type, value } = object[objectKey];
+    Object.keys(object).forEach((key) => {
+      const { id, type, value } = object[key];
       if (value === undefined || value == null) {
         // No value was provided
       } else if (type === 'Array' || type === 'Hash') {
-        listItems.push(React.createElement('li', {}, humanize(object[objectKey].id)));
-
-        const children = generateAttributes(value);
-        if (children.length > 0) {
-          listItems.push(React.createElement('ul', {}, ...children));
-        }
+        attributes.push(<li>{humanize(id)}</li>);
+        attributes.push(<ul>{generateAttributes(value)}</ul>);
       } else if (type === 'Component') {
-        listItems.push(React.createElement('li', {}, value.name));
-
-        const children = generateAttributes(value.properties);
-        if (children.length > 0) {
-          listItems.push(React.createElement('ul', {}, ...children));
-        }
-      } else if (isNaN(objectKey)) {
-        listItems.push(React.createElement('li', {}, `${humanize(objectKey)}: ${value}`));
+        const { name, properties } = value;
+        attributes.push(<li>{humanize(id)}</li>);
+        attributes.push(<ul><li>{humanize(name)}</li><ul>{generateAttributes(properties)}</ul></ul>);
+      } else if (isNaN(key) === false) {
+        attributes.push(<li>{`Position: ${key}`}</li>);
+        attributes.push(<ul><li>{value}</li></ul>);
       } else {
-        listItems.push(React.createElement('li', {}, `Position: ${objectKey}`));
-        listItems.push(React.createElement('ul', {}, React.createElement('li', {}, value)));
+        attributes.push(<li>{`${humanize(key)}: ${value}`}</li>);
       }
     });
 
-    return listItems;
-  }
+    return attributes;
+  };
 
-  return React.createElement('ul', {}, ...generateAttributes(ast.properties.children.value));
+  return (
+    <ul>
+      <li>
+        {ast.name}
+      </li>
+      <ul>
+        {generateAttributes(ast.properties)}
+      </ul>
+    </ul>
+  );
 };
 
 Attributes.propTypes = propTypes;

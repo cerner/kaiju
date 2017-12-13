@@ -9,9 +9,13 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       get 'reset_changelog'
     end
   end
+  # rubocop:disable Metrics/BlockLength
   resources :projects, only: %i[show destroy new] do
     resources :workspaces, only: %i[index show create destroy] do
       resources :components, only: %i[show update destroy] do
+        member do
+          get 'attributes'
+        end
         resources :properties, only: %i[show update destroy]
       end
       member do

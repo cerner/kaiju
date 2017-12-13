@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import { setCanvasSize, removeWorkspace, renameWorkspace } from '../actions/actions';
 import Sandbox from '../components/Sandbox/Sandbox';
 
-const mapStateToProps = ({ activeWorkspace, canvasSize, workspaces }) => ({
+const mapStateToProps = ({ activeWorkspace, canvasSize, components, selectedComponent, workspaces }) => ({
   canvasSize,
+  selectedComponent: components[selectedComponent],
   workspace: workspaces[activeWorkspace],
 });
 

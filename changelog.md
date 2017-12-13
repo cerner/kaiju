@@ -3,6 +3,9 @@
 - Added Kaiju Christmas theme
 - Copy paste keyboard shortcuts ( ctrl + c / ctrl + v )
 
+### Updated
+- Attributes now generate for selected components
+
 ## December 10th, 2017
 ### Added
 - What's new change log
