@@ -149,7 +149,7 @@ const registerDispatcher = (store, root) => {
    */
   const replace = (id, properties) => {
     const { parent, url } = fetch(id);
-    put(url, { component: properties }, () => refresh(parent, id));
+    put(url, { component: properties }, () => refresh(parent || root, id));
   };
 
   /**
@@ -263,6 +263,44 @@ const registerDispatcher = (store, root) => {
   };
 
   /**
+   * Copies the selected component into the clipboard
+   */
+  const copy = () => {
+    const selectedComponent = fetch(getSelectedComponent());
+
+    if (selectedComponent) {
+      localStorage.clipboard = JSON.stringify(serialize(selectedComponent));
+    }
+  };
+
+  /**
+   * Replaces a placeholder with contents from the clipboard
+   */
+  const paste = () => {
+    const selectedComponent = fetch(getSelectedComponent());
+    const clipboard = localStorage.clipboard ? JSON.parse(localStorage.clipboard) : null;
+
+    if (clipboard && selectedComponent && selectedComponent.type === 'kaiju::Placeholder') {
+      const target = selectedComponent.parent === root && clipboard.type === 'kaiju::Workspace' ?
+                     selectedComponent.parent :
+                     selectedComponent.id;
+
+      // Kaiju does not allow nesting workspaces
+      if (clipboard.type === 'kaiju::Workspace' && target !== root) {
+        return;
+      }
+
+      // Prevents replacing an entire workspace if the workspace has more than 1 child
+      // A workspace with a single child will have two properties
+      if (clipboard.type === 'kaiju::Workspace' && Object.keys(fetch(root).properties).length > 2) {
+        return;
+      }
+
+      replace(target, clipboard);
+    }
+  };
+
+  /**
    * Dispatches messages to the appropriate functions
    * @param {Object} data - The message data
    */
@@ -291,12 +329,18 @@ const registerDispatcher = (store, root) => {
       replace(data.target, data.properties || lastDestroyed);
     } else if (message === 'kaiju-update') {
       update(id, data.property, data.value);
+    } else if (message === 'kaiju-copy') {
+      copy();
+    } else if (message === 'kaiju-paste') {
+      paste();
     }
   };
 
   postUpdate();
   Mousetrap.bind(['esc'], () => select(null));
   Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
+  Mousetrap.bind(['command+c', 'ctrl+c'], copy);
+  Mousetrap.bind(['command+v', 'ctrl+v'], paste);
   Mousetrap.bind(['command+z', 'ctrl+z'], undo);
   Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], redo);
   window.addEventListener('message', dispatchMessage);
