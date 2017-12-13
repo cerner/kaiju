@@ -1,8 +1,13 @@
 .kaiju-Changelog {
-  font-size: 22px;
+  border-radius: 50%;
+  font-size: 20px;
   margin-left: auto;
-  opacity: 0.5;
-  transition: color 0.75s ease-in-out;
+  padding: 0 5px;
+  transition: background-color 0.75s ease-in-out;
+
+  > .kaiju-Changelog-giftIcon {
+    opacity: 0.5;
+  }
 }
 
 .kaiju-Changelog-content {
@@ -18,27 +23,30 @@
 }
 
 .is-highlighted {
-  animation: shake 2s infinite;
-  color: var(--kaiju-theme-color, #1db954);
-  font-size: 22px;
-  opacity: 1;
+  background-color: var(--kaiju-theme-color, #1db954);
 
-  @keyframes shake {
-    10%,
-    20%,
-    30%,
-    40% {
-      transform: rotate3d(0, 0, 1, -3deg);
+  > .kaiju-Changelog-giftIcon {
+    animation: shake 2s infinite;
+    color: #000;
+    opacity: 1;
+
+    @keyframes shake {
+      10%,
+      20%,
+      30%,
+      40% {
+        transform: rotate3d(0, 0, 1, -3deg);
+      }
+
+      15%,
+      25%,
+      35%,
+      45%, {
+        transform: rotate3d(0, 0, 1, 3deg);
+      }
+
+      50% { transform: rotate(0deg); }
     }
-
-    15%,
-    25%,
-    35%,
-    45%, {
-      transform: rotate3d(0, 0, 1, 3deg);
-    }
-
-    50% { transform: rotate(0deg); }
   }
 }
 
