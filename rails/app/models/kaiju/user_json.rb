@@ -29,7 +29,8 @@ module Kaiju
       {
         'id' => user.id,
         'url' => base_url + user_path(user.id),
-        'name' => user.name.value
+        'name' => user.name.value,
+        'changelog_viewed' => user.changelog_viewed.value == true
       }
     end
 

@@ -21,13 +21,15 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'workspaces_url' => expected_url_b + '/workspaces',
           'reference_components_url' => expected_url_b + '/reference_components',
           'rename_url' => expected_url_b + '/name',
+          'changelog_viewed' => expected_url_b + '/changelog_viewed',
           'collaboration_invitation_url' => expected_url_b + '/collaboration_invitation',
           'activate_url' => expected_url_b + '/activate',
           'name' => project_b.name.value,
           'owner' => {
             'id' => user.id,
             'url' => base_url + '/users/' + user.id,
-            'name' => user.name.value
+            'name' => user.name.value,
+            'changelog_viewed' => false
           },
           'update_date_time' => project_b.update_date_time.value,
           'workspace_count' => project_b.workspaces.count
@@ -38,13 +40,15 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'workspaces_url' => expected_url_a + '/workspaces',
           'reference_components_url' => expected_url_a + '/reference_components',
           'rename_url' => expected_url_a + '/name',
+          'changelog_viewed' => expected_url_a + '/changelog_viewed',
           'collaboration_invitation_url' => expected_url_a + '/collaboration_invitation',
           'activate_url' => expected_url_a + '/activate',
           'name' => project_a.name.value,
           'owner' => {
             'id' => user.id,
             'url' => base_url + '/users/' + user.id,
-            'name' => user.name.value
+            'name' => user.name.value,
+            'changelog_viewed' => false
           },
           'update_date_time' => project_a.update_date_time.value,
           'workspace_count' => project_a.workspaces.count
@@ -77,7 +81,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'owner' => {
             'id' => user.id,
             'url' => base_url + '/users/' + user.id,
-            'name' => user.name.value
+            'name' => user.name.value,
+            'changelog_viewed' => false
           },
           'name' => project.name.value,
           'workspaces' => [WorkspaceJson.as_json(workspace.id, base_url, project_id: project.id, user_id: user.id)],
@@ -87,6 +92,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'workspaces_url' => base_url + '/projects/' + project.id + '/workspaces',
           'reference_components_url' => base_url + '/projects/' + project.id + '/reference_components',
           'rename_url' => base_url + '/projects/' + project.id + '/name',
+          'changelog_viewed' => base_url + '/projects/' + project.id + '/changelog_viewed',
           'collaboration_invitation_url' => base_url + '/projects/' + project.id + '/collaboration_invitation',
           'activate_url' => base_url + '/projects/' + project.id + '/activate'
         )
@@ -115,7 +121,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'owner' => {
             'id' => user.id,
             'url' => base_url + '/users/' + user.id,
-            'name' => user.name.value
+            'name' => user.name.value,
+            'changelog_viewed' => false
           },
           'name' => project.name.value,
           'workspaces' => [WorkspaceJson.as_json(workspace.id, base_url, project_id: project.id, user_id: user.id)],
@@ -127,6 +134,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'workspaces_url' => base_url + '/projects/' + project.id + '/workspaces',
           'reference_components_url' => base_url + '/projects/' + project.id + '/reference_components',
           'rename_url' => base_url + '/projects/' + project.id + '/name',
+          'changelog_viewed' => base_url + '/projects/' + project.id + '/changelog_viewed',
           'collaboration_invitation_url' => base_url + '/projects/' + project.id + '/collaboration_invitation',
           'activate_url' => base_url + '/projects/' + project.id + '/activate'
         )

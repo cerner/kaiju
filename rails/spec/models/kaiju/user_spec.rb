@@ -43,6 +43,8 @@ module Kaiju
         @recent_workspace2 = { 'project' => '2', 'workspace' => '2' }
         @user.recent_workspaces[@recent_workspace1.to_json] = 1
         @user.recent_workspaces[@recent_workspace2.to_json] = 2
+
+        @user.changelog_viewed = false
       end
       after(:example) do
         @user.redis.del(@user.redis_objects.keys.map { |k| @user.send(k) }.reject(&:nil?).map(&:key))
@@ -56,6 +58,7 @@ module Kaiju
         expect(user_hash['projects']).to eq([@project1, @project2])
         expect(user_hash['shared_projects']).to eq([@shared_project1, @shared_project2])
         expect(user_hash['recent_workspaces']).to eq([@recent_workspace2, @recent_workspace1])
+        expect(user_hash['changelog_viewed']).to eq(false)
       end
     end
     context 'add_recent_project' do
