@@ -2,9 +2,12 @@
 ### Fixed
 - Enabled attributes to be viewed by all users
 
+### Added
+- Block and disabled options to the SearchField
+
 ## December 13th, 2017
 ### Added
-- Added Kaiju Christmas theme
+- Kaiju Christmas theme
 - Copy paste keyboard shortcuts ( ctrl + c / ctrl + v )
 
 ### Updated
