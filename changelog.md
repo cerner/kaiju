@@ -1,3 +1,7 @@
+## December 15th, 2017
+### Fixed
+- Enabled attributes to be viewed by all users
+
 ## December 13th, 2017
 ### Added
 - Added Kaiju Christmas theme
