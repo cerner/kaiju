@@ -3,7 +3,7 @@ class ComponentsController < ApplicationController
   before_action { fetch_workspace(params[:workspace_id]) }
   before_action { fetch_component(params[:id]) }
   before_action(only: %i[show]) { current_user.add_recent_workspace(params[:project_id], params[:workspace_id]) }
-  before_action(except: %i[show]) { authorize(params[:workspace_object].editors) }
+  before_action(except: %i[show attributes]) { authorize(params[:workspace_object].editors) }
   # GET /projects/1/workspaces/1/components/1
   def show # rubocop:disable Metrics/AbcSize
     # Rails.logger.debug params
