@@ -1,4 +1,4 @@
-## December 15th, 2017
+## Unreleased
 ### Fixed
 - Enabled attributes to be viewed by all users
 
