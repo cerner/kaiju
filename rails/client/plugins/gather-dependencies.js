@@ -23,7 +23,7 @@ GatherDependencies.prototype.apply = () => {
     }
   });
 
-  fs.writeFileSync('./app/bundles/Kaiju/components/Component/componentMap.js', `
+  fs.writeFileSync('./app/bundles/kaiju/components/Component/componentMap.js', `
  import Placeholder from './components/Placeholder/Placeholder';
  import KaijuText from './components/Text/Text';
  import Workspace from './components/Workspace/Workspace';

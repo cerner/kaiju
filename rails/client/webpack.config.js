@@ -24,15 +24,15 @@ const config = {
   context: resolve(__dirname),
 
   entry: {
-    attributes: './app/bundles/Kaiju/startup/attributesRegistration',
-    code: './app/bundles/Kaiju/startup/codeRegistration',
-    component: './app/bundles/Kaiju/startup/componentRegistration',
-    launch: './app/bundles/Kaiju/startup/launchPageRegistration',
+    attributes: './app/bundles/kaiju/startup/attributesRegistration',
+    code: './app/bundles/kaiju/startup/codeRegistration',
+    component: './app/bundles/kaiju/startup/componentRegistration',
+    launch: './app/bundles/kaiju/startup/launchPageRegistration',
     preview: [
-      './app/bundles/Kaiju/startup/previewRegistration',
+      './app/bundles/kaiju/startup/previewRegistration',
       'babel-polyfill',
     ],
-    project: './app/bundles/Kaiju/startup/projectRegistration',
+    project: './app/bundles/kaiju/startup/projectRegistration',
   },
 
   output: {
