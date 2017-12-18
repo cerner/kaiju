@@ -4,10 +4,20 @@ const glob = require('glob');
 
 function GatherDependencies() {}
 
+/**
+ * Converts a hyphenated string into title case.
+ * @param {String} string - A hyphenated string.
+ * @return {String} - A titlized string.
+ */
+const toTitleCase = string => (
+  string.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('')
+);
+
 GatherDependencies.prototype.apply = () => {
   let imports = '';
   let mapping = '';
   let modules = [];
+  const importSet = new Set();
   const whitelist = JSON.parse(fs.readFileSync('../whitelist.json', 'utf8'));
 
   whitelist.forEach(({ name }) => {
@@ -16,10 +26,19 @@ GatherDependencies.prototype.apply = () => {
 
   modules.forEach((file) => {
     const { library, name, import: moduleImport, import_from: importFrom } = JSON.parse(fs.readFileSync(file, 'utf8'));
-    mapping = mapping.concat(`   '${library}::${name}': ${moduleImport ? `${moduleImport}.${name}` : name},\n`);
+
+    // Prepend the library to avoid name collisions
+    // Example: Textarea from 'terra-form' and Textarea from terra-form-textarea
+    let alias = name;
+    if (importSet.has(alias)) {
+      alias = toTitleCase(library).replace(alias, alias);
+    }
+    importSet.add(alias);
+
+    mapping = mapping.concat(`   '${library}::${name}': ${moduleImport ? `${moduleImport}.${name}` : alias},\n`);
 
     if (!moduleImport) {
-      imports = imports.concat(` import ${moduleImport || name} from '${importFrom || library}';\n`);
+      imports = imports.concat(` import ${moduleImport || alias} from '${importFrom || library}';\n`);
     }
   });
 
