@@ -15,7 +15,7 @@ const toTitleCase = string => (
 
 /**
  * Indents a string.
- * @param {String} string - The string to indent
+ * @param {String} string - The string to indent.
  * @param {Integer} count - The number of indentations.
  * @return {String} - A string with the specified indentation.
  */
