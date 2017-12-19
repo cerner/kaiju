@@ -1,12 +1,16 @@
 import path from 'path';
 import webpack from 'webpack';
 import MemoryFS from 'memory-fs';
+import fileSystem from 'fs';
+import fallbackFs from '../utils/FallbackFileSystem';
 
 class PluginUtils {
   static rootPath() {
-    const rpath = path.join(__dirname, '../..');
-    console.log('root path', rpath);
     return path.join(__dirname, '../..');
+  }
+
+  static webpackFs(fs) {
+    return fallbackFs(fs.data, fileSystem);
   }
 
   static defaultWebpackConfig(publicPath) {
@@ -43,8 +47,8 @@ class PluginUtils {
     return new Promise((resolve, reject) => {
       compiler.run((err, stats) => {
         if (err || stats.hasErrors()) {
-          console.log(err);
-          console.log(stats);
+          // console.log(err);
+          // console.log(stats);
           reject('Preview failed to compile');
         }
         resolve(compiler.outputFileSystem);

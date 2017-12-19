@@ -40,13 +40,10 @@ class CodeGenerator {
     // Retrieve plugin for project
     // Pass AST and FS to Plugin
     // Tell plugin to do it's thing
-    const generateCode = new Promise((resolve) => {
-      PluginManager.plugin('terra').generateCode(ast, fs, (manifest) => {
-        this.cache.cacheFs(ast.name, manifest, fs.data);
-        resolve(manifest);
-      });
+    return PluginManager.plugin('terra').generateCode(ast, fs).then(([manifest, outputFs]) => {
+      this.cache.cacheFs(ast.name, manifest, outputFs.data);
+      return Promise.all([ast.name, manifest, outputFs]);
     });
-    return Promise.all([ast.name, generateCode, fs]);
   }
 
   ast() {

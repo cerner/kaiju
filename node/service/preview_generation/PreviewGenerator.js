@@ -1,13 +1,7 @@
 import MemoryFS from 'memory-fs';
-import fileSystem from 'fs';
-// import webpack from 'webpack';
-// import path from 'path';
 import CodeGenerator from '../code_generation/CodeGenerator';
 import PluginManager from '../plugin_management/PluginManager';
-import fallbackFs from '../utils/FallbackFileSystem';
 import FsCacheFactory from '../models/FsCacheFactory';
-
-// const rootPath = path.join(__dirname, '../..');
 
 class PreviewGenerator {
   constructor(projectId, workspaceId, requester) {
@@ -38,17 +32,13 @@ class PreviewGenerator {
 
   generatedPreview() {
     const generator = new CodeGenerator(this.projectId, this.workspaceId, this.requester);
-    return generator.generate().then(([name,, fs]) => {
-      // Move to plugin utils
-      const compilerFs = fallbackFs(fs.data, fileSystem);
-      // find plugin
-      // call plugin with fs and webpack config
-      return PluginManager.plugin('terra').generatePreview(compilerFs, this.publicPath).then(([entry, outputFileSystem]) => {
+    return generator.generate().then(([name,, fs]) =>
+      // call plugin with fs and public path
+      PluginManager.plugin('terra').generatePreview(fs, this.publicPath).then(([entry, outputFileSystem]) => {
         // Cache Preview
         this.cache.cacheFs(name, [], outputFileSystem.data, entry);
         return Promise.all([name, entry, outputFileSystem]);
-      });
-    });
+      }));
   }
 }
 
