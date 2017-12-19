@@ -3,7 +3,7 @@
 - Block and disabled options to the SearchField
 - New version of Field
 - New version of Textarea
-- New version of Select
+- New version of Select.
 
 ### Deprecated
 - Field ( New version available )
