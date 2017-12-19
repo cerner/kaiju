@@ -1,5 +1,6 @@
 import config from './default/preview/webpack.config';
 import generateCode from './default/code/generator';
+import PluginUtils from './PluginUtils';
 
 class DefaultTerraPlugin {
   static generateCode(ast, fs, callback) {
@@ -9,9 +10,15 @@ class DefaultTerraPlugin {
     callback(manifest);
   }
 
-  static generatePreview(manifest, webpackconfig, inputFs, rootPath, callback) {
-    const modifiedConfig = Object.assign({}, webpackconfig, config(rootPath, '/src/derp.jsx', inputFs));
-    callback(modifiedConfig, 'preview.js');
+  // returns a virtual fs containing the preview and the entry filename.
+  static generatePreview(fs, publicPath) {
+    console.log('generatePreview');
+    const modifiedConfig = Object.assign(
+      {}, PluginUtils.defaultWebpackConfig(publicPath), config(PluginUtils.rootPath(), '/src/derp.jsx', fs));
+    return Promise.all([
+      'preview.js',
+      PluginUtils.runCompiler(fs, modifiedConfig),
+    ]);
   }
 
   static componentModules() {
