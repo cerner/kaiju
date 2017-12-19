@@ -1,4 +1,4 @@
-## December 18th, 2017
+## December 19th, 2017
 ### Added
 - Block and disabled options to the SearchField
 - New version of Field

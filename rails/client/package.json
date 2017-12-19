@@ -19,7 +19,7 @@
     "antd": "^2.7.4",
     "classnames": "^2.2.5",
     "humps": "^2.0.1",
-    "kaiju-bundle": "git+https://github.com/StephenEsser/kaiju-bundle.git#kaiju-Forms",
+    "kaiju-bundle": "git+https://github.com/StephenEsser/kaiju-bundle.git",
     "marked": "^0.3.7",
     "mousetrap": "^1.6.1",
     "normalize.css": "^7.0.0",
