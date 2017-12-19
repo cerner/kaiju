@@ -43,20 +43,11 @@ class PreviewGenerator {
       const compilerFs = fallbackFs(fs.data, fileSystem);
       // find plugin
       // call plugin with fs and webpack config
-      // return Promise.all([memoryFs, PluginManager.plugin('terra').generatePreview(manifest, defaultConfig, rootPath)]);
       return PluginManager.plugin('terra').generatePreview(compilerFs, this.publicPath).then(([entry, outputFileSystem]) => {
         // Cache Preview
         this.cache.cacheFs(name, [], outputFileSystem.data, entry);
-
         return Promise.all([name, entry, outputFileSystem]);
       });
-
-      // return new Promise((resolve) => {
-      //   PluginManager.plugin('terra').generatePreview(compilerFs, (entry, outputFileSystem) => {
-      //     this.cache.cacheFs(name, [], outputFileSystem.data, entry);
-      //     resolve([name, entry, outputFileSystem]);
-      //   });
-      // });
     });
   }
 }
