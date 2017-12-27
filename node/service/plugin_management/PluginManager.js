@@ -1,7 +1,7 @@
 import fs from 'fs';
 import glob from 'glob';
 import path from 'path';
-import config from '../../kaiju.config';
+import config from '../../kaiju-plugin.config';
 
 class PluginManager {
 

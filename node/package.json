@@ -54,6 +54,7 @@
     "style-loader": "^0.13.1",
     "terra-i18n": "^1.10.0",
     "terra-i18n-plugin": "^1.8.0",
+    "terra-kaiju-plugin": "git+https://github.com/cerner/terra-kaiju-plugin.git#initial-commit",
     "webpack": "^3.6.0"
   },
   "devDependencies": {
