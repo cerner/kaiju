@@ -21,11 +21,11 @@ router.get('/projects/:projectId/workspaces/:workspaceId/preview_files/*', (req,
   const requester = new ServiceRequester(req.cookies, req);
   const filename = req.url.substring(req.url.indexOf('preview_files/') + 'preview_files/'.length);
   const generator = new PreviewGenerator(req.params.projectId, req.params.workspaceId, requester);
-  generator.generate().then(([, , fs]) => {
+  generator.generate().then(([, , outputPath, fs]) => {
     // console.log('filename', filename);
-    if (fs.existsSync(`/build/${filename}`)) {
+    if (fs.existsSync(`${outputPath}${filename}`)) {
       res.setHeader('content-type', 'text/javascript');
-      res.send(fs.readFileSync(`/build/${filename}`));
+      res.send(fs.readFileSync(`${outputPath}${filename}`));
     } else {
       next();
     }

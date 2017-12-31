@@ -9,7 +9,7 @@ class PreviewGenerator {
     this.workspaceId = workspaceId;
     this.requester = requester;
     this.publicPath = `/projects/${this.projectId}/workspaces/${this.workspaceId}/preview_files/`;
-    this.cache = FsCacheFactory.create(projectId, workspaceId, 'preview_cache', requester);
+    this.cache = FsCacheFactory.createPreviewCache(projectId, workspaceId, requester);
   }
 
   generate() {
@@ -26,6 +26,7 @@ class PreviewGenerator {
     return Promise.all([
       this.cache.workspaceName(),
       this.cache.entry(),
+      this.cache.outputPath(),
       this.cache.fsData().then(data => new MemoryFS(data)),
     ]);
   }
@@ -34,10 +35,10 @@ class PreviewGenerator {
     const generator = new CodeGenerator(this.projectId, this.workspaceId, this.requester);
     return generator.generate().then(([name,, fs]) =>
       // call plugin with fs and public path
-      PluginManager.plugin('terra').generatePreview(fs, this.publicPath).then(([entry, outputFileSystem]) => {
+      PluginManager.plugin('terra').generatePreview(fs, this.publicPath).then(([entry, outputPath, outputFileSystem]) => {
         // Cache Preview
-        this.cache.cacheFs(name, [], outputFileSystem.data, entry);
-        return Promise.all([name, entry, outputFileSystem]);
+        this.cache.cache(name, entry, outputPath, outputFileSystem.data);
+        return Promise.all([name, entry, outputPath, outputFileSystem]);
       }));
   }
 }
