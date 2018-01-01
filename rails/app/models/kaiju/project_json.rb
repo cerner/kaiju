@@ -31,7 +31,7 @@ module Kaiju
 
     def self.as_json_lite(id, base_url, _options = {})
       project = klass.by_id(id)
-      hash = project.as_json(only: %i[name owner update_date_time])
+      hash = project.as_json(only: %i[name owner update_date_time type])
       hash['owner'] = UserJson.map_id(hash['owner']) { |owner_id| UserJson.as_json(owner_id, base_url, lite: true) }
       hash['workspace_count'] = project.workspaces.count
       decorate_urls(hash, id, base_url)
@@ -47,8 +47,7 @@ module Kaiju
       end
     end
 
-    # rubocop:disable Metrics/AbcSize
-    def self.decorate_urls(hash, project_id, base_url)
+    def self.decorate_urls(hash, project_id, base_url) # rubocop:disable Metrics/AbcSize
       hash['url'] = base_url + project_path(project_id)
       hash['workspaces_url'] = base_url + project_workspaces_path(project_id)
       hash['reference_components_url'] = base_url + project_reference_components_path(project_id)

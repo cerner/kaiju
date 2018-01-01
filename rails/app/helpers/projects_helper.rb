@@ -1,6 +1,8 @@
 module ProjectsHelper
   def new_project_from_hash(hash)
-    project = Kaiju::ProjectFactory.new_project(current_user.id)
+    # default type to terra for now
+    type = hash['type'] || 'terra'
+    project = Kaiju::ProjectFactory.new_project(current_user.id, type)
     update_project_from_hash(project.id, hash)
   end
 

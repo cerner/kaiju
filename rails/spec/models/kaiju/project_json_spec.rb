@@ -7,8 +7,9 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
     context 'projects_to_json' do
       it 'should return json for the list of components' do
         user = Kaiju::UserFactory.new_user('oog', 'derpface')
-        project_a = Kaiju::ProjectFactory.new_project(user.id)
-        project_b = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project_a = Kaiju::ProjectFactory.new_project(user.id, project_type)
+        project_b = Kaiju::ProjectFactory.new_project(user.id, project_type)
 
         base_url = 'https://herp'
 
@@ -25,6 +26,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'collaboration_invitation_url' => expected_url_b + '/collaboration_invitation',
           'activate_url' => expected_url_b + '/activate',
           'name' => project_b.name.value,
+          'type' => project_type,
           'owner' => {
             'id' => user.id,
             'url' => base_url + '/users/' + user.id,
@@ -44,6 +46,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'collaboration_invitation_url' => expected_url_a + '/collaboration_invitation',
           'activate_url' => expected_url_a + '/activate',
           'name' => project_a.name.value,
+          'type' => project_type,
           'owner' => {
             'id' => user.id,
             'url' => base_url + '/users/' + user.id,
@@ -67,7 +70,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
     context 'as_json' do
       it 'returns a json representation of a project' do
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        project = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
 
         project.add_workspace(user.id, workspace)
@@ -85,6 +89,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
             'changelog_viewed' => false
           },
           'name' => project.name.value,
+          'type' => project_type,
           'workspaces' => [WorkspaceJson.as_json(workspace.id, base_url, project_id: project.id, user_id: user.id)],
           'inactive_workspaces' => [],
           'is_editable' => true,
@@ -104,7 +109,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
       it 'returns a json representation of a project with inactive workspaces' do
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        project = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
         inactive_workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
         inactive_workspace.inactivate
@@ -125,6 +131,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
             'changelog_viewed' => false
           },
           'name' => project.name.value,
+          'type' => project_type,
           'workspaces' => [WorkspaceJson.as_json(workspace.id, base_url, project_id: project.id, user_id: user.id)],
           'inactive_workspaces' => [
             WorkspaceJson.as_json(inactive_workspace.id, base_url, project_id: project.id, user_id: user.id)

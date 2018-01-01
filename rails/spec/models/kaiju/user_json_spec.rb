@@ -35,7 +35,8 @@ module Kaiju
     context 'as_json' do
       it 'returns a json representation of a user' do
         user = Kaiju::UserFactory.new_user('owner', 'name', 'email', 'nickname')
-        project = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
 
         project.add_workspace(user.id, workspace)
@@ -67,8 +68,9 @@ module Kaiju
 
       it 'returns inactive_projects' do
         user = Kaiju::UserFactory.new_user('owner', 'name', 'email', 'nickname')
-        project = Kaiju::ProjectFactory.new_project(user.id)
-        inactive_project = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project = Kaiju::ProjectFactory.new_project(user.id, project_type)
+        inactive_project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         inactive_project.inactivate
         workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
 

@@ -20,6 +20,8 @@ module Kaiju
 
     value :inactive, marshal: true
 
+    value :type
+
     def initialize(id)
       @id = id
     end
