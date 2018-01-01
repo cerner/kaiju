@@ -50,27 +50,7 @@ The best way to give kaiju a try is by following our above docker instructions. 
 
 ## Plugins
 
-The plugin system is in progress. Once complete we will release a 1.0 version of Kaiju as well as sample plugins.
-
-### Adding new a new project type
-
-Coming soon
-
-### Adding new Components
-
-Coming soon
-
-### Generating the Code
-
-Coming soon
-
-### Generating the Preview
-
-Coming soon
-
-### Customizing the workspace
-
-Coming soon
+See our [Plugin Guide](docs/kaiju_plugin_guide.md).
 
 ## History
 

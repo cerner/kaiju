@@ -6,7 +6,7 @@ import config from '../../kaiju-plugin.config';
 class PluginManager {
 
   static projectTypes() {
-    return Object.keys(config.projectTypes);
+    return Object.keys(config);
   }
 
   static projectType(projectType, callback) {
@@ -23,8 +23,12 @@ class PluginManager {
     });
   }
 
+  static projectConfig(projectType) {
+    return config[projectType];
+  }
+
   static plugin(projectType) {
-    return config.projectTypes[projectType];
+    return PluginManager.projectConfig(projectType).plugin;
   }
 
 }

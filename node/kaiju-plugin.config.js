@@ -1,8 +1,9 @@
 import TerraPlugin from 'terra-kaiju-plugin';
 
 const config = {
-  projectTypes: {
-    terra: TerraPlugin,
+  terra: {
+    name: 'Terra',
+    plugin: TerraPlugin,
   },
 };
 
