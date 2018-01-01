@@ -159,4 +159,87 @@ This is the template used to render the preview. ```entry.js``` is the entry fil
 ```
 
 ### Understanding the Kaiju AST
+More to come on this.
 
+```json
+{
+  "id": "autumn-ookondoru-q94ftA",
+  "name": "Workspace",
+  "properties": {
+    "children": {
+      "id": "children",
+      "type": "Array",
+      "value": [
+        {
+          "id": "children::0",
+          "type": "Component",
+          "value": {
+            "id": "080d9546-01e7-41cb-a4ee-77700a4052ec",
+            "name": "DemographicsBanner",
+            "code_name": "DemographicsBanner",
+            "type": "terra-demographics-banner::DemographicsBanner",
+            "import": "DemographicsBanner",
+            "import_from": "terra-demographics-banner",
+            "properties": {
+              "personName": {
+                "id": "personName",
+                "type": "String",
+                "value": "John Smith"
+              },
+              "age": {
+                "id": "age",
+                "type": "String",
+                "value": "25 Years"
+              },
+              "dateOfBirth": {
+                "id": "dateOfBirth",
+                "type": "String",
+                "value": "May 9, 1993"
+              },
+              "gender": {
+                "id": "gender",
+                "type": "String",
+                "value": "Male"
+              },
+              "photo": {
+                "id": "photo",
+                "type": "Component",
+                "value": {
+                  "id": "fdbe5b2a-c9e5-4643-ad5a-c375f0675d53",
+                  "name": "Image",
+                  "code_name": "Image",
+                  "type": "terra-image::Image",
+                  "import": "Image",
+                  "import_from": "terra-image",
+                  "properties": {
+                    "src": {
+                      "id": "src",
+                      "type": "String",
+                      "value": "data:image/svg+xml;base64,PHN2ZyBkYXRhLW5hbWU9IkxheWVyIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBkPSJNMjQgMGExMS4zIDExLjMgMCAxIDEtMTEuMyAxMS4zQTExLjM1IDExLjM1IDAgMCAxIDI0IDB6bTE5LjUgNDh2LTUuN2ExNi43NyAxNi43NyAwIDAgMC0xNi44LTE2LjhoLTUuNUExNi43NSAxNi43NSAwIDAgMCA0LjUgNDIuM1Y0OHoiLz48L3N2Zz4="
+                    },
+                    "alt": {
+                      "id": "alt",
+                      "type": "String",
+                      "value": "patient-image"
+                    },
+                    "height": {
+                      "id": "height",
+                      "type": "String",
+                      "value": "50px"
+                    },
+                    "width": {
+                      "id": "width",
+                      "type": "String",
+                      "value": "50px"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
