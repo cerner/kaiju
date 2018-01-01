@@ -11,7 +11,7 @@ class PluginManager {
     const projectTypeConfig = PluginManager.projectConfig(projectTypeKey);
     const projectType = { name: projectTypeConfig.name };
 
-    projectType.components = ComponentInformation.retrieve(projectType, projectTypeConfig.plugin);
+    projectType.components = ComponentInformation.retrieve(projectTypeKey, projectTypeConfig.plugin);
 
     return projectType;
   }

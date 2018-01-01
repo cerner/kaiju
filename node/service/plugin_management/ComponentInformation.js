@@ -1,14 +1,15 @@
+import appRoot from 'app-root-path';
 import fs from 'fs';
 import glob from 'glob';
+import NodeCache from 'node-cache';
 import path from 'path';
-import appRoot from 'app-root-path';
 
-const componentsCache = {};
+const componentsCache = new NodeCache({ checkperiod: 0 });
 
 class ComponentInformation {
 
   static retrieve(projectTypeKey, plugin) {
-    let components = componentsCache[projectTypeKey];
+    let components = componentsCache.get(projectTypeKey);
 
     if (components === undefined) {
       components = {};
@@ -20,7 +21,7 @@ class ComponentInformation {
         });
       });
 
-      componentsCache[projectTypeKey] = components;
+      componentsCache.set(projectTypeKey, components);
     }
 
     return components;
