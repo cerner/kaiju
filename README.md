@@ -50,7 +50,9 @@ The best way to give kaiju a try is by following our above docker instructions. 
 
 ## Plugins
 
-See our [Plugin Guide](docs/kaiju_plugin_guide.md).
+Kaiju plugins provide server owners the ability to add additional project types to Kaiju. These plugins control the components available in the project, the code that is generated and the generated preview.
+
+See our [Plugin Guide](docs/kaiju_plugin_guide.md) for more details.
 
 ## History
 
