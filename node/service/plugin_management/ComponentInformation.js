@@ -14,7 +14,7 @@ class ComponentInformation {
     if (components === undefined) {
       components = {};
       plugin.componentModules().forEach((item) => {
-        const modulePath = path.join(appRoot.toString(), `/node_modules/${item}/lib/kaiju`);
+        const modulePath = path.join(appRoot.toString(), `/node_modules/${item}/kaiju`);
         glob.sync('**/*.json', { cwd: modulePath, absolute: true }).forEach((componentPath) => {
           const component = JSON.parse(fs.readFileSync(componentPath));
           components[component.library] = { [component.name]: component };

@@ -29,7 +29,7 @@ GatherDependencies.prototype.apply = () => {
 
   // Aggregates available kaiju JSON files.
   whitelist.forEach(({ name }) => {
-    const pattern = `./node_modules/${name}/lib/kaiju/**/*.json`;
+    const pattern = `./node_modules/${name}/kaiju/**/*.json`;
     glob.sync(pattern).forEach((file) => {
       modules.push(JSON.parse(fs.readFileSync(file, 'utf8')));
     });
