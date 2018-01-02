@@ -28,8 +28,8 @@ The config object should be built in the following format:
 
 ```js
 const config = {
-  // Required: The key is used to uniquely identify kaiju projects created using this plugin.
-  key: {
+  // Required: This key is used to uniquely identify kaiju projects created using this plugin.
+  awesomePlugin: {
     // Required: The name shown to the user when picking a project.
     name: 'My awesome project type',
     // Required: The plugin is the required plugin object.
