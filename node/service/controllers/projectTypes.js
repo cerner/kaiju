@@ -12,9 +12,7 @@ router.get('/projectTypes', (req, res) => {
 
 router.get('/projectTypes/:projectType', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  PluginManager.projectType(req.params.projectType, (components) => {
-    res.json(components);
-  });
+  res.json(PluginManager.projectType(req.params.projectType));
 });
 
 export default router;

@@ -5,7 +5,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
     context 'workspace_to_json' do
       it 'should return json for the list of components' do
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        project = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         workspace_a = Kaiju::WorkspaceFactory.new_workspace(user.id)
         component_a = Kaiju::Component.by_id(workspace_a.component.value)
         workspace_b = Kaiju::WorkspaceFactory.new_workspace(user.id)
@@ -84,7 +85,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
     context 'to_json' do
       it 'returns standard json' do
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        project = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
         component = Kaiju::Component.by_id(workspace.component.value)
 

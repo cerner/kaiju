@@ -587,7 +587,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
     context 'request_inactivation' do
       it 'inactivates if all containing projects are inactive' do
         user = Kaiju::UserFactory.new_user('owner')
-        project = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         workspace = Kaiju::WorkspaceFactory.new_workspace('author')
 
         project.inactivate
@@ -605,8 +606,9 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
       it 'does not inactivate if a containing project is inactive' do
         user = Kaiju::UserFactory.new_user('owner')
-        project = Kaiju::ProjectFactory.new_project(user.id)
-        project2 = Kaiju::ProjectFactory.new_project(user.id)
+        project_type = 'blarg'
+        project = Kaiju::ProjectFactory.new_project(user.id, project_type)
+        project2 = Kaiju::ProjectFactory.new_project(user.id, project_type)
         workspace = Kaiju::WorkspaceFactory.new_workspace('author')
 
         project.inactivate

@@ -19,7 +19,6 @@
     "antd": "^2.7.4",
     "classnames": "^2.2.5",
     "humps": "^2.0.1",
-    "kaiju-bundle": "git+https://github.com/StephenEsser/kaiju-bundle.git",
     "marked": "^0.3.7",
     "mousetrap": "^1.6.1",
     "normalize.css": "^7.0.0",
@@ -37,6 +36,7 @@
     "terra-base": "^2.0.0",
     "terra-i18n": "^1.0.0",
     "terra-icon": "^1.0.0",
+    "terra-kaiju-plugin": "0.2.0",
     "terra-legacy-theme": "^1.0.0",
     "tether": "^1.4.0"
   },

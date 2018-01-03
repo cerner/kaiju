@@ -55,7 +55,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   def self.sources
     sources = []
     JSON.parse(File.read('whitelist.json')).each do |library|
-      Dir[Rails.root.join("client/node_modules/#{library['name']}/lib/kaiju/**/*.json")].each do |file|
+      Dir[Rails.root.join("client/node_modules/#{library['name']}/kaiju/**/*.json")].each do |file|
         sources << [library, file]
       end
     end
