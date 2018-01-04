@@ -19,7 +19,7 @@
     "antd": "^2.7.4",
     "classnames": "^2.2.5",
     "humps": "^2.0.1",
-    "marked": "^0.3.7",
+    "marked": "^0.3.9",
     "mousetrap": "^1.6.1",
     "prop-types": "^15.5.10",
     "react": "^15.5.x",
