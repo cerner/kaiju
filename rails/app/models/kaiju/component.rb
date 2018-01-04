@@ -23,6 +23,8 @@ module Kaiju
 
     value :properties_timestamp
 
+    value :project_type
+
     def initialize(id)
       @id = id
     end
@@ -87,13 +89,14 @@ module Kaiju
       end
     end
 
-    def ast
+    def ast # rubocop:disable Metrics/MethodLength
       info = ComponentInformation.info(type)
       {
         'id' => id,
         'name' => info&.dig('name'),
         'code_name' => info&.dig('code_name'),
         'type' => type.value,
+        'project_type' => project_type.value,
         'import' => info&.dig('import'),
         'import_from' => info&.dig('import_from'),
         'properties' => Property.properties_ast(properties.value)

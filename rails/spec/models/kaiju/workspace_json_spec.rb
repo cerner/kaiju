@@ -7,9 +7,9 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace_a = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace_a = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         component_a = Kaiju::Component.by_id(workspace_a.component.value)
-        workspace_b = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace_b = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         component_b = Kaiju::Component.by_id(workspace_b.component.value)
         project.add_workspace(user.id, workspace_a)
         project.add_workspace(user.id, workspace_b)
@@ -32,6 +32,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
               'url' => base_url +
                 '/projects/' + project.id + '/workspaces/' + workspace_a.id + '/components/' + component_a.id
             },
+            'project_type' => project_type,
             'url' => base_url + '/projects/' + project.id + '/workspaces/' + workspace_a.id,
             'rename' => base_url + '/projects/' + project.id + '/workspaces/' + workspace_a.id + '/name',
             'undo_url' => base_url + '/projects/' + project.id + '/workspaces/' + workspace_a.id + '/undo',
@@ -59,6 +60,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
               'url' => base_url +
                 '/projects/' + project.id + '/workspaces/' + workspace_b.id + '/components/' + component_b.id
             },
+            'project_type' => project_type,
             'url' => base_url + '/projects/' + project.id + '/workspaces/' + workspace_b.id,
             'rename' => base_url + '/projects/' + project.id + '/workspaces/' + workspace_b.id + '/name',
             'undo_url' => base_url + '/projects/' + project.id + '/workspaces/' + workspace_b.id + '/undo',
@@ -87,7 +89,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         component = Kaiju::Component.by_id(workspace.component.value)
 
         base_url = 'base_url'
@@ -96,6 +98,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'id' => workspace.id,
           'creation_date_time' => workspace.creation_date_time.value,
           'update_date_time' => workspace.update_date_time.value,
+          'project_type' => project_type,
           'author' => {
             'id' => user.id,
             'url' => base_url + '/users/' + user.id,

@@ -66,7 +66,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         workspace_id = workspace.id
         component_id = workspace.component.value
 
@@ -86,7 +86,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -126,7 +126,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         component = Component.by_id(
           Property.new('children::0', Component.by_id(workspace.component.value)).property['value']['id']
         )
@@ -154,7 +154,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         component = Component.by_id(
           Property.new('children::0', Component.by_id(workspace.component.value)).property['value']['id']
         )
@@ -213,7 +213,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         component = Component.by_id(
           Property.new('children::0', Component.by_id(workspace.component.value)).property['value']['id']
         )
@@ -265,7 +265,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
 
         expect(workspace.undo_change).to be_nil
 
@@ -280,7 +280,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         Property.new('children::0', Component.by_id(workspace.component.value)).update('type' => 'text::Mock_text')
         component = Component.by_id(
           Property.new('children::0', Component.by_id(workspace.component.value)).property['value']['id']
@@ -318,7 +318,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         Property.new('children::0', Component.by_id(workspace.component.value)).update('type' => 'text::Mock_text')
         component_id = Property.new('children::0', Component.by_id(workspace.component.value)).property['value']['id']
         component = Component.by_id(component_id)
@@ -356,7 +356,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         Property.new('children::0', Component.by_id(workspace.component.value)).update('type' => 'text::Mock_text')
         component = Component.by_id(
           Property.new('children::0', Component.by_id(workspace.component.value)).property['value']['id']
@@ -398,7 +398,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         Property.new('children::0', Component.by_id(workspace.component.value)).update('type' => 'text::Mock_text')
         component_id = Property.new('children::0', Component.by_id(workspace.component.value)).property['value']['id']
         component = Component.by_id(component_id)
@@ -439,7 +439,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
             [{ 'name' => 'text' }, 'spec/lib/mock_data/mock_text.json']
           ]
         )
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         Property.new('children::0', Component.by_id(workspace.component.value)).update('type' => 'text::Mock_text')
 
         component = Component.by_id(
@@ -466,7 +466,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
 
         expect(workspace.redo_change).to be_nil
 
@@ -481,7 +481,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         Property.new('children::0', Component.by_id(workspace.component.value)).update('type' => 'property::Example')
         component = Component.by_id(
           Property.new('children::0', Component.by_id(workspace.component.value)).property['value']['id']
@@ -520,13 +520,13 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
     context 'editors' do
       it 'returns the author and empty contributors' do
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         expect(workspace.editors).to eq(['author'])
         workspace.destroy
       end
 
       it 'returns the author and collaborators' do
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         workspace.collaborators << 'derpface'
         expect(workspace.editors).to eq(%w[derpface author])
         workspace.destroy
@@ -535,14 +535,14 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
     context 'add_collaborators' do
       it 'rejects an invitation made by a non editor' do
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         workspace.add_collaborators('derpface', ['old-man'])
         expect(workspace.collaborators.value).to eq([])
         workspace.destroy
       end
 
       it 'adds a collaborator' do
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         workspace.add_collaborators('author', ['old-man'])
         expect(workspace.collaborators.value).to eq(['old-man'])
         workspace.destroy
@@ -552,7 +552,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
     context 'inactivate' do
       it 'inactivates itself and component' do
         ComponentInformationSpecHelper.reset_component_information([])
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         component = Kaiju::Component.by_id(workspace.component.value)
 
         workspace.inactivate
@@ -569,7 +569,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
     context 'activate' do
       it 'activates itself and component' do
         ComponentInformationSpecHelper.reset_component_information([])
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
         component = Kaiju::Component.by_id(workspace.component.value)
 
         workspace.inactivate
@@ -589,7 +589,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
 
         project.inactivate
         expect(project.inactive?).to eq(true)
@@ -609,7 +609,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         project2 = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace('author')
+        workspace = Kaiju::WorkspaceFactory.new_workspace('author', 'blarg')
 
         project.inactivate
         expect(project.inactive?).to eq(true)

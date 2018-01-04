@@ -46,7 +46,7 @@ module Kaiju
 
       # transform the passed in props to the format we like and create new components
       PropertyFactory.transform_prop(key, prop, schema, parent || {}) do |property|
-        ComponentFactory.expand_property(property, @component.id)
+        ComponentFactory.expand_property(property, @component.id, @component.project_type.value)
       end
     end
 

@@ -37,7 +37,7 @@ module Kaiju
         user = Kaiju::UserFactory.new_user('owner', 'name', 'email', 'nickname')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
 
         project.add_workspace(user.id, workspace)
         user.shared_projects << project.id
@@ -72,7 +72,7 @@ module Kaiju
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         inactive_project = Kaiju::ProjectFactory.new_project(user.id, project_type)
         inactive_project.inactivate
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
 
         project.add_workspace(user.id, workspace)
         user.shared_projects << project.id

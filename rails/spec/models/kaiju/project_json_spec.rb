@@ -72,7 +72,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
 
         project.add_workspace(user.id, workspace)
 
@@ -111,8 +111,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
-        inactive_workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
+        inactive_workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         inactive_workspace.inactivate
 
         project.add_workspace(user.id, workspace)

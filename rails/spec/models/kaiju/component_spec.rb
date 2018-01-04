@@ -18,10 +18,11 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         expect(component.ast).to eq(
           'id' => component.id,
           'type' => component.type.value,
+          'project_type' => 'blarg',
           'name' => 'Example',
           'import' => 'Example',
           'import_from' => 'property',
@@ -41,7 +42,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         id = 'component'
         property = Property.new(id, component)
@@ -65,7 +66,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         id = 'component'
         property = Property.new(id, component)
 
@@ -82,7 +83,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         expect(component.child_components.count).to eq(1)
         expect(component.child_components { |_obj| nil }).to eq([])
@@ -97,7 +98,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         properties = component.properties.value
 
@@ -122,7 +123,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         id = 'component'
         property = Property.new(id, component)
 
@@ -145,7 +146,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         id = 'component'
         property = Property.new(id, component)
 
@@ -169,7 +170,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         expect(component.current_schema?).to be true
 
         component.destroy
@@ -182,7 +183,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         ComponentInformationSpecHelper.reset_component_information(
           [
             [{ 'name' => 'property' }, 'spec/lib/mock_data/mock_child_components.json']
@@ -202,7 +203,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('text::Mock_text', 'text' => 'derp')
+        component = Kaiju::ComponentFactory.new_component('blarg', 'text::Mock_text', 'text' => 'derp')
 
         expect(component.generate_props).to eq(
           'id' => component.id,
@@ -224,7 +225,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('text::Mock_text', 'text' => 'derp')
+        component = Kaiju::ComponentFactory.new_component('blarg', 'text::Mock_text', 'text' => 'derp')
 
         expect(component.generate_change('action')).to eq(
           action: 'action',
@@ -249,7 +250,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('text::Mock_text', 'text' => 'derp')
+        component = Kaiju::ComponentFactory.new_component('blarg', 'text::Mock_text', 'text' => 'derp')
         result = component.generate_props_for_properties do |key, _property, _parent, _child_output|
           expect(key).to eq('text')
         end
@@ -268,7 +269,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('text::Mock_text', 'text' => 'derp')
+        component = Kaiju::ComponentFactory.new_component('blarg', 'text::Mock_text', 'text' => 'derp')
         result = component.generate_props_for_properties
 
         expect(result).to eq(

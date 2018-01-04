@@ -15,7 +15,7 @@ module ProjectsHelper
 
   def add_default_workspace(project)
     user_id = current_user.id
-    workspace = Kaiju::WorkspaceFactory.new_workspace(user_id)
+    workspace = Kaiju::WorkspaceFactory.new_workspace(user_id, project.type.value)
     project.add_workspace(user_id, workspace)
   end
 

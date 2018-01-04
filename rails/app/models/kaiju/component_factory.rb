@@ -7,8 +7,8 @@ require 'prop_placeholder_util'
 
 module Kaiju
   class ComponentFactory
-    def self.new_placeholder(id)
-      new_component('kaiju::Placeholder', { 'text' => 'Placeholder' }, id)
+    def self.new_placeholder(id, project_type)
+      new_component(project_type, 'kaiju::Placeholder', { 'text' => 'Placeholder' }, id)
     end
 
     def self.reset_component(component)
@@ -19,19 +19,20 @@ module Kaiju
       end
     end
 
-    def self.new_workspace_component
-      new_component('kaiju::Workspace', nil)
+    def self.new_workspace_component(project_type)
+      new_component(project_type, 'kaiju::Workspace', nil)
     end
 
-    def self.new_component(type, props, id = nil, parent = nil)
+    def self.new_component(project_type, type, props, id = nil, parent = nil)
       unless ComponentInformation.component_exists?(type)
         Rails.logger.error "Component of type: #{type} failed to create."
         # TODO: Return error component once one is created.
-        return new_placeholder(id)
+        return new_placeholder(id, project_type)
       end
       component = Component.new(id || IdGenerator.generate_id)
       component.creation_date_time = Time.now.iso8601_precise
       component.parent = parent unless parent.nil?
+      component.project_type = project_type
       update_component(component, type, props)
     end
 
@@ -50,7 +51,7 @@ module Kaiju
       component.properties = PropertyFactory.transform_properties(
         props, properties
       ) do |property|
-        expand_property(property, component.id)
+        expand_property(property, component.id, component.project_type.value)
       end
       component.properties_timestamp = component_information['timestamp']
     end
@@ -63,12 +64,12 @@ module Kaiju
       updated_props
     end
 
-    def self.expand_property(property, parent)
+    def self.expand_property(property, parent, project_type)
       return unless property['type'] == 'Component'
       component = property['value']
       return unless component.is_a?(Hash)
       property['value'] = {
-        'id' => new_component(component['type'], component['props'], component['id'], parent).id
+        'id' => new_component(project_type, component['type'], component['props'], component['id'], parent).id
       }
     end
 

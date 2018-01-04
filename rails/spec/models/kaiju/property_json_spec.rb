@@ -10,8 +10,9 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        project_type = 'blarg'
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
+        component = Kaiju::ComponentFactory.new_component(project_type, 'property::Example', nil)
         base_url = 'base_url'
         project_id = 'project_id'
 
@@ -58,8 +59,9 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        project_type = 'blarg'
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
+        component = Kaiju::ComponentFactory.new_component(project_type, 'property::Example', nil)
         base_url = 'base_url'
         project_id = 'project_id'
 
@@ -105,8 +107,9 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        project_type = 'blarg'
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
+        component = Kaiju::ComponentFactory.new_component(project_type, 'property::Example', nil)
         base_url = 'base_url'
         project_id = 'project_id'
 
@@ -139,8 +142,9 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        project_type = 'blarg'
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
+        component = Kaiju::ComponentFactory.new_component(project_type, 'property::Example', nil)
         base_url = 'base_url'
         project_id = 'project_id'
 
