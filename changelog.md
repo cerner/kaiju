@@ -1,3 +1,7 @@
+## January 5th, 2018
+### Updated
+- Switched to default Kaiju theme
+
 ## December 19th, 2017
 ### Added
 - Block and disabled options to the SearchField
