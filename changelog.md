@@ -1,4 +1,7 @@
 ## January 5th, 2018
+### Added
+- Deleted projects folder to allow recovery
+
 ### Updated
 - Switched to default Kaiju theme
 
