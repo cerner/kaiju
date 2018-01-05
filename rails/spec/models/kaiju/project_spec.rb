@@ -96,7 +96,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         old_man_user = Kaiju::UserFactory.new_user('old-man')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         project.workspaces << workspace.id
         project.add_collaborators(user.id, [old_man_user.id])
         expect(project.collaborators).to eq([old_man_user.id])
@@ -116,7 +116,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         collaborator = Kaiju::UserFactory.new_user('collaborator')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         project.add_collaborators(user.id, [collaborator.id])
         project.add_workspace(user.id, workspace)
         expect(project.workspaces.value).to include(workspace.id)
@@ -168,7 +168,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         project.workspaces << workspace.id
         project.workspaces << 'junk'
         valid_objects = Workspace.valid_objects(project.workspaces)
@@ -185,7 +185,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         project.workspaces << workspace.id
         project.workspaces << 'junk'
         valid_objects = Workspace.valid_objects(project.workspaces, &:id)
@@ -200,7 +200,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         project.workspaces << workspace.id
         project.workspaces << 'junk'
         valid_objects = Workspace.valid_objects(project.workspaces) { |_object| nil }
@@ -298,7 +298,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         project.workspaces << workspace.id
         project.inactivate
         expect(project.inactive.value).to be true
@@ -315,7 +315,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         user = Kaiju::UserFactory.new_user('owner')
         project_type = 'blarg'
         project = Kaiju::ProjectFactory.new_project(user.id, project_type)
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, project_type)
         project.workspaces << workspace.id
         project.inactivate
         project.activate

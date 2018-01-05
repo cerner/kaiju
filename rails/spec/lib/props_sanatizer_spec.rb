@@ -10,7 +10,7 @@ describe PropsSanatizer do
         ]
       )
 
-      component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+      component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
       props = {
         'Component' => {
@@ -50,7 +50,7 @@ describe PropsSanatizer do
         ]
       )
 
-      component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+      component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
       props = {
         'Display' => 'Display'

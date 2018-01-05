@@ -27,6 +27,8 @@ module Kaiju
 
     value :inactive, marshal: true
 
+    value :project_type
+
     def initialize(id)
       @id = id
     end
@@ -69,6 +71,7 @@ module Kaiju
       {
         'id' => id,
         'name' => name.value,
+        'project_type' => project_type.value,
         'properties' => Component.valid_object(component, &:ast)['properties']
       }
     end

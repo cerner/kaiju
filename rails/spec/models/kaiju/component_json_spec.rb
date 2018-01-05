@@ -10,8 +10,8 @@ module Kaiju
           ]
         )
         user = Kaiju::UserFactory.new_user('owner', 'derpface')
-        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id)
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        workspace = Kaiju::WorkspaceFactory.new_workspace(user.id, 'blarg')
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         base_url = 'base_url'
         project_id = 'project_id'
         # id = 'display'
@@ -27,6 +27,7 @@ module Kaiju
           'update_date_time' => component.update_date_time.value,
           'parent' => component.parent.value,
           'type' => component.type.value,
+          'project_type' => component.project_type.value,
           'inactive' => component.inactive.value,
           'properties' => {
             'display' => {

@@ -186,7 +186,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'new_string'
@@ -211,7 +211,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'component'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         old_id = component.properties.value['component']['value']['id']
 
@@ -244,7 +244,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'noDropZoneComponent'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = {
@@ -287,7 +287,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'hash'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = {
@@ -347,7 +347,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'noDropZoneComponent'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = nil
@@ -371,7 +371,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'component'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         old_id = component.properties.value['component']['value']['id']
 
@@ -404,7 +404,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'StringArray::0'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'new_string'
@@ -447,7 +447,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'StringArray::0'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'new_string'
@@ -490,7 +490,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'ComponentArray::0'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = {
@@ -532,7 +532,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'new_string'
@@ -552,7 +552,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'StringArray'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'new_string'
@@ -593,7 +593,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'ComponentArray'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = {
@@ -633,7 +633,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'new_string'
@@ -651,7 +651,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'StringArrayNoDefault'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'new_string'
@@ -688,7 +688,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'new_string'
@@ -713,7 +713,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'StringArray::1'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -732,7 +732,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'StringArray::0'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -756,7 +756,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'hash'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = {
@@ -784,7 +784,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'component'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         old_id = component.properties.value['component']['value']['id']
 
@@ -818,7 +818,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'noDropZoneComponent'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = {
@@ -845,7 +845,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'StringArrayNoDefault::0'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
         prop = 'derp'
@@ -877,7 +877,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         id = 'StringArray'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -909,7 +909,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -927,7 +927,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -945,7 +945,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'component'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -969,7 +969,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -989,7 +989,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray::0'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1011,7 +1011,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray::1'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1035,7 +1035,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray::1'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1057,7 +1057,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArrayOneItem::0'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1079,7 +1079,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1103,7 +1103,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1125,7 +1125,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1147,7 +1147,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray::1'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1168,7 +1168,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray::1'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1189,7 +1189,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1212,7 +1212,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1233,7 +1233,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'display'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1255,7 +1255,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray::1'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1277,7 +1277,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray::0'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1299,7 +1299,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         id = 'StringArray'
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
 
         property = Property.new(id, component)
 
@@ -1321,7 +1321,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         expect(Property.properties_ast(component.properties.value)).to eq(
           {}
         )
@@ -1336,7 +1336,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         Property.new('Display', component).update('derp')
         expect(Property.properties_ast(component.properties.value)).to eq(
           'Display' => {
@@ -1358,7 +1358,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('Display', component)
         expect(Property.property_ast(property.property, nil)).to be_nil
 
@@ -1372,7 +1372,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('Display', component)
         property.update('derp')
         expect(Property.property_ast(property.property, nil)).to eq(
@@ -1391,7 +1391,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('Component', component)
         expect(Property.property_ast(property.property, nil)).to be_nil
 
@@ -1405,7 +1405,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('NoDropZoneComponent', component)
         expect(Property.property_ast(property.property, nil)).to be_nil
 
@@ -1419,7 +1419,8 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        project_type = 'blarg'
+        component = Kaiju::ComponentFactory.new_component(project_type, 'property::Example', nil)
         property = Property.new('Component', component)
         property.update(
           'type' => 'property::Example'
@@ -1430,6 +1431,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'value' => {
             'id' => property.property['value']['id'],
             'type' => 'property::Example',
+            'project_type' => project_type,
             'name' => 'Example',
             'code_name' => 'Example',
             'import' => 'Example',
@@ -1448,7 +1450,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('StringArray', component)
         expect(Property.property_ast(property.property, [nil])).to be_nil
 
@@ -1462,7 +1464,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('StringArray', component)
         expect(Property.property_ast(property.property, [])).to be_nil
 
@@ -1476,7 +1478,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('StringArray', component)
         child_property = { 'id' => 'StringArray::0', 'type' => 'String', 'value' => 'item' }
         expect(Property.property_ast(property.property, [child_property])).to eq(
@@ -1495,7 +1497,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('StingHash', component)
         child_property = {}
         expect(Property.property_ast(property.property, child_property)).to be_nil
@@ -1510,7 +1512,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', nil)
         property = Property.new('ComponentArray', component)
         expect(Property.property_ast(property.property, [nil, 'string'])).to eq(
           'id' => 'ComponentArray',

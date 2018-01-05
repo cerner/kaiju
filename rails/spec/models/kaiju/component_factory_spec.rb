@@ -10,7 +10,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Button', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Button', nil)
         old_component = component.as_json
         ComponentFactory.rebuild_properties(component)
         new_component = component.as_json
@@ -31,7 +31,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Button', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Button', nil)
         old_component = component.as_json
 
         ComponentInformationSpecHelper.reset_component_information(
@@ -63,7 +63,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Button', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Button', nil)
         old_component = component.as_json
 
         ComponentInformationSpecHelper.reset_component_information(
@@ -96,7 +96,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           ]
         )
 
-        component = Kaiju::ComponentFactory.new_component('property::Button', nil)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Button', nil)
         old_component = component.as_json
 
         ComponentInformationSpecHelper.reset_component_information(
@@ -141,9 +141,10 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           }
         }
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', props, 'derp', 'herp')
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', props, 'derp', 'herp')
 
         expect(component.id).to eq('derp')
+        expect(component.project_type.value).to eq('blarg')
         expect(component.parent.value).to eq('herp')
         expect(component.creation_date_time.value).to_not be_nil
         expect(component.type.value).to eq('property::Example')
@@ -166,6 +167,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         component2 = Component.by_id('derp2')
         expect(component2.id).to eq('derp2')
+        expect(component2.project_type.value).to eq('blarg')
         expect(component2.parent.value).to eq(component.id)
         expect(component2.type.value).to eq('property::Example')
         expect(component2.properties.value).to eq(
@@ -202,10 +204,11 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           }
         }
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', props)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', props)
 
         expect(component.id).to_not eq(nil)
         expect(component.parent.value).to eq(nil)
+        expect(component.project_type.value).to eq('blarg')
         expect(component.creation_date_time.value).to_not be_nil
         expect(component.type.value).to eq('property::Example')
         expect(component.update_date_time.value).to_not be_nil
@@ -227,6 +230,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
 
         component2 = Component.by_id(component.properties.value['component']['value']['id'])
         expect(component2.id).to_not eq(nil)
+        expect(component2.project_type.value).to eq('blarg')
         expect(component2.properties.value).to eq(
           'display' => {
             'id' => 'display',
@@ -256,10 +260,11 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
           'component' => 'text'
         }
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', props)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', props)
 
         expect(component.id).to_not eq(nil)
         expect(component.parent.value).to eq(nil)
+        expect(component.project_type.value).to eq('blarg')
         expect(component.creation_date_time.value).to_not be_nil
         expect(component.type.value).to eq('property::Example')
         expect(component.update_date_time.value).to_not be_nil
@@ -294,12 +299,13 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         props = nil
 
-        component = Kaiju::ComponentFactory.new_component('property::Example', props)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'property::Example', props)
 
         expect(component.id).to_not eq(nil)
         expect(component.parent.value).to eq(nil)
         expect(component.creation_date_time.value).to_not be_nil
         expect(component.type.value).to eq('property::Example')
+        expect(component.project_type.value).to eq('blarg')
         expect(component.update_date_time.value).to_not be_nil
         expect(component.properties.value).to eq(
           'display' => {
@@ -332,7 +338,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         )
         props = nil
 
-        component = Kaiju::ComponentFactory.new_component('derp::Derp', props)
+        component = Kaiju::ComponentFactory.new_component('blarg', 'derp::Derp', props)
 
         expect(component.id).to_not eq(nil)
         expect(component.type.value).to eq('kaiju::Placeholder')

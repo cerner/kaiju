@@ -1,6 +1,6 @@
 module WorkspacesHelper
   def new_workspace_from_hash(project, hash)
-    workspace = Kaiju::WorkspaceFactory.new_workspace(current_user.id)
+    workspace = Kaiju::WorkspaceFactory.new_workspace(current_user.id, project.type.value)
     project.add_workspace(current_user.id, workspace)
     update_workspace_from_hash(workspace.id, hash)
   end
