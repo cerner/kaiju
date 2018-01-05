@@ -1,6 +1,6 @@
 ## January 5th, 2018
 ### Added
-- Deleted projects folder to allow recovery
+- Ability to recover deleted projects from the launch page
 
 ### Updated
 - Switched to default Kaiju theme
