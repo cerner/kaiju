@@ -14,6 +14,10 @@ const propTypes = {
    */
   onSearch: PropTypes.func.isRequired,
   /**
+   * Inactive projects
+   */
+  inactiveProjects: PropTypes.array,
+  /**
    * All active projects for a specific user
    */
   projects: PropTypes.array,
@@ -40,7 +44,7 @@ const createNewProject = (url) => {
     });
 };
 
-const LaunchScreen = ({ onSearch, projects, projectsUrl, recentWorkspaces }) => (
+const LaunchScreen = ({ onSearch, projects, projectsUrl, recentWorkspaces, inactiveProjects }) => (
   <div className="kaiju-LaunchScreen">
     <div className="kaiju-LaunchScreen-container">
       <header className="kaiju-LaunchScreen-header">
@@ -54,11 +58,12 @@ const LaunchScreen = ({ onSearch, projects, projectsUrl, recentWorkspaces }) => 
           <ListContainer>
             <span key="recentWorkspaces">Recent Workspaces ({recentWorkspaces.length})</span>
             <span key="projects">My Projects ({projects.length})</span>
+            <span key="inactive">Deleted Projects ({inactiveProjects.length})</span>
           </ListContainer>
           <Button type="primary" className="kaiju-LaunchScreen-newProject" onClick={() => createNewProject(projectsUrl)}>New Project</Button>
         </div>
         <div className="kaiju-LaunchScreen-content">
-          <GridContainer projects={projects} recentWorkspaces={recentWorkspaces} />
+          <GridContainer projects={projects} recentWorkspaces={recentWorkspaces} inactiveProjects={inactiveProjects} />
         </div>
       </div>
     </div>
