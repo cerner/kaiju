@@ -24,7 +24,7 @@ module Kaiju
     end
 
     def self.new_component(project_type, type, props, id = nil, parent = nil)
-      unless ComponentInformation.component_exists?(type)
+      unless ComponentInformation.component_exists?(project_type, type)
         Rails.logger.error "Component of type: #{type} failed to create."
         # TODO: Return error component once one is created.
         return new_placeholder(id, project_type)
@@ -45,7 +45,7 @@ module Kaiju
     end
 
     def self.update_properties(component, type, props)
-      component_information = ComponentInformation.info(type)
+      component_information = ComponentInformation.info(component.project_type.value, type)
       properties = component_information['properties']
       props = props.nil? ? component_information['defaults'] : inject_placeholder_props(props, properties)
       component.properties = PropertyFactory.transform_properties(

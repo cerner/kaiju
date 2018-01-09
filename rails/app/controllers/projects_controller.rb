@@ -1,3 +1,5 @@
+require 'component_information'
+
 class ProjectsController < ApplicationController
   include ::ProjectsHelper
   before_action(except: %i[index create new]) { fetch_project(params[:id]) }
@@ -70,6 +72,10 @@ class ProjectsController < ApplicationController
     rename_project(params[:project_object], params)
 
     head :ok
+  end
+
+  def reference_components
+    render json: JSON.pretty_generate(ComponentInformation.sorted_components(params[:project_object].type.value))
   end
 
   # GET /projects/1/collaboration_invitation

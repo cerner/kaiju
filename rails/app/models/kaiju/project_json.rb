@@ -50,7 +50,7 @@ module Kaiju
     def self.decorate_urls(hash, project_id, base_url) # rubocop:disable Metrics/AbcSize
       hash['url'] = base_url + project_path(project_id)
       hash['workspaces_url'] = base_url + project_workspaces_path(project_id)
-      hash['reference_components_url'] = base_url + project_reference_components_path(project_id)
+      hash['reference_components_url'] = base_url + reference_components_project_path(project_id)
       hash['rename_url'] = base_url + name_project_path(project_id)
       hash['collaboration_invitation_url'] = base_url + collaboration_invitation_project_path(project_id)
       hash['activate_url'] = base_url + activate_project_path(project_id)

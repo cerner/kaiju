@@ -22,7 +22,7 @@ module Kaiju
     config.middleware.use(StackProf::Middleware, enabled: true, mode: :wall, interval: 1000, save_every: 5)
     config.after_initialize do
       Time.include CoreExtensions::Time::TimeExtensions
-      ComponentInformation.components
+      ComponentInformation.components('terra')
     end
   end
 end
