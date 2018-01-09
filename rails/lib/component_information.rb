@@ -55,8 +55,8 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   end
 
   def self.sources(project_type)
+    sources = []
     if project_type == 'terra'
-      sources = []
       JSON.parse(File.read('whitelist.json')).each do |library|
         Dir[Rails.root.join("client/node_modules/#{library['name']}/kaiju/**/*.json")].each do |file|
           sources << [library, JSON.parse(File.read(file))]
@@ -74,7 +74,6 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
     components_hash = Hash.new { |hash, key| hash[key] = {} }
     sources.each do |library, file|
       begin
-        puts file
         add_component(components_hash, library, file)
       rescue StandardError => exception
         Rails.logger.debug "Exception : #{exception}\n Library #{library}\n File #{file}\n"

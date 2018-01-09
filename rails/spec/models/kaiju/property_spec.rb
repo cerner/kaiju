@@ -164,12 +164,19 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         }
         type_value = 'testThing'
         schema = 'thing'
+        project_type = double('project_type')
+        project_type_value = 'blarg'
+
         allow(component).to receive(:properties).and_return(properties)
         allow(properties).to receive(:value).and_return(value)
         allow(component).to receive(:type).and_return(type)
         allow(type).to receive(:value).and_return(type_value)
+        allow(component).to receive(:project_type).and_return(project_type)
+        allow(project_type).to receive(:value).and_return(project_type_value)
 
-        allow(ComponentInformation).to receive(:property_schema).with('testThing', id).and_return(schema, 'junk')
+        allow(ComponentInformation).to receive(:property_schema).with('blarg', 'testThing', id).and_return(
+          schema, 'junk'
+        )
 
         property = Property.new(id, component)
         expect(property.schema(id)).to eq(schema)
