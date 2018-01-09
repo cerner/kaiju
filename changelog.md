@@ -1,3 +1,7 @@
+## January 9th, 2018
+### Fixed
+- The component drop down search is no longer case sensitive
+
 ## January 5th, 2018
 ### Added
 - Ability to recover deleted projects from the launch page
