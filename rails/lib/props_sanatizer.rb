@@ -7,7 +7,9 @@ class PropsSanatizer
   end
 
   def self.sanatize_prop(component, property_id, prop)
-    reference_property = ComponentInformation.property_schema(component.project_type.value, component.type.value, property_id)
+    reference_property = ComponentInformation.property_schema(
+      component.project_type.value, component.type.value, property_id
+    )
     IterateReferenceProperty.iterate(nil, reference_property, prop, nil) do |_key, child_property, child_prop, _parent|
       sanatize(child_property, child_prop, component.project_type.value)
     end

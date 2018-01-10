@@ -54,7 +54,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
     @sorted_components[project_type] ||= sort_components(project_type)
   end
 
-  def self.sources(project_type)
+  def self.sources(project_type) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     sources = []
     if project_type == 'terra'
       JSON.parse(File.read('whitelist.json')).each do |library|

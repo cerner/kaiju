@@ -89,7 +89,7 @@ module Kaiju
       end
     end
 
-    def ast # rubocop:disable Metrics/MethodLength
+    def ast # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       info = ComponentInformation.info(project_type.value, type)
       {
         'id' => id,
