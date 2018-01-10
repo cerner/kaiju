@@ -51,6 +51,7 @@ const ComponentSelect = ({ components, id, url }) => {
       dropdownStyle={{ maxHeight: 300, overflow: 'auto' }}
       onChange={onChange}
       treeDefaultExpandAll
+      filterTreeNode={(input, option) => option.props.title.toLowerCase().includes(input.toLowerCase())}
     >
       {components.map(component => generateTreeView(component))}
     </TreeSelect>

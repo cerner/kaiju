@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ajax from 'superagent';
 import { connect } from 'react-redux';
 import Card from '../../common/Card/Card';
 import Magician from '../../common/Magician/Magician';
@@ -52,25 +53,59 @@ const getProjectCards = (projects, filter) => {
 };
 
 /**
+ * Filters the user's inactive projects
+ * @param {Array} inactiveProjects - An Array of inactive projects
+ * @param {String} filter - The search filter
+ * @return {Array} - An Array of filtered Cards
+ */
+const getInactiveProjectCards = (inactiveProjects, filter) => {
+  const items = inactiveProjects.filter(({ name }) => name.toLowerCase().includes(filter));
+  return items.map(({ activateUrl, id, name, owner, updateDateTime, url, workspaceCount }) => {
+    const activate = () => {
+      ajax
+        .put(activateUrl)
+        .set('Accept', 'application/json')
+        .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
+        .end(() => {
+          window.location = url;
+        });
+    };
+
+    return (
+      <Card
+        key={id}
+        name={`${name} (${workspaceCount})`}
+        author={owner.name}
+        updateDateTime={updateDateTime}
+        onClick={activate}
+      />
+    );
+  });
+};
+
+/**
  * Returns an Array of filtered Cards
  * @param {String} listItem - The current selected list item ( Projects / Recent Workspaces )
  * @param {String} filter - The filter string
  * @param {Array} projects - An Array of projects
  * @param {Array} workspaces - An Array of recent workspaces
+ * @param {Array} inactiveProjects - An Array of inactive projects
  * @return {Array} - An Array of filtered Cards
  */
-const getChildren = (listItem, filter, projects, workspaces) => {
+const getChildren = (listItem, filter, projects, workspaces, inactiveProjects) => {
   if (listItem === 'recentWorkspaces') {
     return getRecentWorkspaceCards(workspaces, filter);
   } else if (listItem === 'projects') {
     return getProjectCards(projects, filter);
+  } else if (listItem === 'inactive') {
+    return getInactiveProjectCards(inactiveProjects, filter);
   }
   return null;
 };
 
-const mapStateToProps = ({ selectedListItem, searchFilter }, { projects, recentWorkspaces }) => ({
+const mapStateToProps = ({ selectedListItem, searchFilter }, { projects, recentWorkspaces, inactiveProjects }) => ({
   key: selectedListItem, // A key is required for the Magician to recognize content changes and animate
-  children: getChildren(selectedListItem, searchFilter, projects, recentWorkspaces),
+  children: getChildren(selectedListItem, searchFilter, projects, recentWorkspaces, inactiveProjects),
 });
 
 const propTypes = {
