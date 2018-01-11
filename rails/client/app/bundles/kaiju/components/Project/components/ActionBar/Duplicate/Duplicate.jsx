@@ -111,6 +111,7 @@ class Duplicate extends React.Component {
          this.props.addWorkspace(workspace);
          this.setState({ isOpen: false, projects: null, name });
        } else {
+         // Redirect to the new workspace if it was placed in a different project.
          window.location = workspace.url;
        }
      });
