@@ -7,6 +7,7 @@ import IconRedo from 'terra-icon/lib/icon/IconForward';
 import { copy, destroy, paste, refresh, select } from '../../utilities/messenger';
 import ActionItem from './ActionItem/ActionItem';
 import Delete from './Delete/Delete';
+import Duplicate from '../../containers/DuplicateWorkspaceContainer';
 import Rename from './Rename/Rename';
 import Share from './Share/Share';
 import SizeControl from '../SizeControl/SizeControl';
@@ -131,6 +132,9 @@ class ActionBar extends React.Component {
           </ActionItem>
           <ActionItem title="Rename">
             <Rename onRename={newName => onRename(id, newName)} renameUrl={rename} workspaceName={name} />
+          </ActionItem>
+          <ActionItem title="Duplicate">
+            <Duplicate />
           </ActionItem>
           <ActionItem title="Delete">
             <Delete url={url} workspaceName={name} onDelete={() => onDelete(id)} />

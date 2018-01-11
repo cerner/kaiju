@@ -2,6 +2,7 @@ require 'rouge'
 
 class WorkspacesController < ApplicationController
   include ::WorkspacesHelper
+  include ::ComponentsHelper
   before_action(except: %i[index create]) { fetch_workspace(params[:id]) }
   before_action(except: %i[destroy]) { fetch_project(params[:project_id]) }
   before_action(only: %i[show]) { current_user.add_recent_workspace(params[:project_id], params[:id]) }

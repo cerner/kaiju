@@ -1,4 +1,7 @@
 ## January 9th, 2018
+### Added
+- Ability to duplicate workspaces
+
 ### Fixed
 - The component drop down search is no longer case sensitive
 
