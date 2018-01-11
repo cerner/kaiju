@@ -29,7 +29,7 @@ module Kaiju
     end
 
     def schema(id)
-      @schema[id] ||= ComponentInformation.property_schema(@component.type.value, id)
+      @schema[id] ||= ComponentInformation.property_schema(@component.project_type.value, @component.type.value, id)
     end
 
     def self.clean_properties(property)

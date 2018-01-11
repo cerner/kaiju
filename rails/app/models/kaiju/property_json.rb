@@ -44,7 +44,7 @@ module Kaiju
     def self.decorate_properties(property, component_id)
       component = Component.by_id(component_id)
       component_information = ComponentInformation.property_schema(
-        component.type.value, property['id']
+        component.project_type.value, component.type.value, property['id']
       )
       add_if_found(property, 'display', component_information)
       add_if_found(property, 'description', component_information)

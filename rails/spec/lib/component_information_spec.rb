@@ -4,53 +4,53 @@ require 'component_information'
 describe ComponentInformation do
   before(:each) do
     components = [
-      [{ 'name' => 'terra-button' }, 'spec/lib/mock_data/mock_button.json'],
-      [{ 'name' => 'terra-arrange' }, 'spec/lib/mock_data/mock_arrange.json'],
-      [{ 'name' => 'property-schema-example' }, 'spec/lib/mock_data/mock_example.json']
+      [{ 'name' => 'terra-button' }, JSON.parse(File.read('spec/lib/mock_data/mock_button.json'))],
+      [{ 'name' => 'terra-arrange' }, JSON.parse(File.read('spec/lib/mock_data/mock_arrange.json'))],
+      [{ 'name' => 'property-schema-example' }, JSON.parse(File.read('spec/lib/mock_data/mock_example.json'))]
     ]
     allow(ComponentInformation).to receive(:sources).and_return(components)
     ComponentInformation.instance_variable_set(:@cached_components, nil)
-    ComponentInformation.components
+    ComponentInformation.components('blarg')
   end
 
   context 'info' do
     it 'should return the information for a provided component' do
-      expect(ComponentInformation.info('terra-button::Button')).to_not be_nil
+      expect(ComponentInformation.info('blarg', 'terra-button::Button')).to_not be_nil
     end
   end
 
   context 'properties' do
     it 'should return the properties for a component' do
-      expect(ComponentInformation.properties('terra-button::Button')).to_not be_nil
+      expect(ComponentInformation.properties('blarg', 'terra-button::Button')).to_not be_nil
     end
   end
 
   context 'components' do
     it 'should return all the components in a hash' do
-      expect(ComponentInformation.components.is_a?(Hash)).to eq(true)
+      expect(ComponentInformation.components('blarg').is_a?(Hash)).to eq(true)
     end
   end
 
   context 'sorted_components' do
     it 'should return all components organized by type' do
-      expect(ComponentInformation.sorted_components.is_a?(Array)).to eq(true)
+      expect(ComponentInformation.sorted_components('blarg').is_a?(Array)).to eq(true)
     end
 
     it 'should place grouped components into the appropriate category' do
-      sorted_components = ComponentInformation.sorted_components
+      sorted_components = ComponentInformation.sorted_components('blarg')
       atoms = sorted_components[sorted_components.index { |group| group[:display].eql?('Atoms') }]
       expect(atoms[:children].index { |item| item[:name].eql?('Button') }).to_not be_nil
     end
 
     it 'should place grouped components into the appropriate nested category' do
-      sorted_components = ComponentInformation.sorted_components
+      sorted_components = ComponentInformation.sorted_components('blarg')
       atoms = sorted_components[sorted_components.index { |group| group[:display].eql?('Atoms') }]
       content = atoms[:children][atoms[:children].index { |group| group[:display].eql?('Content') }]
       expect(content[:children].index { |item| item[:name].eql?('Arrange') }).to_not be_nil
     end
 
     it 'should place ungrouped components into Other' do
-      sorted_components = ComponentInformation.sorted_components
+      sorted_components = ComponentInformation.sorted_components('blarg')
       other = sorted_components[sorted_components.index { |group| group[:display].eql?('Other') }]
       expect(other[:children].index { |item| item[:name].eql?('Example') }).to_not be_nil
     end
@@ -81,7 +81,7 @@ describe ComponentInformation do
         }
       }
 
-      expect(ComponentInformation.property_schema('property-schema-example::Example', 'item')).to eq(property)
+      expect(ComponentInformation.property_schema('blarg', 'property-schema-example::Example', 'item')).to eq(property)
     end
 
     it 'should find hash property schema' do
@@ -104,7 +104,13 @@ describe ComponentInformation do
         }
       }
 
-      expect(ComponentInformation.property_schema('property-schema-example::Example', 'item::1')).to eq(property)
+      expect(
+        ComponentInformation.property_schema(
+          'blarg',
+          'property-schema-example::Example',
+          'item::1'
+        )
+      ).to eq(property)
     end
 
     it 'should find nested item property schema' do
@@ -115,6 +121,7 @@ describe ComponentInformation do
 
       expect(
         ComponentInformation.property_schema(
+          'blarg',
           'property-schema-example::Example',
           'item::1::display'
         )
@@ -125,7 +132,7 @@ describe ComponentInformation do
   context 'gather_components' do
     it 'should return a default component' do
       hash = ComponentInformation.gather_components(
-        [[{ 'name' => 'property-schema-example' }, 'spec/lib/mock_data/mock_example.json']]
+        [[{ 'name' => 'property-schema-example' }, JSON.parse(File.read('spec/lib/mock_data/mock_example.json'))]]
       )
       components = {
         'property-schema-example' => {

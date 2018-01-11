@@ -12,9 +12,9 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   # component - The String component name
   #
   # Returns a Hash containing all the information of a component
-  def self.info(id)
+  def self.info(project_type, id)
     ids = decompose_id(id)
-    components.dig(*ids)
+    components(project_type).dig(*ids)
   end
 
   # Public
@@ -23,12 +23,12 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   # component - The String component name
   #
   # Returns a Hash containing all the component properties
-  def self.properties(id)
-    info(id)['properties']
+  def self.properties(project_type, id)
+    info(project_type, id)['properties']
   end
 
-  def self.property_schema(id, schema_id)
-    iterate_composed_id(schema_id, info(id)&.dig('properties')) do |ids, object, item_id|
+  def self.property_schema(project_type, id, schema_id)
+    iterate_composed_id(schema_id, info(project_type, id)&.dig('properties')) do |ids, object, item_id|
       item = object&.dig(item_id)
       unless ids.empty?
         ids[0] = 'schema' if item&.dig('type') == 'Array'
@@ -39,28 +39,32 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   end
 
   # Public: Returns a Hash of all components
-  def self.components
-    @cached_components ||= IceNine.deep_freeze(Hash[gather_components(sources)])
+  def self.components(project_type)
+    @cached_components ||= {}
+    @cached_components[project_type] ||= IceNine.deep_freeze(Hash[gather_components(sources(project_type))])
   end
 
-  def self.component_exists?(id)
-    !info(id).nil?
+  def self.component_exists?(project_type, id)
+    !info(project_type, id).nil?
   end
 
   # Public: Returns an Array of all components sorted into categories
-  def self.sorted_components
-    @sorted_components ||= sort_components
+  def self.sorted_components(project_type)
+    @sorted_components ||= {}
+    @sorted_components[project_type] ||= sort_components(project_type)
   end
 
-  def self.sources
+  def self.sources(project_type) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     sources = []
-    JSON.parse(File.read('whitelist.json')).each do |library|
-      Dir[Rails.root.join("client/node_modules/#{library['name']}/kaiju/**/*.json")].each do |file|
-        sources << [library, file]
+    if project_type == 'terra'
+      JSON.parse(File.read('whitelist.json')).each do |library|
+        Dir[Rails.root.join("client/node_modules/#{library['name']}/kaiju/**/*.json")].each do |file|
+          sources << [library, JSON.parse(File.read(file))]
+        end
       end
     end
     Dir[Rails.root.join('lib/kaiju/**/*.json')].each do |file|
-      sources << [{ 'name' => 'kaiju' }, file]
+      sources << [{ 'name' => 'kaiju' }, JSON.parse(File.read(file))]
     end
     sources
   end
@@ -70,7 +74,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
     components_hash = Hash.new { |hash, key| hash[key] = {} }
     sources.each do |library, file|
       begin
-        add_component(components_hash, library, JSON.parse(File.read(file)))
+        add_component(components_hash, library, file)
       rescue StandardError => exception
         Rails.logger.debug "Exception : #{exception}\n Library #{library}\n File #{file}\n"
       end
@@ -143,18 +147,18 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   end
 
   # Private: Sorts the components by the type defined in each JSON, defaults to Other
-  def self.sort_components
+  def self.sort_components(project_type)
     sort = proc do |array|
       array.sort_by! { |item| item[:display] }
       array.each { |item| sort.call(item[:children]) if item[:children] }
     end
-    sort.call(collect_components)
+    sort.call(collect_components(project_type))
   end
 
   # Private: Collects all the available reference components
-  def self.collect_components
+  def self.collect_components(project_type)
     items = []
-    components.each do |library, modules|
+    components(project_type).each do |library, modules|
       modules.each_value do |attributes|
         next if attributes['hidden']
         insert_component(items, format_component(library, attributes), attributes['group'] || 'Other')

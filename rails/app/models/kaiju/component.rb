@@ -89,8 +89,8 @@ module Kaiju
       end
     end
 
-    def ast # rubocop:disable Metrics/MethodLength
-      info = ComponentInformation.info(type)
+    def ast # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+      info = ComponentInformation.info(project_type.value, type)
       {
         'id' => id,
         'name' => info&.dig('name'),
@@ -109,7 +109,7 @@ module Kaiju
     end
 
     def current_schema?
-      properties_timestamp.value == ComponentInformation.info(type)&.dig('timestamp')
+      properties_timestamp.value == ComponentInformation.info(project_type.value, type)&.dig('timestamp')
     end
   end
 end

@@ -49,7 +49,7 @@ module Kaiju
     end
 
     def self.decorate_component_info(hash)
-      info = ComponentInformation.info(hash['type'])
+      info = ComponentInformation.info(hash['project_type'], hash['type'])
       hash['display'] = info&.dig('display')
       hash['name'] = info&.dig('name')
       hash['code_name'] = info&.dig('code_name')

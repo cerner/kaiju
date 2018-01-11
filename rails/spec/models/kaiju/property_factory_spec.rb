@@ -14,7 +14,7 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
             [{ 'name' => 'property-schema-example' }, 'spec/lib/mock_data/mock_example.json']
           ]
         )
-        properties = ComponentInformation.info('property-schema-example::Example')['properties']
+        properties = ComponentInformation.info('blarg', 'property-schema-example::Example')['properties']
         props = {
           'item' => [
             {

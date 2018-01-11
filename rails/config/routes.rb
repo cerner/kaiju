@@ -9,8 +9,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
       get 'reset_changelog'
     end
   end
-  # rubocop:disable Metrics/BlockLength
-  resources :projects, only: %i[show destroy new] do
+  resources :projects, only: %i[show destroy new] do # rubocop:disable Metrics/BlockLength
     resources :workspaces, only: %i[index show create destroy] do
       resources :components, only: %i[show update destroy] do
         member do
@@ -30,12 +29,12 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
         get 'attributes'
       end
     end
-    resources :reference_components, only: %i[index]
     member do
       put 'name'
       get 'collaboration_invitation'
       put 'activate'
       put 'changelog_viewed'
+      get 'reference_components'
     end
   end
   resources :invitations, only: %i[show]
