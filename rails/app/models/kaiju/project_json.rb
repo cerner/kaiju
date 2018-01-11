@@ -33,7 +33,7 @@ module Kaiju
       project = klass.by_id(id)
       hash = project.as_json(only: %i[name owner update_date_time type])
       hash['owner'] = UserJson.map_id(hash['owner']) { |owner_id| UserJson.as_json(owner_id, base_url, lite: true) }
-      hash['workspace_count'] = project.workspaces.count
+      hash['workspace_count'] = WorkspaceJson.map_ids(project.workspaces.value).count
       decorate_urls(hash, id, base_url)
       hash
     end
