@@ -24,7 +24,11 @@ module Kaiju
     end
 
     def self.map_id(id, inactive = false)
-      valid?(klass.by_id(id), inactive) ? yield(id) : nil
+      return nil unless valid?(klass.by_id(id), inactive)
+
+      return yield(id) if block_given?
+
+      id
     end
 
     def self.map_ids(ids, inactive = false, &block)
