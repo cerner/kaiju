@@ -129,7 +129,7 @@ class Duplicate extends React.Component {
    */
   filterProjects(input, option) {
     const value = option.props.value;
-    const display = this.state.projects[value] ? this.state.projects[value].name : 'new-project';
+    const display = this.state.projects[value] ? this.state.projects[value].name : 'New Project';
     return display.toLowerCase().includes(input.toLowerCase());
   }
 
