@@ -29,6 +29,10 @@ const propTypes = {
    */
   projectsUrl: PropTypes.string,
   /**
+   * The project type.
+   */
+  projectType: PropTypes.string,
+  /**
    * The identifier of the currently open project.
    */
   projectId: PropTypes.string,
@@ -178,10 +182,12 @@ class Duplicate extends React.Component {
      .get(this.props.projectsUrl)
      .set('Accept', 'application/json')
      .end((error, { text }) => {
-       const { projectId } = this.props;
-       const projects = camelizeKeys(JSON.parse(text)).reduce((object, project) => (
-         { ...object, [project.id]: project }
-       ), {});
+       const { projectId, projectType } = this.props;
+       const projects = camelizeKeys(JSON.parse(text))
+         .filter(({ type }) => type === projectType)
+         .reduce((object, project) => (
+           { ...object, [project.id]: project }
+         ), {});
 
        const selectedProject = projects[projectId] ? projectId : 'new-project';
 

@@ -8,6 +8,7 @@ const mapStateToProps = ({ activeWorkspace, components, project, root, user, wor
   name: workspaces[activeWorkspace].name,
   projectId: project.id,
   projectsUrl: user.projectsUrl,
+  projectType: project.type,
   root,
 });
 
