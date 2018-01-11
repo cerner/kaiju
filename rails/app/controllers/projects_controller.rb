@@ -3,7 +3,7 @@ require 'component_information'
 class ProjectsController < ApplicationController
   include ::ProjectsHelper
   before_action(except: %i[index create new]) { fetch_project(params[:id]) }
-  before_action(except: %i[show index create new]) { authorize(params[:project_object].editors) }
+  before_action(except: %i[show index create new reference_components]) { authorize(params[:project_object].editors) }
 
   # GET /projects/1
   def show # rubocop:disable Metrics/AbcSize
