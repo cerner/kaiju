@@ -241,7 +241,7 @@ class Duplicate extends React.Component {
         >
           <div className={cx('description')}>Workspace Name:</div>
           <Input value={this.state.name} onChange={this.handleNameChange} ref={(input) => { this.input = input; }} />
-          <div className={cx('description')}>Select a project to move this workspace into:</div>
+          <div className={cx('description')}>Workspace Destination:</div>
           {content}
         </Modal>
       </div>
