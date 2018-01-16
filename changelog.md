@@ -1,4 +1,4 @@
-## January 12th, 2018
+## January 16th, 2018
 ### Added
 - Ability to duplicate workspaces from the action bar
 - New Checkbox component
