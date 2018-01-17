@@ -1,6 +1,7 @@
 /* eslint import/no-unresolved: [2, { ignore: ['../componentMap'] }] */
 import React from 'react';
 import PropTypes from 'prop-types';
+import uniqid from 'uniqid';
 import { connect } from 'react-redux';
 import Element from '../components/Element/Element';
 import SafeRender from '../components/SafeRender/SafeRender';
@@ -14,6 +15,10 @@ const propTypes = {
    * The root component identifier
    */
   root: PropTypes.string.isRequired,
+  /**
+   * The refreshed component
+   */
+  refreshedComponent: PropTypes.string,
 };
 
 class ComponentContainer extends React.Component {
@@ -29,9 +34,11 @@ class ComponentContainer extends React.Component {
    * @return {Node} - A kaiju component wrapper
    */
   generateComponent(component) {
-    const { id, insertAfterUrl, properties, type } = this.props.components[component];
+    const { components, refreshedComponent } = this.props;
+    const { id, insertAfterUrl, properties, type } = components[component];
 
-    const props = { key: id };
+    const props = { key: (refreshedComponent === id ? `${id}-${uniqid()}` : id) };
+
     Object.keys(properties).forEach((key) => {
       // Filter top level properties. Any key cotaining :: is a sub property
       if (!key.includes('::')) {
@@ -65,7 +72,14 @@ class ComponentContainer extends React.Component {
     if (value === undefined || value === null) {
       return null;
     } else if (type === 'Array') {
-      return value.map(({ id }) => this.generateProperty(properties, id));
+      const array = [];
+      value.forEach(({ id }) => {
+        const item = this.generateProperty(properties, id);
+        if (item !== undefined && item !== null) {
+          array.push(item);
+        }
+      });
+      return (array.length > 0) ? array : null;
     } else if (type === 'Hash') {
       const hash = {};
       Object.keys(value).forEach((key) => {
@@ -93,6 +107,8 @@ class ComponentContainer extends React.Component {
 
 ComponentContainer.propTypes = propTypes;
 
-const mapStateToProps = ({ components }, { root }) => ({ components, root });
+const mapStateToProps = ({ components, refreshedComponent }, { root }) => (
+  { components, root, refreshedComponent }
+);
 
 export default connect(mapStateToProps)(ComponentContainer);
