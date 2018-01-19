@@ -36,7 +36,9 @@ class Element extends React.Component {
   }
 
   handleClick(event) {
-    event.stopPropagation();
+    if (event.defaultPrevented) { return; }
+
+    event.preventDefault();
     window.postMessage({ message: 'kaiju-select', id: this.props.kaijuId }, '*');
     window.parent.postMessage({ message: 'kaiju-component-selected', id: this.props.kaijuId }, '*');
   }
