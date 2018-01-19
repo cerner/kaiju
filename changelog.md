@@ -2,8 +2,12 @@
 ### Added
 - Ability to duplicate workspaces from the action bar
 - Checkbox component
+- Radio component
 - Tabs component
 - A read-only banner for unauthorized workspaces
+
+### Deprecated
+- Control (Replaced with Radio and Checkbox)
 
 ### Fixed
 - The component drop down search is no longer case sensitive

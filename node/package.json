@@ -38,7 +38,7 @@
     "react-dom": "^15.6.2",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
-    "terra-kaiju-plugin": "0.4.0",
+    "terra-kaiju-plugin": "git+https://github.com/cerner/terra-kaiju-plugin.git#Radio",
     "webpack": "^3.6.0"
   },
   "devDependencies": {
