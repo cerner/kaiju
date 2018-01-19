@@ -1,8 +1,9 @@
-## January 17th, 2018
+## January 18th, 2018
 ### Added
 - Ability to duplicate workspaces from the action bar
 - Checkbox component
 - Tabs component
+- A read-only banner for unauthorized workspaces
 
 ### Fixed
 - The component drop down search is no longer case sensitive

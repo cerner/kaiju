@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 import ActionBar from '../ActionBar/ActionBar';
-import './Sandbox.scss';
+import Alert from '../../../common/Alert/Alert';
+import styles from './Sandbox.scss';
+
+const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
@@ -36,12 +40,34 @@ class Sandbox extends React.Component {
   }
 
   render() {
-    const { canvasSize, onDelete, onRename, onResize, selectedComponent, workspace } = this.props;
-    const classes = `kaiju-Sandbox-iframe kaiju-Sandbox--${canvasSize}`;
+    const {
+      canvasSize,
+      onDelete,
+      onRename,
+      onResize,
+      selectedComponent,
+      workspace,
+    } = this.props;
+
     return (
-      <div className="kaiju-Sandbox">
-        <iframe id="kaiju-Sandbox-iframe" className={classes} src={workspace.component.url} title="sandbox" />
-        <ActionBar canvasSize={canvasSize} onDelete={onDelete} onRename={onRename} onResize={onResize} workspace={workspace} selectedComponent={selectedComponent} />
+      <div className={cx('sandbox')}>
+        { !workspace.isEditable && <Alert title="Read-only view." description="You are not authorized to edit this workspace." /> }
+        <div className={cx('content')}>
+          <iframe
+            id="kaiju-Sandbox-iframe"
+            className={cx('iframe', canvasSize)}
+            src={workspace.component.url}
+            title="sandbox"
+          />
+          <ActionBar
+            canvasSize={canvasSize}
+            onDelete={onDelete}
+            onRename={onRename}
+            onResize={onResize}
+            workspace={workspace}
+            selectedComponent={selectedComponent}
+          />
+        </div>
       </div>
     );
   }
