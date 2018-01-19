@@ -1,4 +1,4 @@
-## January 18th, 2018
+## January 19th, 2018
 ### Added
 - Ability to duplicate workspaces from the action bar
 - A read-only banner for unauthorized workspaces
