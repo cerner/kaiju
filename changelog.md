@@ -1,10 +1,11 @@
 ## January 18th, 2018
 ### Added
 - Ability to duplicate workspaces from the action bar
-- Checkbox component
-- Radio component
-- Tabs component
 - A read-only banner for unauthorized workspaces
+- Checkbox
+- Radio
+- Tabs
+- Footer to the Content Container
 
 ### Deprecated
 - Control (Replaced with Radio and Checkbox)
