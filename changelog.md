@@ -5,10 +5,14 @@
 - Checkbox
 - Radio
 - Tabs
+- Status View
+  - Known issue with align top, requires page refresh
 - Footer to the Content Container
 
 ### Deprecated
 - Control (Replaced with Radio and Checkbox)
+- No data view (Replaced with Status View)
+- Error view (Replaced with Status View)
 
 ### Fixed
 - The component drop down search is no longer case sensitive
