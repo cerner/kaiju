@@ -63,6 +63,10 @@ To send a read-only view of a workspace share the url from the browser.
 
 Keep up to date by following the what's new announcements. What's new can be viewed by clicking the gift icon in the upper-right corner of Kaiju.
 
+### Renaming
+
+Double clicking a workspace tab or project name will launch a dialog to rename it.
+
 ### Duplicate
 
 Workspaces can be duplicated for making quick workflow designs. The duplicate action can be found in the action bar under each workspace.
