@@ -34,7 +34,7 @@ The action bar provides a set of common actions for each workspace.
 
 Layers provide a tree view representation of the workspace. Items within layers can be duplicated, deleted, and rearranged.
 
-![layers demo](/layers-demo.gif)
+![layers demo](/kaiju-layers-demo.gif)
 
 ## Features
 
@@ -70,3 +70,5 @@ Workspaces can be duplicated for making quick workflow designs. The duplicate ac
 ### Drag and drop
 
 Components can be dragged and dropped interchangeably between the workspace and layers.
+
+![dragging demo](/kaiju-dragging-demo.gif)
