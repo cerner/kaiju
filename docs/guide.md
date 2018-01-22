@@ -18,12 +18,6 @@ Kaiju also provides a sandbox for testing and experimenting with components.
 
 Components are the UI building blocks available to drag and drop into the workspace.
 
-### Layers
-
-Layers provide a tree view representation of the workspace. Items within layers can be duplicated, deleted, and rearranged.
-
-![layers demo](/layers-demo.gif)
-
 ### Workspace
 
 The workspace is the canvas for assembling components into a design. Components can be dragged into the workspace and dropped into position.
@@ -35,6 +29,12 @@ When a component is selected within the workspace the editor provides an interac
 ### Action bar
 
 The action bar provides a set of common actions for each workspace.
+
+### Layers
+
+Layers provide a tree view representation of the workspace. Items within layers can be duplicated, deleted, and rearranged.
+
+![layers demo](/layers-demo.gif)
 
 ## Features
 
