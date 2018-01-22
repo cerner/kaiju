@@ -12,6 +12,8 @@ Kaiju also provides a sandbox for testing and experimenting with components.
 
 ## Getting Started
 
+[ This is where a picture of a legend with each section outlined will be ]
+
 ### Components
 
 Components are the UI building blocks available to drag and drop into the workspace.
