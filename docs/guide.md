@@ -12,7 +12,7 @@ Kaiju also provides a sandbox for testing and experimenting with components.
 
 ## Getting Started
 
-![sections](/kaiju-section-demo2.png)
+![sections](/kaiju-section-demo.png)
 
 ### 1. Components
 
