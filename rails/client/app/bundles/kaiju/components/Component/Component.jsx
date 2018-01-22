@@ -34,7 +34,7 @@ class Component extends React.Component {
   componentDidMount() {
     initializeDrag();
 
-    this.request = ajax
+    ajax
       .get(this.props.url)
       .set('Accept', 'application/json')
       .end((error, response) => {
