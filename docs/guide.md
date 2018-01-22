@@ -22,6 +22,8 @@ Components are the UI building blocks available to drag and drop into the worksp
 
 Layers provide a tree view representation of the workspace. Items within layers can be duplicated, deleted, and rearranged.
 
+![layers demo](/layers-demo.gif)
+
 ### Workspace
 
 The workspace is the canvas for assembling components into a design. Components can be dragged into the workspace and dropped into position.
