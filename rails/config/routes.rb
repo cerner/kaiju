@@ -40,6 +40,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   resources :invitations, only: %i[show]
   resources :health, only: %i[index]
 
+  match '/guide', to: 'guide#show', via: %i[get]
   match '/auth', to: 'sessions#index', via: %i[get]
   match '/auth/:provider/callback', to: 'sessions#create', via: %i[get post]
   match '/auth/failure', to: 'sessions#failure', via: %i[get]

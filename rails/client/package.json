@@ -18,6 +18,7 @@
   "dependencies": {
     "antd": "^2.7.4",
     "classnames": "^2.2.5",
+    "github-markdown-css": "^2.10.0",
     "humps": "^2.0.1",
     "marked": "^0.3.9",
     "mousetrap": "^1.6.1",

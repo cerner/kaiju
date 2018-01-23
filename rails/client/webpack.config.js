@@ -27,6 +27,7 @@ const config = {
     attributes: './app/bundles/kaiju/startup/attributesRegistration',
     code: './app/bundles/kaiju/startup/codeRegistration',
     component: './app/bundles/kaiju/startup/componentRegistration',
+    guide: './app/bundles/kaiju/startup/guideRegistration',
     launch: './app/bundles/kaiju/startup/launchPageRegistration',
     preview: [
       './app/bundles/kaiju/startup/previewRegistration',
