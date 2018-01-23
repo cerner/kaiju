@@ -1,3 +1,7 @@
+## January 22nd, 2018
+### Added
+- A help guide (Accessible under the help menu dropdown)
+
 ## January 19th, 2018
 ### Added
 - Ability to duplicate workspaces from the action bar
