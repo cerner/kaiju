@@ -334,6 +334,51 @@ const registerDispatcher = (store, root) => {
     duplicate(getSelectedComponent());
   });
   window.addEventListener('message', dispatchMessage);
+
+  const find = (start) => {
+    let target = start;
+    while (target.hasAttribute('data-kaiju-component-id') === false) {
+      if (target === document.body) {
+        return null;
+      }
+      target = target.parentNode;
+    }
+    return target;
+  };
+
+  const isInsideSelected = ({ clientX, clientY }) => {
+    const selectedComponent = document.querySelectorAll(`[data-kaiju-component-id="${getSelectedComponent()}"]`)[0];
+
+    if (!selectedComponent) {
+      return false;
+    }
+
+    const { left, right, top, bottom } = selectedComponent.getBoundingClientRect();
+
+    if (clientX >= left && clientX <= right && clientY >= top && clientY <= bottom) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const selectTarget = (event) => {
+    if ((event.ctrlKey || event.metaKey) && isInsideSelected(event)) {
+      const selectedComponent = fetch(getSelectedComponent());
+      const id = selectedComponent.parent || selectedComponent.id;
+      select(id);
+      post({ message: 'kaiju-component-selected', id }, '*');
+    } else {
+      const target = find(event.target);
+      const id = target.getAttribute('data-kaiju-component-id');
+      //
+      select(id);
+      post({ message: 'kaiju-component-selected', id }, '*');
+    }
+  };
+
+  // Hack for example click traversal
+  window.addEventListener('click', selectTarget);
 };
 
 export default registerDispatcher;

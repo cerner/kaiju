@@ -112,7 +112,6 @@ const addParentOverlay = (node) => {
   addOverlay(target);
 };
 
-
 // Redraw the Overlay during any window resize events
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
