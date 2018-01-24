@@ -4,7 +4,7 @@ import Mousetrap from 'mousetrap';
 import IconUndo from 'terra-icon/lib/icon/IconReply';
 import IconRedo from 'terra-icon/lib/icon/IconForward';
 import axios from '../../../../utilities/axios';
-import { copy, destroy, paste, refresh, select } from '../../utilities/messenger';
+import { copy, destroy, duplicate, paste, refresh, select } from '../../utilities/messenger';
 import ActionItem from './ActionItem/ActionItem';
 import Delete from './Delete/Delete';
 import Duplicate from '../../containers/DuplicateWorkspaceContainer';
@@ -53,6 +53,7 @@ class ActionBar extends React.Component {
     super();
     this.undo = this.undo.bind(this);
     this.redo = this.redo.bind(this);
+    this.duplicate = this.duplicate.bind(this);
     this.handleShortcuts = this.handleShortcuts.bind(this);
   }
 
@@ -61,6 +62,7 @@ class ActionBar extends React.Component {
     Mousetrap.bind(['command+v', 'ctrl+v'], paste);
     Mousetrap.bind(['command+z', 'ctrl+z'], this.undo);
     Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], this.redo);
+    Mousetrap.bind(['command+d', 'ctrl+d'], this.duplicate);
     Mousetrap.bind(['backspace', 'delete'], ActionBar.destroy);
     Mousetrap.bind(['esc'], ActionBar.deselect);
     window.addEventListener('message', this.handleShortcuts);
@@ -71,9 +73,15 @@ class ActionBar extends React.Component {
     Mousetrap.unbind(['command+v', 'ctrl+v'], paste);
     Mousetrap.unbind(['command+z', 'ctrl+z'], this.undo);
     Mousetrap.unbind(['command+shift+z', 'ctrl+shift+z'], this.redo);
+    Mousetrap.unbind(['command+d', 'ctrl+d'], this.duplicate);
     Mousetrap.unbind(['backspace', 'delete'], ActionBar.destroy);
     Mousetrap.unbind(['esc'], ActionBar.deselect);
     window.removeEventListener('message', this.handleShortcuts);
+  }
+
+  duplicate(event) {
+    event.preventDefault();
+    duplicate(this.props.selectedComponent);
   }
 
   handleShortcuts({ data }) {
@@ -84,7 +92,11 @@ class ActionBar extends React.Component {
     }
   }
 
-  undo() {
+  undo(event) {
+    if (event) {
+      event.preventDefault();
+    }
+
     axios
      .put(this.props.workspace.undoUrl)
      .then(({ status, data }) => {

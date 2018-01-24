@@ -295,7 +295,7 @@ const registerDispatcher = (store, root) => {
     if (message === 'kaiju-destroy') {
       destroy(id || getSelectedComponent());
     } else if (message === 'kaiju-duplicate') {
-      duplicate(id);
+      duplicate(id || getSelectedComponent());
     } else if (message === 'kaiju-duplicate-property') {
       duplicateProperty(id, data.property);
     } else if (message === 'kaiju-insert') {
@@ -324,11 +324,15 @@ const registerDispatcher = (store, root) => {
 
   postUpdate();
   Mousetrap.bind(['esc'], () => select(null));
-  Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
   Mousetrap.bind(['command+c', 'ctrl+c'], copy);
   Mousetrap.bind(['command+v', 'ctrl+v'], paste);
   Mousetrap.bind(['command+z', 'ctrl+z'], undo);
   Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], redo);
+  Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
+  Mousetrap.bind(['command+d', 'ctrl+d'], (event) => {
+    event.preventDefault();
+    duplicate(getSelectedComponent());
+  });
   window.addEventListener('message', dispatchMessage);
 };
 
