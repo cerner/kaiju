@@ -80,14 +80,6 @@ const registerDispatcher = (store, root) => {
   };
 
   /**
-   * Queries the DOM for the csrf-token
-   * @return {String} - The csrf-token
-   */
-  const getToken = () => (
-    document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-  );
-
-  /**
    * Puts a request
    * @param {String} url - The request URL
    * @param {Object} data - Data to send down with the request
