@@ -1,10 +1,10 @@
 import Mousetrap from 'mousetrap';
-import ajax from 'superagent';
 import { camelizeKeys } from 'humps';
 import { collectGarbage, refreshStore, selectComponent, updateProperty } from '../actions/actions';
 import { flattenComponent, serializeComponent, serializeObject } from './normalizer';
 import { addHighlight, removeHighlight } from './highlight';
 import { addOverlay } from './overlay';
+import axios from '../../../utilities/axios';
 
 /**
  * Registers a dispatcher to a store
@@ -94,17 +94,15 @@ const registerDispatcher = (store, root) => {
    * @param {Function} callback - Callback function invoked on put completion
    */
   const put = (url, data, callback) => {
-    ajax
-      .put(url)
-      .set('Accept', 'application/json')
-      .set('X-CSRF-Token', getToken())
-      .send(data)
-      .end((error, { text }) => {
-        if (error) {
-          handleError(error);
-        } else if (callback) {
-          callback(JSON.parse(text));
+    axios
+      .put(url, data)
+      .then((response) => {
+        if (callback) {
+          callback(response.data);
         }
+      })
+      .catch((error) => {
+        handleError(error);
       });
   };
 
@@ -124,21 +122,19 @@ const registerDispatcher = (store, root) => {
    * @param {String} target - Optional target identifier to set as selected
    */
   const refresh = (id, target) => {
-    ajax
+    axios
       .get(fetch(id).url)
-      .set('Accept', 'application/json')
-      .end((error, { text }) => {
-        if (error) {
-          handleError(error);
+      .then(({ data }) => {
+        dispatch(refreshStore(id, flattenComponent(camelizeKeys(data))));
+        dispatch(collectGarbage(root));
+        if (fetch(target || getSelectedComponent())) {
+          select(fetch(target || getSelectedComponent()).id);
         } else {
-          dispatch(refreshStore(id, flattenComponent(camelizeKeys(JSON.parse(text)))));
-          dispatch(collectGarbage(root));
-          if (fetch(target || getSelectedComponent())) {
-            select(fetch(target || getSelectedComponent()).id);
-          } else {
-            select(null);
-          }
+          select(null);
         }
+      })
+      .catch((error) => {
+        handleError(error);
       });
   };
 
@@ -162,16 +158,14 @@ const registerDispatcher = (store, root) => {
     const targetUrl = target.id === root ? target.properties.children.url : target.propertyUrl;
     lastDestroyed = serialize(target);
 
-    ajax
-    .delete(targetUrl)
-    .set('X-CSRF-Token', getToken())
-    .end((error) => {
-      if (error) {
-        handleError(error);
-      } else {
+    axios
+      .delete(targetUrl)
+      .then(() => {
         refresh(parent);
-      }
-    });
+      })
+      .catch((error) => {
+        handleError(error);
+      });
   };
 
   /**
@@ -190,14 +184,14 @@ const registerDispatcher = (store, root) => {
   };
 
   const duplicateProperty = (id, property) => {
-    ajax
-    .put(property.insertAfterUrl)
-    .set('Accept', 'application/json')
-    .set('X-CSRF-Token', getToken())
-    .send({ value: serializeObject(store.getState().components, property, fetch(id).properties) })
-    .end(() => {
-      refresh(id);
-    });
+    const components = store.getState().components;
+    const data = { value: serializeObject(components, property, fetch(id).properties) };
+
+    axios
+      .put(property.insertAfterUrl, data)
+      .then(() => {
+        refresh(id);
+      });
   };
 
 

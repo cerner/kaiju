@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ajax from 'superagent';
 import { connect } from 'react-redux';
+import axios from '../../../utilities/axios';
 import Card from '../../common/Card/Card';
 import Magician from '../../common/Magician/Magician';
 import SelectableGrid from '../../common/SelectableGrid/SelectableGrid';
@@ -62,11 +62,9 @@ const getInactiveProjectCards = (inactiveProjects, filter) => {
   const items = inactiveProjects.filter(({ name }) => name.toLowerCase().includes(filter));
   return items.map(({ activateUrl, id, name, owner, updateDateTime, url, workspaceCount }) => {
     const activate = () => {
-      ajax
+      axios
         .put(activateUrl)
-        .set('Accept', 'application/json')
-        .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-        .end(() => {
+        .then(() => {
           window.location = url;
         });
     };

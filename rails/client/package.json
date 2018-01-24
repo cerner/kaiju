@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "antd": "^2.7.4",
+    "axios": "^0.17.1",
     "classnames": "^2.2.5",
     "github-markdown-css": "^2.10.0",
     "humps": "^2.0.1",
@@ -31,7 +32,6 @@
     "react-on-rails": "^10.0.2",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
-    "superagent": "^3.5.0",
     "terra-base": "^2.0.0",
     "terra-i18n": "^1.0.0",
     "terra-icon": "^1.0.0",

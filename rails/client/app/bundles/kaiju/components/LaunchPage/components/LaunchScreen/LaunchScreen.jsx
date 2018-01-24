@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ajax from 'superagent';
+import axios from '../../../../utilities/axios';
 import Button from '../../../common/Button/Button';
 import ListContainer from '../../containers/ListContainer';
 import Logo from '../../../common/Logo/Logo';
@@ -36,11 +36,10 @@ const propTypes = {
  * @param {String} url - The projects route for a specific user
  */
 const createNewProject = (url) => {
-  ajax
+  axios
     .post(url)
-    .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-    .end((error, { text }) => {
-      window.location = JSON.parse(text).url;
+    .then(({ data }) => {
+      window.location = data.url;
     });
 };
 

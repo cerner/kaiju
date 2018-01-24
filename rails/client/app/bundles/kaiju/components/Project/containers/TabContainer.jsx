@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ajax from 'superagent';
 import { connect } from 'react-redux';
 import { Modal, Input } from 'antd';
 import { closeTab, renameWorkspace, setActiveWorkspace } from '../actions/actions';
 import Tab from '../components/Tabs/Tab/Tab';
+import axios from '../../../utilities/axios';
 
 const propTypes = {
   /**
@@ -59,11 +59,9 @@ class TabContainer extends React.Component {
    * Saves the name to the database
    */
   handleSave() {
-    ajax
-      .put(this.props.renameUrl)
-      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-      .send({ name: this.state.name })
-      .end(() => {
+    axios
+      .put(this.props.renameUrl, { name: this.state.name })
+      .then(() => {
         this.setState({ isOpen: false });
         this.props.onRename(this.state.name);
       });

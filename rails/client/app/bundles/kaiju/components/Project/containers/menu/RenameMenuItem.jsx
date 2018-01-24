@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Modal, Input } from 'antd';
-import ajax from 'superagent';
 import { renameProject } from '../../actions/actions';
 import MenuItem from '../../components/Menu/MenuItem/MenuItem';
+import axios from '../../../../utilities/axios';
 
 const propTypes = {
   /**
@@ -59,11 +59,9 @@ class RenameMenuItem extends React.Component {
    * Saves the name to the database
    */
   handleSave() {
-    ajax
-      .put(this.props.renameUrl)
-      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-      .send({ name: this.state.name })
-      .end(() => {
+    axios
+      .put(this.props.renameUrl, { name: this.state.name })
+      .then(() => {
         this.setState({ isOpen: false });
         this.props.onSave(this.input.value);
       });
