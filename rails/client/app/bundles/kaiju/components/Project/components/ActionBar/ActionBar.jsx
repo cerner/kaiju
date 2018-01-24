@@ -81,7 +81,11 @@ class ActionBar extends React.Component {
 
   duplicate(event) {
     event.preventDefault();
-    duplicate(this.props.selectedComponent);
+
+    const selectedComponent = this.props.selectedComponent;
+    if (selectedComponent) {
+      duplicate(this.props.selectedComponent.id);
+    }
   }
 
   handleShortcuts({ data }) {
