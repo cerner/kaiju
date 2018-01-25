@@ -73,13 +73,6 @@ const registerDispatcher = (store, root) => {
   const dispatch = (action) => { store.dispatch(action); };
 
   /**
-   * Handles a server error
-   */
-  const handleError = () => {
-    window.parent.location.reload();
-  };
-
-  /**
    * Puts a request
    * @param {String} url - The request URL
    * @param {Object} data - Data to send down with the request
@@ -92,9 +85,6 @@ const registerDispatcher = (store, root) => {
         if (callback) {
           callback(response.data);
         }
-      })
-      .catch((error) => {
-        handleError(error);
       });
   };
 
@@ -124,9 +114,6 @@ const registerDispatcher = (store, root) => {
         } else {
           select(null);
         }
-      })
-      .catch((error) => {
-        handleError(error);
       });
   };
 
@@ -154,9 +141,6 @@ const registerDispatcher = (store, root) => {
       .delete(targetUrl)
       .then(() => {
         refresh(parent);
-      })
-      .catch((error) => {
-        handleError(error);
       });
   };
 
@@ -185,7 +169,6 @@ const registerDispatcher = (store, root) => {
         refresh(id);
       });
   };
-
 
   /**
    * Inserts a component before a target
