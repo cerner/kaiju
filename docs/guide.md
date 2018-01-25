@@ -55,7 +55,7 @@ To send a read-only view of a workspace share the url from the browser.
 | Redo          | ctrl-shift-z      | ⌘-shift-z         |
 | Copy          | ctrl-c            | ⌘-c               |
 | Paste         | ctrl-v            | ⌘-v               |
-| Duplicate     | ctrl+d            | ⌘-d               |
+| Duplicate     | ctrl-d            | ⌘-d               |
 | Deselect      | esc               | esc               |
 
 ## Tips and tricks
