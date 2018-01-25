@@ -4,7 +4,7 @@ import Mousetrap from 'mousetrap';
 import IconUndo from 'terra-icon/lib/icon/IconReply';
 import IconRedo from 'terra-icon/lib/icon/IconForward';
 import axios from '../../../../utilities/axios';
-import { copy, destroy, paste, refresh, select } from '../../utilities/messenger';
+import { copy, duplicate, destroy, paste, refresh, select } from '../../utilities/messenger';
 import ActionItem from './ActionItem/ActionItem';
 import Delete from './Delete/Delete';
 import Duplicate from '../../containers/DuplicateWorkspaceContainer';
@@ -53,6 +53,7 @@ class ActionBar extends React.Component {
     super();
     this.undo = this.undo.bind(this);
     this.redo = this.redo.bind(this);
+    this.duplicate = this.duplicate.bind(this);
     this.handleShortcuts = this.handleShortcuts.bind(this);
   }
 
@@ -63,6 +64,7 @@ class ActionBar extends React.Component {
     Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], this.redo);
     Mousetrap.bind(['backspace', 'delete'], ActionBar.destroy);
     Mousetrap.bind(['esc'], ActionBar.deselect);
+    Mousetrap.bind(['command+d', 'ctrl+d'], this.duplicate);
     window.addEventListener('message', this.handleShortcuts);
   }
 
@@ -73,7 +75,25 @@ class ActionBar extends React.Component {
     Mousetrap.unbind(['command+shift+z', 'ctrl+shift+z'], this.redo);
     Mousetrap.unbind(['backspace', 'delete'], ActionBar.destroy);
     Mousetrap.unbind(['esc'], ActionBar.deselect);
+    Mousetrap.unbind(['command+d', 'ctrl+d'], this.duplicate);
     window.removeEventListener('message', this.handleShortcuts);
+  }
+
+  /**
+   * Sends a request to duplicate the selected item.
+   * @return {Boolean} - False if the default action should be prevented, otherwise true.
+   */
+  duplicate() {
+    const { selectedComponent } = this.props;
+
+    if (selectedComponent) {
+      duplicate(selectedComponent.id);
+
+      // Returning false is a feature of mousetrap to prevent default actions.
+      return false;
+    }
+
+    return true;
   }
 
   handleShortcuts({ data }) {

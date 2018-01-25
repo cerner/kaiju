@@ -1,6 +1,7 @@
 ## January 25th, 2018
 ### Added
 - [A help guide](/guide) (Accessible under the help menu dropdown)
+- A keyboard shortcut for duplicating the selected element (ctrl+d)
 
 ## January 19th, 2018
 ### Added
