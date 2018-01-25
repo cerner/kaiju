@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Icon } from 'antd';
-import ajax from 'superagent';
+import axios from '../../../../../utilities/axios';
 import './Delete.scss';
 
 const propTypes = {
@@ -24,10 +24,9 @@ class Rename extends React.Component {
   }
 
   handleConfirm() {
-    ajax
+    axios
       .delete(this.props.url)
-      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-      .end(() => {
+      .then(() => {
         this.setState({ isOpen: false });
         this.props.onDelete();
       });

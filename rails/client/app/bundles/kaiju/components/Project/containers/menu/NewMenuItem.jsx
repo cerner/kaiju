@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ajax from 'superagent';
+import axios from '../../../../utilities/axios';
 import MenuItem from '../../components/Menu/MenuItem/MenuItem';
 
 const propTypes = {
@@ -10,12 +10,11 @@ const propTypes = {
 
 const OpenMenuItem = ({ resourceUrl }) => {
   function createNewProject() {
-    ajax.post(resourceUrl)
-    .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-    .end((error, { text }) => {
-      // TODO: Rehydrate Redux, single page navigation rather than multi
-      window.location = JSON.parse(text).url;
-    });
+    axios.post(resourceUrl)
+      .then(({ data }) => {
+        // TODO: Rehydrate Redux, single page navigation rather than multi
+        window.location = data.url;
+      });
   }
 
   return (

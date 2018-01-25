@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ajax from 'superagent';
 import { Icon } from 'antd';
 import { duplicateProperty, refresh } from '../../../utilities/messenger';
+import axios from '../../../../../utilities/axios';
 import './Cloneable.scss';
 
 const propTypes = {
@@ -33,12 +33,11 @@ const Cloneable = ({ children, componentId, ...property }) => {
    * TODO: Move this functionality into the Component dispatcher
    */
   const deleteProperty = () => {
-    ajax
-    .delete(property.url)
-    .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-    .end(() => {
-      refresh(componentId);
-    });
+    axios
+      .delete(property.url)
+      .then(() => {
+        refresh(componentId);
+      });
   };
 
   return (

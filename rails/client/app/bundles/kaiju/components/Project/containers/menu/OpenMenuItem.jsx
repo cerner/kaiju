@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Modal } from 'antd';
-import ajax from 'superagent';
+import axios from '../../../../utilities/axios';
 import MenuItem from '../../components/Menu/MenuItem/MenuItem';
 import Magician from '../../../common/Magician/Magician';
 import Card from '../../../common/Card/Card';
@@ -29,11 +29,10 @@ class OpenMenuItem extends React.Component {
   showModal() {
     this.setState({ isOpen: true });
 
-    ajax
+    axios
      .get(this.props.resourceUrl)
-     .set('Accept', 'application/json')
-     .end((error, { text }) => {
-       const { projects } = JSON.parse(text);
+     .then(({ data }) => {
+       const { projects } = data;
        const cards = projects.map((project) => {
          const { name: author } = project.owner;
          const { name, workspace_count: count, update_date_time: lastEditDate, id, url } = project;

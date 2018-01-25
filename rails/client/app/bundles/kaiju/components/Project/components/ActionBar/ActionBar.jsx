@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Mousetrap from 'mousetrap';
-import ajax from 'superagent';
 import IconUndo from 'terra-icon/lib/icon/IconReply';
 import IconRedo from 'terra-icon/lib/icon/IconForward';
+import axios from '../../../../utilities/axios';
 import { copy, destroy, paste, refresh, select } from '../../utilities/messenger';
 import ActionItem from './ActionItem/ActionItem';
 import Delete from './Delete/Delete';
@@ -85,13 +85,11 @@ class ActionBar extends React.Component {
   }
 
   undo() {
-    ajax
+    axios
      .put(this.props.workspace.undoUrl)
-     .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-     .set('Accept', 'application/json')
-     .end((error, { status, text }) => {
+     .then(({ status, data }) => {
        if (status === 200 || status === 201) {
-         const componentId = JSON.parse(text).component_id;
+         const componentId = data.component_id;
          if (componentId) {
            refresh(componentId);
          }
@@ -100,13 +98,11 @@ class ActionBar extends React.Component {
   }
 
   redo() {
-    ajax
+    axios
      .put(this.props.workspace.redoUrl)
-     .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-     .set('Accept', 'application/json')
-     .end((error, { status, text }) => {
+     .then(({ status, data }) => {
        if (status === 200 || status === 201) {
-         const componentId = JSON.parse(text).component_id;
+         const componentId = data.component_id;
          if (componentId) {
            refresh(componentId);
          }

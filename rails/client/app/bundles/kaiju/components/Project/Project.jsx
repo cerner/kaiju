@@ -1,5 +1,4 @@
 import React from 'react';
-import ajax from 'superagent';
 import { Provider } from 'react-redux';
 import { camelizeKeys } from 'humps';
 import { setReferenceComponents, updateComponent } from './actions/actions';
@@ -9,6 +8,7 @@ import EditorContainer from './containers/EditorContainer';
 import Header from './containers/HeaderContainer';
 import Sidebar from './components/Sidebar/Sidebar';
 import initializeDrag from './utilities/drag';
+import axios from '../../utilities/axios';
 import './Project.scss';
 
 class Project extends React.Component {
@@ -22,11 +22,10 @@ class Project extends React.Component {
     initializeDrag();
     window.addEventListener('message', this.dispatchMessage);
 
-    ajax
+    axios
      .get(`/projects/${this.store.getState().project.id}/reference_components`)
-     .set('Accept', 'application/json')
-     .end((error, { text }) => {
-       this.store.dispatch(setReferenceComponents(JSON.parse(text)));
+     .then(({ data }) => {
+       this.store.dispatch(setReferenceComponents(data));
      });
   }
 
