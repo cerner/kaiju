@@ -1,6 +1,7 @@
-## January 22nd, 2018
+## January 25th, 2018
 ### Added
-- A help guide (Accessible under the help menu dropdown)
+- [A help guide](/guide) (Accessible under the help menu dropdown)
+- A keyboard shortcut for duplicating the selected component (ctrl+d)
 
 ## January 19th, 2018
 ### Added

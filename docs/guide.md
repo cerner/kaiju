@@ -48,14 +48,15 @@ To send a read-only view of a workspace share the url from the browser.
 
 ### Keyboard shortcuts
 
-| Action        | Keyboard shortcut |
-| ------------- |:-----------------:|
-| Undo          | ctrl-z            |
-| Redo          | ctrl-shift-z      |
-| Copy          | ctrl-c            |
-| Paste         | ctrl-v            |
-| Deselect      | esc               |
 
+| Action        | Windows           | Mac               |
+| ------------- |-------------------|-------------------|
+| Undo          | ctrl-z            | ⌘-z               |
+| Redo          | ctrl-shift-z      | ⌘-shift-z         |
+| Copy          | ctrl-c            | ⌘-c               |
+| Paste         | ctrl-v            | ⌘-v               |
+| Duplicate     | ctrl-d            | ⌘-d               |
+| Deselect      | esc               | esc               |
 
 ## Tips and tricks
 
