@@ -153,9 +153,6 @@ const registerDispatcher = (store, root) => {
     if (target.insertAfterUrl) {
       const properties = serialize(target);
       put(target.insertAfterUrl, { value: properties }, () => refresh(target.parent));
-    } else {
-      // eslint-disable-next-line no-console
-      console.warn('Non-Array Element requested duplication');
     }
   };
 
@@ -307,11 +304,12 @@ const registerDispatcher = (store, root) => {
 
   postUpdate();
   Mousetrap.bind(['esc'], () => select(null));
-  Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
   Mousetrap.bind(['command+c', 'ctrl+c'], copy);
   Mousetrap.bind(['command+v', 'ctrl+v'], paste);
   Mousetrap.bind(['command+z', 'ctrl+z'], undo);
   Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], redo);
+  Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
+  Mousetrap.bind(['command+d', 'ctrl+d'], () => { duplicate(getSelectedComponent()); return false; });
   window.addEventListener('message', dispatchMessage);
 };
 
