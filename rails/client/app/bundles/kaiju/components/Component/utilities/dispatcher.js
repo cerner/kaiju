@@ -336,7 +336,7 @@ const registerDispatcher = (store, root) => {
   };
 
   /**
-   * Finds the closet registered component from the starting location.
+   * Finds the closest registered component from the starting location.
    * @param {node} start - The starting node.
    * @return {node} - The closest registered node.
    */
