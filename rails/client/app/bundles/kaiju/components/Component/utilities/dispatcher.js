@@ -47,7 +47,7 @@ const registerDispatcher = (store, root) => {
   /**
    * Fetches the target component from the dom.
    * @param {string} id - The target component identifier.
-   * @return {node|null}- The dom node. Null if not found.
+   * @return {node|null} - The dom node. Null if not found.
    */
   const findComponentById = id => (
     document.querySelectorAll(`[data-kaiju-component-id="${id}"]`)[0]
@@ -225,7 +225,7 @@ const registerDispatcher = (store, root) => {
 
   /**
    * Posts a message to the parent window requesting an undo.
-   * @return {Boolean} - False.
+   * @return {boolean} - False.
    * Returning false will prevent default actions for events bound using mousetrap.
    */
   const undo = () => {
