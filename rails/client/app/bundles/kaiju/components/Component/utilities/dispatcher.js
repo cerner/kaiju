@@ -338,7 +338,7 @@ const registerDispatcher = (store, root) => {
   /**
    * Finds the closest registered component from the starting location.
    * @param {node} start - The starting node.
-   * @return {node} - The closest registered node.
+   * @return {string} - The closest registered node indentifier.
    */
   const findClosest = (start) => {
     let node = start;
