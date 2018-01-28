@@ -45,10 +45,19 @@ const registerDispatcher = (store, root) => {
   const getSelectedComponent = () => store.getState().selectedComponent;
 
   /**
+   * Fetches the target component from the dom.
+   * @param {string} id - The target component identifier.
+   * @return {node|null}- The dom node. Null if not found.
+   */
+  const findComponentById = id => (
+    document.querySelectorAll(`[data-kaiju-component-id="${id}"]`)[0]
+  );
+
+  /**
    * Adds and overlay to the selected component
    */
   const addSelectedOverlay = () => {
-    addOverlay(document.querySelectorAll(`[data-kaiju-component-id="${getSelectedComponent()}"]`)[0]);
+    addOverlay(findComponentById(getSelectedComponent()));
   };
 
   /**
@@ -215,10 +224,13 @@ const registerDispatcher = (store, root) => {
   };
 
   /**
-   * Posts a message to the parent window requesting an undo
+   * Posts a message to the parent window requesting an undo.
+   * @return {Boolean} - False.
+   * Returning false will prevent default actions for events bound using mousetrap.
    */
   const undo = () => {
     post({ message: 'kaiju-undo' });
+    return false;
   };
 
   /**
@@ -302,6 +314,59 @@ const registerDispatcher = (store, root) => {
     }
   };
 
+  /**
+   * Checks if the coordinate is within the selected component.
+   * @param {float} x - The x coordinate.
+   * @param {float} y - The y coordinate.
+   * @return {boolean} - true if the coordinate is within the selected component.
+   */
+  const isInside = (x, y) => {
+    const selectedComponent = findComponentById(getSelectedComponent());
+
+    if (!selectedComponent) {
+      return false;
+    }
+
+    const { left, right, top, bottom } = selectedComponent.getBoundingClientRect();
+    if (x >= left && x <= right && y >= top && y <= bottom) {
+      return true;
+    }
+
+    return false;
+  };
+
+  /**
+   * Finds the closet registered component from the starting location.
+   * @param {node} start - The starting node.
+   * @return {node} - The closest registered node.
+   */
+  const findClosest = (start) => {
+    let node = start;
+    while (node.hasAttribute('data-kaiju-component-id') === false) {
+      node = node.parentNode;
+    }
+    return node.getAttribute('data-kaiju-component-id');
+  };
+
+  /**
+   * Selects a registered component.
+   * @param {event} event - The triggering event.
+   */
+  const selectTarget = (event) => {
+    let target = null;
+    const { clientX, clientY, ctrlKey, metaKey } = event;
+
+    if (isInside(clientX, clientY) && (ctrlKey || metaKey)) {
+      const { id, parent } = fetch(getSelectedComponent());
+      target = parent || id;
+    } else {
+      target = findClosest(event.target);
+    }
+
+    select(target);
+    post({ message: 'kaiju-component-selected', id: target });
+  };
+
   postUpdate();
   Mousetrap.bind(['esc'], () => select(null));
   Mousetrap.bind(['command+c', 'ctrl+c'], copy);
@@ -310,6 +375,8 @@ const registerDispatcher = (store, root) => {
   Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], redo);
   Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
   Mousetrap.bind(['command+d', 'ctrl+d'], () => { duplicate(getSelectedComponent()); return false; });
+
+  window.addEventListener('click', selectTarget);
   window.addEventListener('message', dispatchMessage);
 };
 

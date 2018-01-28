@@ -56,6 +56,7 @@ To send a read-only view of a workspace share the url from the browser.
 | Copy          | ctrl-c            | ⌘-c               |
 | Paste         | ctrl-v            | ⌘-v               |
 | Duplicate     | ctrl-d            | ⌘-d               |
+| Select parent | ctrl-click        | ⌘-click           |
 | Deselect      | esc               | esc               |
 
 ## Tips and tricks
@@ -77,3 +78,11 @@ Workspaces can be duplicated for making quick workflow designs. The duplicate ac
 Components can be dragged and dropped interchangeably between the workspace and layers.
 
 ![dragging](/kaiju-dragging-demo.gif)
+
+### Controlled selections
+
+Pressing control or command while clicking a selected component will select the parent of the selected component. This makes selecting container components easier.
+
+(Pressing ctrl/cmd and clicking)
+
+![controlled](/kaiju-command-demo.gif)
