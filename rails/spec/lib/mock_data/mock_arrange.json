@@ -1,5 +1,6 @@
 {
   "name":"Arrange",
+  "library":"terra-arrange",
   "description":"Aligns tightly coupled components",
   "type":"Components",
   "group":"Atoms::Content",

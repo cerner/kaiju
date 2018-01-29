@@ -1,5 +1,6 @@
 {
   "name": "Mock_text",
+  "library":"text",
   "display": "Mock Text",
   "description": "Provides a drop target for components",
   "hidden": true,

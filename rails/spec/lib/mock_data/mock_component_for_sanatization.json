@@ -1,5 +1,6 @@
 {
   "name": "Example",
+  "library":"property",
   "description":"example to test sanatization",
   "type": "example",
   "properties": {

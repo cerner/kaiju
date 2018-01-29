@@ -1,5 +1,6 @@
 {
   "name": "Workspace",
+  "library": "kaiju",
   "display": "Workspace",
   "description": "First In, Last Out",
   "hidden": true,

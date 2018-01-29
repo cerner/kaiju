@@ -1,5 +1,6 @@
 {
   "name":"Button",
+  "library":"property",
   "display":"Button",
   "description":"Provides a way to trigger actions in the UI",
   "type":"Buttons",
