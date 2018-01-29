@@ -1,5 +1,6 @@
 {
   "name": "Example",
+  "library":"property",
   "description":"example to test getting individual schema",
   "type": "example",
   "properties": {

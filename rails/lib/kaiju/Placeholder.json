@@ -1,5 +1,6 @@
 {
   "name": "Placeholder",
+  "library": "kaiju",
   "display": "Placeholder",
   "description": "Provides a drop target for components",
   "hidden": true,

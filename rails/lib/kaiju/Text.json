@@ -1,5 +1,6 @@
 {
   "name": "Text",
+  "library": "kaiju",
   "display": "Text",
   "description": "Provides editable text",
   "group": "Atoms::Other",
