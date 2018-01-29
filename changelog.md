@@ -1,7 +1,12 @@
+## January 28th, 2018
+### Added
+- Clicking a selected component while holding ctrl/cmd will select the parent
+  - See [guide](/guide) for a visual example
+
 ## January 25th, 2018
 ### Added
 - [A help guide](/guide) (Accessible under the help menu dropdown)
-- A keyboard shortcut for duplicating the selected component (ctrl+d)
+- A keyboard shortcut for duplicating the selected component (ctrl-d/⌘-d)
 
 ## January 19th, 2018
 ### Added
