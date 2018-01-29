@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ajax from 'superagent';
 import { Modal } from 'antd';
 import { connect } from 'react-redux';
 import MenuItem from '../../components/Menu/MenuItem/MenuItem';
+import axios from '../../../../utilities/axios';
 
 const propTypes = {
   projectUrl: PropTypes.string,
@@ -23,10 +23,9 @@ class DeleteMenuItem extends React.Component {
   }
 
   handleConfirm() {
-    ajax
+    axios
       .delete(this.props.projectUrl)
-      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-      .end(() => {
+      .then(() => {
         window.location = '/';
       });
   }

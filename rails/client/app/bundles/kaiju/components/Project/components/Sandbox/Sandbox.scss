@@ -1,38 +1,47 @@
-.kaiju-Sandbox {
-  display: flex;
-  flex: auto;
-  flex-direction: column;
-}
+:local {
+  .content {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    padding: 20px 20px 0;
+  }
 
-.kaiju-Sandbox-iframe {
-  background-color: var(--kaiju-theme-font-color, #fff);
-  border: 0;
-  box-shadow: 0 0 10px 0 #000;
-  flex: auto;
-  margin: 0 auto;
-  max-width: 100%;
-  min-height: 0;
-  overflow: auto;
-  transition: width 0.5s ease-in-out;
-  width: 100%;
-}
+  .sandbox {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+  }
 
-.kaiju-Sandbox--tiny {
-  width: 544px;
-}
+  .iframe {
+    background-color: var(--kaiju-theme-font-color, #fff);
+    border: 0;
+    box-shadow: 0 0 10px 0 #000;
+    flex: auto;
+    margin: 0 auto;
+    max-width: 100%;
+    min-height: 0;
+    overflow: auto;
+    transition: width 0.5s ease-in-out;
+    width: 100%;
+  }
 
-.kaiju-Sandbox--small {
-  width: 768px;
-}
+  .tiny {
+    width: 544px;
+  }
 
-.kaiju-Sandbox--medium {
-  width: 992px;
-}
+  .small {
+    width: 768px;
+  }
 
-.kaiju-Sandbox--large {
-  width: 1216px;
-}
+  .medium {
+    width: 992px;
+  }
 
-.kaiju-Sandbox--huge {
-  width: 1440px;
+  .large {
+    width: 1216px;
+  }
+
+  .huge {
+    width: 1440px;
+  }
 }

@@ -1,10 +1,10 @@
 import Mousetrap from 'mousetrap';
-import ajax from 'superagent';
 import { camelizeKeys } from 'humps';
 import { collectGarbage, refreshStore, selectComponent, updateProperty } from '../actions/actions';
 import { flattenComponent, serializeComponent, serializeObject } from './normalizer';
 import { addHighlight, removeHighlight } from './highlight';
 import { addOverlay } from './overlay';
+import axios from '../../../utilities/axios';
 
 /**
  * Registers a dispatcher to a store
@@ -45,10 +45,19 @@ const registerDispatcher = (store, root) => {
   const getSelectedComponent = () => store.getState().selectedComponent;
 
   /**
+   * Fetches the target component from the dom.
+   * @param {string} id - The target component identifier.
+   * @return {node|null} - The dom node. Null if not found.
+   */
+  const findComponentById = id => (
+    document.querySelectorAll(`[data-kaiju-component-id="${id}"]`)[0]
+  );
+
+  /**
    * Adds and overlay to the selected component
    */
   const addSelectedOverlay = () => {
-    addOverlay(document.querySelectorAll(`[data-kaiju-component-id="${getSelectedComponent()}"]`)[0]);
+    addOverlay(findComponentById(getSelectedComponent()));
   };
 
   /**
@@ -73,37 +82,17 @@ const registerDispatcher = (store, root) => {
   const dispatch = (action) => { store.dispatch(action); };
 
   /**
-   * Handles a server error
-   */
-  const handleError = () => {
-    window.parent.location.reload();
-  };
-
-  /**
-   * Queries the DOM for the csrf-token
-   * @return {String} - The csrf-token
-   */
-  const getToken = () => (
-    document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-  );
-
-  /**
    * Puts a request
    * @param {String} url - The request URL
    * @param {Object} data - Data to send down with the request
    * @param {Function} callback - Callback function invoked on put completion
    */
   const put = (url, data, callback) => {
-    ajax
-      .put(url)
-      .set('Accept', 'application/json')
-      .set('X-CSRF-Token', getToken())
-      .send(data)
-      .end((error, { text }) => {
-        if (error) {
-          handleError(error);
-        } else if (callback) {
-          callback(JSON.parse(text));
+    axios
+      .put(url, data)
+      .then((response) => {
+        if (callback) {
+          callback(response.data);
         }
       });
   };
@@ -124,20 +113,15 @@ const registerDispatcher = (store, root) => {
    * @param {String} target - Optional target identifier to set as selected
    */
   const refresh = (id, target) => {
-    ajax
+    axios
       .get(fetch(id).url)
-      .set('Accept', 'application/json')
-      .end((error, { text }) => {
-        if (error) {
-          handleError(error);
+      .then(({ data }) => {
+        dispatch(refreshStore(id, flattenComponent(camelizeKeys(data))));
+        dispatch(collectGarbage(root));
+        if (fetch(target || getSelectedComponent())) {
+          select(fetch(target || getSelectedComponent()).id);
         } else {
-          dispatch(refreshStore(id, flattenComponent(camelizeKeys(JSON.parse(text)))));
-          dispatch(collectGarbage(root));
-          if (fetch(target || getSelectedComponent())) {
-            select(fetch(target || getSelectedComponent()).id);
-          } else {
-            select(null);
-          }
+          select(null);
         }
       });
   };
@@ -162,16 +146,11 @@ const registerDispatcher = (store, root) => {
     const targetUrl = target.id === root ? target.properties.children.url : target.propertyUrl;
     lastDestroyed = serialize(target);
 
-    ajax
-    .delete(targetUrl)
-    .set('X-CSRF-Token', getToken())
-    .end((error) => {
-      if (error) {
-        handleError(error);
-      } else {
+    axios
+      .delete(targetUrl)
+      .then(() => {
         refresh(parent);
-      }
-    });
+      });
   };
 
   /**
@@ -183,23 +162,19 @@ const registerDispatcher = (store, root) => {
     if (target.insertAfterUrl) {
       const properties = serialize(target);
       put(target.insertAfterUrl, { value: properties }, () => refresh(target.parent));
-    } else {
-      // eslint-disable-next-line no-console
-      console.warn('Non-Array Element requested duplication');
     }
   };
 
   const duplicateProperty = (id, property) => {
-    ajax
-    .put(property.insertAfterUrl)
-    .set('Accept', 'application/json')
-    .set('X-CSRF-Token', getToken())
-    .send({ value: serializeObject(store.getState().components, property, fetch(id).properties) })
-    .end(() => {
-      refresh(id);
-    });
-  };
+    const components = store.getState().components;
+    const data = { value: serializeObject(components, property, fetch(id).properties) };
 
+    axios
+      .put(property.insertAfterUrl, data)
+      .then(() => {
+        refresh(id);
+      });
+  };
 
   /**
    * Inserts a component before a target
@@ -249,10 +224,13 @@ const registerDispatcher = (store, root) => {
   };
 
   /**
-   * Posts a message to the parent window requesting an undo
+   * Posts a message to the parent window requesting an undo.
+   * @return {boolean} - False.
+   * Returning false will prevent default actions for events bound using mousetrap.
    */
   const undo = () => {
     post({ message: 'kaiju-undo' });
+    return false;
   };
 
   /**
@@ -336,13 +314,69 @@ const registerDispatcher = (store, root) => {
     }
   };
 
+  /**
+   * Checks if the coordinate is within the selected component.
+   * @param {float} x - The x coordinate.
+   * @param {float} y - The y coordinate.
+   * @return {boolean} - true if the coordinate is within the selected component.
+   */
+  const isInside = (x, y) => {
+    const selectedComponent = findComponentById(getSelectedComponent());
+
+    if (!selectedComponent) {
+      return false;
+    }
+
+    const { left, right, top, bottom } = selectedComponent.getBoundingClientRect();
+    if (x >= left && x <= right && y >= top && y <= bottom) {
+      return true;
+    }
+
+    return false;
+  };
+
+  /**
+   * Finds the closest registered component from the starting location.
+   * @param {node} start - The starting node.
+   * @return {string} - The closest registered node indentifier.
+   */
+  const findClosest = (start) => {
+    let node = start;
+    while (node.hasAttribute('data-kaiju-component-id') === false) {
+      node = node.parentNode;
+    }
+    return node.getAttribute('data-kaiju-component-id');
+  };
+
+  /**
+   * Selects a registered component.
+   * @param {event} event - The triggering event.
+   */
+  const selectTarget = (event) => {
+    let target = null;
+    const { clientX, clientY, ctrlKey, metaKey } = event;
+
+    if (isInside(clientX, clientY) && (ctrlKey || metaKey)) {
+      const { id, parent } = fetch(getSelectedComponent());
+      target = parent || id;
+    } else {
+      target = findClosest(event.target);
+    }
+
+    select(target);
+    post({ message: 'kaiju-component-selected', id: target });
+  };
+
   postUpdate();
   Mousetrap.bind(['esc'], () => select(null));
-  Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
   Mousetrap.bind(['command+c', 'ctrl+c'], copy);
   Mousetrap.bind(['command+v', 'ctrl+v'], paste);
   Mousetrap.bind(['command+z', 'ctrl+z'], undo);
   Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], redo);
+  Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
+  Mousetrap.bind(['command+d', 'ctrl+d'], () => { duplicate(getSelectedComponent()); return false; });
+
+  window.addEventListener('click', selectTarget);
   window.addEventListener('message', dispatchMessage);
 };
 

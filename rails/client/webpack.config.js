@@ -27,6 +27,7 @@ const config = {
     attributes: './app/bundles/kaiju/startup/attributesRegistration',
     code: './app/bundles/kaiju/startup/codeRegistration',
     component: './app/bundles/kaiju/startup/componentRegistration',
+    guide: './app/bundles/kaiju/startup/guideRegistration',
     launch: './app/bundles/kaiju/startup/launchPageRegistration',
     preview: [
       './app/bundles/kaiju/startup/previewRegistration',
@@ -99,7 +100,7 @@ const config = {
             options: {
               sourceMap: true,
               importLoaders: 2,
-              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+              localIdentName: '[name]_[local]_[hash:base64:5]',
             },
           },
           {

@@ -1,7 +1,106 @@
-:local {
-  .spinner {
+// This CSS is a modified mirror of ant/spin.
+// Adding these styles manually to avoid the global reset styles pulled in through ant less.
+
+.ant-spin {
+  color: #1db954;
+  display: none;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+  vertical-align: middle;
+
+  &-spinning {
+    display: inline-block;
+    opacity: 1;
+    position: static;
+  }
+
+  // dots
+  // ------------------------------
+
+  &-dot {
+    animation: antRotate 1.2s infinite linear;
+    display: inline-block;
+    height: 20px;
+    position: relative;
+    transform: rotate(45deg);
+    width: 20px;
+
     i {
-      background-color: var(--kaiju-theme-color, #1db954);
+      animation: antSpinMove 1s infinite linear alternate;
+      background-color: #1db954;
+      border-radius: 100%;
+      display: block;
+      height: 9px;
+      opacity: 0.3;
+      position: absolute;
+      transform: scale(0.75);
+      transform-origin: 50% 50%;
+      width: 9px;
+
+      &:nth-child(1) {
+        left: 0;
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        animation-delay: 0.4s;
+        right: 0;
+        top: 0;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.8s;
+        bottom: 0;
+        right: 0;
+      }
+
+      &:nth-child(4) {
+        animation-delay: 1.2s;
+        bottom: 0;
+        left: 0;
+      }
     }
+  }
+
+  // Sizes
+  // ------------------------------
+  // small
+  &-sm &-dot {
+    height: 14px;
+    width: 14px;
+
+    i {
+      height: 6px;
+      width: 6px;
+    }
+  }
+
+  // large
+  &-lg &-dot {
+    height: 32px;
+    width: 32px;
+
+    i {
+      height: 14px;
+      width: 14px;
+    }
+  }
+
+  &-show-text &-text {
+    display: block;
+  }
+}
+
+@keyframes antSpinMove {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes antRotate {
+  to {
+    transform: rotate(405deg);
   }
 }

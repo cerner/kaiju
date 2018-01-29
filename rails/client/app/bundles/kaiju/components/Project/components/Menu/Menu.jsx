@@ -32,6 +32,11 @@ const Menu = ({ children, ...customProps }) => (
       Help
       <SubMenu>
         <MenuItem>
+          <a href="/guide" target="_blank" rel="noopener noreferrer">
+            Guide
+          </a>
+        </MenuItem>
+        <MenuItem>
           <a href="https://github.com/cerner/kaiju" target="_blank" rel="noopener noreferrer">
             Contribute
           </a>

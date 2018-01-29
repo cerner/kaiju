@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { Modal, Icon, Input, Tooltip } from 'antd';
 import { connect } from 'react-redux';
-import ajax from 'superagent';
 import classNames from 'classnames';
 import MenuItem from '../../components/Menu/MenuItem/MenuItem';
+import axios from '../../../../utilities/axios';
 
 const propTypes = {
   collaborationInvitation: PropTypes.string,
@@ -24,11 +24,11 @@ class ShareMenuItem extends React.Component {
   }
 
   showModal() {
-    ajax
-    .get(this.props.collaborationInvitation)
-    .end((error, { text }) => {
-      this.setState({ isOpen: true, shareUrl: JSON.parse(text).url, copied: false });
-    });
+    axios
+      .get(this.props.collaborationInvitation)
+      .then(({ data }) => {
+        this.setState({ isOpen: true, shareUrl: data.url, copied: false });
+      });
   }
 
   render() {

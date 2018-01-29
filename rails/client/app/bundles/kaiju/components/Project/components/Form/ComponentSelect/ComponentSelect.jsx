@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TreeSelect } from 'antd';
-import ajax from 'superagent';
 import { refresh } from '../../../utilities/messenger';
+import axios from '../../../../../utilities/axios';
 import './ComponentSelect.scss';
 
 const propTypes = {
@@ -22,11 +22,9 @@ const propTypes = {
 
 const ComponentSelect = ({ components, id, url }) => {
   const onChange = (value) => {
-    ajax
-      .put(url)
-      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-      .send({ value: { type: value } })
-      .end(() => {
+    axios
+      .put(url, { value: { type: value } })
+      .then(() => {
         refresh(id);
       });
   };

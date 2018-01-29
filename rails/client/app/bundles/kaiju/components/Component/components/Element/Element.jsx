@@ -24,7 +24,6 @@ class Element extends React.Component {
   constructor(props) {
     super(props);
     this.register = this.register.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -35,22 +34,14 @@ class Element extends React.Component {
     this.register();
   }
 
-  handleClick(event) {
-    event.stopPropagation();
-    window.postMessage({ message: 'kaiju-select', id: this.props.kaijuId }, '*');
-    window.parent.postMessage({ message: 'kaiju-component-selected', id: this.props.kaijuId }, '*');
-  }
-
   register() {
     // eslint-disable-next-line react/no-find-dom-node
     const node = ReactDOM.findDOMNode(this);
     const { kaijuId, kaijuType, kaijuSortable } = this.props;
 
-    node.removeEventListener('click', this.handleClick);
     node.setAttribute('data-kaiju-component-id', kaijuId);
     node.setAttribute('data-kaiju-component-type', kaijuType);
     node.setAttribute('draggable', kaijuType !== 'kaiju::Placeholder' && kaijuType !== 'kaiju::Workspace');
-    node.addEventListener('click', this.handleClick);
 
     if (kaijuSortable) {
       node.setAttribute('data-kaiju-sortable', true);

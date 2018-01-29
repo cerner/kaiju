@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ajax from 'superagent';
 import classNames from 'classnames';
 import marked from 'marked';
 import { Icon, Popover } from 'antd';
+import axios from '../../../../utilities/axios';
 import changelog from '../../../../../../../../../changelog.md';
 import './Changelog.scss';
 
@@ -36,12 +36,9 @@ const Changelog = ({ changelogViewedUrl, viewed, onClick }) => {
    */
   const toggleChangelog = () => {
     if (viewed) { return; }
-    ajax
-      .put(changelogViewedUrl)
-      .set('Accept', 'application/json')
-      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-      .send({ changelog_viewed: true })
-      .end(() => {
+    axios
+      .put(changelogViewedUrl, { changelog_viewed: true })
+      .then(() => {
         if (onClick) {
           onClick();
         }
@@ -49,7 +46,7 @@ const Changelog = ({ changelogViewedUrl, viewed, onClick }) => {
   };
 
   return (
-    <Popover title="What's new" trigger="click" content={content}>
+    <Popover title="What's new" trigger="click" content={content} placement="bottomRight">
       <div className={classes} onClick={toggleChangelog} role="presentation">
         <Icon type="gift" className="kaiju-Changelog-giftIcon" />
       </div>

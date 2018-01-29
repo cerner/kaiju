@@ -1,0 +1,32 @@
+:local {
+  .alert {
+    color: #000;
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .icon {
+    color: #fff;
+    fill: #111;
+    font-size: 1.5rem;
+  }
+
+  .indicator {
+    align-items: center;
+    background-color: #02bb4f;
+    display: flex;
+    padding: 8px 12px;
+  }
+
+  .message {
+    align-items: center;
+    background-color: #cdffe2;
+    display: flex;
+    flex: 1 1 auto;
+    padding-left: 10px;
+  }
+
+  .title {
+    margin-right: 0.5rem;
+  }
+}

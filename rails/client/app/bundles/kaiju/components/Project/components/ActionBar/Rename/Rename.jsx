@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Icon, Input } from 'antd';
-import ajax from 'superagent';
+import axios from '../../../../../utilities/axios';
 import './Rename.scss';
 
 const propTypes = {
@@ -57,11 +57,9 @@ class Rename extends React.Component {
    * Saves the name to the database
    */
   handleSave() {
-    ajax
-      .put(this.props.renameUrl)
-      .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-      .send({ name: this.state.name })
-      .end(() => {
+    axios
+      .put(this.props.renameUrl, { name: this.state.name })
+      .then(() => {
         this.setState({ isOpen: false });
         this.props.onRename(this.state.name);
       });

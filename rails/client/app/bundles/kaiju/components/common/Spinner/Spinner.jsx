@@ -1,12 +1,9 @@
 import React from 'react';
-import { Spin } from 'antd';
-import classNames from 'classnames/bind';
-import styles from './Spinner.scss';
-
-const cx = classNames.bind(styles);
+import Spin from 'antd/lib/spin';
+import './Spinner.scss';
 
 const Spinner = () => (
-  <Spin className={cx('spinner')} size="large" />
+  <Spin size="large" />
 );
 
 export default Spinner;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ajax from 'superagent';
+import axios from '../../../../utilities/axios';
 import Button from '../../../common/Button/Button';
 import SearchBar from '../../../common/SearchBar/SearchBar';
 import SelectableGrid from '../../../common/SelectableGrid/SelectableGrid';
@@ -14,11 +14,10 @@ const propTypes = {
 
 const StoryBoard = ({ project, addWorkspace, workspaces }) => {
   function createNewWorkspace() {
-    ajax
+    axios
      .post(project.workspacesUrl)
-     .set('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
-     .end((error, { text }) => {
-       addWorkspace(JSON.parse(text));
+     .then(({ data }) => {
+       addWorkspace(data);
      });
   }
 

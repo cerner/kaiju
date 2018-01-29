@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ajax from 'superagent';
 import classNames from 'classnames/bind';
 import { camelizeKeys } from 'humps';
 import { Icon, Input, Modal, Select } from 'antd';
 import { serializeComponent } from '../../../../Component/utilities/normalizer';
+import axios from '../../../../../utilities/axios';
 import Magician from '../../../../common/Magician/Magician';
 import Spinner from '../../../../common/Spinner/Spinner';
 import styles from './Duplicate.scss';
@@ -43,14 +43,6 @@ const propTypes = {
 };
 
 class Duplicate extends React.Component {
-  /**
-   * Returns the CSRF Token.
-   * @return {String} - CSRF Token.
-   */
-  static getToken() {
-    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  }
-
   constructor(props) {
     super(props);
 
@@ -85,12 +77,10 @@ class Duplicate extends React.Component {
    * Creates a new project.
    */
   createProject() {
-    ajax
+    axios
       .post(this.props.projectsUrl)
-      .set('X-CSRF-Token', Duplicate.getToken())
-      .end((error, { text }) => {
-        const workspacesUrl = JSON.parse(text).workspaces_url;
-        this.duplicate(workspacesUrl);
+      .then(({ data }) => {
+        this.duplicate(data.workspaces_url);
       });
   }
 
@@ -102,14 +92,11 @@ class Duplicate extends React.Component {
     const { components, name, projectId, root } = this.props;
 
     const duplicateWorkspace = serializeComponent(components, components[root]);
+    const data = { workspace: { name: this.state.name, component: duplicateWorkspace } };
 
-    ajax
-     .post(url)
-     .set('X-CSRF-Token', Duplicate.getToken())
-     .send({ workspace: { name: this.state.name, component: duplicateWorkspace } })
-     .end((error, { text }) => {
-       const workspace = JSON.parse(text);
-
+    axios
+     .post(url, data)
+     .then(({ data: workspace }) => {
        // Add a workspace to the already open project.
        if (workspace.url.includes(projectId)) {
          this.props.addWorkspace(workspace);
@@ -178,12 +165,11 @@ class Duplicate extends React.Component {
     // The input can only be selected when the modal has finished animating.
     setTimeout(() => { this.input.refs.input.select(); }, 200);
 
-    ajax
+    axios
      .get(this.props.projectsUrl)
-     .set('Accept', 'application/json')
-     .end((error, { text }) => {
+     .then(({ data }) => {
        const { projectId, projectType } = this.props;
-       const projects = camelizeKeys(JSON.parse(text))
+       const projects = camelizeKeys(data)
          .filter(({ type }) => type === projectType)
          .reduce((object, project) => (
            { ...object, [project.id]: project }
