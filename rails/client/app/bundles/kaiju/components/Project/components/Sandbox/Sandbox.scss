@@ -6,6 +6,14 @@
     padding: 20px 20px 0;
   }
 
+  .container {
+    display: flex;
+    flex: auto;
+    justify-content: center;
+    overflow: auto;
+    position: relative;
+  }
+
   .sandbox {
     display: flex;
     flex: auto;
@@ -17,10 +25,11 @@
     border: 0;
     box-shadow: 0 0 10px 0 #000;
     flex: auto;
-    margin: 0 auto;
-    max-width: 100%;
-    min-height: 0;
-    overflow: auto;
+    height: 100%;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
     transition: width 0.5s ease-in-out;
     width: 100%;
   }

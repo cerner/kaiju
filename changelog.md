@@ -1,3 +1,7 @@
+## February 1st, 2018
+### Fixed
+- Workspace resizing to enable larger breakpoint resizes
+
 ## January 28th, 2018
 ### Added
 - Clicking a selected component while holding ctrl/cmd will select the parent
