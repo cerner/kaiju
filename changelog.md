@@ -1,6 +1,6 @@
 ## February 1st, 2018
 ### Fixed
-- Workspace resizing to enable larger breakpoint resizes
+- Workspaces can be resized to any breakpoint regardless of screen size
 
 ## January 28th, 2018
 ### Added
