@@ -53,12 +53,14 @@ class Sandbox extends React.Component {
       <div className={cx('sandbox')}>
         { !workspace.isEditable && <Alert title="Read-only view." description="You are not authorized to edit this workspace." /> }
         <div className={cx('content')}>
-          <iframe
-            id="kaiju-Sandbox-iframe"
-            className={cx('iframe', canvasSize)}
-            src={workspace.component.url}
-            title="sandbox"
-          />
+          <div className={cx('container')}>
+            <iframe
+              id="kaiju-Sandbox-iframe"
+              className={cx('iframe', canvasSize)}
+              src={workspace.component.url}
+              title="sandbox"
+            />
+          </div>
           <ActionBar
             canvasSize={canvasSize}
             onDelete={onDelete}
