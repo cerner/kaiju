@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import marked from 'marked';
 import { Icon, Popover } from 'antd';
 import axios from '../../../../utilities/axios';
-import changelog from '../../../../../../../../../changelog.md';
+import changelog from '../../../../../../../../changelog.md';
 import './Changelog.scss';
 
 const propTypes = {
