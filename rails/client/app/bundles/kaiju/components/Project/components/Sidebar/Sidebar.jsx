@@ -38,8 +38,7 @@ class Sidebar extends React.Component {
    */
   handleMouseDown() {
     // Disable user selection and pointer events to prevent interference during resizing.
-    document.body.style.userSelect = 'none';
-    document.body.style.pointerEvents = 'none';
+    document.body.className += cx('inactive');
 
     window.addEventListener('mousemove', this.handleMouseMove);
     window.addEventListener('mouseup', this.handleMouseUp);
@@ -66,8 +65,7 @@ class Sidebar extends React.Component {
    */
   handleMouseUp() {
     // Re-enable user selection and pointer events.
-    document.body.style.userSelect = '';
-    document.body.style.pointerEvents = '';
+    document.body.className = '';
     document.documentElement.style.cursor = '';
 
     window.removeEventListener('mousemove', this.handleMouseMove);

@@ -6,6 +6,11 @@
     overflow: hidden;
   }
 
+  .inactive {
+    pointer-events: none;
+    user-select: none;
+  }
+
   .layers {
     display: flex;
     flex: 1 1;
