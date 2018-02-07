@@ -75,7 +75,12 @@ class Sidebar extends React.Component {
   /**
    * Handles the initiation of horizontally resizing the sidebar.
    */
-  handleHorizontalResize() {
+  handleHorizontalResize(event) {
+    // Only accept left mouse clicks.
+    if (event.button > 1) {
+      return;
+    }
+
     // Persists the horizontal resize cursor for the duration of the action.
     // Without this the cursor will default back to a pointer during a resize action.
     document.documentElement.style.cursor = 'ew-resize';
@@ -88,6 +93,11 @@ class Sidebar extends React.Component {
    * Handles the initiation of vertically resizing the layers.
    */
   handleVerticalResize(event) {
+    // Only accept left mouse clicks.
+    if (event.button > 1) {
+      return;
+    }
+
     const { top } = event.target.getBoundingClientRect();
 
     // The offset provides a "center-of-gravity" drag interaction.
