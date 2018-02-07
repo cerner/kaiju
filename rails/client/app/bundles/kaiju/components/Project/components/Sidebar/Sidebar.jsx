@@ -61,7 +61,7 @@ class Sidebar extends React.Component {
   }
 
   /**
-   * Handles the mouse up event. Restoring previous document interactions.
+   * Handles the mouse up event. Restores previous document interactions.
    */
   handleMouseUp() {
     // Re-enable user selection and pointer events.
