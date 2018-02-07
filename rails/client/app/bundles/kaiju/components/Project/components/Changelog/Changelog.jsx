@@ -46,7 +46,7 @@ const Changelog = ({ changelogViewedUrl, viewed, onClick }) => {
   };
 
   return (
-    <Popover title="What's new" trigger="click" content={content} placement="bottomRight">
+    <Popover title="What's New" trigger="click" content={content} placement="bottomRight">
       <div className={classes} onClick={toggleChangelog} role="presentation">
         <Icon type="gift" className="kaiju-Changelog-giftIcon" />
       </div>
