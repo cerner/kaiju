@@ -87,7 +87,7 @@ class Sidebar extends React.Component {
   }
 
   /**
-   * Handles the initiation of vertically resizing the sidebar.
+   * Handles the initiation of vertically resizing the layers.
    */
   handleVerticalResize(event) {
     const { top } = event.target.getBoundingClientRect();
