@@ -1,6 +1,6 @@
 ## February 7th, 2018
 ### Added
-- Ability to resize the sidebar and layers
+- Ability to resize the component library and layers sections
 
 ### Fixed
 - Workspaces can be resized to any breakpoint regardless of screen size
