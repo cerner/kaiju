@@ -22,8 +22,8 @@ class Sidebar extends React.Component {
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
-    this.handleHorizontalResize = this.handleHorizontalResize.bind(this);
     this.handleVerticalResize = this.handleVerticalResize.bind(this);
+    this.handleHorizontalResize = this.handleHorizontalResize.bind(this);
   }
 
   /**
@@ -54,6 +54,7 @@ class Sidebar extends React.Component {
 
     if (this.state.vertical) {
       const { top } = this.target.getBoundingClientRect();
+      // The offset provides a "center-of-gravity" drag interaction.
       this.setState({ height: `${(clientY - top) - this.offset}px` });
     } else {
       this.setState({ width: clientX });
