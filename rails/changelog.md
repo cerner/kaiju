@@ -1,4 +1,7 @@
-## February 1st, 2018
+## February 8th, 2018
+### Added
+- Icon previews within the component search
+
 ### Fixed
 - Workspaces can be resized to any breakpoint regardless of screen size
 
