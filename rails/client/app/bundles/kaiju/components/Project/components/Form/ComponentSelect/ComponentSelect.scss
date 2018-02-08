@@ -1,13 +1,15 @@
-.kaiju-ComponentSelect {
-  width: 100%;
-}
+:local {
+  .icon {
+    margin-right: 5px;
+  }
 
-// Custom ant styles
-// stylelint-disable
-.ant-select-selection__placeholder {
-  color: #bbb;
-}
+  .select {
+    width: 100%;
+  }
 
-.ant-select-tree-switcher {
-  display: none !important;
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
