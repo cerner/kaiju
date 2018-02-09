@@ -37,6 +37,12 @@ class Element extends React.Component {
   register() {
     // eslint-disable-next-line react/no-find-dom-node
     const node = ReactDOM.findDOMNode(this);
+
+    // Some components are conditionally rendered into the dom.
+    if (!node) {
+      return;
+    }
+
     const { kaijuId, kaijuType, kaijuSortable } = this.props;
 
     node.setAttribute('data-kaiju-component-id', kaijuId);
