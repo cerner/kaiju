@@ -1,26 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import iconMap from 'terra-kaiju-plugin/iconMap';
 import { TreeSelect } from 'antd';
 import { refresh } from '../../../utilities/messenger';
 import axios from '../../../../../utilities/axios';
-import './ComponentSelect.scss';
+import styles from './ComponentSelect.scss';
+
+const cx = classNames.bind(styles);
+const TreeNode = TreeSelect.TreeNode;
 
 const propTypes = {
   /**
-   * The availe reference components
+   * The available reference components.
    */
   components: PropTypes.array,
   /**
-   * The component identifier
+   * The component identifier.
    */
   id: PropTypes.string,
   /**
-   * The component property url
+   * The component property url.
    */
   url: PropTypes.string,
 };
 
 const ComponentSelect = ({ components, id, url }) => {
+  /**
+   * Replaces the current component with the selected value.
+   * @param {string} value - The selected option value.
+   */
   const onChange = (value) => {
     axios
       .put(url, { value: { type: value } })
@@ -29,27 +38,46 @@ const ComponentSelect = ({ components, id, url }) => {
       });
   };
 
-  const generateTreeView = (group) => {
-    const children = group.children.map((item) => {
-      if (item.children) {
-        return generateTreeView(item);
-      }
-      const { display, library, name } = item;
-      return <TreeSelect.TreeNode key={`${library}::${name}`} title={display || name} value={`${library}::${name}`} />;
-    });
-    return <TreeSelect.TreeNode key={group.display} title={group.display} disabled>{children}</TreeSelect.TreeNode>;
+  /**
+   * Filters the available select options.
+   * @param {string} input - The search input.
+   * @param {node} option - React Select.Option.
+   */
+  const filterNodes = (input, option) => {
+    const value = option.props.value;
+    return value && value.toLowerCase().includes(input.toLowerCase());
   };
+
+  /**
+   * Generates a TreeSelect from the available reference components.
+   * @param {array} data - Tree data.
+   */
+  const generateTreeView = (data) => {
+    const nodes = data.children.map((child) => {
+      const { children, display, library, name } = child;
+      if (children) {
+        return generateTreeView(child);
+      }
+
+      const Icon = iconMap[name];
+      const value = `${library}::${name}`;
+      const title = <div className={cx('title')}>{Icon && <Icon className={cx('icon')} />}{display || name}</div>;
+      return <TreeNode key={value} value={value} title={title} />;
+    });
+
+    return <TreeNode key={data.display} title={data.display} selectable={false}>{nodes}</TreeNode>;
+  };
+
 
   return (
     <TreeSelect
-      className="kaiju-ComponentSelect"
-      showSearch
+      className={cx('select')}
+      dropdownStyle={{ maxHeight: 300 }}
+      filterTreeNode={filterNodes}
       placeholder="Select component"
-      allowClear
-      dropdownStyle={{ maxHeight: 300, overflow: 'auto' }}
       onChange={onChange}
+      showSearch
       treeDefaultExpandAll
-      filterTreeNode={(input, option) => option.props.title.toLowerCase().includes(input.toLowerCase())}
     >
       {components.map(component => generateTreeView(component))}
     </TreeSelect>

@@ -1,24 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import iconMap from 'terra-kaiju-plugin/iconMap';
 import { Icon, Tooltip } from 'antd';
 import { select } from '../../utilities/messenger';
-import './DraggableItem.scss';
+import styles from './DraggableItem.scss';
+
+const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * Description text
+   * Description text.
    */
   description: PropTypes.string,
   /**
-   * Display text
+   * Display text.
    */
   display: PropTypes.string,
   /**
-   * The component library
+   * The component library.
    */
   library: PropTypes.string,
   /**
-   * The component name
+   * The component name.
    */
   name: PropTypes.string,
 };
@@ -32,12 +36,14 @@ const DraggableItem = ({ display, description, library, name }) => {
     event.dataTransfer.setData('text', JSON.stringify({ type: `${library}::${name}` }));
   }
 
+  const IconType = iconMap[name];
+
   return (
-    <li className="kaiju-DraggableItem" draggable onDragStart={handleDragStart}>
-      <span className="kaiju-DraggableItem-text">
-        {display}
+    <li className={cx('item')} draggable onDragStart={handleDragStart}>
+      <span className={cx('display')}>
+        {IconType && <IconType className={cx('icon')} />}{display}
       </span>
-      <span className="kaiju-DraggableItem-description">
+      <span className={cx('description')}>
         <Tooltip placement="right" title={description}>
           <Icon type="question-circle-o" />
         </Tooltip>
