@@ -1,6 +1,7 @@
-## February 7th, 2018
+## February 9th, 2018
 ### Added
 - Ability to resize the component library and layers section
+- Icon previews within the component library and search
 
 ### Fixed
 - Workspaces can be resized to any breakpoint regardless of screen size
