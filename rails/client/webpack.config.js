@@ -1,7 +1,3 @@
-// For inspiration on your webpack configuration, see:
-// https://github.com/shakacode/react_on_rails/tree/master/spec/dummy/client
-// https://github.com/shakacode/react-webpack-rails-tutorial/tree/master/client
-
 const webpack = require('webpack');
 const path = require('path');
 
@@ -12,6 +8,7 @@ const i18nSupportedLocales = require('terra-i18n/lib/i18nSupportedLocales');
 
 const Autoprefixer = require('autoprefixer');
 const CustomProperties = require('postcss-custom-properties');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const GatherDependencies = require('./plugins/gather-dependencies');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
@@ -59,17 +56,15 @@ const config = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    // new webpack.EnvironmentPlugin({
-    //   NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
-    //   DEBUG: false,
-    // }),
     new ManifestPlugin({ publicPath: output.publicPath, writeToFileEmit: true }),
     new I18nAggregatorPlugin({
       baseDirectory: __dirname,
       supportedLocales: i18nSupportedLocales,
     }),
     new webpack.NamedChunksPlugin(),
-    // new webpack.optimize.UglifyJsPlugin({ sourceMap: true, minimize: true }),
+    new ExtractTextPlugin({
+      filename: '[name]-[hash].css',
+    }),
   ],
 
   module: {
@@ -91,41 +86,41 @@ const config = {
       },
       {
         test: /\.(scss|css)$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              importLoaders: 2,
-              localIdentName: '[name]_[local]_[hash:base64:5]',
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins() {
-                return [
-                  Autoprefixer({
-                    browsers: [
-                      'ie >= 10',
-                      'last 2 versions',
-                      'last 2 android versions',
-                      'last 2 and_chr versions',
-                      'iOS >= 8',
-                    ],
-                  }),
-                  CustomProperties(),
-                ];
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                importLoaders: 2,
+                localIdentName: '[name]_[local]_[hash:base64:5]',
               },
             },
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins() {
+                  return [
+                    Autoprefixer({
+                      browsers: [
+                        'ie >= 10',
+                        'last 2 versions',
+                        'last 2 android versions',
+                        'last 2 and_chr versions',
+                        'iOS >= 8',
+                      ],
+                    }),
+                    CustomProperties(),
+                  ];
+                },
+              },
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
+        }),
       },
     ],
   },
