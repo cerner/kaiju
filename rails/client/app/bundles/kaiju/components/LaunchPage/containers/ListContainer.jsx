@@ -6,11 +6,15 @@ import SelectableList from '../../common/SelectableList/SelectableList';
 
 const propTypes = {
   /**
-   * Child nodes
+   * Child nodes.
    */
   children: PropTypes.node,
   /**
-   * Callback function triggered when a list item is selected
+   * The key of the selected list item.
+   */
+  defaultSelection: PropTypes.string,
+  /**
+   * Callback function triggered when a list item is selected.
    */
   onChange: PropTypes.func,
 };
@@ -25,8 +29,8 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const SelectionList = ({ children, onChange }) => (
-  <SelectableList defaultSelection="recentWorkspaces" onChange={onChange}>
+const SelectionList = ({ children, defaultSelection, onChange }) => (
+  <SelectableList defaultSelection={defaultSelection} onChange={onChange}>
     {children}
   </SelectableList>
 );
