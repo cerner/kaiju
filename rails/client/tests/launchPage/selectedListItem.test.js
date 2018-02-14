@@ -2,7 +2,7 @@ import reducer from '../../app/bundles/kaiju/components/LaunchPage/reducers/sele
 
 describe('selected list item reducer', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual('recentWorkspaces');
+    expect(reducer(undefined, {})).toEqual('projects');
   });
 
   it('should handle SET_SELECTED_LIST_ITEM by setting the selected list item', () => {
