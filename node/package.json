@@ -34,11 +34,11 @@
     "memory-fs": "^0.4.1",
     "node-cache": "^4.1.1",
     "pug": "^2.0.0-rc.4",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
-    "terra-kaiju-plugin": "0.6.0",
+    "terra-kaiju-plugin": "git+https://github.com/cerner/terra-kaiju-plugin.git#React16",
     "webpack": "^3.6.0"
   },
   "devDependencies": {
