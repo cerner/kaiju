@@ -47,6 +47,12 @@
   background-color: var(--kaiju-theme-background-color, #222);
 }
 
+// Globally updates the selection highlighting color.
+// TODO: Move this into a base theme file.
+*::selection {
+  background: var(--kaiju-theme-color, #1db954);
+}
+
 *::-webkit-scrollbar {
   border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(0,0,0,.3);
