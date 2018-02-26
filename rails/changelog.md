@@ -1,7 +1,10 @@
-## February 19th, 2018
+## February 25th, 2018
 ### Updated
 - Upgraded to React 16 Terra components
 - Upgraded Buttons to version 2. Pre-existing Buttons will need modification
+
+### Added
+- Read-Only link within share menu
 
 ## February 9th, 2018
 ### Added

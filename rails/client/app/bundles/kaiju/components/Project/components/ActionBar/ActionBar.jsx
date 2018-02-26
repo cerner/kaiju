@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import Mousetrap from 'mousetrap';
 import IconUndo from 'terra-icon/lib/icon/IconReply';
 import IconRedo from 'terra-icon/lib/icon/IconForward';
-import axios from '../../../../utilities/axios';
+import { Icon } from 'antd';
 import { copy, duplicate, destroy, paste, refresh, select } from '../../utilities/messenger';
+import axios from '../../../../utilities/axios';
 import ActionItem from './ActionItem/ActionItem';
 import Delete from './Delete/Delete';
 import Duplicate from '../../containers/DuplicateWorkspaceContainer';
@@ -158,7 +159,9 @@ class ActionBar extends React.Component {
           <ActionItem iconType="code-o" onClick={navigateToCode} title="Code" />
           <ActionItem iconType="bars" onClick={navigateToAttributes} title="Attributes" />
           <ActionItem title="Share">
-            <Share collaborationInvitation={collaborationInvitation} />
+            <Share collaborationInvitation={collaborationInvitation} readOnlyUrl={workspace.url} type="WORKSPACE">
+              <Icon type="share-alt" />
+            </Share>
           </ActionItem>
           <ActionItem iconType="eye-o" onClick={navigateToPreview} title="Preview" />
           <SizeControl onChange={onResize} selectedSize={canvasSize} />
