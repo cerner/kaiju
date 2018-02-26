@@ -1,6 +1,7 @@
 import React from 'react';
 import marked from 'marked';
 import classNames from 'classnames/bind';
+/* eslint-disable-next-line import/extensions */
 import 'github-markdown-css';
 import guide from '../../../../../../guide.md';
 import styles from './Guide.scss';
