@@ -4,7 +4,7 @@
 - Upgraded Buttons to version 2. Pre-existing Buttons will need modification
 
 ### Added
-- Read-Only link within share menu
+- Read-Only link within the share menu
 
 ## February 9th, 2018
 ### Added
