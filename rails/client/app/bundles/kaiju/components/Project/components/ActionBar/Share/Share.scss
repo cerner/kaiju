@@ -1,24 +1,45 @@
-.kaiju-Share {
-  // stylelint-disable-next-line
-  .ant-input-group-wrapper {
-    padding: 5px 0;
-    width: 100%;
+:local {
+  .description {
+    color: #999;
+    padding: 10px 0 5px;
   }
-}
 
-.kaiju-Share-clipboard {
-  transition: 0.5s ease-in-out;
+  .copy {
+    color: #f8f8f8;
+    padding: 4px 7px;
+  }
 
-  &.is-copied {
+  .info {
     color: var(--kaiju-theme-color, #1db954);
+    margin-top: 5px;
+  }
+
+  .title {
+    color: #fff;
+  }
+
+  .toggle {
+    color: #999;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: right;
+
+    &.is-edit {
+      margin-top: 0;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
-.kaiju-Share-info {
-  color: #999;
-  margin-bottom: 5px;
-}
-
-.kaiju-Share-title {
-  color: #bbb;
+// Custom ant style overrides.
+.ant-input-group-addon {
+  background-color: rgba(29, 185, 84, 0.5);
+  border-color: var(--kaiju-theme-color, #1db954);
+  border-left: 1px solid var(--kaiju-theme-color, #1db954) !important;
+  cursor: pointer;
+  padding: 0;
 }
