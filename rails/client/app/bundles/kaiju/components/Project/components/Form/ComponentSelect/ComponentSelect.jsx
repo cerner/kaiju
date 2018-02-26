@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import iconMap from 'terra-kaiju-plugin/iconMap';
 import { TreeSelect } from 'antd';
 import { refresh } from '../../../utilities/messenger';
+import { humanize } from '../../../../../utilities/utilities';
 import axios from '../../../../../utilities/axios';
 import styles from './ComponentSelect.scss';
 
@@ -45,7 +46,7 @@ const ComponentSelect = ({ components, id, url }) => {
    */
   const filterNodes = (input, option) => {
     const value = option.props.value;
-    return value && value.toLowerCase().includes(input.toLowerCase());
+    return value && humanize(value).toLowerCase().includes(input.toLowerCase());
   };
 
   /**
@@ -61,7 +62,7 @@ const ComponentSelect = ({ components, id, url }) => {
 
       const Icon = iconMap[name];
       const value = `${library}::${name}`;
-      const title = <div className={cx('title')}>{Icon && <Icon className={cx('icon')} />}{display || name}</div>;
+      const title = <div>{Icon && <Icon className={cx('icon')} />}{display || name}</div>;
       return <TreeNode key={value} value={value} title={title} />;
     });
 
