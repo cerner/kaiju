@@ -1,7 +1,8 @@
-## February 19th, 2018
+## February 25th, 2018
 ### Updated
 - Upgraded to React 16 Terra components
 - Upgraded Buttons to version 2. Pre-existing Buttons will need modification
+- Share dialog includes edit and read-only invitation links
 
 ## February 9th, 2018
 ### Added
