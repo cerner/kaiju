@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import ActionBar from '../ActionBar/ActionBar';
+import ActionBarContainer from '../../containers/ActionBarContainer';
 import Alert from '../../../common/Alert/Alert';
 import styles from './Sandbox.scss';
 
@@ -9,29 +9,17 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * The current canvas size
+   * The current canvas size.
    */
   canvasSize: PropTypes.string,
   /**
-   * Callback function triggered when the Workpsace is deleted
+   * The component URL.
    */
-  onDelete: PropTypes.func,
+  componentUrl: PropTypes.string,
   /**
-   * Callback function triggered when the Workpsace is renamed
+   * Whether the workspace is read-nly.
    */
-  onRename: PropTypes.func,
-  /**
-   * Callback function triggered when the canvas is resized
-   */
-  onResize: PropTypes.func,
-  /**
-   * The currently selected component
-   */
-  selectedComponent: PropTypes.object,
-  /**
-   * The current open Workspace
-   */
-  workspace: PropTypes.object,
+  isReadOnly: PropTypes.bool,
 };
 
 class Sandbox extends React.Component {
@@ -40,35 +28,26 @@ class Sandbox extends React.Component {
   }
 
   render() {
-    const {
-      canvasSize,
-      onDelete,
-      onRename,
-      onResize,
-      selectedComponent,
-      workspace,
-    } = this.props;
+    const { canvasSize, componentUrl, isReadOnly } = this.props;
 
     return (
       <div className={cx('sandbox')}>
-        { !workspace.isEditable && <Alert title="Read-only view." description="You are not authorized to edit this workspace." /> }
+        { isReadOnly &&
+          <Alert
+            title="Read-only view."
+            description="You are not authorized to edit this workspace."
+          />
+        }
         <div className={cx('content')}>
           <div className={cx('container')}>
             <iframe
               id="kaiju-Sandbox-iframe"
               className={cx('iframe', canvasSize)}
-              src={workspace.component.url}
+              src={componentUrl}
               title="sandbox"
             />
           </div>
-          <ActionBar
-            canvasSize={canvasSize}
-            onDelete={onDelete}
-            onRename={onRename}
-            onResize={onResize}
-            workspace={workspace}
-            selectedComponent={selectedComponent}
-          />
+          <ActionBarContainer />
         </div>
       </div>
     );
