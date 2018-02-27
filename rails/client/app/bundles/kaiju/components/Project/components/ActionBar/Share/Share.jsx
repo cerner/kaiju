@@ -135,7 +135,7 @@ class Share extends React.Component {
 
     return (
       <div onClick={this.showModal} role="presentation">
-        {children}
+        {children || <Icon type="share-alt" />}
         <Modal title={Descriptions[type].TITLE} onCancel={this.handleCancel} visible={isOpen} footer={null}>
           <Magician key={permissions}>
             <h2 className={cx('title')}>{Descriptions[permissions].TITLE}</h2>

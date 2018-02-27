@@ -6,10 +6,17 @@
   .select {
     width: 100%;
   }
+}
 
-  .title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+// Custom ant overrides.
+.ant-select-dropdown::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.ant-select-dropdown::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.ant-select-dropdown::-webkit-scrollbar-corner {
+  background-color: transparent;
 }
