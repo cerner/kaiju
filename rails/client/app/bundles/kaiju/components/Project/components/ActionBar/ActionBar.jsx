@@ -63,13 +63,16 @@ class ActionBar extends React.Component {
 
   componentDidMount() {
     Mousetrap.bind(['command+c', 'ctrl+c'], copy);
-    Mousetrap.bind(['command+v', 'ctrl+v'], paste);
-    Mousetrap.bind(['command+z', 'ctrl+z'], this.undo);
-    Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], this.redo);
-    Mousetrap.bind(['backspace', 'delete'], ActionBar.destroy);
     Mousetrap.bind(['esc'], ActionBar.deselect);
-    Mousetrap.bind(['command+d', 'ctrl+d'], this.duplicate);
-    window.addEventListener('message', this.handleShortcuts);
+
+    if (this.props.isEditable) {
+      Mousetrap.bind(['command+v', 'ctrl+v'], paste);
+      Mousetrap.bind(['command+z', 'ctrl+z'], this.undo);
+      Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], this.redo);
+      Mousetrap.bind(['backspace', 'delete'], ActionBar.destroy);
+      Mousetrap.bind(['command+d', 'ctrl+d'], this.duplicate);
+      window.addEventListener('message', this.handleShortcuts);
+    }
   }
 
   componentWillUnmount() {
