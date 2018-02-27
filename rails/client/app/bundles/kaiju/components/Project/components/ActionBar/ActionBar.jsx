@@ -155,17 +155,20 @@ class ActionBar extends React.Component {
     return (
       <div className="kaiju-ActionBar">
         <div className="kaiju-ActionBar-actions">
-          { isEditable &&
+          {
+            isEditable &&
             <ActionItem title="Undo" onClick={this.undo}>
               <IconUndo />
             </ActionItem>
           }
-          { isEditable &&
+          {
+            isEditable &&
             <ActionItem title="Redo" onClick={this.redo}>
               <IconRedo />
             </ActionItem>
           }
-          { isEditable &&
+          {
+            isEditable &&
             <ActionItem title="Rename">
               <Rename onRename={newName => onRename(id, newName)} renameUrl={rename} workspaceName={name} />
             </ActionItem>
@@ -173,14 +176,16 @@ class ActionBar extends React.Component {
           <ActionItem title="Duplicate">
             <Duplicate />
           </ActionItem>
-          { isEditable &&
+          {
+            isEditable &&
             <ActionItem title="Delete">
               <Delete url={url} workspaceName={name} onDelete={() => onDelete(id)} />
             </ActionItem>
           }
           <ActionItem iconType="code-o" onClick={navigateToCode} title="Code" />
           <ActionItem iconType="bars" onClick={navigateToAttributes} title="Attributes" />
-          { isEditable &&
+          {
+            isEditable &&
             <ActionItem title="Share">
               <Share collaborationInvitation={collaborationInvitation} readOnlyUrl={workspace.url} type="WORKSPACE" />
             </ActionItem>
