@@ -23,7 +23,8 @@
 
 ## January 25th, 2018
 ### Enhancements
-- [A help guide](/guide) (Accessible under the help menu dropdown)
+- [A help guide](/guide)
+  - Accessible from the help menu dropdown
 - Keyboard shortcut for duplicating a selected component (ctrl-d/⌘-d)
 
 ## January 19th, 2018
