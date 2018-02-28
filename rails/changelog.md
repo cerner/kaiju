@@ -87,6 +87,4 @@
 
 ### Enhancements
 - What's new change log
-
-### Updated
 - Upgraded Item Collection to version 2
