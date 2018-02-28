@@ -11,7 +11,7 @@
 
 ### Enhancements
 - Component library and layers section resizing
-- All icons show a preview
+- Previews for all icons
 
 ### Fixed
 - Workspace resizing using the action bar
