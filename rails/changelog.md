@@ -29,9 +29,9 @@
 
 ## January 19th, 2018
 ### New Components
-- Checkbox
-- Radio
 - Tabs
+- Radio
+- Checkbox
 - Status View
   - Known issue with align top, requires page refresh
 
