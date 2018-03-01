@@ -112,7 +112,9 @@ const config = {
                         'iOS >= 8',
                       ],
                     }),
-                    CustomProperties(),
+                    CustomProperties({
+                      warnings: false,
+                    }),
                   ];
                 },
               },

@@ -1,23 +1,10 @@
 import { connect } from 'react-redux';
-import { setCanvasSize, removeWorkspace, renameWorkspace } from '../actions/actions';
 import Sandbox from '../components/Sandbox/Sandbox';
 
-const mapStateToProps = ({ activeWorkspace, canvasSize, components, selectedComponent, workspaces }) => ({
+const mapStateToProps = ({ activeWorkspace, canvasSize, workspaces }) => ({
   canvasSize,
-  selectedComponent: components[selectedComponent],
-  workspace: workspaces[activeWorkspace],
+  componentUrl: workspaces[activeWorkspace].component.url,
+  isReadOnly: !workspaces[activeWorkspace].isEditable,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onDelete: (id) => {
-    dispatch(removeWorkspace(id));
-  },
-  onRename: (id, name) => {
-    dispatch(renameWorkspace(id, name));
-  },
-  onResize: (size) => {
-    dispatch(setCanvasSize(size));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sandbox);
+export default connect(mapStateToProps)(Sandbox);

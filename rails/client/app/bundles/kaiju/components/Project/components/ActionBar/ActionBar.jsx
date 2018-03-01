@@ -15,27 +15,31 @@ import './ActionBar.scss';
 
 const propTypes = {
   /**
-   * The canvas size
+   * The canvas size.
    */
   canvasSize: PropTypes.string,
   /**
-   * Callback function triggered when a workspace is deleted
+   * Whether the workspace is editable.
+   */
+  isEditable: PropTypes.bool,
+  /**
+   * Callback function triggered when a workspace is deleted.
    */
   onDelete: PropTypes.func,
   /**
-   * Callback function triggered when a workspace is renamed
+   * Callback function triggered when a workspace is renamed.
    */
   onRename: PropTypes.func,
   /**
-   * Callback function triggered when the canvas is resized
+   * Callback function triggered when the canvas is resized.
    */
   onResize: PropTypes.func,
   /**
-   * The currently selected component
+   * The currently selected component.
    */
   selectedComponent: PropTypes.object,
   /**
-   * The current workspace
+   * The current workspace.
    */
   workspace: PropTypes.object,
 };
@@ -59,13 +63,16 @@ class ActionBar extends React.Component {
 
   componentDidMount() {
     Mousetrap.bind(['command+c', 'ctrl+c'], copy);
-    Mousetrap.bind(['command+v', 'ctrl+v'], paste);
-    Mousetrap.bind(['command+z', 'ctrl+z'], this.undo);
-    Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], this.redo);
-    Mousetrap.bind(['backspace', 'delete'], ActionBar.destroy);
     Mousetrap.bind(['esc'], ActionBar.deselect);
-    Mousetrap.bind(['command+d', 'ctrl+d'], this.duplicate);
-    window.addEventListener('message', this.handleShortcuts);
+
+    if (this.props.isEditable) {
+      Mousetrap.bind(['command+v', 'ctrl+v'], paste);
+      Mousetrap.bind(['command+z', 'ctrl+z'], this.undo);
+      Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], this.redo);
+      Mousetrap.bind(['backspace', 'delete'], ActionBar.destroy);
+      Mousetrap.bind(['command+d', 'ctrl+d'], this.duplicate);
+      window.addEventListener('message', this.handleShortcuts);
+    }
   }
 
   componentWillUnmount() {
@@ -131,8 +138,16 @@ class ActionBar extends React.Component {
   }
 
   render() {
-    const { canvasSize, onRename, onDelete, onResize, selectedComponent, workspace } = this.props;
-    const { codeUrl, component, collaborationInvitation, id, name, previewUrl, rename, url } = workspace;
+    const {
+      canvasSize,
+      isEditable,
+      onRename,
+      onDelete,
+      onResize,
+      selectedComponent,
+      workspace,
+    } = this.props;
+    const { id, url, name, rename, codeUrl, component, previewUrl, collaborationInvitation } = workspace;
     const navigateToCode = () => window.open(codeUrl, '_blank');
     const navigateToPreview = () => window.open(previewUrl, '_blank');
     const navigateToAttributes = () => window.open(`${selectedComponent ? selectedComponent.url : component.url}/attributes`, '_blank');
@@ -140,26 +155,41 @@ class ActionBar extends React.Component {
     return (
       <div className="kaiju-ActionBar">
         <div className="kaiju-ActionBar-actions">
-          <ActionItem title="Undo" onClick={this.undo}>
-            <IconUndo />
-          </ActionItem>
-          <ActionItem title="Redo" onClick={this.redo}>
-            <IconRedo />
-          </ActionItem>
-          <ActionItem title="Rename">
-            <Rename onRename={newName => onRename(id, newName)} renameUrl={rename} workspaceName={name} />
-          </ActionItem>
+          {
+            isEditable &&
+            <ActionItem title="Undo" onClick={this.undo}>
+              <IconUndo />
+            </ActionItem>
+          }
+          {
+            isEditable &&
+            <ActionItem title="Redo" onClick={this.redo}>
+              <IconRedo />
+            </ActionItem>
+          }
+          {
+            isEditable &&
+            <ActionItem title="Rename">
+              <Rename onRename={newName => onRename(id, newName)} renameUrl={rename} workspaceName={name} />
+            </ActionItem>
+          }
           <ActionItem title="Duplicate">
             <Duplicate />
           </ActionItem>
-          <ActionItem title="Delete">
-            <Delete url={url} workspaceName={name} onDelete={() => onDelete(id)} />
-          </ActionItem>
+          {
+            isEditable &&
+            <ActionItem title="Delete">
+              <Delete url={url} workspaceName={name} onDelete={() => onDelete(id)} />
+            </ActionItem>
+          }
           <ActionItem iconType="code-o" onClick={navigateToCode} title="Code" />
           <ActionItem iconType="bars" onClick={navigateToAttributes} title="Attributes" />
-          <ActionItem title="Share">
-            <Share collaborationInvitation={collaborationInvitation} readOnlyUrl={workspace.url} type="WORKSPACE" />
-          </ActionItem>
+          {
+            isEditable &&
+            <ActionItem title="Share">
+              <Share collaborationInvitation={collaborationInvitation} readOnlyUrl={workspace.url} type="WORKSPACE" />
+            </ActionItem>
+          }
           <ActionItem iconType="eye-o" onClick={navigateToPreview} title="Preview" />
           <SizeControl onChange={onResize} selectedSize={canvasSize} />
         </div>
