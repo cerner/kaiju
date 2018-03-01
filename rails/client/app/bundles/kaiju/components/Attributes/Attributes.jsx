@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
 import { humanize } from '../../utilities/utilities';
-import styles from './Attributes.scss';
-
-const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
@@ -31,15 +27,10 @@ const Attributes = ({ ast }) => {
         attributes.push(<ul>{generateAttributes(value)}</ul>);
       } else if (type === 'Component') {
         const { name, properties } = value;
+        const isSubComponent = value.code_name !== value.import || value.import_from === 'kaiju';
+        const display = isSubComponent ? humanize(name) : <b>{humanize(name)}</b>;
         attributes.push(<li>{humanize(id)}</li>);
-        attributes.push(
-          <ul>
-            <li className={cx({ bold: (value.code_name === value.import && value.import_from !== 'kaiju') })}>
-              {humanize(name)}
-            </li>
-            <ul>{generateAttributes(properties)}</ul>
-          </ul>,
-        );
+        attributes.push(<ul><li>{display}</li><ul>{generateAttributes(properties)}</ul></ul>);
       } else if (isNaN(key) === false) {
         attributes.push(<li>{`Position: ${key}`}</li>);
         attributes.push(<ul><li>{value}</li></ul>);
@@ -53,8 +44,8 @@ const Attributes = ({ ast }) => {
 
   return (
     <ul>
-      <li className={cx({ bold: ast.code_name === ast.import })}>
-        {ast.name}
+      <li>
+        <b>{ast.name}</b>
       </li>
       <ul>
         {generateAttributes(ast.properties)}
