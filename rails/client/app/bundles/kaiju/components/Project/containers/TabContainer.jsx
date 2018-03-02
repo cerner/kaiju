@@ -118,6 +118,7 @@ const mapStateToProps = ({ activeWorkspace, workspaces }, { id }) => ({
   name: id ? workspaces[id].name : '+',
   isSelected: activeWorkspace === id,
   renameUrl: id ? workspaces[id].rename : null,
+  title: id ? workspaces[id].name : null,
 });
 
 const mapDispatchToProps = (dispatch, { id, next }) => ({
