@@ -32,7 +32,7 @@ const propTypes = {
 };
 
 const Card = ({ author, isOpen, name, onClick, project, updateDateTime }) => (
-  <div className={classNames(['kaiju-Card', { 'is-open': isOpen }])} onClick={onClick} role="presentation">
+  <div className={classNames(['kaiju-Card', { 'is-open': isOpen }])} onClick={onClick} role="presentation" title={name}>
     <div className="kaiju-Card-details">
       { project && <div className="kaiju-Card-project">{project}</div> }
       <div className="kaiju-Card-name">{name}</div>
