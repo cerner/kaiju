@@ -18,6 +18,10 @@ const propTypes = {
    */
   display: PropTypes.string,
   /**
+   * A resource URL to official component documentation.
+   */
+  documentation: PropTypes.string,
+  /**
    * The component library.
    */
   library: PropTypes.string,
@@ -27,7 +31,7 @@ const propTypes = {
   name: PropTypes.string,
 };
 
-const DraggableItem = ({ display, description, library, name }) => {
+const DraggableItem = ({ display, description, documentation, library, name }) => {
   /**
    * Appends component data to the event
    */
@@ -37,6 +41,8 @@ const DraggableItem = ({ display, description, library, name }) => {
   }
 
   const IconType = iconMap[name];
+  const resource = <a className={cx('link')} href={documentation} target="_blank">See more</a>;
+  const info = documentation ? <span>{description}. {resource}</span> : description;
 
   return (
     <li className={cx('item')} draggable onDragStart={handleDragStart}>
@@ -44,7 +50,7 @@ const DraggableItem = ({ display, description, library, name }) => {
         {IconType && <IconType className={cx('icon')} />}{display}
       </span>
       <span className={cx('description')}>
-        <Tooltip placement="right" title={description}>
+        <Tooltip placement="right" title={info}>
           <Icon type="question-circle-o" />
         </Tooltip>
       </span>
