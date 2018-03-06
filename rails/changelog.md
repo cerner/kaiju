@@ -1,6 +1,7 @@
-## March 5th, 2018
+## March 6th, 2018
 ### New Components
 - Input
+- Avatar
 
 ### Deprecated Components
 - Input ( New version available )
