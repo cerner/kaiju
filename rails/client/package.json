@@ -35,7 +35,7 @@
     "terra-base": "^3.0.0",
     "terra-i18n": "^2.0.0",
     "terra-icon": "^2.0.0",
-    "terra-kaiju-plugin": "git+https://github.com/cerner/terra-kaiju-plugin.git#Avatar",
+    "terra-kaiju-plugin": "0.9.0",
     "tether": "^1.4.0",
     "uniqid": "^4.1.1"
   },
