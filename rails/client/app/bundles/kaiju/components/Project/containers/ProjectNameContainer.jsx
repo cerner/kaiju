@@ -80,10 +80,11 @@ class ProjectName extends React.Component {
     document.title = this.props.name;
 
     return [
-      <span onClick={this.showModal} role="presentation">
+      <span key="project-name" onClick={this.showModal} role="presentation">
         {this.props.name}
       </span>,
       <Modal
+        key="project-modal"
         title="Rename Project"
         cancelText="Cancel"
         okText="Save"
