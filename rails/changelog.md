@@ -1,14 +1,3 @@
-## March 6th, 2018
-### New Components
-- Input
-- Avatar
-
-### Deprecated Components
-- Input ( New version available )
-
-### Enhancements
-- Added a documentation link in the tooltip of each component
-
 ## February 25th, 2018
 ### Enhancements
 - Upgraded to React 16 Terra components

@@ -189,13 +189,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   #
   # Returns a Hash containing the formatted component information
   def self.format_component(library, data)
-    {
-      display: data['display'] || data['name'],
-      documentation: data['documentation'],
-      name: data['name'],
-      description: data['description'],
-      library: library
-    }
+    { display: data['display'] || data['name'], name: data['name'], description: data['description'], library: library }
   end
 
   # private_class_method :gather_components, :sort_components, :format_component
