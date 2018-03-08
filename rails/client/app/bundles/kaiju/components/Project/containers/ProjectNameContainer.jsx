@@ -79,26 +79,26 @@ class ProjectName extends React.Component {
   render() {
     document.title = this.props.name;
 
-    return (
+    return [
       <span onClick={this.showModal} role="presentation">
         {this.props.name}
-        <Modal
-          title="Rename Project"
-          cancelText="Cancel"
-          okText="Save"
-          onCancel={this.handleCancel}
-          onOk={this.handleSave}
-          visible={this.state.isOpen}
-        >
-          <Input
-            value={this.state.name}
-            onChange={this.handleNameChange}
-            onPressEnter={this.handleSave}
-            ref={(input) => { if (input) { this.input = input.refs.input; } }}
-          />
-        </Modal>
-      </span>
-    );
+      </span>,
+      <Modal
+        title="Rename Project"
+        cancelText="Cancel"
+        okText="Save"
+        onCancel={this.handleCancel}
+        onOk={this.handleSave}
+        visible={this.state.isOpen}
+      >
+        <Input
+          value={this.state.name}
+          onChange={this.handleNameChange}
+          onPressEnter={this.handleSave}
+          ref={(input) => { if (input) { this.input = input.input; } }}
+        />
+      </Modal>,
+    ];
   }
 }
 

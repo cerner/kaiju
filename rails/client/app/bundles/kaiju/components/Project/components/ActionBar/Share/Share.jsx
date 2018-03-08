@@ -83,7 +83,7 @@ class Share extends React.Component {
    * Selects the share invitation text.
    */
   select() {
-    this.input.refs.input.select();
+    this.input.input.select();
   }
 
   /**
@@ -133,22 +133,28 @@ class Share extends React.Component {
       </CopyToClipboard>
     );
 
-    return (
-      <div onClick={this.showModal} role="presentation">
+    return [
+      <div key="share" onClick={this.showModal} role="presentation">
         {children || <Icon type="share-alt" />}
-        <Modal title={Descriptions[type].TITLE} onCancel={this.handleCancel} visible={isOpen} footer={null}>
-          <Magician key={permissions}>
-            <h2 className={cx('title')}>{Descriptions[permissions].TITLE}</h2>
-            <p className={cx('description')}>{Descriptions[type][permissions]}</p>
-            <Input readOnly value={value} addonAfter={addon} onFocus={this.select} ref={this.ref} />
-            {isShareable && <div className={cx('info')}>{Descriptions[type].INFO}</div>}
-            <div className={cx('toggle', { 'is-edit': isShareable })} onClick={this.togglePermissions} role="presentation">
+      </div>,
+      <Modal
+        key="share-modal"
+        title={Descriptions[type].TITLE}
+        onCancel={this.handleCancel}
+        visible={isOpen}
+        footer={null}
+      >
+        <Magician key={permissions}>
+          <h3 className={cx('title')}>{Descriptions[permissions].TITLE}</h3>
+          <p className={cx('description')}>{Descriptions[type][permissions]}</p>
+          <Input readOnly value={value} addonAfter={addon} onFocus={this.select} ref={this.ref} />
+          {isShareable && <div className={cx('info')}>{Descriptions[type].INFO}</div>}
+          <div className={cx('toggle', { 'is-edit': isShareable })} onClick={this.togglePermissions} role="presentation">
               Get a {Descriptions[permissions].ALT} <Icon type={isShareable ? 'eye-o' : 'edit'} />
-            </div>
-          </Magician>
-        </Modal>
-      </div>
-    );
+          </div>
+        </Magician>
+      </Modal>,
+    ];
   }
 }
 
