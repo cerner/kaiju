@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { camelizeKeys } from 'humps';
+import 'antd/lib/style/v2-compatible-reset.css';
 import { setReferenceComponents, updateComponent } from './actions/actions';
 import configureStore from './store/projectStore';
 import BrowserContainer from './containers/BrowserContainer';

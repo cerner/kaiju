@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const theme = require('./themes/default');
 
 const resolve = path.resolve;
 
@@ -83,6 +84,50 @@ const config = {
         test: /\.jsx?$/,
         use: 'babel-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.(less)$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                importLoaders: 2,
+                localIdentName: '[name]_[local]_[hash:base64:5]',
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins() {
+                  return [
+                    Autoprefixer({
+                      browsers: [
+                        'ie >= 10',
+                        'last 2 versions',
+                        'last 2 android versions',
+                        'last 2 and_chr versions',
+                        'iOS >= 8',
+                      ],
+                    }),
+                    CustomProperties({
+                      warnings: false,
+                    }),
+                  ];
+                },
+              },
+            },
+            {
+              loader: 'less-loader',
+              options: {
+                modifyVars: theme,
+              },
+            },
+          ],
+        }),
       },
       {
         test: /\.(scss|css)$/,

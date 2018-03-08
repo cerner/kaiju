@@ -72,31 +72,37 @@ class Rename extends React.Component {
     this.setState({ isOpen: true });
 
     // The input can only be selected when the modal has finished animating
-    setTimeout(() => { this.input.refs.input.select(); }, 200);
+    setTimeout(() => { this.input.input.select(); }, 200);
   }
 
   render() {
-    return (
-      <div className="kaiju-RenameWorkspace" onClick={this.showModal} role="presentation">
+    return [
+      <div
+        key="rename"
+        className="kaiju-RenameWorkspace"
+        onClick={this.showModal}
+        role="presentation"
+      >
         <Icon type="edit" />
-        <Modal
-          title="Rename Workspace"
-          cancelText="Cancel"
-          okText="Save"
-          onCancel={this.handleCancel}
-          onOk={this.handleSave}
-          visible={this.state.isOpen}
-        >
-          <div className="kaiju-RenameWorkspace-name">Workspace Name:</div>
-          <Input
-            value={this.state.name}
-            onChange={this.handleNameChange}
-            onPressEnter={this.handleSave}
-            ref={(input) => { this.input = input; }}
-          />
-        </Modal>
-      </div>
-    );
+      </div>,
+      <Modal
+        key="rename-modal"
+        title="Rename Workspace"
+        cancelText="Cancel"
+        okText="Save"
+        onCancel={this.handleCancel}
+        onOk={this.handleSave}
+        visible={this.state.isOpen}
+      >
+        <div className="kaiju-RenameWorkspace-name">Workspace Name:</div>
+        <Input
+          value={this.state.name}
+          onChange={this.handleNameChange}
+          onPressEnter={this.handleSave}
+          ref={(input) => { this.input = input; }}
+        />
+      </Modal>,
+    ];
   }
 }
 

@@ -52,13 +52,19 @@ class OpenMenuItem extends React.Component {
   }
 
   render() {
-    return (
-      <MenuItem title="Open..." onClick={this.showModal}>
-        <Modal width="725px" title="Open..." visible={this.state.isOpen} onCancel={this.handleCancel} footer={null}>
-          {this.state.content}
-        </Modal>
-      </MenuItem>
-    );
+    return [
+      <MenuItem key="open" title="Open..." onClick={this.showModal} />,
+      <Modal
+        key="open-modal"
+        width="745px"
+        title="Open..."
+        visible={this.state.isOpen}
+        onCancel={this.handleCancel}
+        footer={null}
+      >
+        {this.state.content}
+      </Modal>,
+    ];
   }
 }
 

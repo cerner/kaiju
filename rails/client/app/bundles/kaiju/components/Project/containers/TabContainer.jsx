@@ -86,12 +86,10 @@ class TabContainer extends React.Component {
     }
 
     return (
-      <Tab
-        onDoubleClick={this.showModal}
-        role="presentation"
-        {...tabProperties}
-      >
-        {name}
+      <Tab {...tabProperties}>
+        <span onDoubleClick={this.showModal} role="presentation">
+          {name}
+        </span>
         <Modal
           title="Rename Workspace"
           cancelText="Cancel"
@@ -104,7 +102,7 @@ class TabContainer extends React.Component {
             value={this.state.name}
             onChange={this.handleNameChange}
             onPressEnter={this.handleSave}
-            ref={(input) => { if (input) { this.input = input.refs.input; } }}
+            ref={(input) => { if (input) { this.input = input.input; } }}
           />
         </Modal>
       </Tab>
