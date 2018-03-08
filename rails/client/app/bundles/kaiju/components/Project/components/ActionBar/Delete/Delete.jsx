@@ -37,14 +37,22 @@ class Rename extends React.Component {
   }
 
   render() {
-    return (
-      <div className="kaiju-DeleteWorkspace" onClick={this.showModal} role="presentation">
+    return [
+      <div key="delete" className="kaiju-DeleteWorkspace" onClick={this.showModal} role="presentation">
         <Icon type="delete" />
-        <Modal title="Delete Workspace" visible={this.state.isOpen} cancelText="Cancel" okText="Confirm" onCancel={this.handleCancel} onOk={this.handleConfirm}>
-          <div className="kaiju-DeleteWorkspace-message">Are you sure you want to delete this workspace?</div>
-        </Modal>
-      </div>
-    );
+      </div>,
+      <Modal
+        key="delete-modal"
+        okText="Confirm"
+        cancelText="Cancel"
+        title="Delete Workspace"
+        onCancel={this.handleCancel}
+        onOk={this.handleConfirm}
+        visible={this.state.isOpen}
+      >
+        <div className="kaiju-DeleteWorkspace-message">Are you sure you want to delete this workspace?</div>
+      </Modal>,
+    ];
   }
 }
 

@@ -163,7 +163,7 @@ class Duplicate extends React.Component {
     this.setState({ isOpen: true, projects: null, name: `${this.state.name} Copy` });
 
     // The input can only be selected when the modal has finished animating.
-    setTimeout(() => { this.input.refs.input.select(); }, 200);
+    setTimeout(() => { this.input.input.select(); }, 200);
 
     axios
      .get(this.props.projectsUrl)
@@ -213,25 +213,26 @@ class Duplicate extends React.Component {
       );
     }
 
-    return (
-      <div onClick={this.showModal} role="presentation">
+    return [
+      <div key="duplicate" onClick={this.showModal} role="presentation">
         <Icon type="copy" />
-        <Modal
-          width="725px"
-          title="Duplicate"
-          visible={isOpen}
-          onCancel={this.handleCancel}
-          onOk={this.handleConfirm}
-          okText="Confirm"
-          cancelText="Cancel"
-        >
-          <div className={cx('description')}>Workspace Name:</div>
-          <Input value={this.state.name} onChange={this.handleNameChange} ref={(input) => { this.input = input; }} />
-          <div className={cx('description')}>Workspace Destination:</div>
-          {content}
-        </Modal>
-      </div>
-    );
+      </div>,
+      <Modal
+        key="duplicate-modal"
+        width="725px"
+        title="Duplicate"
+        okText="Confirm"
+        cancelText="Cancel"
+        visible={isOpen}
+        onCancel={this.handleCancel}
+        onOk={this.handleConfirm}
+      >
+        <div className={cx('description')}>Workspace Name:</div>
+        <Input value={this.state.name} onChange={this.handleNameChange} ref={(input) => { this.input = input; }} />
+        <div className={cx('description')}>Workspace Destination:</div>
+        {content}
+      </Modal>,
+    ];
   }
 }
 

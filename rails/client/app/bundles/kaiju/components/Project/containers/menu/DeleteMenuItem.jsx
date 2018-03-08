@@ -35,13 +35,22 @@ class DeleteMenuItem extends React.Component {
   }
 
   render() {
-    return (
-      <MenuItem title="Delete" onClick={this.showModal}>
-        <Modal title="Delete Project" visible={this.state.isOpen} cancelText="Cancel" okText="Confirm" onCancel={this.handleCancel} onOk={this.handleConfirm}>
-          <div className="kaiju-DeleteProject-message">Are you sure you want to delete this project?</div>
-        </Modal>
-      </MenuItem>
-    );
+    return [
+      <MenuItem key="delete" title="Delete" onClick={this.showModal} />,
+      <Modal
+        key="delete-modal"
+        title="Delete Project"
+        cancelText="Cancel"
+        okText="Confirm"
+        visible={this.state.isOpen}
+        onCancel={this.handleCancel}
+        onOk={this.handleConfirm}
+      >
+        <div className="kaiju-DeleteProject-message">
+          Are you sure you want to delete this project?
+        </div>
+      </Modal>,
+    ];
   }
 }
 

@@ -17,7 +17,7 @@
     "client/node_modules"
   ],
   "dependencies": {
-    "antd": "^2.7.4",
+    "antd": "^3.2.3",
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
     "github-markdown-css": "^2.10.0",
@@ -25,8 +25,8 @@
     "marked": "^0.3.9",
     "mousetrap": "^1.6.1",
     "prop-types": "^15.5.10",
-    "react-addons-css-transition-group": "^15.4.2",
     "react": "^16.0.0",
+    "react-addons-css-transition-group": "^15.4.2",
     "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^16.0.0",
     "react-on-rails": "^10.0.2",
@@ -63,6 +63,8 @@
     "glob": "^7.1.2",
     "imports-loader": "^0.7.1",
     "jest": "^22.1.4",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.6",
     "node-sass": "^4.3.0",
     "postcss-custom-properties": "^6.1.0",
     "postcss-loader": "^2.0.10",
