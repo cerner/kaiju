@@ -3,7 +3,6 @@
 }
 
 // Custom ant styles
-// stylelint-disable
 .ant-select-selection {
   background-color: var(--kaiju-theme-background-secondary-color, #333);
   border-color: #444;
@@ -14,12 +13,11 @@
     border-color: var(--kaiju-theme-color, #1db954);
   }
 
+  &:hover {
+    border-color: #444;
+  }
+}
 
-    &:hover {
-      border-color: #444;
-    }
-
-    &:focus:hover {
-      border-color: var(--kaiju-theme-color, #1db954);
-    }
+.ant-select-focused > .ant-select-selection:hover {
+  border-color: var(--kaiju-theme-color, #1db954) !important;
 }
