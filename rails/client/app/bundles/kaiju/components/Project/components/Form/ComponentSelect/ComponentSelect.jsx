@@ -76,7 +76,8 @@ const ComponentSelect = ({ components, id, url }) => {
       dropdownStyle={{ maxHeight: 300 }}
       filterTreeNode={filterNodes}
       placeholder="Select component"
-      onChange={onChange}
+      onSelect={onChange}
+      multiple
       showSearch
       treeDefaultExpandAll
     >

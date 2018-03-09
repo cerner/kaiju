@@ -20,3 +20,13 @@
 .ant-select-dropdown::-webkit-scrollbar-corner {
   background-color: transparent;
 }
+
+.ant-select-selection__choice {
+  background: transparent !important;
+  border: 0 !important;
+  color: #bbb !important;
+}
+
+.ant-select-selection__choice__remove {
+  display: none !important;
+}
