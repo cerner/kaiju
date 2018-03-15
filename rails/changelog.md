@@ -1,13 +1,21 @@
-## March 6th, 2018
+## March 14th, 2018
 ### New Components
-- Input
 - Avatar
+- Dialog
+- Fieldset
+- Input
+- Section Header
+- Toggle Section Header
+- Tag
 
 ### Deprecated Components
 - Input ( New version available )
+- Fieldset ( New version available )
 
 ### Enhancements
 - Added a documentation link in the tooltip of each component
+- Added hover titles for truncated workspace names on tabs and cards
+- Component names are now bolded in the generated attributes
 
 ## February 25th, 2018
 ### Enhancements
