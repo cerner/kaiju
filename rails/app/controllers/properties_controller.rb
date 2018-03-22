@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
   include PropertiesHelper
   before_action :fetch_objects
   before_action { fetch_workspace(params[:workspace_id]) }
-  before_action except: [:show] { authorize(params[:workspace_object].editors) }
+  before_action(except: [:show]) { authorize(params[:workspace_object].editors) }
   # GET /projects/1/workspaces/1/components/1/properties/1
   def show
     render json: Kaiju::PropertyJson.to_json(
