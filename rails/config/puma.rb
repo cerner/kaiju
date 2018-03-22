@@ -52,7 +52,7 @@ preload_app!
 #   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 # end
 
-root_dir = File.expand_path('../../../..', __FILE__)
+root_dir = File.expand_path('../../..', __dir__)
 
 # Logging
 stdout_redirect "#{root_dir}/logs/puma.stdout.log", "#{root_dir}/logs/puma.stderr.log", true

@@ -47,6 +47,7 @@ class WorkspacesController < ApplicationController
       workspace.id, request.base_url, project_id: params[:project_id], user_id: current_user.id
     )
   end
+  # rubocop:enable Metrics/AbcSize
 
   # PUT /workspace/1/name
   def name
