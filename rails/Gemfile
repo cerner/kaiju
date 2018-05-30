@@ -24,7 +24,7 @@ gem 'omniauth-openid', '~> 1.0'
 
 # React on Rails
 gem 'mini_racer', platforms: :ruby
-gem 'react_on_rails', '~> 10'
+gem 'react_on_rails', '11.0.7'
 gem 'webpacker'
 
 # Redis
