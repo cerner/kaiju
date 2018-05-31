@@ -50,7 +50,7 @@ const Form = ({ id, propertyUrl, name, properties }) => {
           <Cloneable key={`${id}-${item.id}`} {...properties[item.id]} componentId={id}>
             {createForm(properties[item.id], true)}
           </Cloneable>
-      ));
+        ));
       case 'Hash':
         return Object.keys(property.value).map(item => (
           <Item key={`${key}-${item}`} label={property.value[item].type === 'Bool' ? null : humanize(item)}>

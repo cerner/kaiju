@@ -23,8 +23,6 @@ const defaultProps = {
   isSelected: false,
 };
 
-// Disabling this is questionable. May need to move the onClick down a level.
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 const GridItem = ({ children, isSelected, onClick }) => {
   const classes = classNames([
     'kaiju-GridItem',
@@ -32,7 +30,7 @@ const GridItem = ({ children, isSelected, onClick }) => {
   ]);
 
   return (
-    <div className={classes} onClick={onClick}>
+    <div className={classes} onClick={onClick} role="presentation">
       {children}
     </div>
   );

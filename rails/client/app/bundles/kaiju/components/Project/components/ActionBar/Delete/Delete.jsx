@@ -7,13 +7,12 @@ import './Delete.scss';
 const propTypes = {
   onDelete: PropTypes.func,
   url: PropTypes.string,
-  workspaceName: PropTypes.string,
 };
 
 class Rename extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isOpen: false, workspaceName: props.workspaceName };
+    this.state = { isOpen: false };
     this.showModal = this.showModal.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);

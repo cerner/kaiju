@@ -30,25 +30,25 @@ class OpenMenuItem extends React.Component {
     this.setState({ isOpen: true });
 
     axios
-     .get(this.props.resourceUrl)
-     .then(({ data }) => {
-       const { projects } = data;
-       const cards = projects.map((project) => {
-         const { name: author } = project.owner;
-         const { name, workspace_count: count, update_date_time: lastEditDate, id, url } = project;
-         const props = { updateDateTime: formatDate(lastEditDate), author, name: `${name} (${count})` };
-         return <Card {...props} key={id} onClick={() => { window.location = url; }} />;
-       });
+      .get(this.props.resourceUrl)
+      .then(({ data }) => {
+        const { projects } = data;
+        const cards = projects.map((project) => {
+          const { name: author } = project.owner;
+          const { name, workspace_count: count, update_date_time: lastEditDate, id, url } = project;
+          const props = { updateDateTime: formatDate(lastEditDate), author, name: `${name} (${count})` };
+          return <Card {...props} key={id} onClick={() => { window.location = url; }} />;
+        });
 
-       const content = (
-         <Magician>
-           <SelectableGrid key={'projects'}>
-             {cards}
-           </SelectableGrid>
-         </Magician>
-       );
-       this.setState({ content });
-     });
+        const content = (
+          <Magician>
+            <SelectableGrid key="projects">
+              {cards}
+            </SelectableGrid>
+          </Magician>
+        );
+        this.setState({ content });
+      });
   }
 
   render() {

@@ -15,10 +15,10 @@ const propTypes = {
 const StoryBoard = ({ project, addWorkspace, workspaces }) => {
   function createNewWorkspace() {
     axios
-     .post(project.workspacesUrl)
-     .then(({ data }) => {
-       addWorkspace(data);
-     });
+      .post(project.workspacesUrl)
+      .then(({ data }) => {
+        addWorkspace(data);
+      });
   }
 
   return (

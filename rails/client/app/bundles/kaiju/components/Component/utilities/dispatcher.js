@@ -260,8 +260,8 @@ const registerDispatcher = (store, root) => {
 
     if (clipboard && selectedComponent && selectedComponent.type === 'kaiju::Placeholder') {
       const target = selectedComponent.parent === root && clipboard.type === 'kaiju::Workspace' ?
-                     selectedComponent.parent :
-                     selectedComponent.id;
+        selectedComponent.parent :
+        selectedComponent.id;
 
       // Kaiju does not allow nesting workspaces
       if (clipboard.type === 'kaiju::Workspace' && target !== root) {

@@ -113,28 +113,28 @@ class ActionBar extends React.Component {
 
   undo() {
     axios
-     .put(this.props.workspace.undoUrl)
-     .then(({ status, data }) => {
-       if (status === 200 || status === 201) {
-         const componentId = data.component_id;
-         if (componentId) {
-           refresh(componentId);
-         }
-       }
-     });
+      .put(this.props.workspace.undoUrl)
+      .then(({ status, data }) => {
+        if (status === 200 || status === 201) {
+          const componentId = data.component_id;
+          if (componentId) {
+            refresh(componentId);
+          }
+        }
+      });
   }
 
   redo() {
     axios
-     .put(this.props.workspace.redoUrl)
-     .then(({ status, data }) => {
-       if (status === 200 || status === 201) {
-         const componentId = data.component_id;
-         if (componentId) {
-           refresh(componentId);
-         }
-       }
-     });
+      .put(this.props.workspace.redoUrl)
+      .then(({ status, data }) => {
+        if (status === 200 || status === 201) {
+          const componentId = data.component_id;
+          if (componentId) {
+            refresh(componentId);
+          }
+        }
+      });
   }
 
   render() {

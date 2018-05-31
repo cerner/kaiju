@@ -22,7 +22,7 @@ const SizeControl = ({ onChange, selectedSize }) => (
     <Select.Option value="large">Large</Select.Option>
     <Select.Option value="huge">Huge</Select.Option>
   </Select>
-  );
+);
 
 SizeControl.propTypes = propTypes;
 

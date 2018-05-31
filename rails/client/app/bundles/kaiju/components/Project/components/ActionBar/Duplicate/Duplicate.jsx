@@ -95,17 +95,17 @@ class Duplicate extends React.Component {
     const data = { workspace: { name: this.state.name, component: duplicateWorkspace } };
 
     axios
-     .post(url, data)
-     .then(({ data: workspace }) => {
-       // Add a workspace to the already open project.
-       if (workspace.url.includes(projectId)) {
-         this.props.addWorkspace(workspace);
-         this.setState({ isOpen: false, projects: null, name });
-       } else {
-         // Redirect to the new workspace if it was placed in a different project.
-         window.location = workspace.url;
-       }
-     });
+      .post(url, data)
+      .then(({ data: workspace }) => {
+        // Add a workspace to the already open project.
+        if (workspace.url.includes(projectId)) {
+          this.props.addWorkspace(workspace);
+          this.setState({ isOpen: false, projects: null, name });
+        } else {
+          // Redirect to the new workspace if it was placed in a different project.
+          window.location = workspace.url;
+        }
+      });
   }
 
   /**
@@ -166,19 +166,19 @@ class Duplicate extends React.Component {
     setTimeout(() => { this.input.input.select(); }, 200);
 
     axios
-     .get(this.props.projectsUrl)
-     .then(({ data }) => {
-       const { projectId, projectType } = this.props;
-       const projects = camelizeKeys(data)
-         .filter(({ type }) => type === projectType)
-         .reduce((object, project) => (
-           { ...object, [project.id]: project }
-         ), {});
+      .get(this.props.projectsUrl)
+      .then(({ data }) => {
+        const { projectId, projectType } = this.props;
+        const projects = camelizeKeys(data)
+          .filter(({ type }) => type === projectType)
+          .reduce((object, project) => (
+            { ...object, [project.id]: project }
+          ), {});
 
-       const selectedProject = projects[projectId] ? projectId : 'new-project';
+        const selectedProject = projects[projectId] ? projectId : 'new-project';
 
-       this.setState({ projects, selectedProject });
-     });
+        this.setState({ projects, selectedProject });
+      });
   }
 
   render() {
