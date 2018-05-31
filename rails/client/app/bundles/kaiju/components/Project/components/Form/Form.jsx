@@ -31,7 +31,9 @@ const propTypes = {
   propertyUrl: PropTypes.string,
 };
 
-const Form = ({ id, propertyUrl, name, properties }) => {
+const Form = ({
+  id, propertyUrl, name, properties,
+}) => {
   /**
    * Creates a form for a given property
    * @param {Object} property - The property

@@ -35,7 +35,9 @@ class ComponentContainer extends React.Component {
    */
   generateComponent(component) {
     const { components, refreshedComponent } = this.props;
-    const { id, insertAfterUrl, properties, type } = components[component];
+    const {
+      id, insertAfterUrl, properties, type,
+    } = components[component];
 
     const props = { key: (refreshedComponent === id ? `${id}-${uniqid()}` : id) };
 

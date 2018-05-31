@@ -35,7 +35,9 @@ class OpenMenuItem extends React.Component {
         const { projects } = data;
         const cards = projects.map((project) => {
           const { name: author } = project.owner;
-          const { name, workspace_count: count, update_date_time: lastEditDate, id, url } = project;
+          const {
+            name, workspace_count: count, update_date_time: lastEditDate, id, url,
+          } = project;
           const props = { updateDateTime: formatDate(lastEditDate), author, name: `${name} (${count})` };
           return <Card {...props} key={id} onClick={() => { window.location = url; }} />;
         });

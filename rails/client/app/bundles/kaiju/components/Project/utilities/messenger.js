@@ -53,7 +53,9 @@ const select = (id) => {
  * @param {String} id - The Component identifier
  */
 const update = (id, property, value) => {
-  postMessage({ message: 'kaiju-update', id, property, value });
+  postMessage({
+    message: 'kaiju-update', id, property, value,
+  });
 };
 
 /**

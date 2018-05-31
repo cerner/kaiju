@@ -3,7 +3,9 @@ import { camelizeKeys } from 'humps';
 import { addWorkspace } from '../actions/actions';
 import Duplicate from '../components/ActionBar/Duplicate/Duplicate';
 
-const mapStateToProps = ({ activeWorkspace, components, project, root, user, workspaces }) => ({
+const mapStateToProps = ({
+  activeWorkspace, components, project, root, user, workspaces,
+}) => ({
   components,
   name: workspaces[activeWorkspace].name,
   projectId: project.id,

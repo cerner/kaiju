@@ -89,7 +89,9 @@ class Duplicate extends React.Component {
    * @param {String} url - The project workspaces url.
    */
   duplicate(url) {
-    const { components, name, projectId, root } = this.props;
+    const {
+      components, name, projectId, root,
+    } = this.props;
 
     const duplicateWorkspace = serializeComponent(components, components[root]);
     const data = { workspace: { name: this.state.name, component: duplicateWorkspace } };

@@ -16,7 +16,9 @@ const getTabs = (activeWorkspace, project, workspaces, workspaceTabs) => {
   return <Tabs>{tabs}<TabContainer key="storyboard" id={null} /></Tabs>;
 };
 
-const mapStateToProps = ({ activeWorkspace, project, workspaces, tabs }) => ({
+const mapStateToProps = ({
+  activeWorkspace, project, workspaces, tabs,
+}) => ({
   children: (activeWorkspace ? <SandboxContainer /> : <StoryBoardContainer />),
   tabs: getTabs(activeWorkspace, project, workspaces, tabs),
 });

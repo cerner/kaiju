@@ -18,7 +18,9 @@ const propTypes = {
   value: PropTypes.string,
 };
 
-const Select = ({ onChange, options, value, ...customProps }) => {
+const Select = ({
+  onChange, options, value, ...customProps
+}) => {
   const selectOptions = options.map(({ display, value: optionValue }) => (
     <AntSelect.Option key={optionValue} value={optionValue}>{display}</AntSelect.Option>
   ));

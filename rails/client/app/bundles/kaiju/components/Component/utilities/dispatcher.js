@@ -72,7 +72,9 @@ const registerDispatcher = (store, root) => {
    */
   const postUpdate = () => {
     const { selectedComponent, components } = store.getState();
-    post({ message: 'kaiju-component-updated', components, root, selectedComponent }, '*');
+    post({
+      message: 'kaiju-component-updated', components, root, selectedComponent,
+    }, '*');
   };
 
   /**
@@ -327,7 +329,9 @@ const registerDispatcher = (store, root) => {
       return false;
     }
 
-    const { left, right, top, bottom } = selectedComponent.getBoundingClientRect();
+    const {
+      left, right, top, bottom,
+    } = selectedComponent.getBoundingClientRect();
     if (x >= left && x <= right && y >= top && y <= bottom) {
       return true;
     }
@@ -354,7 +358,9 @@ const registerDispatcher = (store, root) => {
    */
   const selectTarget = (event) => {
     let target = null;
-    const { clientX, clientY, ctrlKey, metaKey } = event;
+    const {
+      clientX, clientY, ctrlKey, metaKey,
+    } = event;
 
     if (isInside(clientX, clientY) && (ctrlKey || metaKey)) {
       const { id, parent } = fetch(getSelectedComponent());

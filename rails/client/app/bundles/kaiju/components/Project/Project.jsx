@@ -35,7 +35,9 @@ class Project extends React.Component {
   }
 
   dispatchMessage({ data }) {
-    const { components, message, root, selectedComponent } = data;
+    const {
+      components, message, root, selectedComponent,
+    } = data;
     if (message === 'kaiju-component-updated') {
       this.store.dispatch(updateComponent({ components, root, selectedComponent }));
     }

@@ -18,7 +18,9 @@ const propTypes = {
   type: PropTypes.string,
 };
 
-const Button = ({ children, onClick, type, ...customProps }) => {
+const Button = ({
+  children, onClick, type, ...customProps
+}) => {
   const classes = `kaiju-Button kaiju-Button--${type} ${customProps.className}`;
   return <AntButton className={classes} onClick={onClick}>{children}</AntButton>;
 };

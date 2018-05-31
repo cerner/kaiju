@@ -16,12 +16,16 @@ const flattenComponent = (component) => {
 
     Object.keys(object).forEach((objectKey) => {
       const property = object[objectKey];
-      const { id, type, url, value } = property;
+      const {
+        id, type, url, value,
+      } = property;
       if (type === 'Array' || type === 'Hash') {
         properties = { ...properties, ...flatten(value), [id]: { ...property } };
       } else if (type === 'Component' && value) {
         properties[id] = { ...property, value: { id: value.id } };
-        store[value.id] = { ...property, ...value, propertyUrl: url, properties: flatten(value.properties) };
+        store[value.id] = {
+          ...property, ...value, propertyUrl: url, properties: flatten(value.properties),
+        };
       } else {
         properties[id] = property;
       }

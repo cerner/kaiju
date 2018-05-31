@@ -38,7 +38,9 @@ class TreeView extends React.Component {
   }
 
   render() {
-    const { header, children, isCollapsed, ...customProps } = this.props;
+    const {
+      header, children, isCollapsed, ...customProps
+    } = this.props;
 
     const chevonClasses = classNames([
       'kaiju-TreeView-chevron',

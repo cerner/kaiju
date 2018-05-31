@@ -152,7 +152,8 @@ describe('components reducer', () => {
             id: 'property',
             value: 'value',
           },
-        } },
+        },
+      },
     };
 
     const expected = {

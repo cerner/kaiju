@@ -147,7 +147,9 @@ class ActionBar extends React.Component {
       selectedComponent,
       workspace,
     } = this.props;
-    const { id, url, name, rename, codeUrl, component, previewUrl, collaborationInvitation } = workspace;
+    const {
+      id, url, name, rename, codeUrl, component, previewUrl, collaborationInvitation,
+    } = workspace;
     const navigateToCode = () => window.open(codeUrl, '_blank');
     const navigateToPreview = () => window.open(previewUrl, '_blank');
     const navigateToAttributes = () => window.open(`${selectedComponent ? selectedComponent.url : component.url}/attributes`, '_blank');
