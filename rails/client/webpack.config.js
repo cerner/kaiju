@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const glob = require('glob');
 const path = require('path');
 const theme = require('./themes/default');
 
@@ -146,6 +147,9 @@ const config = {
           },
           {
             loader: 'sass-loader',
+            options: {
+              includePaths: glob.sync('packages/*/node_modules').map(d => path.join(__dirname, d)),
+            },
           },
         ],
       },
