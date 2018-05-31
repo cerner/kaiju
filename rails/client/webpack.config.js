@@ -9,16 +9,22 @@ const i18nSupportedLocales = require('terra-i18n/lib/i18nSupportedLocales');
 
 const Autoprefixer = require('autoprefixer');
 const CustomProperties = require('postcss-custom-properties');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const GatherDependencies = require('./plugins/gather-dependencies');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const merge = require('webpack-merge');
 
 const configPath = resolve('..', 'config');
+const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
+
 const { output } = webpackConfigLoader(configPath);
 
 const config = {
-
+  mode: 'development',
+  devtool: 'eval-source-map',
   context: resolve(__dirname),
 
   entry: {
@@ -60,7 +66,7 @@ const config = {
       supportedLocales: i18nSupportedLocales,
     }),
     new webpack.NamedChunksPlugin(),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name]-[hash].css',
     }),
   ],
@@ -84,99 +90,102 @@ const config = {
       },
       {
         test: /\.(less)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-                importLoaders: 2,
-                localIdentName: '[name]_[local]_[hash:base64:5]',
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 2,
+              localIdentName: '[name]_[local]_[hash:base64:5]',
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins() {
+                return [
+                  Autoprefixer({
+                    browsers: [
+                      'ie >= 10',
+                      'last 2 versions',
+                      'last 2 android versions',
+                      'last 2 and_chr versions',
+                      'iOS >= 8',
+                    ],
+                  }),
+                  CustomProperties({
+                    warnings: false,
+                  }),
+                ];
               },
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins() {
-                  return [
-                    Autoprefixer({
-                      browsers: [
-                        'ie >= 10',
-                        'last 2 versions',
-                        'last 2 android versions',
-                        'last 2 and_chr versions',
-                        'iOS >= 8',
-                      ],
-                    }),
-                    CustomProperties({
-                      warnings: false,
-                    }),
-                  ];
-                },
-              },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: theme,
             },
-            {
-              loader: 'less-loader',
-              options: {
-                modifyVars: theme,
-              },
-            },
-          ],
-        }),
+          },
+        ],
       },
       {
         test: /\.(scss|css)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-                importLoaders: 2,
-                localIdentName: '[name]_[local]_[hash:base64:5]',
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 2,
+              localIdentName: '[name]_[local]_[hash:base64:5]',
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins() {
+                return [
+                  Autoprefixer({
+                    browsers: [
+                      'ie >= 10',
+                      'last 2 versions',
+                      'last 2 android versions',
+                      'last 2 and_chr versions',
+                      'iOS >= 8',
+                    ],
+                  }),
+                  CustomProperties({
+                    warnings: false,
+                  }),
+                ];
               },
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins() {
-                  return [
-                    Autoprefixer({
-                      browsers: [
-                        'ie >= 10',
-                        'last 2 versions',
-                        'last 2 android versions',
-                        'last 2 and_chr versions',
-                        'iOS >= 8',
-                      ],
-                    }),
-                    CustomProperties({
-                      warnings: false,
-                    }),
-                  ];
-                },
-              },
-            },
-            {
-              loader: 'sass-loader',
-            },
-          ],
-        }),
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
       },
     ],
   },
 };
 
-module.exports = config;
+const prodConfig = {
+  mode: 'production',
+  devtool: undefined,
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+  },
+};
 
-if (process.env.NODE_ENV === 'development') {
-  console.log('Webpack dev build for Rails'); // eslint-disable-line no-console
-  module.exports.devtool = 'eval-source-map';
-} else {
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: true, minimize: true }));
-  console.log('Webpack production build for Rails'); // eslint-disable-line no-console
-}
+module.exports = process.env.NODE_ENV === 'development' ? config : merge(config, prodConfig);
