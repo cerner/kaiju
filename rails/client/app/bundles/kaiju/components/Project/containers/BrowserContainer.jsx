@@ -7,7 +7,7 @@ import TabContainer from './TabContainer';
 import Tabs from '../components/Tabs/Tabs';
 
 const getTabs = (activeWorkspace, project, workspaces, workspaceTabs) => {
-  history.replaceState({}, '', activeWorkspace ? workspaces[activeWorkspace].url : project.url);
+  window.history.replaceState({}, '', activeWorkspace ? workspaces[activeWorkspace].url : project.url);
 
   const tabs = Array.from(workspaceTabs).map((id, index, array) => (
     <TabContainer key={id} id={id} next={array[index + 1] || null} />
@@ -16,7 +16,9 @@ const getTabs = (activeWorkspace, project, workspaces, workspaceTabs) => {
   return <Tabs>{tabs}<TabContainer key="storyboard" id={null} /></Tabs>;
 };
 
-const mapStateToProps = ({ activeWorkspace, project, workspaces, tabs }) => ({
+const mapStateToProps = ({
+  activeWorkspace, project, workspaces, tabs,
+}) => ({
   children: (activeWorkspace ? <SandboxContainer /> : <StoryBoardContainer />),
   tabs: getTabs(activeWorkspace, project, workspaces, tabs),
 });

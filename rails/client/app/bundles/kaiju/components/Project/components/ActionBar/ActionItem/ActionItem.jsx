@@ -22,7 +22,9 @@ const propTypes = {
   title: PropTypes.string,
 };
 
-const ActionItem = ({ children, iconType, onClick, title }) => (
+const ActionItem = ({
+  children, iconType, onClick, title,
+}) => (
   <Tooltip placement="top" title={title}>
     <div className="kaiju-ActionItem" role="presentation" onClick={onClick}>
       {iconType && <Icon type={iconType} />}

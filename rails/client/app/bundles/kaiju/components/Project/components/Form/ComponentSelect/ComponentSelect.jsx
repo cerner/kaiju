@@ -55,7 +55,9 @@ const ComponentSelect = ({ components, id, url }) => {
    */
   const generateTreeView = (data) => {
     const nodes = data.children.map((child) => {
-      const { children, display, library, name } = child;
+      const {
+        children, display, library, name,
+      } = child;
       if (children) {
         return generateTreeView(child);
       }

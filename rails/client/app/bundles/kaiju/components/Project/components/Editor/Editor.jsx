@@ -21,7 +21,7 @@ const Editor = ({ selectedComponent, title }) => {
         </span>
         {title}
       </span>
-      );
+    );
   } else {
     titleContent = title;
   }

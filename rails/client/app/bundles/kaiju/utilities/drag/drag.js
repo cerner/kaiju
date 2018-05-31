@@ -43,7 +43,9 @@ const drag = ({
   const findDistance = (target, clientX, clientY) => {
     let targetX = null;
     let targetY = null;
-    const { left, right, top, bottom } = target.getBoundingClientRect();
+    const {
+      left, right, top, bottom,
+    } = target.getBoundingClientRect();
 
     if (right < clientX) {
       targetX = right;
@@ -102,7 +104,9 @@ const drag = ({
    * @return {Object} Placement data for the provided target
    */
   const findNextSibling = (target, clientX, clientY) => {
-    const { left, right, top, bottom } = target.getBoundingClientRect();
+    const {
+      left, right, top, bottom,
+    } = target.getBoundingClientRect();
 
     switch (window.getComputedStyle(target).display) {
       case 'inline':

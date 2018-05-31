@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 import { setCanvasSize, removeWorkspace, renameWorkspace } from '../actions/actions';
 import ActionBar from '../components/ActionBar/ActionBar';
 
-const mapStateToProps = ({ activeWorkspace, canvasSize, components, selectedComponent, workspaces }) => ({
+const mapStateToProps = ({
+  activeWorkspace, canvasSize, components, selectedComponent, workspaces,
+}) => ({
   canvasSize,
   isEditable: workspaces[activeWorkspace].isEditable,
   selectedComponent: components[selectedComponent],

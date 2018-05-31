@@ -24,7 +24,9 @@ const propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-const Child = ({ id, isDuplicable, isSelected, type }) => {
+const Child = ({
+  id, isDuplicable, isSelected, type,
+}) => {
   const handleMouseEnter = () => { highlight(id); };
   const handleMouseLeave = () => { removeHighlight(); };
   const handleSelect = (event) => { event.stopPropagation(); removeHighlight(); select(id); };

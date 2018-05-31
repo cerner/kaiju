@@ -106,18 +106,8 @@ const config = {
               ident: 'postcss',
               plugins() {
                 return [
-                  Autoprefixer({
-                    browsers: [
-                      'ie >= 10',
-                      'last 2 versions',
-                      'last 2 android versions',
-                      'last 2 and_chr versions',
-                      'iOS >= 8',
-                    ],
-                  }),
-                  CustomProperties({
-                    warnings: false,
-                  }),
+                  Autoprefixer,
+                  CustomProperties({ warnings: false }),
                 ];
               },
             },
@@ -148,18 +138,8 @@ const config = {
               ident: 'postcss',
               plugins() {
                 return [
-                  Autoprefixer({
-                    browsers: [
-                      'ie >= 10',
-                      'last 2 versions',
-                      'last 2 android versions',
-                      'last 2 and_chr versions',
-                      'iOS >= 8',
-                    ],
-                  }),
-                  CustomProperties({
-                    warnings: false,
-                  }),
+                  Autoprefixer,
+                  CustomProperties({ warnings: false }),
                 ];
               },
             },

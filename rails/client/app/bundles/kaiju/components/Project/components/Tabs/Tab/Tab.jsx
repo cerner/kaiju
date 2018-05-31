@@ -33,7 +33,9 @@ const propTypes = {
   title: PropTypes.string,
 };
 
-const Tab = ({ children, isSelected, onClick, onDoubleClick, onRequestClose, title }) => {
+const Tab = ({
+  children, isSelected, onClick, onDoubleClick, onRequestClose, title,
+}) => {
   /**
    * Handler for the close button.
    * @param {event} event - The event invoking the function.
@@ -46,7 +48,7 @@ const Tab = ({ children, isSelected, onClick, onDoubleClick, onRequestClose, tit
 
   const classes = cx('tab', { 'is-selected': isSelected });
   return (
-    <li className={classes} onClick={onClick} onDoubleClick={onDoubleClick} role="tab" title={title}>
+    <li className={classes} onClick={onClick} onDoubleClick={onDoubleClick} role="presentation" title={title}>
       <span className={cx('content')}>
         {children}
       </span>

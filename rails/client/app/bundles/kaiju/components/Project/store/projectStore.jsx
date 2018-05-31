@@ -8,7 +8,9 @@ const configureStore = ({ project, user, workspace }) => {
   const activeWorkspace = workspace ? workspace.id : null;
   const tabs = workspace ? new Set([workspace.id]) : new Set();
 
-  return createStore(reducers, { activeWorkspace, workspaces, tabs, user, project });
+  return createStore(reducers, {
+    activeWorkspace, workspaces, tabs, user, project,
+  });
 };
 
 export default configureStore;

@@ -55,7 +55,9 @@ class Element extends React.Component {
   }
 
   render() {
-    const { kaijuId, kaijuType, kaijuSortable, ...props } = this.props;
+    const {
+      kaijuId, kaijuType, kaijuSortable, ...props
+    } = this.props;
     return React.createElement(componentMap[kaijuType], props);
   }
 }

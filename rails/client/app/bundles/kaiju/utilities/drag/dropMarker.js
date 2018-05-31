@@ -73,7 +73,7 @@ const addDropMarker = (target, sibling) => {
   marker.style.height = inlineDropMarker ? `${dropTarget.offsetHeight}px` : '0px';
   marker.className = classNames([
     'kaiju-DropMarker',
-  { 'kaiju-DropMarker--inline': inlineDropMarker },
+    { 'kaiju-DropMarker--inline': inlineDropMarker },
   ]);
 
   let attachment;

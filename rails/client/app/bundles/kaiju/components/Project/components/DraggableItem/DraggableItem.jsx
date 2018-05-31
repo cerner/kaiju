@@ -31,7 +31,9 @@ const propTypes = {
   name: PropTypes.string,
 };
 
-const DraggableItem = ({ display, description, documentation, library, name }) => {
+const DraggableItem = ({
+  display, description, documentation, library, name,
+}) => {
   /**
    * Appends component data to the event
    */

@@ -113,28 +113,28 @@ class ActionBar extends React.Component {
 
   undo() {
     axios
-     .put(this.props.workspace.undoUrl)
-     .then(({ status, data }) => {
-       if (status === 200 || status === 201) {
-         const componentId = data.component_id;
-         if (componentId) {
-           refresh(componentId);
-         }
-       }
-     });
+      .put(this.props.workspace.undoUrl)
+      .then(({ status, data }) => {
+        if (status === 200 || status === 201) {
+          const componentId = data.component_id;
+          if (componentId) {
+            refresh(componentId);
+          }
+        }
+      });
   }
 
   redo() {
     axios
-     .put(this.props.workspace.redoUrl)
-     .then(({ status, data }) => {
-       if (status === 200 || status === 201) {
-         const componentId = data.component_id;
-         if (componentId) {
-           refresh(componentId);
-         }
-       }
-     });
+      .put(this.props.workspace.redoUrl)
+      .then(({ status, data }) => {
+        if (status === 200 || status === 201) {
+          const componentId = data.component_id;
+          if (componentId) {
+            refresh(componentId);
+          }
+        }
+      });
   }
 
   render() {
@@ -147,7 +147,9 @@ class ActionBar extends React.Component {
       selectedComponent,
       workspace,
     } = this.props;
-    const { id, url, name, rename, codeUrl, component, previewUrl, collaborationInvitation } = workspace;
+    const {
+      id, url, name, rename, codeUrl, component, previewUrl, collaborationInvitation,
+    } = workspace;
     const navigateToCode = () => window.open(codeUrl, '_blank');
     const navigateToPreview = () => window.open(previewUrl, '_blank');
     const navigateToAttributes = () => window.open(`${selectedComponent ? selectedComponent.url : component.url}/attributes`, '_blank');

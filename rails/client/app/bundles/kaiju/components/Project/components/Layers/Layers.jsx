@@ -49,7 +49,9 @@ class Layers extends React.Component {
   generateTree(id) {
     if (!id) { return null; }
 
-    const { display, name, properties, insertAfterUrl } = this.props.components[id];
+    const {
+      display, name, properties, insertAfterUrl,
+    } = this.props.components[id];
     const isSelected = this.props.selectedComponent === id;
 
     const data = { key: id, 'data-kaiju-component-id': id };

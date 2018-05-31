@@ -43,7 +43,9 @@ const createNewProject = (url) => {
     });
 };
 
-const LaunchScreen = ({ onSearch, projects, projectsUrl, recentWorkspaces, inactiveProjects }) => (
+const LaunchScreen = ({
+  onSearch, projects, projectsUrl, recentWorkspaces, inactiveProjects,
+}) => (
   <div className="kaiju-LaunchScreen">
     <div className="kaiju-LaunchScreen-container">
       <header className="kaiju-LaunchScreen-header">

@@ -24,10 +24,10 @@ class Project extends React.Component {
     window.addEventListener('message', this.dispatchMessage);
 
     axios
-     .get(`/projects/${this.store.getState().project.id}/reference_components`)
-     .then(({ data }) => {
-       this.store.dispatch(setReferenceComponents(data));
-     });
+      .get(`/projects/${this.store.getState().project.id}/reference_components`)
+      .then(({ data }) => {
+        this.store.dispatch(setReferenceComponents(data));
+      });
   }
 
   componentWillUnmount() {
@@ -35,7 +35,9 @@ class Project extends React.Component {
   }
 
   dispatchMessage({ data }) {
-    const { components, message, root, selectedComponent } = data;
+    const {
+      components, message, root, selectedComponent,
+    } = data;
     if (message === 'kaiju-component-updated') {
       this.store.dispatch(updateComponent({ components, root, selectedComponent }));
     }

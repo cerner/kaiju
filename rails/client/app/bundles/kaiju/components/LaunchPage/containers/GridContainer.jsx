@@ -47,7 +47,9 @@ const getRecentWorkspaceCards = (workspaces, filter) => {
  */
 const getProjectCards = (projects, filter) => {
   const items = projects.filter(({ name }) => name.toLowerCase().includes(filter));
-  return items.map(({ id, name, owner, updateDateTime, url, workspaceCount }) => (
+  return items.map(({
+    id, name, owner, updateDateTime, url, workspaceCount,
+  }) => (
     createCard(id, `${name} (${workspaceCount})`, owner.name, updateDateTime, url)
   ));
 };
@@ -60,7 +62,9 @@ const getProjectCards = (projects, filter) => {
  */
 const getInactiveProjectCards = (inactiveProjects, filter) => {
   const items = inactiveProjects.filter(({ name }) => name.toLowerCase().includes(filter));
-  return items.map(({ activateUrl, id, name, owner, updateDateTime, url, workspaceCount }) => {
+  return items.map(({
+    activateUrl, id, name, owner, updateDateTime, url, workspaceCount,
+  }) => {
     const activate = () => {
       axios
         .put(activateUrl)
