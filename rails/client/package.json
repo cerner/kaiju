@@ -37,7 +37,7 @@
     "terra-i18n": "^2.0.0",
     "terra-icon": "^2.0.0",
     "terra-kaiju-plugin": "0.11.0",
-    "tether": "1.4.0",
+    "tether": "^1.4.0",
     "uniqid": "^4.1.1"
   },
   "devDependencies": {
