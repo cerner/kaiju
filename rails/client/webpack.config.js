@@ -12,7 +12,7 @@ const CustomProperties = require('postcss-custom-properties');
 const GatherDependencies = require('./plugins/gather-dependencies');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const merge = require('webpack-merge');
@@ -163,7 +163,7 @@ const prodConfig = {
         parallel: true,
         sourceMap: true,
       }),
-      new OptimizeCSSAssetsPlugin({}),
+      // new OptimizeCSSAssetsPlugin({}),
     ],
   },
 };

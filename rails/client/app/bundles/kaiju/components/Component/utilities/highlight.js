@@ -57,8 +57,8 @@ const addHighlight = (target) => {
 
   highlightReference.innerHTML = '';
   highlightReference.style.display = '';
-  highlightReference.style.height = `${rect.height}px`;
-  highlightReference.style.width = `${rect.width}px`;
+  highlightReference.style.height = `${rect.height - 2}px`;
+  highlightReference.style.width = `${rect.width - 2}px`;
 
   tether = new Tether({
     element: highlightReference,

@@ -87,8 +87,8 @@ const addOverlay = (target) => {
 
   overlayReference.innerHTML = '';
   overlayReference.style.display = '';
-  overlayReference.style.height = `${rect.height}px`;
-  overlayReference.style.width = `${rect.width}px`;
+  overlayReference.style.height = `${rect.height - 2}px`;
+  overlayReference.style.width = `${rect.width - 2}px`;
 
   overlayReference.appendChild(getTargetLabel(target, rect));
 
