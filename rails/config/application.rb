@@ -19,7 +19,8 @@ module Kaiju
     config.cache_store = :redis_store, Rails.configuration.x.session_location, { expires_in: 90.minutes }
     config.autoload_paths << Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('lib')
-    config.middleware.use(StackProf::Middleware, enabled: true, mode: :wall, interval: 1000, save_every: 5)
+    # Disabling to prevent the stack logs from filling up disk space.
+    # config.middleware.use(StackProf::Middleware, enabled: true, mode: :wall, interval: 1000, save_every: 5)
     config.after_initialize do
       Time.include CoreExtensions::Time::TimeExtensions
       ComponentInformation.components('terra')
