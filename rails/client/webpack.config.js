@@ -1,11 +1,10 @@
-const webpack = require('webpack');
+const aggregateTranslations = require('terra-toolkit/scripts/aggregate-translations/aggregate-translations.js');
+const merge = require('webpack-merge');
 const path = require('path');
+const webpack = require('webpack');
+const rtl = require('postcss-rtl');
 const theme = require('./themes/default');
-
-const resolve = path.resolve;
-
-const I18nAggregatorPlugin = require('terra-i18n-plugin');
-const i18nSupportedLocales = require('terra-i18n/lib/i18nSupportedLocales');
+const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
 
 const Autoprefixer = require('autoprefixer');
 const CustomProperties = require('postcss-custom-properties');
@@ -13,14 +12,14 @@ const GatherDependencies = require('./plugins/gather-dependencies');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const PostCSSAssetsPlugin = require('postcss-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const merge = require('webpack-merge');
-
+const resolve = path.resolve;
 const configPath = resolve('..', 'config');
-const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
-
 const { output } = webpackConfigLoader(configPath);
+
+aggregateTranslations({ baseDirectory: __dirname });
 
 const config = {
   mode: 'development',
@@ -61,30 +60,22 @@ const config = {
       },
     }),
     new ManifestPlugin({ publicPath: output.publicPath, writeToFileEmit: true }),
-    new I18nAggregatorPlugin({
-      baseDirectory: __dirname,
-      supportedLocales: i18nSupportedLocales,
-    }),
-    new webpack.NamedChunksPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name]-[hash].css',
+    }),
+    new PostCSSAssetsPlugin({
+      test: /\.css$/,
+      log: false,
+      plugins: [
+        CustomProperties(),
+      ],
     }),
   ],
 
   module: {
     rules: [
       {
-        test: require.resolve('react'),
-        use: {
-          loader: 'imports-loader',
-        },
-      },
-      {
-        test: /\.md$/,
-        use: 'raw-loader',
-      },
-      {
-        test: /\.jsx?$/,
+        test: /\.(jsx|js)$/,
         use: 'babel-loader',
         exclude: /node_modules/,
       },
@@ -106,8 +97,8 @@ const config = {
               ident: 'postcss',
               plugins() {
                 return [
-                  Autoprefixer,
-                  CustomProperties({ warnings: false }),
+                  rtl(),
+                  Autoprefixer(),
                 ];
               },
             },
@@ -138,8 +129,8 @@ const config = {
               ident: 'postcss',
               plugins() {
                 return [
-                  Autoprefixer,
-                  CustomProperties({ warnings: false }),
+                  rtl(),
+                  Autoprefixer(),
                 ];
               },
             },
@@ -148,6 +139,10 @@ const config = {
             loader: 'sass-loader',
           },
         ],
+      },
+      {
+        test: /\.md$/,
+        use: 'raw-loader',
       },
     ],
   },
