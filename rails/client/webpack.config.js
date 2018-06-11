@@ -97,9 +97,8 @@ const config = {
               ident: 'postcss',
               plugins() {
                 return [
-                  Autoprefixer(),
-                  CustomProperties(),
                   rtl(),
+                  Autoprefixer(),
                 ];
               },
             },
@@ -130,9 +129,8 @@ const config = {
               ident: 'postcss',
               plugins() {
                 return [
-                  Autoprefixer(),
-                  CustomProperties(),
                   rtl(),
+                  Autoprefixer(),
                 ];
               },
             },
