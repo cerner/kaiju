@@ -43,7 +43,7 @@ const DraggableItem = ({
   }
 
   const IconType = iconMap[name];
-  const resource = <a className={cx('link')} href={documentation} target="_blank">See more</a>;
+  const resource = <a className={cx('link')} href={documentation} target="_blank" rel="noopener noreferrer">See more</a>;
   const info = documentation ? <span>{description}. {resource}</span> : description;
 
   return (
