@@ -1,9 +1,6 @@
-.kaiju-Workspace {
-  height: 100vh;
-  overflow: auto;
-
-  > .kaiju-Placeholder:only-child {
+:local {
+  .workspace {
     height: 100%;
-    width: 100%;
+    overflow: auto;
   }
 }

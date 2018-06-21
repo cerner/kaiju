@@ -3,27 +3,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uniqid from 'uniqid';
 import { connect } from 'react-redux';
-import Element from '../components/Element/Element';
 import SafeRender from '../components/SafeRender/SafeRender';
+import componentMap from '../componentMap';
 
 const propTypes = {
   /**
-   * The component tree
+   * The component tree.
    */
   components: PropTypes.object.isRequired,
   /**
-   * The root component identifier
-   */
-  root: PropTypes.string.isRequired,
-  /**
-   * The refreshed component
+   * The refreshed component.
    */
   refreshedComponent: PropTypes.string,
+  /**
+   * The root component identifier.
+   */
+  root: PropTypes.string.isRequired,
 };
 
 class ComponentContainer extends React.Component {
   constructor(props) {
     super(props);
+
     this.generateComponent = this.generateComponent.bind(this);
     this.generateProperty = this.generateProperty.bind(this);
   }
@@ -35,31 +36,22 @@ class ComponentContainer extends React.Component {
    */
   generateComponent(component) {
     const { components, refreshedComponent } = this.props;
-    const {
-      id, insertAfterUrl, properties, type,
-    } = components[component];
+    const { id, properties, type } = components[component];
+    const key = id === refreshedComponent ? `kaiju$${uniqid()}$${id}` : id;
 
-    const props = { key: (refreshedComponent === id ? `${id}-${uniqid()}` : id) };
+    const props = { key };
 
-    Object.keys(properties).forEach((key) => {
-      // Filter top level properties. Any key cotaining :: is a sub property
-      if (!key.includes('::')) {
-        const value = this.generateProperty(properties, key);
+    Object.keys(properties).forEach((property) => {
+      // Filter top level properties. Any key containing :: is a sub property
+      if (!property.includes('::')) {
+        const value = this.generateProperty(properties, property);
         if (value !== undefined && value !== null) {
-          props[key] = value;
+          props[property] = value;
         }
       }
     });
 
-    // Add data attributes to uniquely identify components
-    props.kaijuId = id;
-    props.kaijuType = type;
-
-    if (insertAfterUrl) {
-      props.kaijuSortable = true;
-    }
-
-    return React.createElement(Element, props);
+    return React.createElement(componentMap[type], props);
   }
 
   /**
@@ -100,7 +92,6 @@ class ComponentContainer extends React.Component {
     }
     return value;
   }
-
 
   render() {
     return <SafeRender>{this.generateComponent(this.props.root)}</SafeRender>;

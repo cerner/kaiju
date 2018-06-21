@@ -1,13 +1,24 @@
-.kaiju-Placeholder {
-  border: 1px dashed #a9a9a9;
-  overflow: hidden;
-  padding: 10px;
-  text-align: center;
-  text-overflow: ellipsis;
-  user-select: none;
-  white-space: nowrap;
+:local {
+  .placeholder {
+    border: 3px dashed rgba(29, 185, 84, 0.3);
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
 
-  &.is-active {
-    background-color: #ebf6fd;
+    &.is-active {
+      background-color: #ebf6fd;
+    }
+  }
+
+  .placeholder + .placeholder {
+    height: 2rem;
+  }
+
+  .autoHeight {
+    height: 2rem;
+  }
+
+  .autoWidth {
+    width: 2em;
   }
 }

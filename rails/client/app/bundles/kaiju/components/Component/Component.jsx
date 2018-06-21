@@ -5,8 +5,10 @@ import classNames from 'classnames/bind';
 import { Provider } from 'react-redux';
 import configureStore from './store/componentStore';
 import ComponentContainer from './containers/ComponentContainer';
+import SelectedContainer from './containers/SelectedContainer';
+import HighlightContainer from './containers/HighlightContainer';
 import Spinner from '../common/Spinner/Spinner';
-import distpatcher from './utilities/dispatcher';
+import dispatcher from './utilities/dispatcher';
 import initializeDrag from './utilities/drag';
 import axios from '../../utilities/axios';
 import styles from './Component.scss';
@@ -32,13 +34,12 @@ class Component extends React.Component {
   }
 
   componentDidMount() {
-    initializeDrag();
-
     axios
       .get(this.props.url)
       .then(({ data }) => {
         this.store = configureStore(data);
-        distpatcher(this.store, this.props.id);
+        dispatcher(this.store, this.props.id);
+        initializeDrag(this.store, this.props.id);
         this.setState({ loading: false });
       });
   }
@@ -50,8 +51,10 @@ class Component extends React.Component {
 
     return (
       <Provider store={this.store}>
-        <Base locale="en-US">
+        <Base locale="en-US" id="kaiju-root" className={cx('root')}>
           <ComponentContainer root={this.props.id} />
+          <SelectedContainer />
+          <HighlightContainer />
         </Base>
       </Provider>
     );
