@@ -90,19 +90,18 @@ class Overlay extends React.Component {
 
     const { isHighlight, name } = this.props;
 
-    return (
+    return [
       <Hookshot isOpen={this.state.height > 0} isEnabled={this.state.height > 0} targetRef={() => this.node} attachmentBehavior="none" {...ATTACHMENT} key="overlay">
-        <Hookshot.Content onResize={this.update} className={cx('overlay', { highlight: isHighlight })} style={this.state}>
-          <Hookshot isOpen isEnabled targetRef={() => this.node} {...LABEL_ATTACHMENT} onPosition={this.update} key="label">
-            <Hookshot.Content className={cx('label')}>
-              <span>
-                {name}
-              </span>
-            </Hookshot.Content>
-          </Hookshot>
+        <Hookshot.Content onResize={this.update} className={cx('overlay', { highlight: isHighlight })} style={this.state} />
+      </Hookshot>,
+      <Hookshot isOpen isEnabled targetRef={() => this.node} {...LABEL_ATTACHMENT} onPosition={this.update} key="label">
+        <Hookshot.Content className={cx('label')}>
+          <span>
+            {name}
+          </span>
         </Hookshot.Content>
-      </Hookshot>
-    );
+      </Hookshot>,
+    ];
   }
 }
 
