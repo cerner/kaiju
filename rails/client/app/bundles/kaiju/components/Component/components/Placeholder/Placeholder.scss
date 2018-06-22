@@ -1,17 +1,16 @@
 :local {
   .placeholder {
     border: 3px dashed rgba(29, 185, 84, 0.3);
-    height: 100%;
     overflow: hidden;
-    width: 100%;
 
     &.is-active {
       background-color: #ebf6fd;
     }
   }
 
-  .placeholder + .placeholder {
-    height: 2rem;
+  .placeholder:only-child {
+    height: 100%;
+    width: 100%;
   }
 
   .autoHeight {
