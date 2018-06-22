@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import uniqid from 'uniqid';
 import { connect } from 'react-redux';
 import SafeRender from '../components/SafeRender/SafeRender';
+// eslint-disable-next-line import/extensions
 import componentMap from '../componentMap';
 
 const propTypes = {
