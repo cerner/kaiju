@@ -6,18 +6,18 @@
     &.is-active {
       background-color: #ebf6fd;
     }
-  }
 
-  .placeholder:only-child {
-    height: 100%;
-    width: 100%;
-  }
+    &:only-child {
+      height: 100%;
+      width: 100%;
+    }
 
-  .autoHeight {
-    height: 2rem;
-  }
+    &.autoHeight {
+      height: 2rem;
+    }
 
-  .autoWidth {
-    width: 2em;
+    &.autoWidth {
+      width: 2em;
+    }
   }
 }
