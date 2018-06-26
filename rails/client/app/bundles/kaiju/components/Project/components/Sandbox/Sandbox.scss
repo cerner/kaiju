@@ -11,6 +11,7 @@
     flex: auto;
     justify-content: center;
     overflow: auto;
+    position: relative;
   }
 
   .sandbox {
@@ -23,11 +24,13 @@
     background-color: var(--kaiju-theme-font-color, #fff);
     border: 0;
     box-shadow: 0 0 10px 0 #000;
-    display: flex;
+    flex: auto;
+    height: 100%;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
     transition: width 0.5s ease-in-out;
-  }
-
-  .auto {
     width: 100%;
   }
 
