@@ -63,7 +63,9 @@ class Overlay extends React.Component {
     super(props);
 
     this.state = {};
-    this.update = this.update.bind(this);
+
+    this.observer = null;
+    this.updateOverlay = this.updateOverlay.bind(this);
   }
 
   componentDidMount() {
@@ -71,7 +73,9 @@ class Overlay extends React.Component {
     this.node = TreeParser.findDOMNode(this.props.id);
 
     if (this.node) {
-      this.update();
+      this.observer = new MutationObserver(this.updateOverlay);
+      this.observer.observe(document.body, { attributes: true, childList: true, subtree: true });
+      this.updateOverlay();
     }
   }
 
@@ -79,8 +83,18 @@ class Overlay extends React.Component {
     return this.props.id !== props.id || this.state.width !== state.width || this.state.height !== state.height;
   }
 
-  update() {
-    this.setState(Overlay.dimensions(this.node));
+  componentWillUnmount() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  updateOverlay() {
+    // eslint-disable-next-line react/no-find-dom-node
+    this.node = TreeParser.findDOMNode(this.props.id);
+    if (this.node) {
+      this.setState(Overlay.dimensions(this.node));
+    }
   }
 
   render() {
@@ -88,13 +102,32 @@ class Overlay extends React.Component {
       return null;
     }
 
+    const { height, width } = this.state;
     const { isHighlight, name } = this.props;
 
     return [
-      <Hookshot isOpen={this.state.height > 0} isEnabled={this.state.height > 0} targetRef={() => this.node} attachmentBehavior="none" {...ATTACHMENT} key="overlay">
-        <Hookshot.Content onResize={this.update} className={cx('overlay', { highlight: isHighlight })} style={this.state} />
+      <Hookshot
+        key="overlay"
+        attachmentBehavior="none"
+        isOpen={height > 0}
+        isEnabled={height > 0}
+        targetRef={() => this.node}
+        {...ATTACHMENT}
+      >
+        <Hookshot.Content
+          className={cx('overlay', { highlight: isHighlight })}
+          onResize={this.updateOverlay}
+          style={{ height, width }}
+        />
       </Hookshot>,
-      <Hookshot isOpen isEnabled targetRef={() => this.node} {...LABEL_ATTACHMENT} onPosition={this.update} key="label">
+      <Hookshot
+        isOpen
+        isEnabled
+        key="label"
+        targetRef={() => this.node}
+        onPosition={this.updateOverlay}
+        {...LABEL_ATTACHMENT}
+      >
         <Hookshot.Content className={cx('label')}>
           <span>
             {name}
