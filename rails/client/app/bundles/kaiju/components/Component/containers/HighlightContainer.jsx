@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uniqid from 'uniqid';
 import { connect } from 'react-redux';
 import Overlay from '../components/Overlay/Overlay';
 
@@ -15,7 +16,7 @@ const propTypes = {
 };
 
 const HighlightContainer = ({ id, name }) => (
-  <Overlay id={id} key={id} name={name} isHighlight />
+  <Overlay id={id} key={uniqid()} name={name} isHighlight />
 );
 
 HighlightContainer.propTypes = propTypes;
