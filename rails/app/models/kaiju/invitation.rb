@@ -1,4 +1,3 @@
-
 # Public: A Invitation model
 module Kaiju
   class Invitation
