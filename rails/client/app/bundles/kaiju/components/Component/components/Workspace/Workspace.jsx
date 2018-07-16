@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Workspace.scss';
+import classNames from 'classnames/bind';
+import styles from './Workspace.scss';
+
+const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * Child nodes
+   * Child nodes.
    */
   children: PropTypes.node,
 };
 
 const Workspace = ({ children }) => (
-  <div className="kaiju-Workspace">
+  <div className={cx('workspace')}>
     {children}
   </div>
 );

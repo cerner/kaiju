@@ -9,28 +9,27 @@
   .container {
     display: flex;
     flex: auto;
-    justify-content: center;
     overflow: auto;
-    position: relative;
   }
 
   .sandbox {
     display: flex;
     flex: auto;
     flex-direction: column;
+    max-width: 100%;
   }
 
   .iframe {
     background-color: var(--kaiju-theme-font-color, #fff);
     border: 0;
     box-shadow: 0 0 10px 0 #000;
-    flex: auto;
-    height: 100%;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
+    flex: 0 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     transition: width 0.5s ease-in-out;
+  }
+
+  .auto {
     width: 100%;
   }
 

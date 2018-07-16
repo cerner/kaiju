@@ -8,7 +8,7 @@
 
   &:hover {
     > .kaiju-Child-actions {
-      visibility: visible;
+      opacity: 1;
     }
   }
 }
@@ -24,14 +24,13 @@
 .kaiju-Child-actions {
   display: flex;
   margin-left: auto;
-  visibility: hidden;
+  opacity: 0;
 }
 
 .kaiju-Child-action {
   color: #999;
   cursor: pointer;
   padding: 0 5px;
-  transition: color 0.3s;
 
   &:hover {
     color: var(--kaiju-theme-color, #1db954);

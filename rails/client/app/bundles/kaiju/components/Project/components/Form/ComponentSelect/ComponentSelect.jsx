@@ -79,7 +79,6 @@ const ComponentSelect = ({ components, id, url }) => {
       filterTreeNode={filterNodes}
       placeholder="Select component"
       onSelect={onChange}
-      multiple
       showSearch
       treeDefaultExpandAll
     >

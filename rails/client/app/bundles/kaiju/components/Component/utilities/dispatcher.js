@@ -1,9 +1,8 @@
 import Mousetrap from 'mousetrap';
 import { camelizeKeys } from 'humps';
-import { collectGarbage, refreshStore, selectComponent, updateProperty } from '../actions/actions';
+import { collectGarbage, highlightComponent, refreshStore, selectComponent, updateProperty } from '../actions/actions';
 import { flattenComponent, serializeComponent, serializeObject } from './normalizer';
-import { addHighlight, removeHighlight } from './highlight';
-import { addOverlay } from './overlay';
+import TreeParser from './TreeParser';
 import axios from '../../../utilities/axios';
 
 /**
@@ -45,22 +44,6 @@ const registerDispatcher = (store, root) => {
   const getSelectedComponent = () => store.getState().selectedComponent;
 
   /**
-   * Fetches the target component from the dom.
-   * @param {string} id - The target component identifier.
-   * @return {node|null} - The dom node. Null if not found.
-   */
-  const findComponentById = id => (
-    document.querySelectorAll(`[data-kaiju-component-id="${id}"]`)[0]
-  );
-
-  /**
-   * Adds and overlay to the selected component
-   */
-  const addSelectedOverlay = () => {
-    addOverlay(findComponentById(getSelectedComponent()));
-  };
-
-  /**
    * Serializes a component
    * @param {Object} component - The Component to serialize
    * @return {Object} - A serialized component
@@ -71,12 +54,8 @@ const registerDispatcher = (store, root) => {
    * Posts the current state to the parent window
    */
   const postUpdate = () => {
-    const { selectedComponent, components } = store.getState();
-    post({
-      message: 'kaiju-component-updated', components, root, selectedComponent,
-    }, '*');
+    post({ message: 'kaiju-component-updated', ...store.getState(), root }, '*');
   };
-
   /**
    * Dispatches an action to the redux store
    * @param {Object} action - The action
@@ -106,7 +85,6 @@ const registerDispatcher = (store, root) => {
   const select = (id) => {
     dispatch(selectComponent(id));
     postUpdate();
-    addSelectedOverlay();
   };
 
   /**
@@ -222,7 +200,6 @@ const registerDispatcher = (store, root) => {
     } else {
       putProperty(property.url, value);
     }
-    addSelectedOverlay();
   };
 
   /**
@@ -280,6 +257,53 @@ const registerDispatcher = (store, root) => {
     }
   };
 
+
+  /**
+   * Determines whether the component contains the query node.
+   * @param {DOMNode} component - The component.
+   * @param {DOMNode} node - The node id.
+   * @return {bool} - True if the component contains the node.
+   */
+  const contains = (component, node) => {
+    if (!component) {
+      return false;
+    }
+
+    let target = fetch(node);
+    while (target) {
+      if (target.id === component) {
+        return true;
+      }
+      target = fetch(target.parent);
+    }
+
+    return false;
+  };
+
+  /**
+   * Selects the nearest component to the click origin.
+   * @param {event} event - The click event.
+   */
+  const selectTarget = (event) => {
+    const { ctrlKey, metaKey } = event;
+    let target = event.target[Object.keys(event.target).find(k => k.startsWith('__reactInternalInstance$'))];
+
+    const components = store.getState().components;
+
+    while (!components[TreeParser.match(target.key)]) {
+      target = target.return;
+    }
+
+    let id = TreeParser.match(target.key);
+
+    if ((ctrlKey || metaKey) && contains(getSelectedComponent(), id)) {
+      id = fetch(getSelectedComponent()).parent || getSelectedComponent();
+    }
+
+    select(id);
+    post({ message: 'kaiju-component-selected', id });
+  };
+
   /**
    * Dispatches messages to the appropriate functions
    * @param {Object} data - The message data
@@ -299,10 +323,9 @@ const registerDispatcher = (store, root) => {
     } else if (message === 'kaiju-select') {
       select(id);
     } else if (message === 'kaiju-highlight') {
-      const target = document.querySelectorAll(`[data-kaiju-component-id="${id}"]`)[0];
-      addHighlight(target);
+      dispatch(highlightComponent(id));
     } else if (message === 'kaiju-remove-highlight') {
-      removeHighlight();
+      dispatch(highlightComponent(null));
     } else if (message === 'kaiju-refresh') {
       refresh(id);
     } else if (message === 'kaiju-replace') {
@@ -314,63 +337,6 @@ const registerDispatcher = (store, root) => {
     } else if (message === 'kaiju-paste') {
       paste();
     }
-  };
-
-  /**
-   * Checks if the coordinate is within the selected component.
-   * @param {float} x - The x coordinate.
-   * @param {float} y - The y coordinate.
-   * @return {boolean} - true if the coordinate is within the selected component.
-   */
-  const isInside = (x, y) => {
-    const selectedComponent = findComponentById(getSelectedComponent());
-
-    if (!selectedComponent) {
-      return false;
-    }
-
-    const {
-      left, right, top, bottom,
-    } = selectedComponent.getBoundingClientRect();
-    if (x >= left && x <= right && y >= top && y <= bottom) {
-      return true;
-    }
-
-    return false;
-  };
-
-  /**
-   * Finds the closest registered component from the starting location.
-   * @param {node} start - The starting node.
-   * @return {string} - The closest registered node indentifier.
-   */
-  const findClosest = (start) => {
-    let node = start;
-    while (node.hasAttribute('data-kaiju-component-id') === false) {
-      node = node.parentNode;
-    }
-    return node.getAttribute('data-kaiju-component-id');
-  };
-
-  /**
-   * Selects a registered component.
-   * @param {event} event - The triggering event.
-   */
-  const selectTarget = (event) => {
-    let target = null;
-    const {
-      clientX, clientY, ctrlKey, metaKey,
-    } = event;
-
-    if (isInside(clientX, clientY) && (ctrlKey || metaKey)) {
-      const { id, parent } = fetch(getSelectedComponent());
-      target = parent || id;
-    } else {
-      target = findClosest(event.target);
-    }
-
-    select(target);
-    post({ message: 'kaiju-component-selected', id: target });
   };
 
   postUpdate();

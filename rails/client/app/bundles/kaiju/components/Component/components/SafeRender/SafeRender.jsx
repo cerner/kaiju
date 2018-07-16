@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   /**
-   * Child nodes
+   * Child nodes.
    */
   children: PropTypes.node,
 };
@@ -11,18 +11,25 @@ const propTypes = {
 class SafeRender extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { error: null };
+
+    this.state = {};
   }
 
-  // eslint-disable-next-line
-  unstable_handleError(error) {
-    this.setState({ error });
+  componentDidCatch(error, info) {
+    this.setState({ error, info });
   }
 
   render() {
     if (this.state.error) {
-      return <div>{this.state.error.toString()}</div>;
+      return (
+        <div>
+          Something went wrong.
+          {this.state.error.toString()}
+          {this.state.info.toString()}
+        </div>
+      );
     }
+
     return this.props.children;
   }
 }

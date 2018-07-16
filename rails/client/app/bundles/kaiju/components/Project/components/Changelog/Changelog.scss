@@ -26,27 +26,30 @@
   background-color: var(--kaiju-theme-color, #1db954);
 
   > .kaiju-Changelog-giftIcon {
-    animation: shake 2s infinite;
     color: #000;
     opacity: 1;
 
-    @keyframes shake {
-      10%,
-      20%,
-      30%,
-      40% {
-        transform: rotate3d(0, 0, 1, -3deg);
-      }
-
-      15%,
-      25%,
-      35%,
-      45%, {
-        transform: rotate3d(0, 0, 1, 3deg);
-      }
-
-      50% { transform: rotate(0deg); }
-    }
+    // Animation causes the sandbox iframe to transform out of its container in Chrome.
+    // Removing until an alternative animation is found.
+    //
+    // animation: shake 2s infinite;
+    // @keyframes shake {
+    //   10%,
+    //   20%,
+    //   30%,
+    //   40% {
+    //     transform: rotate3d(0, 0, 1, -3deg);
+    //   }
+    //
+    //   15%,
+    //   25%,
+    //   35%,
+    //   45%, {
+    //     transform: rotate3d(0, 0, 1, 3deg);
+    //   }
+    //
+    //   50% { transform: rotate(0deg); }
+    // }
   }
 }
 
