@@ -59,7 +59,9 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
     if project_type == 'terra'
       JSON.parse(File.read('whitelist.json')).each do |library|
         Dir[Rails.root.join("client/node_modules/#{library['name']}/kaiju/**/*.json")].each do |file|
-          sources << [library, JSON.parse(File.read(file))]
+          source = JSON.parse(File.read(file))
+          source['version'] = JSON.parse(File.read("client/node_modules/#{source['library']}/package.json"))['version']
+          sources << [library, source]
         end
       end
     end
@@ -194,7 +196,8 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
       documentation: data['documentation'],
       name: data['name'],
       description: data['description'],
-      library: library
+      library: library,
+      version: data['version']
     }
   end
 
