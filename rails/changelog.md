@@ -6,7 +6,7 @@
 - Added multiple and tag Select variants
 - Added a placeholder attribute for the Select
 - Adjustments to the workspace display and overlays
-- Project names are now sorted alphabetically
+- Project and workspace names are now sorted alphabetically
 - Enabled IE 10 support for Kaiju Previews
 
 ## March 14th, 2018

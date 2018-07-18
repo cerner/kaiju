@@ -7,7 +7,9 @@ import Card from './CardContainer';
 
 const mapStateToProps = ({ project, workspaces }) => ({
   project,
-  workspaces: Object.keys(workspaces).map(key => <Card key={key} id={key} />),
+  workspaces: Object.keys(workspaces).sort((a, b) => (
+    workspaces[a].name > workspaces[b].name
+  )).map(key => <Card key={key} id={key} />),
 });
 
 const mapDispatchToProps = dispatch => ({
