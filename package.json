@@ -27,6 +27,6 @@
   "author": "Matt Henkes",
   "license": "Apache-2.0",
   "devDependencies": {
-    "foreman": "^2.0.0"
+    "foreman": "^3.0.1"
   }
 }

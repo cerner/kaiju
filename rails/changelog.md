@@ -1,3 +1,12 @@
+## July 18th, 2018
+### New Components
+- 58 New Icons
+
+### Enhancements
+- Added multiple and tag Select variants
+- Added a placeholder attribute for the Select
+- Adjustments to the workspace display and overlays
+
 ## March 14th, 2018
 ### New Components
 - Avatar
