@@ -7,6 +7,7 @@
 - Added a placeholder attribute for the Select
 - Adjustments to the workspace display and overlays
 - Project names are now sorted alphabetically
+- Enabled IE 10 support for Kaiju Previews
 
 ## March 14th, 2018
 ### New Components
