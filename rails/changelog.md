@@ -6,6 +6,7 @@
 - Added multiple and tag Select variants
 - Added a placeholder attribute for the Select
 - Adjustments to the workspace display and overlays
+- Project names are now sorted alphabetically
 
 ## March 14th, 2018
 ### New Components

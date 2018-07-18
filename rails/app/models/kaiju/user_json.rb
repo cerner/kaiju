@@ -38,9 +38,10 @@ module Kaiju
       hash['inactive_projects'] = ProjectJson.map_ids(hash['projects'], true) do |project_id|
         ProjectJson.as_json(project_id, base_url, lite: true)
       end
-      hash['projects'] = ProjectJson.map_ids(hash['projects']) do |project_id|
+      projects = ProjectJson.map_ids(hash['projects']) do |project_id|
         ProjectJson.as_json(project_id, base_url, lite: true)
       end
+      hash['projects'] = projects.sort_by { |project| project['name'].downcase }
       hash['shared_projects'] = ProjectJson.map_ids(hash['shared_projects']) do |project_id|
         ProjectJson.as_json(project_id, base_url, lite: true)
       end
