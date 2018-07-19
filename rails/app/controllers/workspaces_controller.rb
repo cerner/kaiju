@@ -74,8 +74,11 @@ class WorkspacesController < ApplicationController
 
   # GET /workspace/1/preview
   def preview
-    @ast = params[:workspace_object].ast
-    @author = Kaiju::User.by_id(params[:workspace_object].author.value)
+    workspace_object = params[:workspace_object]
+
+    @ast = workspace_object.ast
+    @title = workspace_object.name.value
+    @author = Kaiju::User.by_id(workspace_object.author.value)
     respond_to do |format|
       format.html { render layout: 'preview' }
     end
