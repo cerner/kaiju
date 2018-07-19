@@ -29,13 +29,22 @@ const propTypes = {
    * The component name.
    */
   name: PropTypes.string,
+  /**
+   * The component version.
+   */
+  version: PropTypes.string,
 };
 
 const DraggableItem = ({
-  display, description, documentation, library, name,
+  display,
+  description,
+  documentation,
+  library,
+  name,
+  version,
 }) => {
   /**
-   * Appends component data to the event
+   * Appends component data to the event.
    */
   function handleDragStart(event) {
     select(null);
@@ -43,16 +52,38 @@ const DraggableItem = ({
   }
 
   const IconType = iconMap[name];
-  const resource = <a className={cx('link')} href={documentation} target="_blank" rel="noopener noreferrer">See more</a>;
-  const info = documentation ? <span>{description}. {resource}</span> : description;
 
   return (
     <li className={cx('item')} draggable onDragStart={handleDragStart}>
       <span className={cx('display')}>
         {IconType && <IconType className={cx('icon')} />}{display}
       </span>
-      <span className={cx('description')}>
-        <Tooltip placement="right" title={info}>
+      <span className={cx('info')}>
+        <Tooltip
+          placement="right"
+          overlayClassName="kaiju-tooltip"
+          title={() => (
+            <div>
+              <div className={cx('header')}>
+                <span className="display">
+                  {display}
+                </span>
+                <span className={cx('version')}>
+                  v. {version}
+                </span>
+              </div>
+              <div className={cx('description')}>
+                {description}
+              </div>
+              <div className={cx('documentation')}>
+                Still not sure?
+                <a className={cx('link')} href={documentation} target="_blank" rel="noopener noreferrer">
+                  View documentation
+                </a>
+              </div>
+            </div>
+          )}
+        >
           <Icon type="question-circle-o" />
         </Tooltip>
       </span>

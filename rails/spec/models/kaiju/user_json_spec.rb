@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-module Kaiju
+module Kaiju # rubocop:disable Metrics/ModuleLength
   describe UserJson do
     before(:context) do
     end
@@ -99,6 +99,33 @@ module Kaiju
         workspace.destroy
         project.destroy
         inactive_project.destroy
+        user.destroy
+      end
+
+      it 'returns a sorted list of projects' do
+        user = Kaiju::UserFactory.new_user('owner', 'name', 'email', 'nickname')
+
+        project1 = Kaiju::ProjectFactory.new_project(user.id, 'blarg')
+        project1.name = 'C'
+
+        project2 = Kaiju::ProjectFactory.new_project(user.id, 'blarg')
+        project2.name = 'A'
+
+        project3 = Kaiju::ProjectFactory.new_project(user.id, 'blarg')
+        project3.name = 'B'
+
+        puts UserJson.as_json(user.id, 'base_url')['projects']
+        expect(UserJson.as_json(user.id, 'base_url')['projects']).to eq(
+          [
+            ProjectJson.as_json(project2.id, 'base_url', lite: true),
+            ProjectJson.as_json(project3.id, 'base_url', lite: true),
+            ProjectJson.as_json(project1.id, 'base_url', lite: true)
+          ]
+        )
+
+        project1.destroy
+        project2.destroy
+        project3.destroy
         user.destroy
       end
     end

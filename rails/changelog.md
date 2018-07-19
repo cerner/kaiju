@@ -5,7 +5,10 @@
 ### Enhancements
 - Added multiple and tag Select variants
 - Added a placeholder attribute for the Select
+- Added the version number in the tooltip of each component
 - Adjustments to the workspace display and overlays
+- Project and workspace names are now sorted alphabetically
+- Enabled IE 10 support for Kaiju Previews
 
 ## March 14th, 2018
 ### New Components
