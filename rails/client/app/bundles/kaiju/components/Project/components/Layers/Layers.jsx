@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Layer from '../Form/Child/Child';
+import Child from '../Form/Child/Child';
+import Layer from '../Layer/Layer';
 import TreeView from '../../../common/TreeView/TreeView';
 import './Layers.scss';
 
@@ -50,12 +51,15 @@ class Layers extends React.Component {
     if (!id) { return null; }
 
     const {
-      display, name, properties, insertAfterUrl,
+      display,
+      name,
+      properties,
+      insertAfterUrl,
     } = this.props.components[id];
     const isSelected = this.props.selectedComponent === id;
 
     const data = { key: id, 'data-kaiju-component-id': id };
-    if (insertAfterUrl) {
+    if (insertAfterUrl && name !== 'Placeholder') {
       data['data-kaiju-sortable'] = true;
     }
 
@@ -71,12 +75,12 @@ class Layers extends React.Component {
       data.id = 'root';
     }
 
-    const layer = <Layer id={id} isDuplicable={!!insertAfterUrl} isSelected={isSelected} type={display || name} />;
+    const child = <Child id={id} isDuplicable={!!insertAfterUrl} isSelected={isSelected} type={display || name} />;
     if (children.length > 0) {
-      return <TreeView header={layer} {...data}>{children}</TreeView>;
+      return <TreeView header={child} {...data}>{children}</TreeView>;
     }
 
-    return <li {...data}>{layer}</li>;
+    return <Layer {...data} id={id} type={name}>{child}</Layer>;
   }
 
   render() {

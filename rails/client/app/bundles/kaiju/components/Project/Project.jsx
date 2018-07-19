@@ -20,7 +20,7 @@ class Project extends React.Component {
   }
 
   componentDidMount() {
-    initializeDrag();
+    initializeDrag(this.store);
     window.addEventListener('message', this.dispatchMessage);
 
     axios

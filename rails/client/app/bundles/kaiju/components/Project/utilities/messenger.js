@@ -74,6 +74,13 @@ const removeHighlight = () => {
 };
 
 /**
+ * Replaces a component.
+ */
+const replace = (target, properties) => {
+  postMessage({ message: 'kaiju-replace', target, properties });
+};
+
+/**
  * Copies the selected component into the clipboard
  */
 const copy = () => {
@@ -97,6 +104,7 @@ export {
   postMessage,
   refresh,
   removeHighlight,
+  replace,
   select,
   update,
 };
