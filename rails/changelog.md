@@ -10,6 +10,7 @@
 - Adjustments to the workspace display and overlays
 - Project and workspace names are now sorted alphabetically
 - Enabled IE 10 support for Kaiju Previews
+- Preview browser tab will now display the workspace name
 
 ## March 14th, 2018
 ### New Components

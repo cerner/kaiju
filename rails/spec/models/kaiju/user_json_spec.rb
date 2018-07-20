@@ -114,7 +114,6 @@ module Kaiju # rubocop:disable Metrics/ModuleLength
         project3 = Kaiju::ProjectFactory.new_project(user.id, 'blarg')
         project3.name = 'B'
 
-        puts UserJson.as_json(user.id, 'base_url')['projects']
         expect(UserJson.as_json(user.id, 'base_url')['projects']).to eq(
           [
             ProjectJson.as_json(project2.id, 'base_url', lite: true),
