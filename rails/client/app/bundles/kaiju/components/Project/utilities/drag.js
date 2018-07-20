@@ -1,10 +1,14 @@
 import drag from '../../../utilities/drag/drag';
 import { destroy, postMessage, select } from '../utilities/messenger';
 
-const initializeDrag = () => {
+const initializeDrag = (store) => {
   drag({
-    canMove: target => target.hasAttribute('data-kaiju-component-id') && target.id !== 'root',
-    isSortable: target => target.hasAttribute('data-kaiju-sortable'),
+    canMove: target => (
+      target.hasAttribute('data-kaiju-component-id') && target.id !== 'root'
+    ),
+    isSortable: target => (
+      target.hasAttribute('data-kaiju-sortable')
+    ),
     onDragStart: (event, target) => {
       select(null);
       destroy(target.getAttribute('data-kaiju-component-id'));
@@ -15,6 +19,15 @@ const initializeDrag = () => {
       const id = (sibling || target).getAttribute('data-kaiju-component-id');
       const message = sibling ? 'kaiju-insert' : 'kaiju-append';
       postMessage({ message, id, properties }, '*');
+    },
+    stopPropagation: (target) => {
+      const key = target.getAttribute('data-kaiju-component-id');
+
+      if (key) {
+        return store.getState().components[key].name === 'Placeholder';
+      }
+
+      return false;
     },
   });
 };
