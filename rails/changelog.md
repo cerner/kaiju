@@ -1,7 +1,4 @@
 ## July 18th, 2018
-### New Components
-- 58 New Icons
-
 ### Enhancements
 - Added multiple and tag Select variants
 - Added a placeholder attribute for the Select
@@ -11,6 +8,9 @@
 - Project and workspace names are now sorted alphabetically
 - Enabled IE 10 support for Kaiju Previews
 - Preview browser tab will now display the workspace name
+
+### New Components
+- 58 New Icons
 
 ## March 14th, 2018
 ### New Components
