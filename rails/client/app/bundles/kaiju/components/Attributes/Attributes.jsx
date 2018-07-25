@@ -31,7 +31,7 @@ const Attributes = ({ ast }) => {
         const display = isSubComponent ? humanize(name) : <b>{humanize(name)}</b>;
         attributes.push(<li>{humanize(id)}</li>);
         attributes.push(<ul><li>{display}</li><ul>{generateAttributes(properties)}</ul></ul>);
-      } else if (Number.isNaN(key) === false) {
+      } else if (Number.isInteger(key)) {
         attributes.push(<li>{`Position: ${key}`}</li>);
         attributes.push(<ul><li>{value}</li></ul>);
       } else {
