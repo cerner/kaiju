@@ -1,3 +1,7 @@
+## July 25th, 2018
+### Fixed
+- Corrected the position labels of generated attributes
+
 ## July 18th, 2018
 ### Enhancements
 - Added multiple and tag Select variants
