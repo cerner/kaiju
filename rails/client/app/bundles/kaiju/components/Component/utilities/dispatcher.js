@@ -217,6 +217,9 @@ const registerDispatcher = (store, root) => {
    */
   const redo = () => {
     post({ message: 'kaiju-redo' });
+
+    // Returning false will prevent default browser actions for events bound using mousetrap.
+    return false;
   };
 
   /**
@@ -345,7 +348,7 @@ const registerDispatcher = (store, root) => {
   Mousetrap.bind(['command+v', 'ctrl+v'], paste);
   Mousetrap.bind(['command+z', 'ctrl+z'], undo);
   Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], redo);
-  Mousetrap.bind(['backspace', 'delete'], () => destroy(getSelectedComponent()));
+  Mousetrap.bind(['backspace', 'delete'], () => { destroy(getSelectedComponent()); return false; });
   Mousetrap.bind(['command+d', 'ctrl+d'], () => { duplicate(getSelectedComponent()); return false; });
 
   window.addEventListener('click', selectTarget);
