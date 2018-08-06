@@ -47,10 +47,17 @@ const propTypes = {
 class ActionBar extends React.Component {
   static deselect() {
     select(null);
+
+
+    // Returning false will prevent default actions for events bound using mousetrap.
+    return false;
   }
 
   static destroy() {
     destroy();
+
+    // Returning false will prevent default browser actions for events bound using mousetrap.
+    return false;
   }
 
   constructor() {
@@ -96,7 +103,7 @@ class ActionBar extends React.Component {
     if (selectedComponent) {
       duplicate(selectedComponent.id);
 
-      // Returning false is a feature of mousetrap to prevent default actions.
+      // Returning false will prevent default browser actions for events bound using mousetrap.
       return false;
     }
 
@@ -122,6 +129,9 @@ class ActionBar extends React.Component {
           }
         }
       });
+
+    // Returning false will prevent default browser actions for events bound using mousetrap.
+    return false;
   }
 
   redo() {
@@ -135,6 +145,9 @@ class ActionBar extends React.Component {
           }
         }
       });
+
+    // Returning false will prevent default browser actions for events bound using mousetrap.
+    return false;
   }
 
   render() {
