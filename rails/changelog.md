@@ -1,6 +1,7 @@
-## July 25th, 2018
+## August 6th, 2018
 ### Fixed
 - Corrected the position labels of generated attributes
+- The keyboard shortcut for delete will no longer navigate the browser backwards in Firefox
 
 ## July 18th, 2018
 ### Enhancements
