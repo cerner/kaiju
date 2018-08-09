@@ -1,4 +1,4 @@
-## August 6th, 2018
+## August 9th, 2018
 ### Fixed
 - Corrected the position labels of generated attributes
 - Corrected the workspace preview scaling
