@@ -1,6 +1,7 @@
 ## August 6th, 2018
 ### Fixed
 - Corrected the position labels of generated attributes
+- Corrected the workspace preview scaling
 - The keyboard shortcut for delete will no longer navigate the browser backwards in Firefox
 
 ## July 18th, 2018
