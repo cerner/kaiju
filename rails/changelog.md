@@ -1,3 +1,18 @@
+## September 13th, 2018
+### New Components
+- Action Footer
+- Action Header
+- Hyperlink
+- Input Field
+- Radio Field
+- Scroll
+- Select Field
+- Textarea Field
+
+### Deprecated Components
+- Clinical Action Header
+- Number Field
+
 ## August 9th, 2018
 ### Fixed
 - Corrected the position labels of generated attributes
