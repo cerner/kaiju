@@ -1,1 +1,12 @@
 **/node_modules
+**/.git
+./rails/public/webpack
+.bundle
+.ruby-gemset
+.ruby-version
+.gitignore
+bin
+log/*.log
+tmp/**/*
+public/assets
+npm-debug.log*
