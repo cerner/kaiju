@@ -35,6 +35,7 @@ module Kaiju
     def self.clean_properties(property)
       IterateProperty.iterate(nil, property, nil) do |_key, child_property, _parent, _child_output|
         next unless child_property['type'] == 'Component'
+
         Component.by_property(child_property)&.destroy
         child_property['value'] = nil
       end
@@ -109,6 +110,7 @@ module Kaiju
     def insert(prop, options = {})
       # Arrays only, all you other components can get out
       return nil unless @parent_property&.dig('value').is_a?(Array)
+
       # transform the passed in props to the format we like and create new components
       transformed_prop = update_prop_setup(@last_key, prop, schema(@id), @parent_property)
       # determine if we insert before or after
@@ -130,6 +132,7 @@ module Kaiju
 
     def append(prop)
       return nil unless @property['type'] == 'Array'
+
       value = @property['value'] || []
       key = value.count
       new_item_id = self.class.compose_id(key, @id)
@@ -267,18 +270,21 @@ module Kaiju
     def self.component_property_ast(property)
       component = Component.by_property(property)
       return nil if component.nil? || component.type.value == 'kaiju::Placeholder'
+
       component.ast
     end
 
     def self.array_property_ast(child_output)
       child_output&.compact!
       return nil if child_output&.empty?
+
       child_output
     end
 
     def self.hash_property_ast(child_output)
       child_output&.delete_if { |_key, value| value.nil? }
       return nil if child_output&.empty?
+
       child_output
     end
 

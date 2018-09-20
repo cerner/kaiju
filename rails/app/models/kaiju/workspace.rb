@@ -48,6 +48,7 @@ module Kaiju
 
     def add_collaborators(inviter_id, collaborator_ids)
       return unless editors.include? inviter_id
+
       collaborator_ids.each { |collaborator_id| collaborators << collaborator_id }
     end
 

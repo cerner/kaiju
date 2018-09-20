@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       }
     end
     return redirect_to(strategies[0][:url]) if strategies.count == 1
+
     render json: JSON.pretty_generate(strategies)
   end
 

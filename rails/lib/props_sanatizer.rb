@@ -17,9 +17,11 @@ class PropsSanatizer
 
   def self.sanatize(property, prop, project_type)
     return if property['type'] != 'Component' || prop.nil?
+
     prop.delete('id')
 
     return unless prop.key?('props')
+
     reference_properties = ComponentInformation.properties(project_type, prop['type'])
     IterateReferenceProperty.iterate_properties(
       reference_properties, prop['props'], nil

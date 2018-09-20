@@ -37,6 +37,7 @@ module Kaiju
 
     def self.decorate_insert_url(property, parent)
       return unless parent['type'] == 'Array'
+
       property['insert_before_url'] = property['url'] + '?insert_before=true'
       property['insert_after_url'] = property['url'] + '?insert_after=true'
     end
@@ -61,6 +62,7 @@ module Kaiju
     def self.decorate_component(property, options, base_url)
       value = property['value']
       return unless property['type'] == 'Component' && !value.nil?
+
       property['value'] = ComponentJson.map_id(value['id']) do |id|
         ComponentJson.as_json(id, base_url, options.except(:component_id))
       end
