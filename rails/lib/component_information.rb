@@ -139,12 +139,14 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   def self.validate_type(key, property, errors)
     types = %w[Bool String Component Hash Array Number]
     return if types.include?(property['type'])
+
     errors << "Bad type, #{property['type']}, for #{key}"
   end
 
   def self.validate_form_type(key, property, errors)
     types = %w[Bool String Component Hash Array Number URLForm ColorPicker DatePicker CodifiedList DelayedInput]
     return if types.include?(property['form_type'])
+
     errors << "Bad form type, #{property['form_type']}, for #{key}"
   end
 
@@ -163,6 +165,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
     components(project_type).each do |library, modules|
       modules.each_value do |attributes|
         next if attributes['hidden']
+
         insert_component(items, format_component(library, attributes), attributes['group'] || 'Other')
       end
     end
@@ -176,6 +179,7 @@ class ComponentInformation # rubocop:disable Metrics/ClassLength
   # group - The target group of the component
   def self.insert_component(array, component, group)
     return array << component if group.empty?
+
     section = group.split('::')
     current_group = section.shift
     array.each do |item|

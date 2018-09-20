@@ -43,11 +43,13 @@ module Kaiju
       return '' unless children
       return children[:value] if children[:type] == 'String'
       return "\n#{generate_component(children[:value], imports)}" if children[:type] == 'Component'
+
       children[:value].collect { |child| "\n#{generate_component(child[:value], imports)}".indent(2) }.join
     end
 
     def self.generate_component(component, imports) # rubocop:disable Metrics/AbcSize
       return component[:properties][:text][:value] if component[:type] == 'kaiju::Text'
+
       component_name = component[:code_name]
       imports.add("import #{component[:import]} from '#{component[:import_from]}';\n")
       children = generate_children(component[:properties][:children], imports)
@@ -63,6 +65,7 @@ module Kaiju
 
     def self.generate_prop(item, imports) # rubocop:disable all
       return if item.nil?
+
       if item[:type] == 'Array'
         generate_array_prop(item, imports)
       elsif item[:type] == 'Hash'

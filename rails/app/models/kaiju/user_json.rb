@@ -61,6 +61,7 @@ module Kaiju
           end
         }
         next if recent_hash['project'].nil? || recent_hash['workspace'].nil?
+
         objects << recent_hash
       end
     end

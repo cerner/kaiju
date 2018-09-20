@@ -34,6 +34,7 @@ module Kaiju
 
     def self.build_transformed_value(transformed_prop, prop, property, &block)
       return prop if prop.nil?
+
       if property['type'] == 'Array'
         build_transformed_array_value(transformed_prop, prop, property, &block)
       elsif property['type'] == 'Hash'
@@ -45,6 +46,7 @@ module Kaiju
 
     def self.build_transformed_array_value(transformed_prop, prop, property, &block)
       return unless prop.is_a? Array
+
       prop.each_with_index.map do |item, index|
         transform_prop(index, item, property['schema'], transformed_prop, &block)
       end.compact
@@ -52,6 +54,7 @@ module Kaiju
 
     def self.build_transformed_hash_value(transformed_prop, prop, property, &block)
       return unless prop.is_a? Hash
+
       transform_properties(prop, property['schema'], transformed_prop, &block)
     end
 

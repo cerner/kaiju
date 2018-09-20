@@ -45,6 +45,7 @@ module Kaiju
 
       def undo_change
         return unless undo_changes?
+
         stack_index.decrement
         change = changes_stack[stack_index.value]
         update_date_time.value = Time.now.iso8601_precise
@@ -53,6 +54,7 @@ module Kaiju
 
       def redo_change
         return unless redo_changes?
+
         change = changes_stack[stack_index.value]
         stack_index.increment
         update_date_time.value = Time.now.iso8601_precise

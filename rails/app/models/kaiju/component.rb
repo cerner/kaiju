@@ -50,6 +50,7 @@ module Kaiju
       IterateProperty.iterate_properties(properties.value) do |_key, property, _parent, _child_output|
         component = Component.by_property(property)
         next if component.nil?
+
         child_components.concat(component.child_components(&block))
         component = yield(component) if block_given?
         child_components << component unless component.nil?
@@ -59,6 +60,7 @@ module Kaiju
 
     def self.by_property(property)
       return unless property['type'] == 'Component' && property['value'].is_a?(Hash)
+
       Component.by_id(property&.dig('value', 'id'))
     end
 

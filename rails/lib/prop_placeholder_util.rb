@@ -13,6 +13,7 @@ class PropPlaceholderUtil
 
   def self.inject_component_placeholder(ref_property, prop = nil)
     return prop if prop.is_a?(Hash) && prop.key?('type')
+
     ref_property.fetch('drop_zone', true) ? placeholder_hash : nil
   end
 

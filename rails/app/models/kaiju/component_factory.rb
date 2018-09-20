@@ -66,8 +66,10 @@ module Kaiju
 
     def self.expand_property(property, parent, project_type)
       return unless property['type'] == 'Component'
+
       component = property['value']
       return unless component.is_a?(Hash)
+
       property['value'] = {
         'id' => new_component(project_type, component['type'], component['props'], component['id'], parent).id
       }
