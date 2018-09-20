@@ -2,6 +2,7 @@ class IterateProperty
   def self.iterate_properties(properties, parent = {}, iterate_proc = method(:iterate), &block)
     output = {}
     return output if properties.nil?
+
     properties.each do |key, property|
       output[key] = iterate_proc.call(key, property, parent, &block)
     end
