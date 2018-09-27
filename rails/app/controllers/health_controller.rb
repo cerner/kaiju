@@ -2,6 +2,12 @@ class HealthController < ApplicationController
   skip_before_action :authenticate
 
   def index
-    head :ok
+    begin
+      Redis.new.ping
+    rescue StandardError => _e
+      return render json: { redis: 'Unavailable' }, status: :service_unavailable
+    end
+
+    render json: { redis: 'Available' }, status: :ok
   end
 end
