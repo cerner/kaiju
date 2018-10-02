@@ -41,7 +41,7 @@ GatherDependencies.prototype.apply = () => {
     // Example: Textarea from 'terra-form' and Textarea from terra-form-textarea.
     let alias = name;
     if (aliasSet.has(alias)) {
-      alias = toTitleCase(library).replace(alias, alias);
+      alias = `${toTitleCase(library).replace(alias, '')}${alias}`;
     }
     aliasSet.add(alias);
 
