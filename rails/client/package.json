@@ -17,7 +17,7 @@
     "client/node_modules"
   ],
   "dependencies": {
-    "antd": "^3.2.3",
+    "antd": "3.2.3",
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
@@ -36,7 +36,7 @@
     "terra-base": "^3.11.0",
     "terra-hookshot": "^4.4.0",
     "terra-icon": "^2.12.0",
-    "terra-kaiju-plugin": "0.14.0",
+    "terra-kaiju-plugin": "0.17.0",
     "tether": "^1.4.0",
     "uniqid": "^4.1.1"
   },
