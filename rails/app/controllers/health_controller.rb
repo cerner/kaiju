@@ -4,7 +4,9 @@ class HealthController < ApplicationController
   def index
     begin
       Redis.new.ping
-    rescue StandardError => _e
+    rescue StandardError => e
+      Rails.logger.warn(e)
+
       return render json: { redis: 'Unavailable' }, status: :service_unavailable
     end
 
