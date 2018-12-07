@@ -18,7 +18,7 @@ Kaiju is great for rapid prototyping and facilitating collaboration between engi
 
 * [Docker](https://docs.docker.com/engine/installation/)
 
-To run the app, spin up a couple of docker containers with compose and navigate to localhost.
+To run the app, spin up a couple of docker containers with compose and navigate to localhost
 ```
 docker-compose pull
 docker-compose up
