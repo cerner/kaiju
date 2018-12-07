@@ -213,7 +213,7 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
-    rubocop (0.59.1)
+    rubocop (0.59.2)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -299,7 +299,7 @@ DEPENDENCIES
   redis-rails (~> 5.0)
   rouge (~> 2.0)
   rspec-rails (~> 3.5)
-  rubocop (= 0.59.1)
+  rubocop (~> 0.59.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
