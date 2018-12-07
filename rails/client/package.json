@@ -79,8 +79,8 @@
     "terra-i18n-plugin": "^2.0.0",
     "terra-toolkit": "^3.6.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
-    "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
     "webpack-manifest-plugin": "^2.0.3",
     "webpack-merge": "^4.1.2"
   }
