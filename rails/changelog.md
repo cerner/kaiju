@@ -1,3 +1,7 @@
+## December 19th, 2018
+- Happy Holidays!
+- Special thanks to James Bray and Colin Hendricks for their holiday animation contributions
+
 ## October 3rd, 2018
 ### New Components
 - Action Footer
