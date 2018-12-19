@@ -11,23 +11,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  node:
-    image: cerner/kaiju-node:latest
-    build: ./node/
-    depends_on:
-      - proxy
-      - rails
-    networks:
-      - webgateway
-    environment:
-      - NODE_ENV=production
-      - REDIS_URL=redis://redis:6379/0
-      - KAIJU_RAILS_SERVER_URL=http://proxy
-    labels:
-      - "traefik.backend=node"
-      - "traefik.frontend.rule=PathPrefix: /projects/{id}/workspaces/{id}/preview, /projects/{id}/workspaces/{id}/preview_files, /projects/{id}/workspaces/{id}/code_files"
-      - "traefik.port=8080"
-
   rails:
     image: cerner/kaiju-rails:latest
     build: ./rails/
