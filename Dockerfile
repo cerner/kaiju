@@ -11,7 +11,6 @@ WORKDIR /app
 
 COPY ["rails/package.json", "rails/package-lock.json", "rails/Gemfile", "rails/Gemfile.lock",  "/app/rails/"]
 COPY ["rails/client/package.json", "rails/client/package.json", "/app/rails/client/"]
-COPY ["node/package.json", "node/package-lock.json", "/app/node/"]
 COPY ["package.json", "package-lock.json", "/app/"]
 
 RUN npm install
