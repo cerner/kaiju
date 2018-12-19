@@ -4,14 +4,34 @@
   "keywords": [
     "kaiju"
   ],
-  "stack": "container",
   "repository": "https://github.com/cerner/kaiju",
   "success_url": "/",
+  "scripts": {},
+  "env": {
+    "NODE_ENV": {
+      "description": "node environment",
+      "value": "production"
+    },
+    "HEROKU": {
+      "description": "Heroku environment",
+      "value": "true"
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "development environment",
+      "value": "false"
+    },
+    "NODE_MODULES_CACHE": {
+      "description": "No cache",
+      "value": "false"
+    }
+  },
   "formation": {
     "web": {
       "quantity": 1,
       "size": "free"
     }
   },
+  "stack": "heroku-16",
+  "addons": [],
   "buildpacks": []
 }
