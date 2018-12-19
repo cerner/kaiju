@@ -43,7 +43,7 @@ class Sandbox extends React.Component {
           <div className={cx('container')}>
             <iframe
               id="kaiju-Sandbox-iframe"
-              className={cx('iframe', canvasSize)}
+              className={cx('iframe', canvasSize, 'loader')}
               src={componentUrl}
               title="sandbox"
             />
