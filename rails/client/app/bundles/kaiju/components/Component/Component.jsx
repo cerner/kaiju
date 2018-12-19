@@ -7,7 +7,6 @@ import configureStore from './store/componentStore';
 import ComponentContainer from './containers/ComponentContainer';
 import SelectedContainer from './containers/SelectedContainer';
 import HighlightContainer from './containers/HighlightContainer';
-import Spinner from '../common/Spinner/Spinner';
 import dispatcher from './utilities/dispatcher';
 import initializeDrag from './utilities/drag';
 import axios from '../../utilities/axios';
@@ -40,13 +39,18 @@ class Component extends React.Component {
         this.store = configureStore(data);
         dispatcher(this.store, this.props.id);
         initializeDrag(this.store, this.props.id);
+
+        // Remove the transparent styles on the document and body.
+        document.documentElement.style = '';
+        document.body.style = '';
+
         this.setState({ loading: false });
       });
   }
 
   render() {
     if (this.state.loading) {
-      return <div className={cx('loading')}><Spinner /></div>;
+      return null;
     }
 
     return (
