@@ -7,7 +7,7 @@
 - Radio Field
 - Scroll
 - Select Field
-- Textarea Field
+- Textarea Field.
 
 ### Deprecated Components
 - Clinical Action Header
