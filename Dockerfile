@@ -25,7 +25,8 @@ ENV NODE_ENV=production
 ENV RAILS_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
 ENV KAIJU_ALLOW_NO_AUTH i_accept_the_risk_of_running_with_no_authentication
-ENV REDIS_URL redis://localhost:6379/0
+ENV REDIS_HOST localhost
+ENV REDIS_PORT 6379
 
 # Precompile Assets
 RUN cd /app/rails \

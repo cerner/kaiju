@@ -40,11 +40,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.x.redis_prefix = 'kaiju:test'
-
   config.x.title = 'Kaiju Test'
-
-  config.x.session_location = "#{config.x.redis_url}/kaiju:test:cache"
 
   config.x.cookie_key = '_test_session_id'
 

@@ -15,8 +15,22 @@ module Kaiju
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.x.redis_url = ENV['REDIS_URL'] || 'redis://localhost:6379/0'
-    config.cache_store = :redis_store, Rails.configuration.x.session_location, { expires_in: 90.minutes }
+
+    redis_config = HashWithIndifferentAccess.new(::Rails.application.config_for(:redis))
+
+    config.cache_store = :redis_store, {
+      db: 0,
+      password: redis_config[:password],
+      namespace: "#{redis_config[:namespace]}:cache",
+      host: (redis_config[:host] unless redis_config[:sentinels].present?),
+      port: (redis_config[:port] unless redis_config[:sentinels].present?),
+      url: (redis_config[:sentinel_url] if redis_config[:sentinel_url].present?),
+      role: ('master' if redis_config[:sentinels].present?),
+      sentinels: (redis_config[:sentinels] if redis_config[:sentinels].present?),
+    }.compact, {
+      expires_in: 90.minutes
+    }
+
     config.autoload_paths << Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('lib')
     # Disabling to prevent the stack logs from filling up disk space.

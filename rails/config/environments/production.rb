@@ -81,11 +81,7 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.x.redis_prefix = 'kaiju:prod'
-
   config.x.title = 'Kaiju Beta'
-
-  config.x.session_location = "#{config.x.redis_url}/kaiju:prod:cache"
 
   config.x.cookie_key = '_prod_session_id'
 
