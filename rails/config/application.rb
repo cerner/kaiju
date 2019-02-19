@@ -26,7 +26,7 @@ module Kaiju
       namespace: "#{redis_config[:namespace]}:cache",
       role: 'master',
       url: redis_config[:sentinel_url],
-      sentinels: redis_config[:sentinels],
+      sentinels: redis_config[:sentinels]
     }.compact, {
       expires_in: 90.minutes
     }

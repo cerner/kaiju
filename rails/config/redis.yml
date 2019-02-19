@@ -1,7 +1,7 @@
 default: &default
   password: <%= ENV['REDIS_PASSWORD'] || '' %>
-  <% if ENV['REDIS_SENTINELS'].present? %>
   sentinel_url: <%= ENV['REDIS_SENTINEL_URL'] || '' %>
+  <% if ENV['REDIS_SENTINELS'].present? %>
   sentinels:
   <% JSON.parse(ENV['REDIS_SENTINELS']).each do |items| %>
     - host: <%= items['host'] %>
@@ -23,4 +23,3 @@ development:
 production:
   <<: *default
   namespace: 'kaiju:prod'
-  ssl: <%= ENV['REDIS_USE_SSL'] || 'false' %>

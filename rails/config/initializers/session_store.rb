@@ -11,7 +11,7 @@ Kaiju::Application.config.session_store :redis_store,
                                           namespace: "#{redis_config[:namespace]}:cache",
                                           role: 'master',
                                           url: redis_config[:sentinel_url],
-                                          sentinels: redis_config[:sentinels],
+                                          sentinels: redis_config[:sentinels]
                                         }.compact],
                                         key: Rails.configuration.x.cookie_key,
                                         expires_in: 90.minutes
