@@ -21,7 +21,8 @@ services:
       - webgateway
     environment:
       - NODE_ENV=production
-      - REDIS_URL=redis://redis:6379/0
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
       - KAIJU_RAILS_SERVER_URL=http://proxy
     labels:
       - "traefik.backend=node"
@@ -34,7 +35,8 @@ services:
     environment:
       - SECRET_KEY_BASE=980453e07f6f1a473091a79dc0c5109d6e350509a5b47d96b9bc55ce40e3b45ce2959919e9e528602c3a7a7c169c5e01596feeb8328ef51063514641b964d917
       - OPEN_ID_IDENTIFIER
-      - REDIS_URL=redis://redis:6379/0
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
       - RAILS_SERVE_STATIC_FILES=true
       - KAIJU_ALLOW_NO_AUTH=i_accept_the_risk_of_running_with_no_authentication
     depends_on:

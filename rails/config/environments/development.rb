@@ -48,11 +48,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.x.redis_prefix = 'kaiju:dev'
 
   config.x.title = 'Kaiju Development'
-
-  config.x.session_location = "#{config.x.redis_url}/kaiju:dev:cache"
 
   config.x.cookie_key = '_dev_session_id'
 
