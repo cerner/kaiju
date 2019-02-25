@@ -19,11 +19,6 @@ environment rails_env
 
 use_sock = ENV.fetch('KAIJU_USE_SOCKET') { 'false' }
 
-unless rails_env == 'production' && use_sock == 'true'
-  port 3000
-  return
-end
-
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
@@ -40,6 +35,11 @@ workers ENV.fetch('WEB_CONCURRENCY') { 2 }
 # block.
 #
 preload_app!
+
+unless rails_env == 'production' && use_sock == 'true'
+  port 3000
+  return
+end
 
 # The code in the `on_worker_boot` will be called if you are using
 # clustered mode by specifying a number of `workers`. After each worker
