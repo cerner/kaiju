@@ -27,11 +27,6 @@ use_sock = ENV.fetch('KAIJU_USE_SOCKET') { 'false' }
 #
 workers ENV.fetch('WEB_CONCURRENCY') { 2 }
 
-unless rails_env == 'production' && use_sock == 'true'
-  port 3000
-  return
-end
-
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
 # before forking the application. This takes advantage of Copy On Write
@@ -40,6 +35,12 @@ end
 # block.
 #
 preload_app!
+
+unless rails_env == 'production' && use_sock == 'true'
+  port 3000
+  return
+end
+
 
 # The code in the `on_worker_boot` will be called if you are using
 # clustered mode by specifying a number of `workers`. After each worker
