@@ -19,11 +19,6 @@ environment rails_env
 
 use_sock = ENV.fetch('KAIJU_USE_SOCKET') { 'false' }
 
-unless rails_env == 'production' && use_sock == 'true'
-  port 3000
-  return
-end
-
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
@@ -31,6 +26,11 @@ end
 # processes).
 #
 workers ENV.fetch('WEB_CONCURRENCY') { 2 }
+
+unless rails_env == 'production' && use_sock == 'true'
+  port 3000
+  return
+end
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
