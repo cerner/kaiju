@@ -1,7 +1,7 @@
 default: &default
   password: <%= ENV['REDIS_PASSWORD'] || '' %>
-  sentinel_url: <%= ENV['REDIS_SENTINEL_URL'] || '' %>
   <% if ENV['REDIS_SENTINELS'].present? %>
+  sentinel_url: <%= ENV['REDIS_SENTINEL_URL'] || '' %>
   sentinels:
   <% JSON.parse(ENV['REDIS_SENTINELS']).each do |items| %>
     - host: <%= items['host'] %>
