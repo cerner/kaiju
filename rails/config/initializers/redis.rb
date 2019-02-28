@@ -11,7 +11,7 @@ Redis::Objects.redis = ConnectionPool.new(size: 50, timeout: 5) {
       host: redis_config[:host],
       port: redis_config[:port],
       password: redis_config[:password],
-      role: 'master',
+      role: :master,
       url: redis_config[:sentinel_url],
       sentinels: redis_config[:sentinels]
     }.compact)

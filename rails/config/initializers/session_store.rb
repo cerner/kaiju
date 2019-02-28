@@ -9,7 +9,7 @@ Kaiju::Application.config.session_store :redis_store,
                                           port: redis_config[:port],
                                           password: redis_config[:password],
                                           namespace: "#{redis_config[:namespace]}:cache",
-                                          role: 'master',
+                                          role: :master,
                                           url: redis_config[:sentinel_url],
                                           sentinels: redis_config[:sentinels]
                                         }.compact],
