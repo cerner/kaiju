@@ -3,7 +3,7 @@ class HealthController < ApplicationController
 
   def index
     begin
-      Redis.new.ping
+      Redis::Objects.redis.ping
     rescue StandardError => e
       Rails.logger.warn(e)
 
