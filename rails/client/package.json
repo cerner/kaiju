@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "antd": "3.2.3",
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "github-markdown-css": "^2.10.0",
@@ -36,7 +36,7 @@
     "terra-base": "^4.0.0",
     "terra-hookshot": "^5.0.0",
     "terra-icon": "^3.1.0",
-    "terra-kaiju-plugin": "0.24.0",
+    "terra-kaiju-plugin": "0.25.0",
     "tether": "^1.4.0",
     "uniqid": "^4.1.1"
   },
