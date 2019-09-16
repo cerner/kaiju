@@ -36,7 +36,7 @@
     "terra-base": "^4.0.0",
     "terra-hookshot": "^5.0.0",
     "terra-icon": "^3.1.0",
-    "terra-kaiju-plugin": "0.29.0",
+    "terra-kaiju-plugin": "0.30.0",
     "tether": "^1.4.0",
     "uniqid": "^4.1.1"
   },
