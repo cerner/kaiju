@@ -1,10 +1,2 @@
 **/node_modules
 **/.git
-./public/webpack
-.bundle
-.gitignore
-bin
-log/*.log
-tmp/**/*
-public/assets
-npm-debug.log*
