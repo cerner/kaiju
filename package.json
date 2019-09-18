@@ -13,6 +13,8 @@
     "lint-ruby": "rubocop",
     "postinstall": "cd client && npm install",
     "rails-server": "foreman start -f Procfile.dev",
-    "test": "bundle exec rspec && cd client && npm test"
+    "test": "bundle exec rspec && cd client && npm test",
+    "scan": "brakeman",
+    "start": "docker-compose up"
   }
 }
