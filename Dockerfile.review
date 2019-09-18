@@ -27,7 +27,8 @@ ENV REDIS_HOST localhost
 ENV REDIS_PORT 6379
 
 # Precompile Assets
-RUN cd /app/ && bundle exec rake assets:precompile
+RUN cd /app/ \
+  && bundle exec rake assets:precompile
 
 ENV SECRET_KEY_BASE $(export SECRET_KEY_BASE_TEMP=$(rails secret))
 
