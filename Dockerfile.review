@@ -13,6 +13,7 @@ COPY ["package.json", "package-lock.json", "Gemfile", "Gemfile.lock",  "/app/"]
 COPY ["client/package.json", "client/package.json", "/app/client/"]
 
 RUN npm install
+RUN bundle install
 
 COPY . /app
 
