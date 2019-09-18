@@ -1,39 +1,34 @@
+FROM cerner/kaiju-ruby-node:2.4.2-8.9.2
 
-FROM cerner/kaiju-ruby-node-redis-traefik:2.4.2-8.9.2-3.2-1.4.4
-
-EXPOSE 80
+# Set env to prod by default
+ARG RAILS_ENVIRONMENT=production
+ENV RAILS_ENV $RAILS_ENVIRONMENT
 
 # Prepare Directory for Source Code
-RUN mkdir /app
-WORKDIR /app
+ENV APP_HOME /app
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+EXPOSE 3000
+
+# Install Ruby Dependencies
+COPY Gemfile $APP_HOME/Gemfile
+COPY Gemfile.lock $APP_HOME/Gemfile.lock
+RUN bundle install
 
 # Install Node Dependencies
+ADD client/package.json /tmp/package.json
+RUN cd /tmp && npm install --unsafe-perm
 
-COPY ["rails/package.json", "rails/package-lock.json", "rails/Gemfile", "rails/Gemfile.lock",  "/app/rails/"]
-COPY ["rails/client/package.json", "rails/client/package.json", "/app/rails/client/"]
-COPY ["node/package.json", "node/package-lock.json", "/app/node/"]
-COPY ["package.json", "package-lock.json", "/app/"]
+# Mount Source into Container
+ADD . $App_Home
 
-RUN npm install
-
-COPY . /app
-
-# Node Env
-ENV NODE_ENV=production
-
-# Rails Env
-ENV RAILS_ENV production
-ENV RAILS_SERVE_STATIC_FILES true
-ENV KAIJU_ALLOW_NO_AUTH i_accept_the_risk_of_running_with_no_authentication
-ENV REDIS_HOST localhost
-ENV REDIS_PORT 6379
+# Copy cached npm modules into client directory
+RUN npm run clean && cp -a /tmp/node_modules $APP_HOME/client
 
 # Precompile Assets
-RUN cd /app/rails \
-  && bundle exec rake assets:precompile
+RUN bundle exec rake assets:precompile
 
-ENV SECRET_KEY_BASE $(export SECRET_KEY_BASE_TEMP=$(rails secret))
+VOLUME ["$APP_HOME/public"]
 
-EXPOSE 9000
-
-CMD nf start -j Procfile.review
+CMD bundle exec puma
