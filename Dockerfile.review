@@ -1,5 +1,4 @@
 # This docker container creates a non-persistent review app for heroku PR deployments.
-
 FROM cerner/kaiju-ruby-node-redis-traefik:2.4.2-8.9.2-3.2-1.4.4
 
 EXPOSE 80
@@ -10,8 +9,8 @@ WORKDIR /app
 
 # Install Node Dependencies
 
-COPY ["../package.json", "../package-lock.json", "../Gemfile", "../Gemfile.lock",  "/app/"]
-COPY ["../client/package.json", "../client/package.json", "/app/client/"]
+COPY ["package.json", "package-lock.json", "Gemfile", "Gemfile.lock",  "/app/"]
+COPY ["client/package.json", "client/package.json", "/app/client/"]
 
 RUN npm install
 
