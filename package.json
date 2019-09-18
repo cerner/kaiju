@@ -16,5 +16,8 @@
     "test": "bundle exec rspec && cd client && npm test",
     "scan": "brakeman",
     "start": "docker-compose up"
+  },
+  "devDependencies": {
+    "foreman": "^3.0.1"
   }
 }
