@@ -10,7 +10,7 @@ WORKDIR /app
 # Install Node Dependencies
 
 COPY ["package.json", "package-lock.json", "Gemfile", "Gemfile.lock",  "/app/"]
-COPY ["client/package.json", "client/package.json", "/app/client/"]
+COPY ["client/package.json", "client/package-lock.json", "/app/client/"]
 
 RUN npm install
 RUN bundle install

@@ -10,3 +10,4 @@ log/*.log
 tmp/**/*
 public/assets
 npm-debug.log*
+dump.rdb

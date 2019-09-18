@@ -4,6 +4,7 @@ services:
   - redis-server
 script:
   - bundle install
+  - npm run lint
   - npm test
   - npm run scan
 branches:
