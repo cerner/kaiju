@@ -2,8 +2,6 @@
 **/.git
 ./public/webpack
 .bundle
-.ruby-gemset
-.ruby-version
 .gitignore
 bin
 log/*.log
