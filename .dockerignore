@@ -5,7 +5,6 @@
 .ruby-gemset
 .ruby-version
 .gitignore
-bin
 log/*.log
 tmp/**/*
 public/assets
