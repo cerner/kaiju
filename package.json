@@ -1,31 +1,22 @@
 {
   "name": "kaiju",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Drag and drop web editor",
+  "private": true,
+  "license": "Apache-2.0",
   "engines": {
     "node": "8.9.2"
   },
-  "main": "index.js",
   "scripts": {
-    "postinstall": "cd rails && npm install && bundle install --jobs=4 && cd .. && cd node && npm install",
-    "clean": "rm -rf ./node_modules && cd rails && npm run clean && cd .. && cd node && npm run clean",
-    "pretest": "npm run lint",
-    "test": "cd rails && npm run test && cd .. && cd node && npm run test",
-    "lint": "cd rails && npm run lint && cd .. && cd node && npm run lint",
-    "scan": "cd rails && brakeman",
+    "clean": "rm -rf ./node_modules && rm -rf ./client/node_modules",
+    "lint": "npm run lint-ruby && cd client && npm run lint",
+    "lint-ruby": "rubocop",
+    "postinstall": "cd client && npm install",
+    "rails-server": "foreman start -f Procfile.dev",
+    "test": "bundle exec rspec && cd client && npm test",
+    "scan": "brakeman",
     "start": "docker-compose up"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:cerner/kaiju.git"
-  },
-  "keywords": [
-    "kaiju",
-    "react",
-    "terra"
-  ],
-  "author": "Matt Henkes",
-  "license": "Apache-2.0",
   "devDependencies": {
     "foreman": "^3.0.1"
   }
