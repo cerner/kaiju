@@ -1,2 +1,3 @@
+proxy: sed -i "s/<PORT>/$PORT/1" traefik.toml && traefik --debug
 rails: rails s -p 3000
 redis: redis-server
