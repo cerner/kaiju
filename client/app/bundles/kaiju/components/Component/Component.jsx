@@ -50,13 +50,15 @@ class Component extends React.Component {
     }
 
     return (
-      <Provider store={this.store}>
-        <Base locale="en-US" id="kaiju-root" className={cx('root')}>
-          <ComponentContainer root={this.props.id} />
-          <SelectedContainer />
-          <HighlightContainer />
-        </Base>
-      </Provider>
+      <div id="kaiju-root" className={cx('root')}>
+        <Provider store={this.store}>
+          <Base locale="en-US">
+            <ComponentContainer root={this.props.id} />
+            <SelectedContainer />
+            <HighlightContainer />
+          </Base>
+        </Provider>
+      </div>
     );
   }
 }
