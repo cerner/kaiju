@@ -7,7 +7,7 @@ const mapStateToProps = ({ project, user }) => ({
   changelogViewedUrl: project.changelogViewed,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onClick: () => {
     dispatch(setChangelogViewed(true));
   },

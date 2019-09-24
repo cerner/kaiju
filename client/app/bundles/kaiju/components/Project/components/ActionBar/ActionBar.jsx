@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import Mousetrap from 'mousetrap';
 import IconUndo from 'terra-icon/lib/icon/IconReply';
 import IconRedo from 'terra-icon/lib/icon/IconForward';
-import { copy, duplicate, destroy, paste, refresh, select } from '../../utilities/messenger';
+import {
+  copy, duplicate, destroy, paste, refresh, select,
+} from '../../utilities/messenger';
 import axios from '../../../../utilities/axios';
 import ActionItem from './ActionItem/ActionItem';
 import Delete from './Delete/Delete';
@@ -171,39 +173,49 @@ class ActionBar extends React.Component {
       <div className="kaiju-ActionBar">
         <div className="kaiju-ActionBar-actions">
           {
-            isEditable &&
+            isEditable
+            && (
             <ActionItem title="Undo" onClick={this.undo}>
               <IconUndo />
             </ActionItem>
+            )
           }
           {
-            isEditable &&
+            isEditable
+            && (
             <ActionItem title="Redo" onClick={this.redo}>
               <IconRedo />
             </ActionItem>
+            )
           }
           {
-            isEditable &&
+            isEditable
+            && (
             <ActionItem title="Rename">
-              <Rename onRename={newName => onRename(id, newName)} renameUrl={rename} workspaceName={name} />
+              <Rename onRename={(newName) => onRename(id, newName)} renameUrl={rename} workspaceName={name} />
             </ActionItem>
+            )
           }
           <ActionItem title="Duplicate">
             <Duplicate />
           </ActionItem>
           {
-            isEditable &&
+            isEditable
+            && (
             <ActionItem title="Delete">
               <Delete url={url} workspaceName={name} onDelete={() => onDelete(id)} />
             </ActionItem>
+            )
           }
           <ActionItem iconType="code-o" onClick={navigateToCode} title="Code" />
           <ActionItem iconType="bars" onClick={navigateToAttributes} title="Attributes" />
           {
-            isEditable &&
+            isEditable
+            && (
             <ActionItem title="Share">
               <Share collaborationInvitation={collaborationInvitation} readOnlyUrl={workspace.url} type="WORKSPACE" />
             </ActionItem>
+            )
           }
           <ActionItem iconType="eye-o" onClick={navigateToPreview} title="Preview" />
           <SizeControl onChange={onResize} selectedSize={canvasSize} />

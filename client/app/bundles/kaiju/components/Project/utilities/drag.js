@@ -1,12 +1,12 @@
 import drag from '../../../utilities/drag/drag';
-import { destroy, postMessage, select } from '../utilities/messenger';
+import { destroy, postMessage, select } from './messenger';
 
 const initializeDrag = (store) => {
   drag({
-    canMove: target => (
+    canMove: (target) => (
       target.hasAttribute('data-kaiju-component-id') && target.id !== 'root'
     ),
-    isSortable: target => (
+    isSortable: (target) => (
       target.hasAttribute('data-kaiju-sortable')
     ),
     onDragStart: (event, target) => {

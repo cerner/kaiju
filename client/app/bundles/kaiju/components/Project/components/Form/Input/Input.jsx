@@ -47,7 +47,7 @@ const Input = ({ isDelayed, value, onChange }) => {
       className="kaiju-Input"
       defaultValue={value}
       onChange={handleChange}
-      onFocus={event => event.target.select()}
+      onFocus={(event) => event.target.select()}
     />
   );
 };

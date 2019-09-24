@@ -2,7 +2,7 @@
  * Opens a Workspace tab
  * @param {String} id - The id of the Workspace to open in a tab
  */
-const openTab = id => ({
+const openTab = (id) => ({
   type: 'OPEN_TAB',
   id,
 });
@@ -24,7 +24,7 @@ const closeTab = (id, next) => ({
  * Adds a Workspace
  * @param {Object} workspace - The properties of the Workspace
  */
-const addWorkspace = workspace => ({
+const addWorkspace = (workspace) => ({
   type: 'ADD_WORKSPACE',
   ...workspace,
 });
@@ -33,7 +33,7 @@ const addWorkspace = workspace => ({
  * Removes a Workspace
  * @param {String} id - The ID of the Workspace to be removed
  */
-const removeWorkspace = id => ({
+const removeWorkspace = (id) => ({
   type: 'REMOVE_WORKSPACE',
   id,
 });
@@ -53,7 +53,7 @@ const renameWorkspace = (id, name) => ({
  * Sets the canvas size
  * @param {String} size - The size of the canvas
  */
-const setCanvasSize = size => ({
+const setCanvasSize = (size) => ({
   type: 'SET_CANVAS_SIZE',
   size,
 });
@@ -62,7 +62,7 @@ const setCanvasSize = size => ({
  * Renames the Project
  * @param {String} name - The new Project name
  */
-const renameProject = name => ({
+const renameProject = (name) => ({
   type: 'RENAME_PROJECT',
   name,
 });
@@ -71,7 +71,7 @@ const renameProject = name => ({
  * Sets the current active workspace. ( The Workspace that is currently open in a tab )
  * @param {String} id - The ID of the active Workspace
  */
-const setActiveWorkspace = id => ({
+const setActiveWorkspace = (id) => ({
   type: 'SET_ACTIVE_WORKSPACE',
   id,
 });
@@ -93,7 +93,7 @@ const updateComponent = ({ components, root, selectedComponent }) => ({
  * Sets the current active workspace. ( The Workspace that is currently open in a tab )
  * @param {String} id - The ID of the active Workspace
  */
-const setReferenceComponents = components => ({
+const setReferenceComponents = (components) => ({
   type: 'SET_REFERENCE_COMPONENTS',
   components,
 });
@@ -102,7 +102,7 @@ const setReferenceComponents = components => ({
  * Sets the changelog state as viewed / unviewed
  * @param {Boolean} viewed - Whether the changelog has been viewed
  */
-const setChangelogViewed = viewed => ({
+const setChangelogViewed = (viewed) => ({
   type: 'SET_CHANGELOG_VIEWED',
   changelogViewed: viewed,
 });

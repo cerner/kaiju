@@ -77,7 +77,7 @@ const drag = ({
   const findSortable = ({ target, clientX, clientY }) => {
     if (!isSortable || (stopPropagation && stopPropagation(target))) {
       return null;
-    } else if (isSortable(target)) {
+    } if (isSortable(target)) {
       return target;
     }
 

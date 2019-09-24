@@ -64,7 +64,12 @@ const ComponentSelect = ({ components, id, url }) => {
 
       const Icon = iconMap[name];
       const value = `${library}::${name}`;
-      const title = <div>{Icon && <Icon className={cx('icon')} />}{display || name}</div>;
+      const title = (
+        <div>
+          {Icon && <Icon className={cx('icon')} />}
+          {display || name}
+        </div>
+      );
       return <TreeNode key={value} value={value} title={title} />;
     });
 
@@ -82,7 +87,7 @@ const ComponentSelect = ({ components, id, url }) => {
       showSearch
       treeDefaultExpandAll
     >
-      {components.map(component => generateTreeView(component))}
+      {components.map((component) => generateTreeView(component))}
     </TreeSelect>
   );
 };

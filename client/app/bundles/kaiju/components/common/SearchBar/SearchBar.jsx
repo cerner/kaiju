@@ -16,7 +16,7 @@ const propTypes = {
 
 const SearchBar = ({ onChange, placeholder, ...customProps }) => {
   const classes = `kaiju-SearchBar ${customProps.className}`;
-  const handleFocus = event => event.target.select();
+  const handleFocus = (event) => event.target.select();
   return <Input prefix={<Icon type="search" />} type="search" className={classes} onChange={onChange} placeholder={placeholder} onFocus={handleFocus} />;
 };
 

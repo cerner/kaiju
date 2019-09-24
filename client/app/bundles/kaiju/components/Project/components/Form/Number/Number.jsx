@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const Number = ({ value, onChange }) => (
-  <AntINumber className="kaiju-Number" defaultValue={value} onChange={newValue => onChange(newValue)} />
+  <AntINumber className="kaiju-Number" defaultValue={value} onChange={(newValue) => onChange(newValue)} />
 );
 
 Number.propTypes = propTypes;

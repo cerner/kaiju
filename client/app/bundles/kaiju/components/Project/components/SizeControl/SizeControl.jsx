@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 const SizeControl = ({ onChange, selectedSize }) => (
-  <Select value={selectedSize} style={{ width: 120 }} onChange={value => onChange(value)}>
+  <Select value={selectedSize} style={{ width: 120 }} onChange={(value) => onChange(value)}>
     <Select.Option value="auto">Auto</Select.Option>
     <Select.Option value="tiny">Tiny</Select.Option>
     <Select.Option value="small">Small</Select.Option>

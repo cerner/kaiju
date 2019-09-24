@@ -13,7 +13,12 @@ const getTabs = (activeWorkspace, project, workspaces, workspaceTabs) => {
     <TabContainer key={id} id={id} next={array[index + 1] || null} />
   ));
 
-  return <Tabs>{tabs}<TabContainer key="storyboard" id={null} /></Tabs>;
+  return (
+    <Tabs>
+      {tabs}
+      <TabContainer key="storyboard" id={null} />
+    </Tabs>
+  );
 };
 
 const mapStateToProps = ({

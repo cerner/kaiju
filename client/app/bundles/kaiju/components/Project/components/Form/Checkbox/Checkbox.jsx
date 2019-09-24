@@ -19,7 +19,7 @@ const propTypes = {
 };
 
 const Checkbox = ({ display, onChange, value }) => {
-  const handleChange = event => onChange(event.target.checked);
+  const handleChange = (event) => onChange(event.target.checked);
 
   return (
     <AntCheckbox className="kaiju-Checkbox" defaultChecked={value} onChange={handleChange}>

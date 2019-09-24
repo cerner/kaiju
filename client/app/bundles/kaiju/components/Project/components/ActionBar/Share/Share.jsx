@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Input, Modal, Tooltip } from 'antd';
+import {
+  Icon, Input, Modal, Tooltip,
+} from 'antd';
 import classNames from 'classnames/bind';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Magician from '../../../../common/Magician/Magician';
@@ -150,7 +152,11 @@ class Share extends React.Component {
           <Input readOnly value={value} addonAfter={addon} onFocus={this.select} ref={this.ref} />
           {isShareable && <div className={cx('info')}>{Descriptions[type].INFO}</div>}
           <div className={cx('toggle', { 'is-edit': isShareable })} onClick={this.togglePermissions} role="presentation">
-              Get a {Descriptions[permissions].ALT} <Icon type={isShareable ? 'eye-o' : 'edit'} />
+              Get a
+            {' '}
+            {Descriptions[permissions].ALT}
+            {' '}
+            <Icon type={isShareable ? 'eye-o' : 'edit'} />
           </div>
         </Magician>
       </Modal>,

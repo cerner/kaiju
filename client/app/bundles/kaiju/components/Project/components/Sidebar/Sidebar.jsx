@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import ComponentSearchContainer from '../../containers/ComponentSearchContainer';
 import LayersContainer from '../../containers/LayersContainer';
-import SectionHeader from '../../components/SectionHeader/SectionHeader';
+import SectionHeader from '../SectionHeader/SectionHeader';
 import styles from './Sidebar.scss';
 
 const cx = classNames.bind(styles);

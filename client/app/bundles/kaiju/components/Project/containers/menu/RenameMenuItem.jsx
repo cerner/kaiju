@@ -108,7 +108,7 @@ const mapStateToProps = ({ project }) => ({
   renameUrl: project.renameUrl,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onSave: (name) => {
     dispatch(renameProject(name));
   },

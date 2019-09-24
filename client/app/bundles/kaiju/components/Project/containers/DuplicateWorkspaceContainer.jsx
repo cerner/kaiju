@@ -14,7 +14,7 @@ const mapStateToProps = ({
   root,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addWorkspace: (workspace) => {
     dispatch(addWorkspace(camelizeKeys(workspace)));
   },

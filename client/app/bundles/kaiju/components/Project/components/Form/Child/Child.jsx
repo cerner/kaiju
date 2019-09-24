@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Icon } from 'antd';
-import { destroy, duplicate, highlight, removeHighlight, select } from '../../../utilities/messenger';
+import {
+  destroy, duplicate, highlight, removeHighlight, select,
+} from '../../../utilities/messenger';
 import './Child.scss';
 
 const propTypes = {
@@ -39,11 +41,12 @@ const Child = ({
         {type}
       </span>
       <div className="kaiju-Child-actions">
-        { isDuplicable &&
+        { isDuplicable
+          && (
           <div className="kaiju-Child-action" role="presentation" onClick={handleDuplicate}>
             <Icon type="copy" />
           </div>
-        }
+          )}
         <div className="kaiju-Child-action" role="presentation" onClick={handleDelete}>
           <Icon type="delete" />
         </div>

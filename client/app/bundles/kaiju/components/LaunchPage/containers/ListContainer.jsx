@@ -23,7 +23,7 @@ const mapStateToProps = ({ selectedListItem }) => ({
   defaultSelection: selectedListItem,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onChange: (listItemKey) => {
     dispatch(setSelectedListItem(listItemKey));
   },

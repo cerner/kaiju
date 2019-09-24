@@ -9,10 +9,10 @@ const mapStateToProps = ({ project, workspaces }) => ({
   project,
   workspaces: Object.keys(workspaces).sort((a, b) => (
     workspaces[a].name.toLowerCase() > workspaces[b].name.toLowerCase()
-  )).map(key => <Card key={key} id={key} />),
+  )).map((key) => <Card key={key} id={key} />),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addWorkspace: (workspace) => {
     dispatch(addWorkspace(camelizeKeys(workspace)));
   },

@@ -5,7 +5,7 @@ import DraggableItem from '../DraggableItem/DraggableItem';
 import Header from '../GroupHeader/GroupHeader';
 import TreeView from '../../../common/TreeView/TreeView';
 import SearchBar from '../../../common/SearchBar/SearchBar';
-import SectionHeader from '../../components/SectionHeader/SectionHeader';
+import SectionHeader from '../SectionHeader/SectionHeader';
 import './ComponentSearch.scss';
 
 const propTypes = {
@@ -66,7 +66,7 @@ class ComponentSearch extends React.Component {
   render() {
     const activeFilter = this.state.searchValue.length > 0;
     const filteredComponents = activeFilter ? this.filterComponents(this.props.components) : null;
-    const treeView = filteredComponents ? null : this.props.components.map(component => ComponentSearch.generateTreeView(component));
+    const treeView = filteredComponents ? null : this.props.components.map((component) => ComponentSearch.generateTreeView(component));
     const treeViewClasses = classNames([
       'kaiju-ComponentSearch-treeView',
       { 'is-hidden': activeFilter > 0 },
