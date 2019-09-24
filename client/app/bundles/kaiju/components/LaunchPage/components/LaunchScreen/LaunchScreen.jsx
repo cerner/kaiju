@@ -57,9 +57,21 @@ const LaunchScreen = ({
       <div className="kaiju-LaunchScreen-body">
         <div className="kaiju-LaunchScreen-sidebar">
           <ListContainer>
-            <span key="projects">My Projects ({projects.length})</span>
-            <span key="recentWorkspaces">Recent Workspaces ({recentWorkspaces.length})</span>
-            <span key="inactive">Deleted Projects ({inactiveProjects.length})</span>
+            <span key="projects">
+My Projects (
+              {projects.length}
+)
+            </span>
+            <span key="recentWorkspaces">
+Recent Workspaces (
+              {recentWorkspaces.length}
+)
+            </span>
+            <span key="inactive">
+Deleted Projects (
+              {inactiveProjects.length}
+)
+            </span>
           </ListContainer>
           <Button type="primary" className="kaiju-LaunchScreen-newProject" onClick={() => createNewProject(projectsUrl)}>New Project</Button>
         </div>

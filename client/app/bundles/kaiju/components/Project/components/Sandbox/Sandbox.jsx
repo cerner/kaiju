@@ -33,11 +33,13 @@ class Sandbox extends React.Component {
     return (
       <div className={cx('sandbox')}>
         {
-          isReadOnly &&
+          isReadOnly
+          && (
           <Alert
             title="Read-only view."
             description="You are not authorized to edit this workspace."
           />
+          )
         }
         <div className={cx('content')}>
           <div className={cx('container')}>

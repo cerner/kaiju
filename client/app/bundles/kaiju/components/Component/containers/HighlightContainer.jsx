@@ -22,7 +22,7 @@ const HighlightContainer = ({ id, name }) => (
 HighlightContainer.propTypes = propTypes;
 
 const mapStateToProps = ({ components, highlightedComponent }) => (
-  { ...Object.assign({}, components[highlightedComponent]) }
+  { ...({ ...components[highlightedComponent] }) }
 );
 
 export default connect(mapStateToProps)(HighlightContainer);

@@ -43,7 +43,7 @@ class SelectableList extends React.Component {
   }
 
   render() {
-    const children = React.Children.map(this.props.children, child => (
+    const children = React.Children.map(this.props.children, (child) => (
       <SelectableItem onClick={() => this.handleSelection(child.key)} isSelected={child.key === this.state.selectedKey}>
         {child}
       </SelectableItem>

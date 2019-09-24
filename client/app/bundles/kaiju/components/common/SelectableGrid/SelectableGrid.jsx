@@ -42,7 +42,7 @@ class SelectableGrid extends React.Component {
   }
 
   render() {
-    const children = React.Children.map(this.props.children, child => (
+    const children = React.Children.map(this.props.children, (child) => (
       <GridItem onClick={() => this.handleSelection(child.key)} isSelected={child.key === this.state.selectedKey}>
         {child}
       </GridItem>

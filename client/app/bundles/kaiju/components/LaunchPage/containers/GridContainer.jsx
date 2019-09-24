@@ -97,9 +97,9 @@ const getInactiveProjectCards = (inactiveProjects, filter) => {
 const getChildren = (listItem, filter, projects, workspaces, inactiveProjects) => {
   if (listItem === 'recentWorkspaces') {
     return getRecentWorkspaceCards(workspaces, filter);
-  } else if (listItem === 'projects') {
+  } if (listItem === 'projects') {
     return getProjectCards(projects, filter);
-  } else if (listItem === 'inactive') {
+  } if (listItem === 'inactive') {
     return getInactiveProjectCards(inactiveProjects, filter);
   }
   return null;

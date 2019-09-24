@@ -56,7 +56,8 @@ const DraggableItem = ({
   return (
     <li className={cx('item')} draggable onDragStart={handleDragStart}>
       <span className={cx('display')}>
-        {IconType && <IconType className={cx('icon')} />}{display}
+        {IconType && <IconType className={cx('icon')} />}
+        {display}
       </span>
       <span className={cx('info')}>
         <Tooltip
@@ -69,7 +70,9 @@ const DraggableItem = ({
                   {display}
                 </span>
                 <span className={cx('version')}>
-                  v. {version}
+                  v.
+                  {' '}
+                  {version}
                 </span>
               </div>
               <div className={cx('description')}>

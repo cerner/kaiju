@@ -66,7 +66,7 @@ class ComponentContainer extends React.Component {
 
     if (value === undefined || value === null) {
       return null;
-    } else if (type === 'Array') {
+    } if (type === 'Array') {
       const array = [];
       value.forEach(({ id }) => {
         const item = this.generateProperty(properties, id);
@@ -75,7 +75,7 @@ class ComponentContainer extends React.Component {
         }
       });
       return (array.length > 0) ? array : null;
-    } else if (type === 'Hash') {
+    } if (type === 'Hash') {
       const hash = {};
       Object.keys(value).forEach((key) => {
         const { id } = value[key];
@@ -86,9 +86,9 @@ class ComponentContainer extends React.Component {
       });
       // Do not return empty objects
       return Object.keys(hash).length > 0 ? hash : null;
-    } else if (type === 'Component') {
+    } if (type === 'Component') {
       return this.generateComponent(value.id);
-    } else if (type === 'Number') {
+    } if (type === 'Number') {
       return Number(value);
     }
     return value;

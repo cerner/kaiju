@@ -23,7 +23,7 @@ const Axios = axios.create({
 /**
  * Intercepts every request / reponse before then() and catch() are invoked.
  */
-Axios.interceptors.response.use(response => response, (error) => {
+Axios.interceptors.response.use((response) => response, (error) => {
   const { response, request } = error;
   if (response) {
     switch (response.status) {

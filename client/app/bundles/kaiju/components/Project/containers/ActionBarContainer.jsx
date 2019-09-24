@@ -11,7 +11,7 @@ const mapStateToProps = ({
   workspace: workspaces[activeWorkspace],
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onDelete: (id) => {
     dispatch(removeWorkspace(id));
   },

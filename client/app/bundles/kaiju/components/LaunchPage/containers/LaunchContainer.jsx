@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { setSearchFilter } from '../actions/actions';
 import LaunchScreen from '../components/LaunchScreen/LaunchScreen';
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onSearch: (event) => {
     dispatch(setSearchFilter(event.currentTarget.value.toLowerCase()));
   },

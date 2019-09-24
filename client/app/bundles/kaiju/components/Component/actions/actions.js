@@ -8,7 +8,7 @@ const UPDATE_PROPERTY = 'UPDATE_PROPERTY';
  * Removes orphan keys from the store.
  * @param {String} root - The entry component identifier.
  */
-const collectGarbage = root => ({
+const collectGarbage = (root) => ({
   type: COLLECT_GARBAGE,
   root,
 });
@@ -17,7 +17,7 @@ const collectGarbage = root => ({
  * Highlights the specified component.
  * @param {String} id - The id of the component to highlight.
  */
-const highlightComponent = id => ({
+const highlightComponent = (id) => ({
   type: HIGHLIGHT_COMPONENT,
   id,
 });
@@ -37,7 +37,7 @@ const refreshStore = (id, store) => ({
  * Sets the selected component.
  * @param {String} id - The id of the component to select.
  */
-const selectComponent = id => ({
+const selectComponent = (id) => ({
   type: SELECT_COMPONENT,
   id,
 });

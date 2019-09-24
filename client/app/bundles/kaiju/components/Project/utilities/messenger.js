@@ -6,7 +6,7 @@ const getTargetWindow = () => document.getElementById('kaiju-Sandbox-iframe').co
 /**
  * Posts a message to the component window
  */
-const postMessage = message => getTargetWindow().postMessage(message, '*');
+const postMessage = (message) => getTargetWindow().postMessage(message, '*');
 
 /**
  * Deletes a Component

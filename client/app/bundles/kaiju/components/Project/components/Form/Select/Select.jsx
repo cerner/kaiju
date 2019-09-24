@@ -26,7 +26,7 @@ const Select = ({
   ));
 
   return (
-    <AntSelect className="kaiju-Select" defaultValue={value || customProps.default} onChange={newValue => onChange(newValue)}>
+    <AntSelect className="kaiju-Select" defaultValue={value || customProps.default} onChange={(newValue) => onChange(newValue)}>
       {selectOptions}
     </AntSelect>
   );

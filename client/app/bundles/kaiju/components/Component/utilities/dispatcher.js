@@ -1,6 +1,8 @@
 import Mousetrap from 'mousetrap';
 import { camelizeKeys } from 'humps';
-import { collectGarbage, highlightComponent, refreshStore, selectComponent, updateProperty } from '../actions/actions';
+import {
+  collectGarbage, highlightComponent, refreshStore, selectComponent, updateProperty,
+} from '../actions/actions';
 import { flattenComponent, serializeComponent, serializeObject } from './normalizer';
 import TreeParser from './TreeParser';
 import axios from '../../../utilities/axios';
@@ -28,14 +30,14 @@ const registerDispatcher = (store, root) => {
    * Posts a message to the parent window
    * @param {Object} message - The message being passed to the parent window
    */
-  const post = message => window.parent.postMessage(message, '*');
+  const post = (message) => window.parent.postMessage(message, '*');
 
   /**
    * Fetches a property from the store
    * @param {String} id - The property identifier
    * @return {*} The requsted property from the store
    */
-  const fetch = id => store.getState().components[id];
+  const fetch = (id) => store.getState().components[id];
 
   /**
    * Fetches the selected component
@@ -48,7 +50,7 @@ const registerDispatcher = (store, root) => {
    * @param {Object} component - The Component to serialize
    * @return {Object} - A serialized component
    */
-  const serialize = object => serializeComponent(store.getState().components, object);
+  const serialize = (object) => serializeComponent(store.getState().components, object);
 
   /**
    * Posts the current state to the parent window
@@ -241,9 +243,9 @@ const registerDispatcher = (store, root) => {
     const clipboard = localStorage.clipboard ? JSON.parse(localStorage.clipboard) : null;
 
     if (clipboard && selectedComponent && selectedComponent.type === 'kaiju::Placeholder') {
-      const target = selectedComponent.parent === root && clipboard.type === 'kaiju::Workspace' ?
-        selectedComponent.parent :
-        selectedComponent.id;
+      const target = selectedComponent.parent === root && clipboard.type === 'kaiju::Workspace'
+        ? selectedComponent.parent
+        : selectedComponent.id;
 
       // Kaiju does not allow nesting workspaces
       if (clipboard.type === 'kaiju::Workspace' && target !== root) {
@@ -289,7 +291,7 @@ const registerDispatcher = (store, root) => {
    */
   const selectTarget = (event) => {
     const { ctrlKey, metaKey } = event;
-    let target = event.target[Object.keys(event.target).find(k => k.startsWith('__reactInternalInstance$'))];
+    let target = event.target[Object.keys(event.target).find((k) => k.startsWith('__reactInternalInstance$'))];
 
     const components = store.getState().components;
 

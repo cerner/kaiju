@@ -8,7 +8,7 @@ import Magician from '../../../common/Magician/Magician';
 import Card from '../../../common/Card/Card';
 import SelectableGrid from '../../../common/SelectableGrid/SelectableGrid';
 
-const formatDate = date => new Date(date).toString();
+const formatDate = (date) => new Date(date).toString();
 
 const propTypes = {
   resourceUrl: PropTypes.string,

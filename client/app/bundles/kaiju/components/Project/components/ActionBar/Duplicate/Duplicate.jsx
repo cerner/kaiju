@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { camelizeKeys } from 'humps';
-import { Icon, Input, Modal, Select } from 'antd';
+import {
+  Icon, Input, Modal, Select,
+} from 'antd';
 import { serializeComponent } from '../../../../Component/utilities/normalizer';
 import axios from '../../../../../utilities/axios';
 import Magician from '../../../../common/Magician/Magician';
@@ -190,7 +192,7 @@ class Duplicate extends React.Component {
     let content = <div className={cx('spinner')}><Spinner /></div>;
 
     if (projects) {
-      const options = Object.keys(projects).map(key => (
+      const options = Object.keys(projects).map((key) => (
         <Select.Option key={projects[key].id} value={projects[key].id}>
           {`${projects[key].name} (${projects[key].workspaceCount})`}
         </Select.Option>
@@ -208,7 +210,9 @@ class Duplicate extends React.Component {
           >
             {options}
             <Select.Option key="new-project" value="new-project">
-              <Icon type="plus" /> New Project
+              <Icon type="plus" />
+              {' '}
+New Project
             </Select.Option>
           </Select>
         </Magician>

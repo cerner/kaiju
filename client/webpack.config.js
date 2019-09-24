@@ -1,11 +1,11 @@
 const { resolve } = require('path');
 const defaultWebpackConfig = require('terra-toolkit/config/webpack/webpack.config');
 const merge = require('webpack-merge');
-const theme = require('./themes/default');
 const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
-const GatherDependencies = require('./plugins/gather-dependencies');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const GatherDependencies = require('./plugins/gather-dependencies');
+const theme = require('./themes/default');
 
 const configPath = resolve('..', 'config');
 const { output } = webpackConfigLoader(configPath);

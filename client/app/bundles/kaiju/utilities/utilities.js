@@ -17,8 +17,8 @@ const formatDate = (isoDate) => {
  * @param {Object} properties - The properties Object
  * @return {Object} - An Object consisting of root properties
  */
-const getRootProps = properties => (
-  Object.keys(properties).filter(property => property.indexOf('::') === -1)
+const getRootProps = (properties) => (
+  Object.keys(properties).filter((property) => property.indexOf('::') === -1)
 );
 
 /**

@@ -6,7 +6,7 @@ import styles from './ShareMenuItem.scss';
 
 const cx = classNames.bind(styles);
 
-const ShareMenuItem = props => (
+const ShareMenuItem = (props) => (
   <li>
     <Share {...props}>
       <div className={cx('title')}>Share</div>

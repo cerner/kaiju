@@ -22,7 +22,7 @@ const SelectedContainer = ({ id, name }) => (
 SelectedContainer.propTypes = propTypes;
 
 const mapStateToProps = ({ components, selectedComponent }) => (
-  { ...Object.assign({}, components[selectedComponent]) }
+  { ...({ ...components[selectedComponent] }) }
 );
 
 

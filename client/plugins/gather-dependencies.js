@@ -9,8 +9,8 @@ function GatherDependencies() {}
  * @param {String} string - A hyphenated string.
  * @return {String} - A titlized string.
  */
-const toTitleCase = string => (
-  string.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('')
+const toTitleCase = (string) => (
+  string.split('-').map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join('')
 );
 
 /**
