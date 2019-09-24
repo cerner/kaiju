@@ -1,17 +1,17 @@
+const { resolve } = require('path');
 const defaultWebpackConfig = require('terra-toolkit/config/webpack/webpack.config');
 const merge = require('webpack-merge');
-const path = require('path');
 const theme = require('./themes/default');
 const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
 const GatherDependencies = require('./plugins/gather-dependencies');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const resolve = path.resolve;
 const configPath = resolve('..', 'config');
 const { output } = webpackConfigLoader(configPath);
 
 const config = {
+  context: resolve(__dirname),
   entry: {
     attributes: './app/bundles/kaiju/startup/attributesRegistration',
     code: './app/bundles/kaiju/startup/codeRegistration',

@@ -8,7 +8,8 @@
     "node": "8.9.2"
   },
   "scripts": {
-    "clean": "rm -rf ./node_modules && rm -rf ./client/node_modules",
+    "clean": "rm -rf ./node_modules && rm -f ./client/package-lock.json && rm -rf ./client/node_modules",
+    "clean:install": "npm run clean && npm install",
     "lint": "npm run lint-ruby && cd client && npm run lint",
     "lint-ruby": "rubocop",
     "postinstall": "cd client && npm install",
