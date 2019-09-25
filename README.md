@@ -14,13 +14,12 @@ Kaiju is great for rapid prototyping and facilitating collaboration between engi
 
 ## Local Installation
 
-### Requirements:
+### Requirements
 
 * [Docker](https://docs.docker.com/engine/installation/)
 
 To run the app, spin up a couple of docker containers with compose and navigate to localhost.
 ```
-docker-compose pull
 docker-compose up
 ```
 
@@ -29,7 +28,7 @@ docker-compose up
 * Rails
 * Local Redis database
 
-To develop the app, install dependancies and spin rails and node server and navigate to localhost:3000. Running npm install in the root kaiju directory will install npm and rails dependancies.
+To develop the app, install dependencies and spin rails and node server and navigate to localhost:3000. Running npm install in the root kaiju directory will install npm and rails dependencies.
 ```
 npm install
 npm install foreman -g
@@ -38,7 +37,7 @@ nf start
 ```
 
 ## Usage
-If you haven't setup an IDP you'll be greeted with the mock identiy provider. This looks shady, but it's just a pass through provided by omniauth. Any username/email is accepted. That said, please don't use this IDP in production.
+If you haven't setup an IDP you'll be greeted with the mock identity provider. This looks shady, but it's just a pass through provided by omniauth. Any username/email is accepted. That said, please don't use this IDP in production.
 
 After log-in the first step is to create a project. Each new project has a default workspace. The workspace is where you will be creating your new components. Drag a component from the left column to the workspace to drop the component. With this drag and drop system you can build out a tree of nested UI components with a layout as the root. The layers of the workspace will be displayed in the bottom left corner of the editor. The properties of the dropped components can be modified by editing the fields displayed in the right column.
 
@@ -47,12 +46,6 @@ Once you've created your page you can preview it by clicking on the "Eye" tool-b
 Kaiju is an online editor and allows for sharing workspaces between collaborators. By default all workspaces and projects can be view by any logged in user but only the author of a workspace can edit. If the author of workspace or project chooses they can create a collaboration link. This link is active for 24 hours and will add anyone who accesses the link as a collaborator on the project/workspace, giving them privileges to edit.
 
 The best way to give kaiju a try is by following our above docker instructions. You won't be able to leverage the sharing aspect since it's a local instance, but you'll be able to create projects and workspaces as well as generate the code and previews. A public instance will be coming out eventually.
-
-## Plugins
-
-Kaiju plugins provide server owners the ability to add additional project types to Kaiju. These plugins control the components available in the project, the code that is generated and the generated preview.
-
-See our [Plugin Guide](docs/kaiju_plugin_guide.md) for more details.
 
 ## History
 
