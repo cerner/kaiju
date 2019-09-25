@@ -1,7 +1,9 @@
 const { resolve } = require('path');
+const rtl = require('postcss-rtl');
 const defaultWebpackConfig = require('terra-toolkit/config/webpack/webpack.config');
 const merge = require('webpack-merge');
 const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
+const Autoprefixer = require('autoprefixer');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const GatherDependencies = require('./plugins/gather-dependencies');
@@ -46,9 +48,22 @@ const config = {
             },
           },
           {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins() {
+                return [
+                  rtl(),
+                  Autoprefixer(),
+                ];
+              },
+            },
+          },
+          {
             loader: 'less-loader',
             options: {
               modifyVars: theme,
+              javascriptEnabled: true,
             },
           },
         ],
