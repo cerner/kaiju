@@ -57,7 +57,7 @@
     "jest": "^24.9.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.6",
-    "mini-css-extract-plugin": "^0.4.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "redux-devtools": "^3.4.0",
     "stylelint": "^11.0.0",
     "stylelint-config-sass-guidelines": "^6.1.0",
