@@ -305,7 +305,7 @@ DEPENDENCIES
   stackprof (~> 0.2.10)
   uglifier (>= 1.3.0)
   web-console (~> 3.0)
-  webpacker
+  webpacker (~> 4.0)
 
 BUNDLED WITH
    1.17.3
