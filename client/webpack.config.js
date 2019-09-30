@@ -15,13 +15,13 @@ const { output } = webpackConfigLoader(configPath);
 const config = {
   context: resolve(__dirname),
   entry: {
-    attributes: './app/bundles/kaiju/startup/attributesRegistration',
-    code: './app/bundles/kaiju/startup/codeRegistration',
-    component: './app/bundles/kaiju/startup/componentRegistration',
-    guide: './app/bundles/kaiju/startup/guideRegistration',
-    launch: './app/bundles/kaiju/startup/launchPageRegistration',
-    preview: './app/bundles/kaiju/startup/previewRegistration',
-    project: './app/bundles/kaiju/startup/projectRegistration',
+    attributes: ['raf/polyfill', 'core-js/stable', './app/bundles/kaiju/startup/attributesRegistration'],
+    code: ['raf/polyfill', 'core-js/stable', './app/bundles/kaiju/startup/codeRegistration'],
+    component: ['raf/polyfill', 'core-js/stable', './app/bundles/kaiju/startup/componentRegistration'],
+    guide: ['raf/polyfill', 'core-js/stable', './app/bundles/kaiju/startup/guideRegistration'],
+    launch: ['raf/polyfill', 'core-js/stable', './app/bundles/kaiju/startup/launchPageRegistration'],
+    preview: ['raf/polyfill', 'core-js/stable', './app/bundles/kaiju/startup/previewRegistration'],
+    project: ['raf/polyfill', 'core-js/stable', './app/bundles/kaiju/startup/projectRegistration'],
   },
   output: {
     filename: '[name]-[chunkhash].js',
