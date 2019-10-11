@@ -44,7 +44,10 @@ const config = {
             options: {
               sourceMap: true,
               importLoaders: 2,
-              localIdentName: '[name]_[local]_[hash:base64:5]',
+              modules: {
+                mode: 'global',
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
             },
           },
           {
