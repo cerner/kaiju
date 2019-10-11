@@ -34,7 +34,8 @@ class Rename extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
   }
 
-  componentWillReceiveProps({ workspaceName }) {
+  /* eslint-disable-next-line camelcase */
+  UNSAFE_componentWillReceiveProps({ workspaceName }) {
     this.setState({ name: workspaceName });
   }
 
