@@ -69,7 +69,8 @@ class Duplicate extends React.Component {
    * Updates the workspace name when it changes.
    * @param {String} name - The workspace name.
    */
-  componentWillReceiveProps({ name }) {
+  /* eslint-disable-next-line camelcase */
+  UNSAFE_componentWillReceiveProps({ name }) {
     if (name !== this.state.name) {
       this.setState({ name });
     }
@@ -212,7 +213,7 @@ class Duplicate extends React.Component {
             <Select.Option key="new-project" value="new-project">
               <Icon type="plus" />
               {' '}
-New Project
+              New Project
             </Select.Option>
           </Select>
         </Magician>

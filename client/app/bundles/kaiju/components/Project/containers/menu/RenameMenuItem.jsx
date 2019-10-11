@@ -36,7 +36,8 @@ class RenameMenuItem extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
   }
 
-  componentWillReceiveProps({ name }) {
+  /* eslint-disable-next-line camelcase */
+  UNSAFE_componentWillReceiveProps({ name }) {
     this.setState({ name });
   }
 
