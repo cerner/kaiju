@@ -35,11 +35,13 @@ const Preview = ({ ast }) => {
   }
 
   return (
-    <Base className="kaiju-Preview" locale="en-US">
-      <SafeRender>
-        {React.createElement('div', { ...generateProperties(ast.properties) })}
-      </SafeRender>
-    </Base>
+    <Base locale="en-US">
+      <div className="kaiju-Preview">
+        <SafeRender>
+          {React.createElement('div', { ...generateProperties(ast.properties) })}
+        </SafeRender>
+      </div>
+    </Base >
   );
 };
 
