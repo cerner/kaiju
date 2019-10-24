@@ -41,7 +41,7 @@ const Preview = ({ ast }) => {
           {React.createElement('div', { ...generateProperties(ast.properties) })}
         </SafeRender>
       </div>
-    </Base >
+    </Base>
   );
 };
 
