@@ -37,7 +37,7 @@ gem 'redis-objects', '~> 1.3'
 gem 'redis-rails', '~> 5.0'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.4'
+gem 'puma', '~> 3.12'
 
 gem 'stackprof', '~> 0.2.10'
 
