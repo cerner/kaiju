@@ -58,19 +58,19 @@ const LaunchScreen = ({
         <div className="kaiju-LaunchScreen-sidebar">
           <ListContainer>
             <span key="projects">
-My Projects (
+              My Projects (
               {projects.length}
-)
+              )
             </span>
             <span key="recentWorkspaces">
-Recent Workspaces (
+              Recent Workspaces (
               {recentWorkspaces.length}
-)
+              )
             </span>
             <span key="inactive">
-Deleted Projects (
+              Deleted Projects (
               {inactiveProjects.length}
-)
+              )
             </span>
           </ListContainer>
           <Button type="primary" className="kaiju-LaunchScreen-newProject" onClick={() => createNewProject(projectsUrl)}>New Project</Button>
