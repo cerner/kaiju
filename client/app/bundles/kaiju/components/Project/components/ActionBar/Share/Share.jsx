@@ -152,7 +152,7 @@ class Share extends React.Component {
           <Input readOnly value={value} addonAfter={addon} onFocus={this.select} ref={this.ref} />
           {isShareable && <div className={cx('info')}>{Descriptions[type].INFO}</div>}
           <div className={cx('toggle', { 'is-edit': isShareable })} onClick={this.togglePermissions} role="presentation">
-              Get a
+            Get a
             {' '}
             {Descriptions[permissions].ALT}
             {' '}
