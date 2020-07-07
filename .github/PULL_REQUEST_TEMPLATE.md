@@ -9,5 +9,5 @@ Please add your name to the [CONTRIBUTORS.md] file. Adding your name to the [CON
 Thanks for contributing to Kaiju.
 @cerner/kaiju
 
-[CONTRIBUTORS.md]: ../blob/master/CONTRIBUTORS.md
-[License]: ../blob/master/LICENSE
+[CONTRIBUTORS.md]: ../blob/main/CONTRIBUTORS.md
+[License]: ../blob/main/LICENSE
