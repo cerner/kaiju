@@ -5,23 +5,25 @@ const toolkitWebpackConfig = require('terra-toolkit/config/webpack/webpack.confi
 
 const appWebpackConfig = () => ({
   entry: {
-    index: './src/index.jsx',
+    index: './src/application/index.jsx',
+    sandbox: './src/sandbox/index.jsx',
   },
   plugins: [
     new HtmlWebpackPlugin({
+      chunks: ['index'],
       filename: './index.html',
       template: './public/index.html',
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['sandbox'],
+      filename: './sandbox.html',
+      template: './public/sandbox.html',
     }),
   ],
 });
 
-const mergedConfig = (env, argv) => {
-  const config = merge(toolkitWebpackConfig(env, argv), appWebpackConfig(env, argv));
-
-  // This is required to bundle the web compatible octokit/rest.
-  config.resolve.mainFields = ['browser', 'module', 'main'];
-
-  return config;
-};
+const mergedConfig = (env, argv) => (
+  merge(toolkitWebpackConfig(env, argv), appWebpackConfig(env, argv))
+);
 
 module.exports = mergedConfig;

@@ -1,0 +1,13 @@
+:global {
+  /* stylelint-disable-next-line selector-max-id */
+  #root {
+    height: 100%;
+  }
+}
+
+:local {
+  .application {
+    display: flex;
+    height: 100%;
+  }
+}

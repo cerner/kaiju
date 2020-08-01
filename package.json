@@ -41,8 +41,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-intl": "^2.9.0",
+    "terra-application": "^1.29.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
