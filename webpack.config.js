@@ -10,12 +10,12 @@ const appWebpackConfig = () => ({
   },
   plugins: [
     new HtmlWebpackPlugin({
-      chunks: ['index'],
+      excludeChunks: ['sandbox'],
       filename: './index.html',
       template: './public/index.html',
     }),
     new HtmlWebpackPlugin({
-      chunks: ['sandbox'],
+      excludeChunks: ['index'],
       filename: './sandbox.html',
       template: './public/sandbox.html',
     }),

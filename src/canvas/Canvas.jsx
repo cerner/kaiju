@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Canvas.module.scss';
 

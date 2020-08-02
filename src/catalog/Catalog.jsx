@@ -6,7 +6,9 @@ const cx = classNames.bind(styles);
 
 const Catalog = () => (
   <div className={cx('catalog')}>
-    Catalog
+    <div>
+      Terra Button
+    </div>
   </div>
 );
 
