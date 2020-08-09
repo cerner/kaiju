@@ -1225,6 +1225,12 @@ button.Button-module__button___3afIE, html input[type='button'].Button-module__b
 .ApplicationBase-module__application-base___2A-Kt.ApplicationBase-module__fill___3-pzi {
   height: 100%; }
 
+.Placeholder-module__placeholder___3PcXd {
+  height: 100%;
+  width: 100%; }[dir] .Placeholder-module__placeholder___3PcXd {
+  border: 1px dashed #000;
+  text-align: center; }
+
  {
   /* stylelint-disable-next-line selector-max-id */ }
   #root {
