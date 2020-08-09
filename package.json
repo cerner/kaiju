@@ -47,7 +47,8 @@
     "react-dom": "^16.13.1",
     "react-intl": "^2.9.0",
     "terra-application": "^1.29.1",
-    "terra-button": "^3.44.0"
+    "terra-button": "^3.44.0",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

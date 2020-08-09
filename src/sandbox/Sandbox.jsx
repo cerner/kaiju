@@ -36,7 +36,7 @@ const Sandbox = () => {
   return (
     <TerraApplication>
       <ApplicationLoadingOverlay isOpen={!state} />
-      {sandbox && sandbox.map((component) => Renderer.render(component))}
+      {sandbox && sandbox.children.map((component) => Renderer.render(component))}
     </TerraApplication>
   );
 };

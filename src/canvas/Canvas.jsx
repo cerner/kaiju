@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 const Canvas = () => (
   <iframe
     className={cx('canvas')}
+    id="sandbox"
     src="sandbox.html"
     title="sandbox"
   />

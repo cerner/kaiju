@@ -6,7 +6,12 @@ const cx = classNames.bind(styles);
 
 const Catalog = () => (
   <div className={cx('catalog')}>
-    <div>
+    <div
+      draggable="true"
+      onDragStart={(event) => {
+        event.dataTransfer.setData('SANDBOX.DATA', JSON.stringify({ identifier: 'terra-button:button' }));
+      }}
+    >
       Terra Button
     </div>
   </div>

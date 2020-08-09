@@ -20,10 +20,21 @@ const Application = () => {
 
       if (message === 'SANDBOX.STATE.REQUEST') {
         event.source.postMessage({ message: 'SANDBOX.STATE.UPDATE', state });
+      } else if (message === 'SANDBOX.DISPATCH.REPLACE') {
+        const { id, replacement } = data;
+
+        dispatch({ type: 'REPLACE', id, replacement });
       }
     }
 
     window.addEventListener('message', handleMessage);
+
+    // Communicate state updates to the iframe.
+    const sandbox = document.getElementById('sandbox');
+
+    if (sandbox) {
+      sandbox.contentWindow.postMessage({ message: 'SANDBOX.STATE.UPDATE', state });
+    }
 
     return () => {
       window.removeEventListener('message', handleMessage);
