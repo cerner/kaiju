@@ -62,6 +62,10 @@ class ExampleGenerator {
       return { id, parent, type, value: example };
     }
 
+    if (type === 'string') {
+      return { id, parent, type, value: '' };
+    }
+
     return { id, parent, type, value: undefined };
   }
 }

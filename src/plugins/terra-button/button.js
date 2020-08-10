@@ -8,11 +8,6 @@ export default {
   documentation: 'http://engineering.cerner.com/terra-ui/#/components/terra-button/button/button',
   componentType: Button,
   props: {
-    href: {
-      type: 'string',
-      required: false,
-      description: 'Sets the href. When set will render the component as an anchor tag.',
-    },
     text: {
       type: 'string',
       required: true,

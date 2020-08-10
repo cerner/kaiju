@@ -48,6 +48,7 @@
     "react-intl": "^2.9.0",
     "terra-application": "^1.29.1",
     "terra-button": "^3.44.0",
+    "terra-form-input": "^4.2.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
