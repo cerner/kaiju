@@ -1,34 +1,24 @@
+/**
+ * Provides utilities for interacting with a tree data structure.
+ * Each node in a tree is expected to conform to the following structure: { id, parent, type, value }
+ */
 class Tree {
-  // Remove
-  // Replace
-  // Traverse
-  // Insert
-  // Append
-  // Update
-  // Find.
-
-  // Node - id, parent, type, value
-
   static find(tree, target) {
-    const travel = (node) => {
+    let targetNode = null;
+
+    // This is inefficient as it travels the entire tree always, but it allows
+    // tree traversal algorithm re-use. If performance becomes noticeable this can be optimized.
+    Tree.traverse(tree, (node) => {
       const { id } = node;
 
       if (id === target) {
-        return node;
+        targetNode = node;
       }
 
-      return null;
-    };
+      return node;
+    });
 
-    for (let index = 0; index < tree.children.length; index += 1) {
-      const found = travel(tree.children[index]);
-
-      if (found) {
-        return found;
-      }
-    }
-
-    return null;
+    return targetNode;
   }
 
   /**
@@ -79,13 +69,15 @@ class Tree {
 
       if (type === 'element') {
         const properties = {};
-        const { props = {} } = value;
+        const { props } = value;
 
-        Object.keys(props).forEach((property) => {
+        Object.keys(props || {}).forEach((property) => {
           properties[property] = callback(props[property]);
         });
+
         return callback({ ...node, value: { ...value, props: properties } });
       }
+
       return callback(node);
     };
 
