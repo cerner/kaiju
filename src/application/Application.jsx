@@ -18,16 +18,18 @@ const Application = () => {
       const { data } = event;
       const { message } = data;
 
-      if (message === 'SANDBOX.STATE.REQUEST') {
-        event.source.postMessage({ message: 'SANDBOX.STATE.UPDATE', state });
-      } else if (message === 'SANDBOX.DISPATCH.REPLACE') {
-        const { id, replacement } = data;
-
-        dispatch({ type: 'REPLACE', id, replacement });
-      } else if (message === 'SANDBOX.DISPATCH.APPEND') {
-        const { component } = data;
-
-        dispatch({ type: 'APPEND', component });
+      switch (message) {
+        case 'SANDBOX.STATE.REQUEST':
+          event.source.postMessage({ message: 'SANDBOX.STATE.UPDATE', state });
+          break;
+        case 'SANDBOX.DISPATCH.REPLACE':
+          dispatch({ type: 'REPLACE', id: data.id, replacement: data.replacement });
+          break;
+        case 'SANDBOX.DISPATCH.APPEND':
+          dispatch({ type: 'APPEND', component: data.component });
+          break;
+        default:
+          console.log(`WARNING: Unsupported message. ${message}`);
       }
     }
 
