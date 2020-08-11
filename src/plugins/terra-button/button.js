@@ -1,13 +1,19 @@
 import Button from 'terra-button';
+import { description, version } from 'terra-button/package.json';
 
 export default {
   package: 'terra-button',
   display: 'Button',
-  version: '3.44.0',
-  description: 'A button for triggering actions.',
+  version,
+  description,
   documentation: 'http://engineering.cerner.com/terra-ui/#/components/terra-button/button/button',
   componentType: Button,
   props: {
+    href: {
+      type: 'string',
+      required: false,
+      description: 'Sets the href. When set will render the component as an anchor tag.',
+    },
     text: {
       type: 'string',
       required: true,
