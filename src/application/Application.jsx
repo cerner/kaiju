@@ -24,6 +24,10 @@ const Application = () => {
         const { id, replacement } = data;
 
         dispatch({ type: 'REPLACE', id, replacement });
+      } else if (message === 'SANDBOX.DISPATCH.APPEND') {
+        const { component } = data;
+
+        dispatch({ type: 'APPEND', component });
       }
     }
 

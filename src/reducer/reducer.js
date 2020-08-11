@@ -1,3 +1,4 @@
+import append from './append';
 import replace from './replace';
 import update from './update';
 import initialState from './initial-state';
@@ -6,6 +7,8 @@ const reducer = (state, action) => {
   const { type } = action;
 
   switch (type) {
+    case 'APPEND':
+      return append(state, action);
     case 'REPLACE':
       return replace(state, action);
     case 'UPDATE':

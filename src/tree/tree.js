@@ -3,6 +3,15 @@
  * Each node in a tree is expected to conform to the following structure: { id, parent, type, value }
  */
 class Tree {
+  /**
+   * Appends a node to the root children array.
+   * @param {Object} tree - The tree to traverse.
+   * @param {Object} node - The node to append to the children array.
+   */
+  static append(tree, node) {
+    return { id: 'root', children: [...tree.children, node] };
+  }
+
   static find(tree, target) {
     let targetNode = null;
 
@@ -23,6 +32,7 @@ class Tree {
 
   /**
    * Replaces a target node.
+   * @param {Object} tree - The tree to traverse.
    * @param {string} target - The unique identifier of the target;
    * @param {Object} replacement - The replacement node.
    */
@@ -42,6 +52,7 @@ class Tree {
 
   /**
    * Updates a target node.
+   * @param {Object} tree - The tree to traverse.
    * @param {string} target - The unique identifier of the target;
    * @param {Object} value - The replacement value.
    */
