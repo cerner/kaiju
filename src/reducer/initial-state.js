@@ -4,14 +4,7 @@ const initialState = {
   selected: null,
   sandbox: {
     id: 'root',
-    children: [{
-      id: uuidv4(),
-      parent: 'root',
-      type: 'element',
-      value: {
-        component: 'terra-sandbox:placeholder',
-      },
-    }],
+    children: [],
   },
 };
 

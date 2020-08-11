@@ -9,4 +9,8 @@
   .sandbox {
     height: 100%;
   }
+
+  .sandbox:empty {
+    border: 1px dashed #000;
+  }
 }

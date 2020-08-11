@@ -74,11 +74,26 @@ const Sandbox = () => {
     }
   };
 
+  /**
+   * Handles the click event.
+   */
+  const handleClick = (event) => {
+    let currentTarget = event.target;
+
+    while (!currentTarget.id || (currentTarget.id.indexOf('terra-sandbox') !== 0 && currentTarget.id !== 'root')) {
+      currentTarget = currentTarget.parentNode;
+    }
+
+    window.parent.postMessage({ message: 'SANDBOX.DISPATCH.SELECT', id: currentTarget.id });
+  };
+
   return (
     <TerraApplication>
+      { /* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
       <div
         className={cx('sandbox')}
         id="root"
+        onClick={handleClick}
         onDragOver={handleDragOver}
         onDragEnter={handleDragEnter}
         onDrop={handleDrop}

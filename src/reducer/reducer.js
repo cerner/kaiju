@@ -1,5 +1,6 @@
 import append from './append';
 import replace from './replace';
+import select from './select';
 import update from './update';
 import initialState from './initial-state';
 
@@ -11,6 +12,8 @@ const reducer = (state, action) => {
       return append(state, action);
     case 'REPLACE':
       return replace(state, action);
+    case 'SELECT':
+      return select(state, action);
     case 'UPDATE':
       return update(state, action);
     default:

@@ -10,9 +10,12 @@ const append = (state, action) => {
   const { sandbox } = state;
   const { component } = action;
 
+  const tree = Tree.append(sandbox, component);
+
   return {
     ...state,
     sandbox: Tree.append(sandbox, component),
+    selected: tree.children[tree.children.length - 1].id,
   };
 };
 

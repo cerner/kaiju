@@ -15,7 +15,7 @@ class ExampleGenerator {
       throw Error(`No plugin found for ${identifier}`);
     }
 
-    const uniqueId = id || uuidv4();
+    const uniqueId = id || `terra-sandbox-${uuidv4()}`;
 
     return {
       id: uniqueId,
@@ -52,7 +52,7 @@ class ExampleGenerator {
   static determineName(property, parent) {
     const { defaultValue, example, type } = property;
 
-    const id = uuidv4();
+    const id = `terra-sandbox-${uuidv4()}`;
 
     if (defaultValue) {
       return { id, parent, type, value: defaultValue };

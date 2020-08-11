@@ -19,14 +19,17 @@ const Application = () => {
       const { message } = data;
 
       switch (message) {
-        case 'SANDBOX.STATE.REQUEST':
-          event.source.postMessage({ message: 'SANDBOX.STATE.UPDATE', state });
+        case 'SANDBOX.DISPATCH.APPEND':
+          dispatch({ type: 'APPEND', component: data.component });
           break;
         case 'SANDBOX.DISPATCH.REPLACE':
           dispatch({ type: 'REPLACE', id: data.id, replacement: data.replacement });
           break;
-        case 'SANDBOX.DISPATCH.APPEND':
-          dispatch({ type: 'APPEND', component: data.component });
+        case 'SANDBOX.STATE.REQUEST':
+          event.source.postMessage({ message: 'SANDBOX.STATE.UPDATE', state });
+          break;
+        case 'SANDBOX.DISPATCH.SELECT':
+          dispatch({ type: 'SELECT', id: data.id });
           break;
         default:
           console.log(`WARNING: Unsupported message. ${message}`);
