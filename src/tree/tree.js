@@ -31,6 +31,28 @@ class Tree {
   }
 
   /**
+   * Removes a target node.
+   * @param {Object} tree - The tree to traverse.
+   * @param {string} target - The unique identifier of the target node to remove.
+   */
+  static remove(tree, target) {
+    if (target === 'root') {
+      return { id: 'root', children: [] };
+    }
+
+    return Tree.traverse(tree, (node) => {
+      const { id } = node;
+
+      // This is probably not sustainable for nested structures.
+      if (id === target) {
+        return undefined;
+      }
+
+      return node;
+    });
+  }
+
+  /**
    * Replaces a target node.
    * @param {Object} tree - The tree to traverse.
    * @param {string} target - The unique identifier of the target;
@@ -95,7 +117,11 @@ class Tree {
     const children = [];
 
     for (let index = 0; index < tree.children.length; index += 1) {
-      children.push(travel(tree.children[index]));
+      const node = travel(tree.children[index]);
+
+      if (node) {
+        children.push(travel(tree.children[index]));
+      }
     }
 
     return { id: 'root', children };

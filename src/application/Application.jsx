@@ -22,6 +22,9 @@ const Application = () => {
         case 'SANDBOX.DISPATCH.APPEND':
           dispatch({ type: 'APPEND', component: data.component });
           break;
+        case 'SANDBOX.DISPATCH.REMOVE':
+          dispatch({ type: 'REMOVE', id: data.id });
+          break;
         case 'SANDBOX.DISPATCH.REPLACE':
           dispatch({ type: 'REPLACE', id: data.id, replacement: data.replacement });
           break;

@@ -1,4 +1,5 @@
 import append from './append';
+import remove from './remove';
 import replace from './replace';
 import select from './select';
 import update from './update';
@@ -10,6 +11,8 @@ const reducer = (state, action) => {
   switch (type) {
     case 'APPEND':
       return append(state, action);
+    case 'REMOVE':
+      return remove(state, action);
     case 'REPLACE':
       return replace(state, action);
     case 'SELECT':

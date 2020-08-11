@@ -27,7 +27,7 @@ const handleDragEnter = (event) => {
 const Sandbox = () => {
   const [state, setState] = useState();
 
-  const { sandbox } = state || {};
+  const { sandbox, selected } = state || {};
 
   useEffect(() => {
     /**
@@ -43,15 +43,46 @@ const Sandbox = () => {
       }
     }
 
+    /**
+   * Handles the click event.
+   * @param {Event} event - The click event.
+   */
+    const handleClick = (event) => {
+      let currentTarget = event.target;
+
+      while (!currentTarget.id || (currentTarget.id.indexOf('terra-sandbox') !== 0 && currentTarget.id !== 'root')) {
+        currentTarget = currentTarget.parentNode;
+      }
+
+      window.parent.postMessage({ message: 'SANDBOX.DISPATCH.SELECT', id: currentTarget.id });
+    };
+
+    /**
+   * Handles the on key down event.
+   * @param {Event} event - The on key down event.
+   */
+    const handleKeyDown = (event) => {
+      const { keyCode } = event;
+
+      if (selected && (keyCode === 8 || keyCode === 46)) {
+        window.parent.postMessage({ message: 'SANDBOX.DISPATCH.REMOVE', id: selected });
+      }
+    };
+
+    // Register events.
     window.addEventListener('message', handleMessage);
+    window.addEventListener('click', handleClick);
+    window.addEventListener('keydown', handleKeyDown);
 
     // Request a state update on mount to populate the sandbox.
     window.parent.postMessage({ message: 'SANDBOX.STATE.REQUEST' });
 
     return () => {
       window.removeEventListener('message', handleMessage);
+      window.removeEventListener('click', handleClick);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [selected]);
 
   /**
    * Handles the drop event.
@@ -74,26 +105,12 @@ const Sandbox = () => {
     }
   };
 
-  /**
-   * Handles the click event.
-   */
-  const handleClick = (event) => {
-    let currentTarget = event.target;
-
-    while (!currentTarget.id || (currentTarget.id.indexOf('terra-sandbox') !== 0 && currentTarget.id !== 'root')) {
-      currentTarget = currentTarget.parentNode;
-    }
-
-    window.parent.postMessage({ message: 'SANDBOX.DISPATCH.SELECT', id: currentTarget.id });
-  };
-
   return (
     <TerraApplication>
-      { /* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
+      { /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
-        className={cx('sandbox')}
         id="root"
-        onClick={handleClick}
+        className={cx('sandbox')}
         onDragOver={handleDragOver}
         onDragEnter={handleDragEnter}
         onDrop={handleDrop}
