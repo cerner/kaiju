@@ -1239,3 +1239,6 @@ button.Button-module__button___3afIE, html input[type='button'].Button-module__b
 .Sandbox-module__sandbox___2MIMi {
   height: 100%; }
 
+[dir] .Sandbox-module__sandbox___2MIMi:empty {
+  border: 1px dashed #000; }
+
