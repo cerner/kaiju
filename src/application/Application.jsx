@@ -20,10 +20,10 @@ const Application = () => {
       const { message } = data;
 
       switch (message) {
-        case 'UNDO':
+        case 'SANDBOX.DISPATCH.UNDO':
           dispatch({ type: 'UNDO' });
           break;
-        case 'REDO':
+        case 'SANDBOX.DISPATCH.REDO':
           dispatch({ type: 'REDO' });
           break;
         case 'SANDBOX.DISPATCH.APPEND':
@@ -46,7 +46,22 @@ const Application = () => {
       }
     }
 
+    /**
+     * Handles the on key down event.
+     * @param {Event} event - The on key down event.
+     */
+    const handleKeyDown = (event) => {
+      const { ctrlKey, metaKey, keyCode, shiftKey } = event;
+
+      if ((ctrlKey || metaKey) && shiftKey && keyCode === 90) {
+        dispatch({ type: 'REDO' });
+      } else if ((ctrlKey || metaKey) && keyCode === 90) {
+        dispatch({ type: 'UNDO' });
+      }
+    };
+
     window.addEventListener('message', handleMessage);
+    window.addEventListener('keydown', handleKeyDown);
 
     // Communicate state updates to the iframe.
     const sandbox = document.getElementById('sandbox');
@@ -57,8 +72,9 @@ const Application = () => {
 
     return () => {
       window.removeEventListener('message', handleMessage);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [state]);
+  }, [dispatch, state]);
 
   return (
     <TerraApplication>

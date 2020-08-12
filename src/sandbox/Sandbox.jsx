@@ -67,9 +67,9 @@ const Sandbox = () => {
       if (selected && (keyCode === 8 || keyCode === 46)) {
         window.parent.postMessage({ message: 'SANDBOX.DISPATCH.REMOVE', id: selected });
       } else if ((ctrlKey || metaKey) && shiftKey && keyCode === 90) {
-        window.parent.postMessage({ message: 'REDO' });
+        window.parent.postMessage({ message: 'SANDBOX.DISPATCH.REDO' });
       } else if ((ctrlKey || metaKey) && keyCode === 90) {
-        window.parent.postMessage({ message: 'UNDO' });
+        window.parent.postMessage({ message: 'SANDBOX.DISPATCH.UNDO' });
       }
     };
 

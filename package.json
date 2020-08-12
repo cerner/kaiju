@@ -28,7 +28,7 @@
     "extends": "stylelint-config-terra"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p",
     "build:scripts": "node -r esm ./build-scripts/index.js",
     "clean": "rm -rf node_modules",
     "clean:install": "npm run clean && npm install",
