@@ -11,7 +11,7 @@ class Renderer {
 
       let propertyValue;
 
-      if (type === 'string') {
+      if (type === 'string' || type === 'bool') {
         propertyValue = value;
       } else if (type === 'element') {
         propertyValue = Renderer.render(props[property]);

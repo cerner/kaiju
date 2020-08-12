@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames/bind';
+import Checkbox from 'terra-form-checkbox';
+import CheckboxField from 'terra-form-checkbox/lib/CheckboxField';
 import InputField from 'terra-form-input/lib/InputField';
 import { ApplicationStateContext } from '../context';
 import Tree from '../tree/tree';
@@ -17,6 +19,10 @@ const Editor = () => {
     dispatch({ type: 'UPDATE', id: event.target.id, value: event.target.value });
   };
 
+  const handleBoolChange = (event) => {
+    dispatch({ type: 'UPDATE', id: event.target.id, value: event.target.checked });
+  };
+
   const buildForm = (node) => {
     const { value } = node;
     const { props } = value;
@@ -27,7 +33,13 @@ const Editor = () => {
       const { id, type, value: propertyValue } = props[property];
 
       if (type === 'string') {
-        fields.push(<InputField key={id} inputId={id} label={property} value={propertyValue} onChange={handleStringChange} />);
+        fields.push(<InputField key={id} inputId={id} label={property} value={propertyValue || ''} onChange={handleStringChange} />);
+      } else if (type === 'bool') {
+        fields.push(
+          <CheckboxField key={id} isLegendHidden legend={property}>
+            <Checkbox id={id} labelText={property} checked={propertyValue || false} onChange={handleBoolChange} />
+          </CheckboxField>,
+        );
       }
     });
 
