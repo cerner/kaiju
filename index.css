@@ -947,6 +947,27 @@ button.Button-module__button___3afIE, html input[type='button'].Button-module__b
 .ApplicationLoadingOverlayProvider-module__container___2oBEt {
   height: 100%; }
 
+.ApplicationStatusOverlayProvider-module__container___2N-PS {
+  height: 100%;
+  outline: none;
+  position: relative;
+  z-index: 0; }
+
+.ApplicationStatusOverlayProvider-module__container-content___260_B {
+  height: 100%;
+  z-index: 0; }
+
+.ApplicationStatusOverlayProvider-module__status-view___2qUhd {
+  outline: none;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  z-index: 1; }
+
+[dir] .ApplicationStatusOverlayProvider-module__status-view___2qUhd {
+  background-color: #fff;
+  background-color: var(--terra-application-status-overlay-background-color, #fff); }
+
 .VisuallyHiddenText-module__visually-hidden-text___2bEVn {
   clip: rect(0 0 0 0);
   height: 1px;
