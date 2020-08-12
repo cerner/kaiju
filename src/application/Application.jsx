@@ -5,13 +5,14 @@ import Canvas from '../canvas';
 import Catalog from '../catalog';
 import Editor from '../editor';
 import reducer, { initialState } from '../reducer';
+import useStackReducer from '../reducer/useStackReducer';
 import { ApplicationStateProvider } from '../context';
 import styles from './Application.module.scss';
 
 const cx = classNames.bind(styles);
 
 const Application = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useStackReducer(reducer, initialState);
 
   useEffect(() => {
     function handleMessage(event) {
@@ -19,6 +20,12 @@ const Application = () => {
       const { message } = data;
 
       switch (message) {
+        case 'UNDO':
+          dispatch({ type: 'UNDO' });
+          break;
+        case 'REDO':
+          dispatch({ type: 'REDO' });
+          break;
         case 'SANDBOX.DISPATCH.APPEND':
           dispatch({ type: 'APPEND', component: data.component });
           break;

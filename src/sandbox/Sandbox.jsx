@@ -44,9 +44,9 @@ const Sandbox = () => {
     }
 
     /**
-   * Handles the click event.
-   * @param {Event} event - The click event.
-   */
+     * Handles the click event.
+     * @param {Event} event - The click event.
+     */
     const handleClick = (event) => {
       let currentTarget = event.target;
 
@@ -58,14 +58,18 @@ const Sandbox = () => {
     };
 
     /**
-   * Handles the on key down event.
-   * @param {Event} event - The on key down event.
-   */
+     * Handles the on key down event.
+     * @param {Event} event - The on key down event.
+     */
     const handleKeyDown = (event) => {
-      const { keyCode } = event;
+      const { ctrlKey, metaKey, keyCode, shiftKey } = event;
 
       if (selected && (keyCode === 8 || keyCode === 46)) {
         window.parent.postMessage({ message: 'SANDBOX.DISPATCH.REMOVE', id: selected });
+      } else if ((ctrlKey || metaKey) && shiftKey && keyCode === 90) {
+        window.parent.postMessage({ message: 'REDO' });
+      } else if ((ctrlKey || metaKey) && keyCode === 90) {
+        window.parent.postMessage({ message: 'UNDO' });
       }
     };
 
