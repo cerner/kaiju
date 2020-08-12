@@ -15,7 +15,8 @@ const useStackReducer = (reducer, initialState) => {
       if (past.length > 0) {
         const previous = past[past.length - 1];
         const newPast = past.slice(0, past.length - 1);
-        return { past: newPast, present: { ...present, sandbox: previous.sandbox }, future: [present, ...future] };
+
+        return { past: newPast, present: { ...present, sandbox: previous }, future: [present.sandbox, ...future] };
       }
 
       return { past, present, future };
@@ -26,7 +27,7 @@ const useStackReducer = (reducer, initialState) => {
         const next = future[0];
         const newFuture = future.slice(1);
 
-        return { past: [...past, present], present: { ...present, sandbox: next.sandbox }, future: newFuture };
+        return { past: [...past, present.sandbox], present: { ...present, sandbox: next }, future: newFuture };
       }
 
       return { past, present, future };
@@ -35,7 +36,7 @@ const useStackReducer = (reducer, initialState) => {
     const newPresent = reducer(present, action);
 
     if (type !== 'SELECT') {
-      return { past: [...past, present], present: newPresent, future: [] };
+      return { past: [...past, present.sandbox], present: newPresent, future: [] };
     }
 
     return { past, present: newPresent, future: [] };
