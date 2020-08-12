@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import Checkbox from 'terra-form-checkbox';
 import CheckboxField from 'terra-form-checkbox/lib/CheckboxField';
 import InputField from 'terra-form-input/lib/InputField';
+import StatusView from 'terra-status-view';
 import { ApplicationStateContext } from '../context';
 import Tree from '../tree/tree';
 import styles from './Editor.module.scss';
@@ -48,9 +49,8 @@ const Editor = () => {
 
   return (
     <div className={cx('editor')}>
-      Editor
-      {`Selected: ${selected}`}
       {selectedNode && buildForm(selectedNode)}
+      {!selectedNode && <StatusView message="Select a component to edit." />}
     </div>
   );
 };

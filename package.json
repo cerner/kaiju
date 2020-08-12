@@ -50,6 +50,7 @@
     "terra-button": "^3.44.0",
     "terra-form-checkbox": "^4.8.0",
     "terra-form-input": "^4.2.0",
+    "terra-status-view": "^4.33.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
