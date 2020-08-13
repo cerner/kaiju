@@ -9,6 +9,11 @@ export default {
   documentation: 'http://engineering.cerner.com/terra-ui/#/components/terra-button/button/button',
   componentType: Button,
   props: {
+    icon: {
+      type: 'element',
+      required: false,
+      description: 'An optional icon. Nested inline with the text when provided.',
+    },
     text: {
       type: 'string',
       required: true,

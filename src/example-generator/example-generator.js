@@ -37,7 +37,7 @@ class ExampleGenerator {
 
     const properties = {};
 
-    Object.keys(props).forEach((property) => {
+    Object.keys(props || {}).forEach((property) => {
       properties[property] = ExampleGenerator.determineName(props[property], id);
     });
 

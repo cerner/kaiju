@@ -4,6 +4,7 @@ import Checkbox from 'terra-form-checkbox';
 import CheckboxField from 'terra-form-checkbox/lib/CheckboxField';
 import InputField from 'terra-form-input/lib/InputField';
 import StatusView from 'terra-status-view';
+import ComponentField from '../component-field/ComponentField';
 import { ApplicationStateContext } from '../context';
 import Tree from '../tree/tree';
 import styles from './Editor.module.scss';
@@ -41,8 +42,14 @@ const Editor = () => {
             <Checkbox id={id} labelText={property} checked={propertyValue || false} onChange={handleBoolChange} />
           </CheckboxField>,
         );
+      } else if (type === 'element') {
+        fields.push(<ComponentField key={id} id={id} type={type} value={propertyValue} label={property} />);
       }
     });
+
+    if (fields.length === 0) {
+      return <div>No editable fields for this component</div>;
+    }
 
     return fields;
   };
@@ -50,7 +57,7 @@ const Editor = () => {
   return (
     <div className={cx('editor')}>
       {selectedNode && buildForm(selectedNode)}
-      {!selectedNode && <StatusView message="Select a component to edit." />}
+      {!selectedNode && <StatusView message="Select a component to edit" />}
     </div>
   );
 };

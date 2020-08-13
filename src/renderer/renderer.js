@@ -13,7 +13,7 @@ class Renderer {
 
       if (type === 'string' || type === 'bool') {
         propertyValue = value;
-      } else if (type === 'element') {
+      } else if (type === 'element' && value) {
         propertyValue = Renderer.render(props[property]);
       }
 

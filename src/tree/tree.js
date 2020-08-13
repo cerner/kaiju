@@ -9,7 +9,7 @@ class Tree {
    * @param {Object} node - The node to append to the children array.
    */
   static append(tree, node) {
-    return { id: 'root', children: [...tree.children, node] };
+    return { id: 'root', children: [...tree.children, { ...node, parent: 'root' }] };
   }
 
   static find(tree, target) {
@@ -41,11 +41,15 @@ class Tree {
     }
 
     return Tree.traverse(tree, (node) => {
-      const { id } = node;
+      const { id, parent } = node;
 
-      // This is probably not sustainable for nested structures.
       if (id === target) {
-        return undefined;
+        // Root components are removed entirely.
+        if (parent === 'root') {
+          return undefined;
+        }
+
+        return { ...node, value: undefined };
       }
 
       return node;
