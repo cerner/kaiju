@@ -10,7 +10,14 @@
     height: 100%;
   }
 
-  .sandbox:empty {
-    border: 1px dashed #000;
+  .empty {
+    display: flex;
+  }
+
+  .drop-message {
+    color: #787575;
+    font-size: 2rem;
+    margin: auto;
+    pointer-events: none;
   }
 }

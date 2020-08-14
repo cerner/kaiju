@@ -16,14 +16,6 @@ const handleDragOver = (event) => {
   event.preventDefault();
 };
 
-/**
- * Handles the drag enter event.
- * @param {Event} event - The drag enter event.
- */
-const handleDragEnter = (event) => {
-  event.preventDefault();
-};
-
 const Sandbox = () => {
   const [state, setState] = useState();
 
@@ -89,11 +81,39 @@ const Sandbox = () => {
   }, [selected]);
 
   /**
+   * Handles the drag enter event.
+   * @param {Event} event - The drag enter event.
+   */
+  const handleDragEnter = (event) => {
+    event.preventDefault();
+
+    const { target } = event;
+
+    if (target.id === 'sandbox-root') {
+      target.style.backgroundColor = '#ebf6fd';
+    }
+  };
+
+  /**
+   * Handles the drag enter event.
+   * @param {Event} event - The drag enter event.
+   */
+  const handleDragLeave = (event) => {
+    const { target } = event;
+
+    if (target.id === 'sandbox-root') {
+      target.style.backgroundColor = '';
+    }
+  };
+
+  /**
    * Handles the drop event.
    * @param {Event} event - The drop event.
    */
   const handleDrop = (event) => {
-    if (event.target.id === 'root') {
+    const { target } = event;
+
+    if (target.id === 'sandbox-root' || target.id === 'sandbox-message') {
       const sandboxData = event.dataTransfer.getData('SANDBOX.DATA');
 
       if (sandboxData) {
@@ -106,21 +126,28 @@ const Sandbox = () => {
       } else {
         console.log('Invalid element dropped');
       }
+
+      document.getElementById('sandbox-root').style.backgroundColor = '';
     }
   };
 
   return (
     <TerraApplication>
-      { /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
-        id="root"
-        className={cx('sandbox')}
+        id="sandbox-root"
+        className={cx('sandbox', { empty: sandbox && sandbox.children.length === 0 })}
         onDragOver={handleDragOver}
         onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
         <ApplicationLoadingOverlay isOpen={!state} />
         {sandbox && sandbox.children.map((component) => Renderer.render(component))}
+        {sandbox && sandbox.children.length === 0 && (
+          <span id="sandbox-message" className={cx('drop-message')}>
+            Drag and drop components here
+          </span>
+        )}
       </div>
     </TerraApplication>
   );
