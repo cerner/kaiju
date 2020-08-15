@@ -1,0 +1,23 @@
+:local {
+  .drag-item {
+    align-items: center;
+    border: 1px solid #787575;
+    border-radius: 3px;
+    cursor: grab;
+    display: flex;
+    margin-bottom: 3px;
+    padding: 10px;
+  }
+
+  .drag-item:active {
+    cursor: grabbing;
+  }
+
+  .drag-item:first-child {
+    margin-top: 0;
+  }
+
+  .display {
+    padding-left: 10px;
+  }
+}
