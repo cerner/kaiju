@@ -32,7 +32,7 @@ button.Button-module__button___3afIE,html input[type='button'].Button-module__bu
 
 .DragItem-module__drag-item___2jw6h{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}[dir] .DragItem-module__drag-item___2jw6h{border:1px solid #787575;border-radius:3px;cursor:grab;margin-bottom:3px;padding:10px}[dir] .DragItem-module__drag-item___2jw6h:active{cursor:grabbing}[dir] .DragItem-module__drag-item___2jw6h:first-child{margin-top:0}[dir=ltr] .DragItem-module__display___2ugT-{padding-left:10px}[dir=rtl] .DragItem-module__display___2ugT-{padding-right:10px}
 
-[dir] .Placeholder-module__placeholder___3PcXd{border:1px dashed #000;text-align:center}
+[dir] .Placeholder-module__placeholder___3PcXd{border:1px dashed #000;text-align:center}.Placeholder-module__text___2JCNx{pointer-events:none}
 
 .Catalog-module__catalog___3T-5x{-ms-flex:0 0 256px;flex:0 0 256px}[dir] .Catalog-module__content___1swav{padding:5px}[dir] .Catalog-module__header___1ecaQ{padding:0 4px}[dir] .Catalog-module__search-wrapper___1APru{padding:4px}.Catalog-module__search-input___3IaLn{width:100%}
 
