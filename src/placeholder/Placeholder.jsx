@@ -27,6 +27,19 @@ const handleDragOver = (event) => {
  */
 const handleDragEnter = (event) => {
   event.preventDefault();
+
+  const { target } = event;
+  target.style.backgroundColor = '#ebf6fd';
+};
+
+/**
+ * Handles the drag enter event.
+ * @param {Event} event - The drag enter event.
+ */
+const handleDragLeave = (event) => {
+  const { target } = event;
+
+  target.style.backgroundColor = '';
 };
 
 const Placeholder = (props) => {
@@ -57,9 +70,10 @@ const Placeholder = (props) => {
       className={cx('placeholder')}
       onDragOver={handleDragOver}
       onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <span>
+      <span className={cx('text')}>
         Placeholder
       </span>
     </div>

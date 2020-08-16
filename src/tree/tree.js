@@ -126,8 +126,6 @@ class Tree {
           }
         }
 
-        // const nodes = value.map((nodey) => travel(nodey));
-
         return callback({ ...node, value: nodes });
       }
 
