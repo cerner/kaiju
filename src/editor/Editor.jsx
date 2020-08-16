@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames/bind';
+import ContentContainer from 'terra-content-container';
 import Checkbox from 'terra-form-checkbox';
 import CheckboxField from 'terra-form-checkbox/lib/CheckboxField';
 import InputField from 'terra-form-input/lib/InputField';
@@ -55,10 +56,10 @@ const Editor = () => {
   };
 
   return (
-    <div className={cx('editor')}>
+    <ContentContainer className={cx('editor')} fill>
       {selectedNode && buildForm(selectedNode)}
       {!selectedNode && <StatusView message="Select a component to edit" />}
-    </div>
+    </ContentContainer>
   );
 };
 

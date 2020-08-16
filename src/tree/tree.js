@@ -104,15 +104,31 @@ class Tree {
     const travel = (node) => {
       const { type, value } = node;
 
-      if (type === 'element') {
-        const properties = {};
+      if (type === 'element' && value) {
         const { props } = value;
 
+        const properties = {};
         Object.keys(props || {}).forEach((property) => {
-          properties[property] = callback(props[property]);
+          properties[property] = travel(props[property]);
         });
 
         return callback({ ...node, value: { ...value, props: properties } });
+      }
+
+      if (type === 'node') {
+        const nodes = [];
+
+        for (let index = 0; index < value.length; index += 1) {
+          const traveledNode = travel(value[index]);
+
+          if (traveledNode && traveledNode.value !== undefined) {
+            nodes.push(traveledNode);
+          }
+        }
+
+        // const nodes = value.map((nodey) => travel(nodey));
+
+        return callback({ ...node, value: nodes });
       }
 
       return callback(node);

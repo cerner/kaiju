@@ -15,6 +15,8 @@ class Renderer {
         propertyValue = value;
       } else if (type === 'element' && value) {
         propertyValue = Renderer.render(props[property]);
+      } else if (type === 'node') {
+        propertyValue = value.map((node) => Renderer.render(node));
       }
 
       if (propertyValue !== undefined && propertyValue !== null) {

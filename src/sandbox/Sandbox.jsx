@@ -70,15 +70,17 @@ const Sandbox = () => {
     window.addEventListener('click', handleClick);
     window.addEventListener('keydown', handleKeyDown);
 
-    // Request a state update on mount to populate the sandbox.
-    window.parent.postMessage({ message: 'SANDBOX.STATE.REQUEST' });
-
     return () => {
       window.removeEventListener('message', handleMessage);
       window.removeEventListener('click', handleClick);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [selected]);
+
+  useEffect(() => {
+    // Request a state update on mount to populate the sandbox.
+    window.parent.postMessage({ message: 'SANDBOX.STATE.REQUEST' });
+  }, []);
 
   /**
    * Handles the drag enter event.

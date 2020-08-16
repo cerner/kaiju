@@ -38,7 +38,7 @@ class ExampleGenerator {
     const properties = {};
 
     Object.keys(props || {}).forEach((property) => {
-      properties[property] = ExampleGenerator.determineName(props[property], id);
+      properties[property] = ExampleGenerator.prop(props[property], id);
     });
 
     return properties;
@@ -49,7 +49,7 @@ class ExampleGenerator {
    * @param {Object} property - The property configuration.
    * @param {string} parent - The unique identifier of the parent node.
    */
-  static determineName(property, parent) {
+  static prop(property, parent) {
     const { defaultValue, example, type } = property;
 
     const id = `terra-sandbox-${uuidv4()}`;
@@ -60,6 +60,15 @@ class ExampleGenerator {
 
     if (example) {
       return { id, parent, type, value: example };
+    }
+
+    if (type === 'element') {
+      return { id, parent, type, value: { component: 'terra-sandbox:placeholder', props: {} } };
+    }
+
+    if (type === 'node') {
+      const nodeId = `terra-sandbox-${uuidv4()}`;
+      return { id, parent, type, value: [{ id: nodeId, parent: id, type: 'element', value: { component: 'terra-sandbox:placeholder', props: {} } }] };
     }
 
     // String, Bool
