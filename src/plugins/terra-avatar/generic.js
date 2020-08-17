@@ -13,12 +13,14 @@ export default {
       type: 'string',
       required: true,
       description: 'Specifies the alternative text for the image.',
+      displayName: 'Alt',
       example: 'Alt Text',
     },
     color: {
       type: 'string',
       required: false,
-      description: 'Sets the background color. Defaults to auto. Accepted color variants are theme specific. One of: `auto`, `neutral`, `one`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`, `ten`.',
+      description: "Sets the background color. Defaults to `auto`. Accepted color variants are theme specific.\nOne of: `'auto'`, `'neutral'`, `'one'`, `'two'`, `'three'`, `'four'`, `'five'`, `'six'`, `'seven'`, `'eight'`, `'nine'`, `'ten'`.",
+      displayName: 'Color',
       defaultValue: 'auto',
       options: [
         {
@@ -83,30 +85,39 @@ export default {
         },
       ],
     },
+    hashValue: {
+      type: 'string',
+      required: false,
+      description: 'Value used for the hash function when color is set to `auto`. If not provided, hash function utilizes alt.',
+      displayName: 'Hash value',
+    },
     isAriaHidden: {
       type: 'bool',
       required: false,
       description: 'Whether to hide avatar from the accessibility tree.',
+      displayName: 'Aria hidden',
       defaultValue: false,
     },
     size: {
       type: 'string',
       required: false,
       description: 'Overrides the default size.',
+      displayName: 'Size',
     },
     variant: {
       type: 'string',
       required: false,
-      description: 'Sets the Generic Avatar type to One of the following variants single-user, shared-user, or provider.',
+      description: 'Sets the Generic Avatar type to One of the following variants `single-user`, `shared-user`, or `provider`.',
+      displayName: 'Variant',
       defaultValue: 'single-user',
       options: [
         {
-          displayName: 'Single User',
+          displayName: 'Single-user',
           value: 'single-user',
           type: 'string',
         },
         {
-          displayName: 'Shared User',
+          displayName: 'Shared-user',
           value: 'shared-user',
           type: 'string',
         },

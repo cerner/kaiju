@@ -45,13 +45,13 @@ const Editor = () => {
    */
   const buildStringField = (label, property, config) => {
     const { id, value } = property;
-    const { options } = config;
+    const { displayName, options } = config;
 
     if (options) {
       return (
         <SelectField
           key={id}
-          label={label}
+          label={displayName || label}
           onChange={handleStringChange}
           options={options.map((option) => ({ display: option.displayName, value: option.value }))}
           selectId={id}

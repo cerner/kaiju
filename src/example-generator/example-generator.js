@@ -50,7 +50,7 @@ class ExampleGenerator {
    * @param {string} parent - The unique identifier of the parent node.
    */
   static prop(property, parent) {
-    const { defaultValue, example, type, dropZone } = property;
+    const { defaultValue, example, type, placeholder } = property;
 
     const id = `terra-sandbox-${uuidv4()}`;
 
@@ -62,7 +62,7 @@ class ExampleGenerator {
       return { id, parent, type, value: example };
     }
 
-    if (type === 'element' && dropZone !== false) {
+    if (type === 'element' && placeholder !== false) {
       return { id, parent, type, value: { component: 'terra-sandbox:placeholder', props: {} } };
     }
 
