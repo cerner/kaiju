@@ -3,6 +3,7 @@ import Button from './terra-button';
 import Placeholder from './terra-sandbox';
 import ContentContainer from './terra-content-container';
 import Tag from './terra-tag';
+import Arrange from './terra-arrange';
 
 export default {
   'terra-button:button': Button,
@@ -12,4 +13,5 @@ export default {
   'terra-avatar:avatar': Avatar,
   'terra-avatar:facility': FacilityAvatar,
   'terra-avatar:generic': GenericAvatar,
+  'terra-arrange:arrange': Arrange,
 };

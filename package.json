@@ -47,6 +47,7 @@
     "react-dom": "^16.13.1",
     "react-intl": "^2.9.0",
     "terra-application": "^1.29.1",
+    "terra-arrange": "^3.38.0",
     "terra-avatar": "^3.8.0",
     "terra-badge": "^3.42.0",
     "terra-button": "^3.44.0",
