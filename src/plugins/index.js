@@ -4,6 +4,7 @@ import Placeholder from './terra-sandbox';
 import ContentContainer from './terra-content-container';
 import Tag from './terra-tag';
 import Arrange from './terra-arrange';
+import Alert from './terra-alert';
 
 export default {
   'terra-button:button': Button,
@@ -14,4 +15,5 @@ export default {
   'terra-avatar:facility': FacilityAvatar,
   'terra-avatar:generic': GenericAvatar,
   'terra-arrange:arrange': Arrange,
+  'terra-alert:alert': Alert,
 };
