@@ -13,6 +13,7 @@ export default {
       type: 'element',
       required: false,
       description: 'An optional icon. Nested inline with the text when provided.',
+      dropZone: false,
     },
     text: {
       type: 'string',

@@ -13,11 +13,13 @@ export default {
       type: 'element',
       required: false,
       description: 'An optional icon.',
+      dropZone: false,
     },
     text: {
       type: 'string',
       required: true,
       description: 'Sets the tag text.',
+      example: 'Tag text',
     },
   },
 };
