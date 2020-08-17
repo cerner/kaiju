@@ -5,6 +5,7 @@ import ContentContainer from './terra-content-container';
 import Tag from './terra-tag';
 import Arrange from './terra-arrange';
 import Alert from './terra-alert';
+import Badge from './terra-badge';
 
 export default {
   'terra-button:button': Button,
@@ -16,4 +17,5 @@ export default {
   'terra-avatar:generic': GenericAvatar,
   'terra-arrange:arrange': Arrange,
   'terra-alert:alert': Alert,
+  'terra-badge:badge': Badge,
 };
