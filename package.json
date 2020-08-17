@@ -55,6 +55,7 @@
     "terra-form-select": "^6.14.0",
     "terra-icon": "^3.36.0",
     "terra-status-view": "^4.33.0",
+    "terra-tag": "^2.39.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
