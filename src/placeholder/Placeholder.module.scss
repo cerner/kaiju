@@ -1,10 +1,11 @@
 :local {
   .placeholder {
-    border: 1px dashed #000;
+    border: 3px dashed #d1d1d1;
     text-align: center;
   }
 
   .text {
+    color: #787575;
     pointer-events: none;
   }
 }

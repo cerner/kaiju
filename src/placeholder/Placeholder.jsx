@@ -74,7 +74,7 @@ const Placeholder = (props) => {
       onDrop={handleDrop}
     >
       <span className={cx('text')}>
-        Placeholder
+        Drop zone
       </span>
     </div>
   );
