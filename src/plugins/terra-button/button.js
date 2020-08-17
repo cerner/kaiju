@@ -56,5 +56,38 @@ export default {
       required: false,
       description: 'Additional information to display as a native tooltip on hover.\nButtons declared as `isIconOnly` or `utility` will fallback to using `text` if not provided.',
     },
+    variant: {
+      type: 'string',
+      required: false,
+      description: 'Sets the button variant. One of `neutral`,  `emphasis`, `ghost`, `de-emphasis`, `action` or `utility`.',
+      defaultValue: 'neutral',
+      options: [
+        {
+          displayName: 'Neutral',
+          value: 'neutral',
+          type: 'string',
+        },
+        {
+          displayName: 'Emphasis',
+          value: 'emphasis',
+          type: 'string',
+        },
+        {
+          displayName: 'Ghost',
+          value: 'ghost',
+          type: 'string',
+        },
+        {
+          displayName: 'Action',
+          value: 'action',
+          type: 'string',
+        },
+        {
+          displayName: 'Utility',
+          value: 'utility',
+          type: 'string',
+        },
+      ],
+    },
   },
 };
