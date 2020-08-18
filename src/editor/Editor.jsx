@@ -60,7 +60,7 @@ const Editor = () => {
       );
     }
 
-    return <InputField key={id} inputId={id} label={label} value={value || ''} onChange={handleStringChange} />;
+    return <InputField key={id} inputId={id} label={displayName || label} value={value || ''} onChange={handleStringChange} />;
   };
 
   /**
