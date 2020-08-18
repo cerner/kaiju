@@ -7,7 +7,7 @@ import Tree from '../tree/tree';
  * @param {Object} action.id- The target node.
  * @param {Object} action.value- The replacement value.
  */
-const replace = (state, action) => {
+const update = (state, action) => {
   const { sandbox } = state;
   const { id, value } = action;
 
@@ -17,4 +17,4 @@ const replace = (state, action) => {
   };
 };
 
-export default replace;
+export default update;

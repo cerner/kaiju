@@ -60,8 +60,16 @@ const Application = () => {
       }
     };
 
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+
+      // Chrome requires returnValue to be set to present the confirmation dialog.
+      event.returnValue = ''; // eslint-disable-line no-param-reassign
+    };
+
     window.addEventListener('message', handleMessage);
     window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('beforeunload', handleBeforeUnload);
 
     // Communicate state updates to the iframe.
     const sandbox = document.getElementById('sandbox');
@@ -73,6 +81,7 @@ const Application = () => {
     return () => {
       window.removeEventListener('message', handleMessage);
       window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('beforeunload', handleKeyDown);
     };
   }, [dispatch, state]);
 
