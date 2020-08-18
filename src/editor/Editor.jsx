@@ -63,6 +63,24 @@ const Editor = () => {
     return <InputField key={id} inputId={id} label={label} value={value || ''} onChange={handleStringChange} />;
   };
 
+  /**
+   * Creates a bool form field.
+   * If the property only accepts an array of strings a select will be constructed with the available options.
+   * @param {string} label - The property name.
+   * @param {Object} property - The property.
+   * @param {Object} config - The plugin property configuration.
+   */
+  const buildBoolField = (label, property, config) => {
+    const { id, value } = property;
+    const { displayName } = config;
+
+    return (
+      <CheckboxField key={id} isLegendHidden legend={displayName || label}>
+        <Checkbox id={id} labelText={displayName || label} checked={value || false} onChange={handleBoolChange} />
+      </CheckboxField>
+    );
+  };
+
   const buildForm = (node) => {
     const { value } = node;
     const { component, props } = value;
@@ -72,16 +90,13 @@ const Editor = () => {
 
     Object.keys(props).forEach((propertyName) => {
       const property = props[propertyName];
+      const config = pluginProps[propertyName];
       const { id, type, value: propertyValue } = property;
 
       if (type === 'string') {
-        fields.push(buildStringField(propertyName, props[propertyName], pluginProps[propertyName]));
+        fields.push(buildStringField(propertyName, property, config));
       } else if (type === 'bool') {
-        fields.push(
-          <CheckboxField key={id} isLegendHidden legend={propertyName}>
-            <Checkbox id={id} labelText={propertyName} checked={propertyValue || false} onChange={handleBoolChange} />
-          </CheckboxField>,
-        );
+        fields.push(buildBoolField(propertyName, property, config));
       } else if (type === 'element') {
         fields.push(<ComponentField key={id} id={id} type={type} value={propertyValue} label={propertyName} />);
       }
