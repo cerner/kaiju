@@ -1,8 +1,8 @@
 :local {
   .drag-item {
     align-items: center;
-    border: 1px solid #787575;
     border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(17, 22, 25, 0.4);
     cursor: grab;
     display: flex;
     margin-bottom: 3px;
