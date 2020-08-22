@@ -24,7 +24,7 @@ const defaultProps = {
 
 const Tree = (props) => {
   const { node, depth } = props;
-  const { value } = node;
+  const { id, value } = node;
 
   if (!value) {
     return null;
@@ -53,7 +53,7 @@ const Tree = (props) => {
   return (
     <ul className={cx('tree')}>
       <li>
-        <div style={style}>
+        <div style={style} id={id}>
           {display}
         </div>
         {children.length > 0 && (

@@ -8,9 +8,25 @@ import styles from './Layers.module.scss';
 const cx = classNames.bind(styles);
 
 const Layers = () => {
-  const { state } = useContext(ApplicationStateContext);
+  const { dispatch, state } = useContext(ApplicationStateContext);
   const { sandbox } = state;
   const { children } = sandbox;
+
+  /**
+   * Handles the click event.
+   * @param {Event} event - The click event.
+   */
+  const handleClick = (event) => {
+    let currentTarget = event.target;
+
+    while (!currentTarget.id || (currentTarget.id.indexOf('terra-sandbox') !== 0 && currentTarget.id !== 'root')) {
+      currentTarget = currentTarget.parentNode;
+    }
+
+    if (currentTarget && currentTarget.id) {
+      dispatch({ type: 'SELECT', id: currentTarget.id });
+    }
+  };
 
   return (
     <ContentContainer
@@ -21,7 +37,7 @@ const Layers = () => {
         </div>
        )}
     >
-      <div className={cx('content')}>
+      <div className={cx('content')} onClick={handleClick}>
         {children.map((child) => <LayersTree key={child.id} node={child} />)}
       </div>
     </ContentContainer>
