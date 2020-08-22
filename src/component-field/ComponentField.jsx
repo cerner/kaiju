@@ -20,13 +20,17 @@ const propTypes = {
    */
   label: PropTypes.string,
   /**
+   * The component type.
+   */
+  type: PropTypes.string.isRequired,
+  /**
    * The value of the component node.
    */
   value: PropTypes.object,
 };
 
 const ComponentField = (props) => {
-  const { label, id, value } = props;
+  const { label, id, type, value } = props;
   const { component } = value || {}; // Value can be undefined
   const { dispatch } = useContext(ApplicationStateContext);
 
@@ -48,7 +52,7 @@ const ComponentField = (props) => {
     dispatch({ type: 'SELECT', id });
   };
 
-  if (!value) {
+  if (!value || component === 'terra-sandbox:placeholder') {
     // If the node has no value render a select dropdown.
     return <SelectField label={label} selectId={id} options={pluginOptions} onChange={handleChange} />;
   }
