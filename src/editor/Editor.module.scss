@@ -1,6 +1,14 @@
 :local {
   .editor {
     flex: 0 0 256px;
+  }
+
+  .header {
+    border-bottom: 1px solid #000;
+    padding: 5px;
+  }
+
+  .content {
     padding: 5px;
   }
 }

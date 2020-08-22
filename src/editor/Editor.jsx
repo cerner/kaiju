@@ -98,7 +98,7 @@ const Editor = () => {
       } else if (type === 'bool') {
         fields.push(buildBoolField(propertyName, property, config));
       } else if (type === 'element') {
-        fields.push(<ComponentField key={id} id={id} type={type} value={propertyValue} label={propertyName} />);
+        fields.push(<ComponentField key={id} id={id} type={type} value={propertyValue} label={config.displayName || propertyName} />);
       }
     });
 
@@ -109,10 +109,30 @@ const Editor = () => {
     return fields;
   };
 
+  if (!selectedNode) {
+    return (
+      <ContentContainer className={cx('editor')} fill>
+        <StatusView message="Select a component to edit" />
+      </ContentContainer>
+    );
+  }
+
+  const { value } = selectedNode;
+  const { component } = value;
+
   return (
-    <ContentContainer className={cx('editor')} fill>
-      {selectedNode && buildForm(selectedNode)}
-      {!selectedNode && <StatusView message="Select a component to edit" />}
+    <ContentContainer
+      className={cx('editor')}
+      fill
+      header={(
+        <div className={cx('header')}>
+          {plugins[component].display}
+        </div>
+      )}
+    >
+      <div className={cx('content')}>
+        {buildForm(selectedNode)}
+      </div>
     </ContentContainer>
   );
 };
