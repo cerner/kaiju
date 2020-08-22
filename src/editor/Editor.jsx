@@ -81,6 +81,28 @@ const Editor = () => {
     );
   };
 
+  /**
+   * Creates a node form field.
+   * @param {string} label - The property name.
+   * @param {Object} property - The property.
+   * @param {Object} config - The plugin property configuration.
+   */
+  const buildNodeForm = (label, property, config) => {
+    const { value } = property;
+    const { displayName } = config;
+
+    const nodes = (value || []).map((node) => (
+      <ComponentField key={node.id} {...node} />
+    ));
+
+    return (
+      <div>
+        {displayName || label}
+        {nodes}
+      </div>
+    );
+  };
+
   const buildForm = (node) => {
     const { value } = node;
     const { component, props } = value;
@@ -99,6 +121,8 @@ const Editor = () => {
         fields.push(buildBoolField(propertyName, property, config));
       } else if (type === 'element') {
         fields.push(<ComponentField key={id} id={id} type={type} value={propertyValue} label={config.displayName || propertyName} />);
+      } else if (type === 'node') {
+        fields.push(buildNodeForm(propertyName, property, config));
       }
     });
 
