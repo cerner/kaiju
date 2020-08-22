@@ -1,0 +1,51 @@
+:local {
+  .sidebar {
+    border-bottom: 3px dashed #787575;
+    border-left: 3px dashed #787575;
+    height: 100%;
+    max-width: 75%;
+    min-width: 100px;
+    overflow: hidden;
+    user-select: none;
+    width: 230px;
+  }
+
+  .content {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    width: calc(100% - 3px);
+  }
+
+  .top-section {
+    height: 60%;
+    min-height: 50px;
+    overflow: hidden;
+  }
+
+  .bottom-section {
+    height: calc(40% - 3px); // The 3px is the horizontal resizer offset.
+    min-height: 36px;
+    overflow: hidden;
+  }
+
+  .horizontal-resizer {
+    background-color: #787575;
+    cursor: ew-resize;
+    float: right;
+    height: 100%;
+    width: 3px;
+  }
+
+  .vertical-resizer {
+    background-color: #787575;
+    cursor: ns-resize;
+    height: 3px;
+    width: 100%;
+  }
+
+  .inactive {
+    pointer-events: none;
+    user-select: none;
+  }
+}

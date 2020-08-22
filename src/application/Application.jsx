@@ -1,9 +1,9 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import TerraApplication from 'terra-application';
 import classNames from 'classnames/bind';
 import Canvas from '../canvas';
-import Catalog from '../catalog';
 import Editor from '../editor';
+import Sidebar from '../sidebar';
 import reducer, { initialState } from '../reducer';
 import useStackReducer from '../reducer/useStackReducer';
 import { ApplicationStateProvider } from '../context';
@@ -89,7 +89,7 @@ const Application = () => {
     <TerraApplication>
       <ApplicationStateProvider state={state} dispatch={dispatch}>
         <div className={(cx('application'))}>
-          <Catalog />
+          <Sidebar />
           <Canvas />
           <Editor />
         </div>
