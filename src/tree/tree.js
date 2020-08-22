@@ -41,15 +41,10 @@ class Tree {
     }
 
     return Tree.traverse(tree, (node) => {
-      const { id, parent } = node;
+      const { id } = node;
 
       if (id === target) {
-        // Root components are removed entirely.
-        if (parent === 'root') {
-          return undefined;
-        }
-
-        return { ...node, value: undefined };
+        return undefined;
       }
 
       return node;
@@ -95,50 +90,83 @@ class Tree {
   }
 
   /**
+   * Travels a node tree.
+   * @param {Node} node - The starting node.
+   * @param {func} callback - A callback to execute on each node.
+   */
+  static travel(node, callback) {
+    const { type, value } = node;
+
+    if (type === 'element' && value) {
+      return Tree.travelElement(node, callback);
+    }
+
+    if (type === 'node') {
+      return Tree.travelNode(node, callback);
+    }
+
+    return callback(node);
+  }
+
+  /**
+   * Travels an element node tree.
+   * @param {Node} node - The starting node.
+   * @param {func} callback - A callback to execute on each node.
+   */
+  static travelElement(node, callback) {
+    const { value } = node;
+    const { props } = value;
+
+    const properties = {};
+    Object.keys(props || {}).forEach((prop) => {
+      const property = props[prop];
+      const traveledProperty = Tree.travel(property, callback);
+
+      if (traveledProperty) {
+        properties[prop] = traveledProperty;
+      } else {
+        properties[prop] = { ...property, value: undefined };
+      }
+    });
+
+    return callback({ ...node, value: { ...value, props: properties } });
+  }
+
+  /**
+   * Travels a node tree.
+   * @param {Node} node - The starting node.
+   * @param {func} callback - A callback to execute on each node.
+   */
+  static travelNode(node, callback) {
+    const { value } = node;
+
+    const nodes = [];
+
+    for (let index = 0; index < value.length; index += 1) {
+      const traveledNode = Tree.travel(value[index], callback);
+
+      if (traveledNode && traveledNode.value !== undefined) {
+        nodes.push(traveledNode);
+      }
+    }
+
+    return callback({ ...node, value: nodes });
+  }
+
+  /**
    * Traverses the entire tree. Executing the provided callback for each node.
    * @param {Object} tree - The tree to traverse.
    * @param {func} callback - A callback to execute on each node.
    * @returns {Object} - The resulting tree.
    */
   static traverse(tree, callback) {
-    const travel = (node) => {
-      const { type, value } = node;
-
-      if (type === 'element' && value) {
-        const { props } = value;
-
-        const properties = {};
-        Object.keys(props || {}).forEach((property) => {
-          properties[property] = travel(props[property]);
-        });
-
-        return callback({ ...node, value: { ...value, props: properties } });
-      }
-
-      if (type === 'node') {
-        const nodes = [];
-
-        for (let index = 0; index < value.length; index += 1) {
-          const traveledNode = travel(value[index]);
-
-          if (traveledNode && traveledNode.value !== undefined) {
-            nodes.push(traveledNode);
-          }
-        }
-
-        return callback({ ...node, value: nodes });
-      }
-
-      return callback(node);
-    };
-
     const children = [];
 
     for (let index = 0; index < tree.children.length; index += 1) {
-      const node = travel(tree.children[index]);
+      const node = Tree.travel(tree.children[index], callback);
 
       if (node) {
-        children.push(travel(tree.children[index]));
+        children.push(node);
       }
     }
 
