@@ -1,7 +1,7 @@
 const { merge } = require('webpack-merge');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const toolkitWebpackConfig = require('terra-toolkit/config/webpack/webpack.config');
+const terraWebpackConfig = require('@cerner/webpack-config-terra');
 
 const appWebpackConfig = () => ({
   entry: {
@@ -23,7 +23,7 @@ const appWebpackConfig = () => ({
 });
 
 const mergedConfig = (env, argv) => (
-  merge(toolkitWebpackConfig(env, argv), appWebpackConfig(env, argv))
+  merge(terraWebpackConfig(env, argv), appWebpackConfig(env, argv))
 );
 
 module.exports = mergedConfig;
