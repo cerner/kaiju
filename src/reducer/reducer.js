@@ -3,6 +3,7 @@ import remove from './remove';
 import replace from './replace';
 import select from './select';
 import update from './update';
+import setTheme from './set-theme';
 import initialState from './initial-state';
 
 const reducer = (state, action) => {
@@ -17,6 +18,8 @@ const reducer = (state, action) => {
       return replace(state, action);
     case 'SELECT':
       return select(state, action);
+    case 'SET_THEME':
+      return setTheme(state, action);
     case 'UPDATE':
       return update(state, action);
     default:

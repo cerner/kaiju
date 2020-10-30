@@ -19,7 +19,7 @@ const handleDragOver = (event) => {
 const Sandbox = () => {
   const [state, setState] = useState();
 
-  const { sandbox, selected } = state || {};
+  const { sandbox, selected, theme } = state || {};
 
   useEffect(() => {
     /**
@@ -134,7 +134,7 @@ const Sandbox = () => {
   };
 
   return (
-    <TerraApplication>
+    <TerraApplication themeName={theme}>
       <div
         id="sandbox-root"
         className={cx('sandbox', { empty: sandbox && sandbox.children.length === 0 })}

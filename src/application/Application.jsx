@@ -3,6 +3,7 @@ import TerraApplication from 'terra-application';
 import classNames from 'classnames/bind';
 import Canvas from '../canvas';
 import Editor from '../editor';
+import Header from '../header';
 import Sidebar from '../sidebar';
 import reducer, { initialState } from '../reducer';
 import useStackReducer from '../reducer/useStackReducer';
@@ -89,9 +90,12 @@ const Application = () => {
     <TerraApplication>
       <ApplicationStateProvider state={state} dispatch={dispatch}>
         <div className={(cx('application'))}>
-          <Sidebar />
-          <Canvas />
-          <Editor />
+          <Header />
+          <div className={(cx('body'))}>
+            <Sidebar />
+            <Canvas />
+            <Editor />
+          </div>
         </div>
       </ApplicationStateProvider>
     </TerraApplication>
