@@ -13,9 +13,28 @@
 
   .search-wrapper {
     padding: 4px;
+    position: relative;
+  }
+
+  .search-icon {
+    bottom: 0;
+    left: 10px;
+    margin: auto;
+    position: absolute;
+    top: 0;
   }
 
   .search-input {
+    border-radius: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-top: 5px;
     width: 100%;
+  }
+
+  .no-results {
+    height: 100%;
+    padding: 10px;
+    text-align: center;
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ContentContainer from 'terra-content-container';
+import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import classNames from 'classnames/bind';
 import DragItem from '../drag-item/DragItem';
 import plugins from '../plugins';
@@ -35,16 +36,24 @@ const Catalog = () => {
         <div className={cx('search-wrapper')}>
           <input
             className={cx('search-input')}
-            placeholder="Search Catalog"
+            placeholder="Search catalog"
             onChange={handleChange}
             value={searchText}
           />
+          <IconSearch className={cx('search-icon')} />
         </div>
       )}
     >
-      <div className={cx('content')}>
-        {filteredItems}
-      </div>
+      {filteredItems.length > 0 && (
+        <div className={cx('content')}>
+          {filteredItems}
+        </div>
+      )}
+      {filteredItems.length === 0 && (
+        <div className={cx('no-results')}>
+          {`No components matching "${searchText}".`}
+        </div>
+      )}
     </ContentContainer>
   );
 };
