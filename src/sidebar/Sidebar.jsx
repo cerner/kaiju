@@ -30,9 +30,9 @@ const Sidebar = () => {
     const resizerHeight = verticalResizer.current.clientHeight;
     const sidebarHeight = sidebar.current.clientHeight;
 
-    const height = event.clientY - sidebar.current.offsetTop;
-    const topSectionHeight = Math.max(0, Math.min(sidebarHeight - resizerHeight, height));
-    const bottomSectionHeight = Math.max(0, Math.min(sidebarHeight, sidebarHeight - topSectionHeight - resizerHeight));
+    const height = Math.max(event.clientY - sidebar.current.offsetTop, 75);
+    const topSectionHeight = Math.min(sidebarHeight - resizerHeight - 75, height);
+    const bottomSectionHeight = sidebarHeight - topSectionHeight - resizerHeight - 5;
 
     topSection.current.style.height = `${topSectionHeight}px`;
     bottomSection.current.style.height = `${bottomSectionHeight}px`;

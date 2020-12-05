@@ -17,13 +17,11 @@
 
   .top-section {
     height: 60%;
-    min-height: 50px;
     overflow: hidden;
   }
 
   .bottom-section {
     height: calc(40% - 3px); // The 3px is the horizontal resizer offset.
-    min-height: 36px;
     overflow: hidden;
   }
 
