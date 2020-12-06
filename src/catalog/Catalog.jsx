@@ -21,9 +21,9 @@ const Catalog = () => {
 
   for (let index = 0; index < components.length; index += 1) {
     const identifier = components[index];
-    const { display } = plugins[identifier];
+    const { hidden, display } = plugins[identifier];
 
-    if (display.toLowerCase().indexOf(searchText) > -1) {
+    if (!hidden && display.toLowerCase().indexOf(searchText) > -1) {
       filteredItems.push(<DragItem key={identifier} identifier={identifier} display={display} />);
     }
   }
