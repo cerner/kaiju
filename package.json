@@ -54,6 +54,7 @@
     "terra-avatar": "^3.8.0",
     "terra-badge": "^3.42.0",
     "terra-button": "^3.44.0",
+    "terra-card": "^3.37.0",
     "terra-content-container": "^3.30.0",
     "terra-divider": "^3.31.0",
     "terra-form-checkbox": "^4.8.0",

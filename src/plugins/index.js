@@ -1,5 +1,6 @@
 import { Avatar, FacilityAvatar, GenericAvatar } from './terra-avatar';
 import { ActionFooterBlock, ActionFooterCentered, ActionFooterStandard } from './terra-action-footer';
+import { Card, CardBody } from './terra-card';
 import ActionHeader from './terra-action-header';
 import Alert from './terra-alert';
 import Arrange from './terra-arrange';
@@ -19,6 +20,8 @@ export default {
   'terra-avatar:avatar': Avatar,
   'terra-badge:badge': Badge,
   'terra-button:button': Button,
+  'terra-card:card': Card,
+  'terra-card:card:body': CardBody,
   'terra-content-container:content-container': ContentContainer,
   'terra-avatar:generic': GenericAvatar,
   'terra-avatar:facility': FacilityAvatar,
