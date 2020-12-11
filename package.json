@@ -46,6 +46,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-intl": "^2.9.0",
+    "terra-action-footer": "^2.56.0",
     "terra-alert": "^4.40.0",
     "terra-application": "^1.29.1",
     "terra-arrange": "^3.38.0",
