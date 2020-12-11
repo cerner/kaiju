@@ -29,14 +29,7 @@ const Layers = () => {
   };
 
   return (
-    <ContentContainer
-      fill
-      header={(
-        <div className={cx('header')}>
-          Layers
-        </div>
-       )}
-    >
+    <ContentContainer fill header={<div className={cx('header')}>Layers</div>}>
       <div className={cx('content')} onClick={handleClick}>
         {children.map((child) => <LayersTree key={child.id} node={child} />)}
       </div>
