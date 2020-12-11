@@ -76,9 +76,9 @@
 
 .DragItem-module__drag-item___2-xWD{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}[dir] .DragItem-module__drag-item___2-xWD{border-radius:3px;box-shadow:0 1px 3px rgba(17,22,25,0.4);cursor:grab;margin-bottom:3px;padding:10px}[dir] .DragItem-module__drag-item___2-xWD:active{cursor:grabbing}[dir] .DragItem-module__drag-item___2-xWD:first-child{margin-top:0}[dir=ltr] .DragItem-module__display___3nCy-{padding-left:10px}[dir=rtl] .DragItem-module__display___3nCy-{padding-right:10px}
 
-.Catalog-module__catalog___3b9Ni{-ms-flex:0 0 256px;flex:0 0 256px}[dir] .Catalog-module__content___1fn_J{padding:8px}[dir] .Catalog-module__header___2lJlv{padding:0 4px}[dir] .Catalog-module__search-wrapper___2N9hn{padding:4px}.Catalog-module__search-input___35p_I{width:100%}
+.Catalog-module__catalog___3b9Ni{-ms-flex:0 0 256px;flex:0 0 256px}[dir] .Catalog-module__content___1fn_J{padding:8px}[dir] .Catalog-module__header___2lJlv{padding:0 4px}.Catalog-module__search-wrapper___2N9hn{position:relative}[dir] .Catalog-module__search-wrapper___2N9hn{padding:4px}.Catalog-module__search-icon___ZZj_O{bottom:0;position:absolute;top:0}[dir] .Catalog-module__search-icon___ZZj_O{margin:auto}[dir=ltr] .Catalog-module__search-icon___ZZj_O{left:10px}[dir=rtl] .Catalog-module__search-icon___ZZj_O{right:10px}.Catalog-module__search-input___35p_I{width:100%}[dir] .Catalog-module__search-input___35p_I{border-radius:5px;padding-bottom:5px;padding-top:5px}[dir=ltr] .Catalog-module__search-input___35p_I{padding-left:25px}[dir=rtl] .Catalog-module__search-input___35p_I{padding-right:25px}.Catalog-module__no-results___3HugB{height:100%}[dir] .Catalog-module__no-results___3HugB{padding:10px;text-align:center}
 
-[dir] .LayersTree-module__tree___3I-Yd{margin:0;padding:0}[dir] .LayersTree-module__children___2PWKS{margin:0;padding:0}
+[dir] .LayersTree-module__tree___3I-Yd{margin:0;padding:0}[dir] .LayersTree-module__children___2PWKS{margin:0;padding:0}.LayersTree-module__hidden___3nrbq{visibility:hidden}[dir=ltr] .LayersTree-module__icon___1t4S-{margin-right:6px}[dir=rtl] .LayersTree-module__icon___1t4S-{margin-left:6px}
 
 [dir] .Layers-module__content___Ef92M{padding:8px}[dir] .Layers-module__header___egv3a{border-bottom:1px solid #000;padding:5px}
 
