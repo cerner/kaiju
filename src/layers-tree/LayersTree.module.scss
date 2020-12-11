@@ -14,6 +14,23 @@
   }
 
   .icon {
+    margin-left: 3px;
     margin-right: 6px;
+  }
+
+  .label {
+    cursor: pointer;
+  }
+
+  .label:hover {
+    background-color: lighten(#ebf6fd, 2%);
+  }
+
+  .selected {
+    background-color: darken(#ebf6fd, 2%);
+  }
+
+  .selected:hover {
+    background-color: darken(#ebf6fd, 7%);
   }
 }

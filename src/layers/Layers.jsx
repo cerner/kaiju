@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 const Layers = () => {
   const { dispatch, state } = useContext(ApplicationStateContext);
-  const { sandbox } = state;
+  const { sandbox, selected } = state;
   const { children } = sandbox;
 
   /**
@@ -31,7 +31,7 @@ const Layers = () => {
   return (
     <ContentContainer fill header={<div className={cx('header')}>Layers</div>}>
       <div className={cx('content')} onClick={handleClick}>
-        {children.map((child) => <LayersTree key={child.id} node={child} />)}
+        {children.map((child) => <LayersTree key={child.id} node={child} selected={selected} />)}
       </div>
     </ContentContainer>
   );
