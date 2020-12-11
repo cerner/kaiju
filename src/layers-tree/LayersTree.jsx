@@ -42,13 +42,13 @@ const Tree = (props) => {
   Object.keys(properties).forEach((property) => {
     const { id: propertyID, type, value: propertyValue } = properties[property];
 
-    if (type === 'node') {
+    if (type === 'node' && propertyValue) {
       children.push(Object.keys(propertyValue).map((key) => (
         <Tree key={key} node={propertyValue[key]} depth={depth + 1} />
       )));
     }
 
-    if (type === 'element') {
+    if (type === 'element' && propertyValue) {
       children.push(<Tree key={propertyID} node={properties[property]} depth={depth + 1} />);
     }
   });
