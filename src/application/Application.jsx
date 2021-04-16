@@ -70,7 +70,7 @@ const Application = () => {
 
     window.addEventListener('message', handleMessage);
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    // window.addEventListener('beforeunload', handleBeforeUnload);
 
     // Communicate state updates to the iframe.
     const sandbox = document.getElementById('sandbox');

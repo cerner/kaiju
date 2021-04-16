@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import TerraApplication from 'terra-application';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
+import SelectionOverlay from '../selection-overlay';
 import Renderer from '../renderer';
 import example from '../example-generator';
 import styles from './Sandbox.module.scss';
@@ -151,6 +152,7 @@ const Sandbox = () => {
           </span>
         )}
       </div>
+      <SelectionOverlay target={selected} />
     </TerraApplication>
   );
 };

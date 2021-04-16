@@ -60,10 +60,11 @@
     "terra-form-checkbox": "^4.8.0",
     "terra-form-input": "^4.2.0",
     "terra-form-select": "^6.14.0",
+    "terra-hookshot": "^5.34.0",
     "terra-icon": "^3.36.0",
     "terra-status-view": "^4.33.0",
     "terra-tag": "^2.39.0",
-    "uuid": "^8.3.0"
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
